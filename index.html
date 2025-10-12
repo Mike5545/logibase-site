@@ -85,6 +85,23 @@
             -webkit-text-fill-color: transparent;
         }
 
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-link {
+            color: #000;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: #333;
+        }
+
         .language-switcher {
             display: flex;
             gap: 1rem;
@@ -262,6 +279,7 @@
             border: 1px solid #e0e0e0;
             background: #fff;
             transition: transform 0.3s ease;
+            position: relative;
         }
 
         .vehicle-card:hover {
@@ -276,19 +294,33 @@
 
         .vehicle-image {
             width: 100%;
-            height: 150px;
+            height: 200px;
             background: #f8f9fa;
             margin-bottom: 1rem;
             display: flex;
             align-items: center;
             justify-content: center;
             border: 1px solid #e0e0e0;
+            position: relative;
+            overflow: hidden;
         }
 
         .vehicle-image img {
-            max-width: 100%;
-            max-height: 140px;
-            object-fit: contain;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .vehicle-logo {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 0.9rem;
         }
 
         .vehicle-specs {
@@ -467,15 +499,26 @@
                 height: 40px;
                 font-size: 1.1rem;
             }
+
+            .nav-links {
+                gap: 1rem;
+            }
         }
 
         @media (max-width: 480px) {
             .header-content {
                 padding: 0 1rem;
+                flex-direction: column;
+                gap: 1rem;
             }
             
             .logo-text {
                 display: none;
+            }
+
+            .nav-links {
+                flex-direction: column;
+                gap: 0.5rem;
             }
         }
     </style>
@@ -484,10 +527,20 @@
     <!-- Header -->
     <header>
         <div class="header-content">
-            <a href="#" class="logo">
-                <div class="logo-icon">LB</div>
-                <div class="logo-text">LOGIBASE</div>
-            </a>
+            <div style="display: flex; align-items: center; gap: 2rem;">
+                <a href="#" class="logo">
+                    <div class="logo-icon">LB</div>
+                    <div class="logo-text">LOGIBASE</div>
+                </a>
+                <div class="nav-links">
+                    <a href="#about" class="nav-link" data-lang="de">Über uns</a>
+                    <a href="#about" class="nav-link" style="display:none" data-lang="en">About us</a>
+                    <a href="#vehicles" class="nav-link" data-lang="de">Fahrzeuge</a>
+                    <a href="#vehicles" class="nav-link" style="display:none" data-lang="en">Vehicles</a>
+                    <a href="#contact" class="nav-link" data-lang="de">Kontakt</a>
+                    <a href="#contact" class="nav-link" style="display:none" data-lang="en">Contact</a>
+                </div>
+            </div>
             <div class="language-switcher">
                 <button class="lang-btn active" onclick="switchLanguage('de')">DE</button>
                 <button class="lang-btn" onclick="switchLanguage('en')">EN</button>
@@ -508,6 +561,44 @@
             <a href="#calculator" class="cta-button" style="display:none" data-lang="en">Calculate Transport</a>
             <a href="#contact" class="cta-button secondary" data-lang="de">Kontakt aufnehmen</a>
             <a href="#contact" class="cta-button secondary" style="display:none" data-lang="en">Contact Us</a>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="about-container">
+            <div class="about-text">
+                <h2 data-lang="de">Wir sind LogiBase - Ihre Logistik-Experten</h2>
+                <h2 data-lang="en" style="display:none">We are LogiBase - Your Logistics Experts</h2>
+                
+                <p data-lang="de">Als <strong>Spezialisten mit langjähriger Erfahrung</strong> in der Logistikbranche bieten wir maßgeschneiderte Lösungen für Transporte jeder Komplexität. Unser Team verfügt über umfangreiche Expertise in der Planung und Durchführung von Logistikprojekten.</p>
+                <p data-lang="en" style="display:none">As <strong>specialists with years of experience</strong> in the logistics industry, we provide customized solutions for transports of any complexity. Our team has extensive expertise in planning and executing logistics projects.</p>
+                
+                <p data-lang="de" style="margin-top: 1rem;"><strong>Wir beraten Sie professionell</strong> und helfen schnellstmöglich bei der Auswahl des optimalen Transportmittels für Ihre Güter - egal ob Kleintransporte oder Schwertransporte.</p>
+                <p data-lang="en" style="margin-top: 1rem; display: none;"><strong>We provide professional consultation</strong> and help you quickly select the optimal transport vehicle for your goods - whether small shipments or heavy transports.</p>
+                
+                <div class="about-features">
+                    <div class="feature">
+                        <div class="feature-icon">✓</div>
+                        <span data-lang="de">30 Minuten bis zum individuellen Angebot</span>
+                        <span data-lang="en" style="display:none">30 minutes to customized quote</span>
+                    </div>
+                    <div class="feature">
+                        <div class="feature-icon">✓</div>
+                        <span data-lang="de">Professionelle Beratung für jeden Transport</span>
+                        <span data-lang="en" style="display:none">Professional consultation for every transport</span>
+                    </div>
+                    <div class="feature">
+                        <div class="feature-icon">✓</div>
+                        <span data-lang="de">Überwiegend Deutschland + Europaweit</span>
+                        <span data-lang="en" style="display:none">Primarily Germany + Europe-wide</span>
+                    </div>
+                </div>
+            </div>
+            <div class="about-image">
+                <img src="https://images.unsplash.com/photo-1553413071-42a9d49fb0e9?w=600&h=400&fit=crop" alt="Logistik Experten" data-lang="de">
+                <img src="https://images.unsplash.com/photo-1553413071-42a9d49fb0e9?w=600&h=400&fit=crop" alt="Logistics Experts" data-lang="en" style="display:none">
+            </div>
         </div>
     </section>
 
@@ -603,27 +694,33 @@
     </section>
 
     <!-- Vehicles Section -->
-    <section class="vehicles">
+    <section class="vehicles" id="vehicles">
         <div class="vehicles-container">
             <h2 data-lang="de">Unsere Fahrzeugflotte</h2>
             <h2 data-lang="en" style="display:none">Our Vehicle Fleet</h2>
             
-            <p data-lang="de">Moderne und zuverlässige Fahrzeuge für jede Transportanforderung</p>
-            <p data-lang="en" style="display:none">Modern and reliable vehicles for every transport requirement</p>
+            <p data-lang="de">Moderne und zuverlässige Fahrzeuge für jede Transportanforderung - alle mit unserem Qualitätsstandard</p>
+            <p data-lang="en" style="display:none">Modern and reliable vehicles for every transport requirement - all with our quality standard</p>
             
             <div class="vehicle-grid">
                 <div class="vehicle-card">
                     <div class="vehicle-image">
                         <img src="https://images.unsplash.com/photo-1558618666-fcd25856cd63?w=400&h=300&fit=crop" alt="Kleintransporter" data-lang="de">
                         <img src="https://images.unsplash.com/photo-1558618666-fcd25856cd63?w=400&h=300&fit=crop" alt="Light truck" data-lang="en" style="display:none">
+                        <div class="vehicle-logo">LB</div>
                     </div>
                     <h3>Kleintransporter</h3>
-                    <p><strong>Bis 3,5 t</strong></p>
+                    <p><strong>Bis 3,5 t Gesamtgewicht</strong></p>
                     <div class="vehicle-specs">
                         <div class="spec-item">
                             <span class="spec-label" data-lang="de">Nutzlast:</span>
                             <span class="spec-label" data-lang="en" style="display:none">Payload:</span>
                             <span class="spec-value">Bis 1,5 t</span>
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label" data-lang="de">Laderaum:</span>
+                            <span class="spec-label" data-lang="en" style="display:none">Cargo space:</span>
+                            <span class="spec-value">Bis 20 m³</span>
                         </div>
                     </div>
                 </div>
@@ -632,14 +729,20 @@
                     <div class="vehicle-image">
                         <img src="https://images.unsplash.com/photo-1581093458791-8a6b6d47e7f0?w=400&h=300&fit=crop" alt="Mittelklasse LKW" data-lang="de">
                         <img src="https://images.unsplash.com/photo-1581093458791-8a6b6d47e7f0?w=400&h=300&fit=crop" alt="Medium truck" data-lang="en" style="display:none">
+                        <div class="vehicle-logo">LB</div>
                     </div>
                     <h3>Mittelklasse LKW</h3>
-                    <p><strong>Bis 7,5 t</strong></p>
+                    <p><strong>Bis 7,5 t Gesamtgewicht</strong></p>
                     <div class="vehicle-specs">
                         <div class="spec-item">
                             <span class="spec-label" data-lang="de">Nutzlast:</span>
                             <span class="spec-label" data-lang="en" style="display:none">Payload:</span>
                             <span class="spec-value">Bis 4,0 t</span>
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label" data-lang="de">Laderaum:</span>
+                            <span class="spec-label" data-lang="en" style="display:none">Cargo space:</span>
+                            <span class="spec-value">Bis 40 m³</span>
                         </div>
                     </div>
                 </div>
@@ -648,84 +751,51 @@
                     <div class="vehicle-image">
                         <img src="https://images.unsplash.com/photo-1567797412668-3c5fae7c8b8c?w=400&h=300&fit=crop" alt="Schwerlast LKW" data-lang="de">
                         <img src="https://images.unsplash.com/photo-1567797412668-3c5fae7c8b8c?w=400&h=300&fit=crop" alt="Heavy truck" data-lang="en" style="display:none">
+                        <div class="vehicle-logo">LB</div>
                     </div>
                     <h3>Schwerlast LKW</h3>
-                    <p><strong>Bis 12 t</strong></p>
+                    <p><strong>Bis 12 t Gesamtgewicht</strong></p>
                     <div class="vehicle-specs">
                         <div class="spec-item">
                             <span class="spec-label" data-lang="de">Nutzlast:</span>
                             <span class="spec-label" data-lang="en" style="display:none">Payload:</span>
                             <span class="spec-value">Bis 7,0 t</span>
                         </div>
-                    </div>
-                </div>
-                
-                <div class="vehicle-card">
-                    <div class="vehicle-image">
-                        <img src="https://images.unsplash.com/photo-1578530332818-6ba53e3a1b56?w=400&h=300&fit=crop" alt="Sattelzug" data-lang="de">
-                        <img src="https://images.unsplash.com/photo-1578530332818-6ba53e3a1b56?w=400&h=300&fit=crop" alt="Semi-trailer" data-lang="en" style="display:none">
-                    </div>
-                    <h3>Sattelzug</h3>
-                    <p><strong>Bis 40 t</strong></p>
-                    <div class="vehicle-specs">
                         <div class="spec-item">
-                            <span class="spec-label" data-lang="de">Nutzlast:</span>
-                            <span class="spec-label" data-lang="en" style="display:none">Payload:</span>
-                            <span class="spec-value">Bis 25 t</span>
+                            <span class="spec-label" data-lang="de">Laderaum:</span>
+                            <span class="spec-label" data-lang="en" style="display:none">Cargo space:</span>
+                            <span class="spec-value">Bis 60 m³</span>
                         </div>
                     </div>
                 </div>
                 
                 <div class="vehicle-card">
                     <div class="vehicle-image">
-                        <img src="https://images.unsplash.com/photo-1545173168-9f1947eebb6f?w=400&h=300&fit=crop" alt="Megatrailer" data-lang="de">
-                        <img src="https://images.unsplash.com/photo-1545173168-9f1947eebb6f?w=400&h=300&fit=crop" alt="Megatrailer" data-lang="en" style="display:none">
+                        <img src="https://images.unsplash.com/photo-1578530332818-6ba53e3a1b56?w=400&h=300&fit=crop" alt="Sattelzug/Megatrailer" data-lang="de">
+                        <img src="https://images.unsplash.com/photo-1578530332818-6ba53e3a1b56?w=400&h=300&fit=crop" alt="Semi-trailer/Megatrailer" data-lang="en" style="display:none">
+                        <div class="vehicle-logo">LB</div>
                     </div>
-                    <h3>Megatrailer</h3>
-                    <p><strong>Über 40 t</strong></p>
+                    <h3>Sattelzug & Megatrailer</h3>
+                    <p><strong>Bis 40 t+ Gesamtgewicht</strong></p>
                     <div class="vehicle-specs">
                         <div class="spec-item">
                             <span class="spec-label" data-lang="de">Nutzlast:</span>
                             <span class="spec-label" data-lang="en" style="display:none">Payload:</span>
-                            <span class="spec-value">Bis 30 t</span>
+                            <span class="spec-value">Bis 25-30 t</span>
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label" data-lang="de">Laderaum:</span>
+                            <span class="spec-label" data-lang="en" style="display:none">Cargo space:</span>
+                            <span class="spec-value">Bis 90-120 m³</span>
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label" data-lang="de">Besonderheit:</span>
+                            <span class="spec-label" data-lang="en" style="display:none">Special feature:</span>
+                            <span class="spec-value" data-lang="de">Für Schwertransporte</span>
+                            <span class="spec-value" data-lang="en" style="display:none">For heavy transports</span>
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- About Section -->
-    <section class="about">
-        <div class="about-container">
-            <div class="about-text">
-                <h2 data-lang="de">Warum LogiBase wählen?</h2>
-                <h2 data-lang="en" style="display:none">Why Choose LogiBase?</h2>
-                
-                <p data-lang="de">Als mehrjährige Spezialisten in der Logistikbranche bieten wir maßgeschneiderte Lösungen für Transporte jeder Komplexität. Unser Team verfügt über umfangreiche Erfahrung in der Planung und Durchführung von Logistikprojekten.</p>
-                <p data-lang="en" style="display:none">As experienced specialists in the logistics industry, we provide customized solutions for transports of any complexity. Our team has extensive experience in planning and executing logistics projects.</p>
-                
-                <div class="about-features">
-                    <div class="feature">
-                        <div class="feature-icon">✓</div>
-                        <span data-lang="de">30 Minuten bis zum individuellen Angebot</span>
-                        <span data-lang="en" style="display:none">30 minutes to customized quote</span>
-                    </div>
-                    <div class="feature">
-                        <div class="feature-icon">✓</div>
-                        <span data-lang="de">Vielseitige Fahrzeugflotte: 3,5t - Megatrailer</span>
-                        <span data-lang="en" style="display:none">Versatile fleet: 3.5t - Megatrailer</span>
-                    </div>
-                    <div class="feature">
-                        <div class="feature-icon">✓</div>
-                        <span data-lang="de">Überwiegend Deutschland + Europaweit</span>
-                        <span data-lang="en" style="display:none">Primarily Germany + Europe-wide</span>
-                    </div>
-                </div>
-            </div>
-            <div class="about-image">
-                <img src="https://images.unsplash.com/photo-1553413071-42a9d49fb0e9?w=600&h=400&fit=crop" alt="Logistik Lösungen" data-lang="de">
-                <img src="https://images.unsplash.com/photo-1553413071-42a9d49fb0e9?w=600&h=400&fit=crop" alt="Logistics Solutions" data-lang="en" style="display:none">
             </div>
         </div>
     </section>
@@ -738,9 +808,11 @@
             
             <p data-lang="de" style="text-align: center; margin-bottom: 2rem;">
                 Senden Sie uns eine Anfrage und unser Team erstellt innerhalb von 30 Minuten ein maßgeschneidertes Angebot für Sie.
+                <strong>Alle Anfragen werden direkt an info@logibase.de gesendet.</strong>
             </p>
             <p data-lang="en" style="text-align: center; margin-bottom: 2rem; display: none;">
                 Send us a request and our team will prepare a customized quote within 30 minutes.
+                <strong>All requests are sent directly to info@logibase.de.</strong>
             </p>
 
             <form class="contact-form" id="requestForm">
@@ -775,8 +847,7 @@
                         <option value="3.5t">Kleintransporter bis 3,5 t</option>
                         <option value="7.5t">LKW bis 7,5 t</option>
                         <option value="12t">LKW bis 12 t</option>
-                        <option value="sattelzug">Sattelzug bis 40 t</option>
-                        <option value="megatrailer">Megatrailer über 40 t</option>
+                        <option value="sattelzug">Sattelzug & Megatrailer bis 40 t+</option>
                         <option value="" data-lang="de">Unentschieden / Beratung gewünscht</option>
                         <option value="" data-lang="en" style="display:none">Undecided / Need consultation</option>
                     </select>
@@ -864,29 +935,24 @@
             // Vehicle recommendation logic
             if (weight <= 1500 && volume <= 20) {
                 recommendedVehicle = 'Kleintransporter bis 3,5 t';
-                capacity = '1,5 t Nutzlast';
+                capacity = '1,5 t Nutzlast, 20 m³ Laderaum';
                 cost = 'Ab 150 €';
                 deliveryTime = '1-2 Tage';
             } else if (weight <= 4000 && volume <= 40) {
                 recommendedVehicle = 'Mittelklasse LKW bis 7,5 t';
-                capacity = '4,0 t Nutzlast';
+                capacity = '4,0 t Nutzlast, 40 m³ Laderaum';
                 cost = 'Ab 300 €';
                 deliveryTime = '2-3 Tage';
             } else if (weight <= 7000 && volume <= 60) {
                 recommendedVehicle = 'Schwerlast LKW bis 12 t';
-                capacity = '7,0 t Nutzlast';
+                capacity = '7,0 t Nutzlast, 60 m³ Laderaum';
                 cost = 'Ab 500 €';
                 deliveryTime = '3-4 Tage';
-            } else if (weight <= 25000 && volume <= 90) {
-                recommendedVehicle = 'Sattelzug bis 40 t';
-                capacity = '25 t Nutzlast';
-                cost = 'Ab 800 €';
-                deliveryTime = '4-5 Tage';
             } else {
-                recommendedVehicle = 'Megatrailer über 40 t';
-                capacity = '30 t Nutzlast';
+                recommendedVehicle = 'Sattelzug & Megatrailer bis 40 t+';
+                capacity = '25-30 t Nutzlast, 90-120 m³ Laderaum';
                 cost = 'Individuelles Angebot';
-                deliveryTime = '5-7 Tage';
+                deliveryTime = '4-7 Tage';
             }
             
             // Adjust for transport type
@@ -904,18 +970,53 @@
             document.getElementById('calculatorResult').style.display = 'block';
         });
 
-        // Contact Form
+        // Contact Form - Send to email
         document.getElementById('requestForm').addEventListener('submit', function(e) {
             e.preventDefault();
-            const currentLang = document.querySelector('.lang-btn.active').textContent.toLowerCase();
             
+            const formData = new FormData(this);
+            const data = {
+                name: formData.get('name'),
+                company: formData.get('company'),
+                email: formData.get('email'),
+                phone: formData.get('phone'),
+                vehicleType: formData.get('vehicle-type'),
+                cargo: formData.get('cargo'),
+                route: formData.get('route')
+            };
+            
+            // Create email content
+            const subject = `Neue Transportanfrage von ${data.name}`;
+            const body = `
+Name: ${data.name}
+Firma: ${data.company || 'Nicht angegeben'}
+E-Mail: ${data.email}
+Telefon: ${data.phone || 'Nicht angegeben'}
+
+Gewünschtes Fahrzeug: ${data.vehicleType}
+Frachtbeschreibung: ${data.cargo}
+Strecke: ${data.route}
+
+Diese Nachricht wurde über das LogiBase Kontaktformular gesendet.
+            `.trim();
+            
+            // Create mailto link
+            const mailtoLink = `mailto:info@logibase.de?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+            
+            // Open email client
+            window.location.href = mailtoLink;
+            
+            const currentLang = document.querySelector('.lang-btn.active').textContent.toLowerCase();
             if (currentLang === 'de') {
-                alert('Vielen Dank für Ihre Anfrage! Wir melden uns innerhalb von 30 Minuten bei Ihnen.');
+                alert('Vielen Dank für Ihre Anfrage! Ihr E-Mail-Programm wird geöffnet. Bitte senden Sie die Nachricht ab.');
             } else {
-                alert('Thank you for your request! We will get back to you within 30 minutes.');
+                alert('Thank you for your request! Your email client will open. Please send the message.');
             }
             
-            this.reset();
+            // Optional: Reset form after delay
+            setTimeout(() => {
+                this.reset();
+            }, 2000);
         });
     </script>
 </body>
