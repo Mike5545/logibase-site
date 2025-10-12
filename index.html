@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Logibase - Transportlösungen</title>
+<style>
+body {font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin:0; padding:0; background:#f9f9f9; color:#333;}
+header, nav, section, footer {padding:20px;}
+header {background:#002855; color:#fff;}
+nav a {margin-right:15px; color:#fff; text-decoration:none; font-weight:bold;}
+nav a:hover {text-decoration:underline;}
+.section-title {color:#002855; margin-bottom:10px; border-bottom:2px solid #002855; display:inline-block; padding-bottom:5px;}
+.button {background:#002855; color:#fff; padding:10px 20px; text-decoration:none; border-radius:5px; transition:0.3s;}
+.button:hover {background:#004080;}
+.language-switch {float:right;}
+.container {max-width:1000px; margin:auto;}
+section {margin-bottom:50px;}
+ul {list-style-type:none; padding:0;}
+ul li {margin-bottom:10px; padding-left:20px; position:relative;}
+ul li::before {content:'\2713'; position:absolute; left:0; color:#004080; font-weight:bold;}
+form input, form textarea {width:100%; padding:10px; margin-bottom:10px; border:1px solid #ccc; border-radius:5px;}
+form button {cursor:pointer; border:none;}
+footer {background:#e0e0e0; text-align:center; padding:15px;}
+</style>
+</head>
+<body>
+<header>
+<div class="container">
+<h1>Logibase</h1>
+<div class="language-switch">
+<a href="#" onclick="switchLanguage('de')">DE</a> | <a href="#" onclick="switchLanguage('en')">EN</a>
+</div>
+<nav>
+<a href="#home">Home</a>
+<a href="#services">Services</a>
+<a href="#about">About Us</a>
+<a href="#contact">Contact</a>
+</nav>
+</div>
+</header>
+
+<section id="home" class="container">
+<h2 class="section-title">Willkommen bei Logibase / Welcome to Logibase</h2>
+<p id="home-text-de">Wir bieten Transportlösungen jeder Größenordnung auf höchstem Niveau – schnell, sicher und effizient.</p>
+<p id="home-text-en" style="display:none;">We provide transport solutions of any scale at the highest level – fast, safe, and efficient.</p>
+<a class="button" href="#services">Unsere Services / Our Services</a>
+</section>
+
+<section id="services" class="container">
+<h2 class="section-title">Unsere Services / Our Services</h2>
+<ul>
+<li><span id="services-de">Transport innerhalb Deutschlands und Europas</span><span id="services-en" style="display:none;">Transport within Germany and Europe</span></li>
+<li><span id="services2-de">Komplexe Logistik- und Transportlösungen</span><span id="services2-en" style="display:none;">Complex logistics and transport solutions</span></li>
+</ul>
+</section>
+
+<section id="about" class="container">
+<h2 class="section-title">Über uns / About Us</h2>
+<p id="about-text-de">Wir bei <strong>Logibase</strong> sind ein Team von hochqualifizierten Spezialisten im Bereich Transport und Logistik. Unsere Expertise ermöglicht es uns, selbst die komplexesten Transportprojekte zuverlässig, sicher und pünktlich umzusetzen. Wir legen größten Wert auf Präzision, professionelle Planung und persönlichen Service. Jeder Auftrag wird individuell betreut, und unser Team arbeitet Hand in Hand, um für unsere Kunden optimale Lösungen zu schaffen. Unsere Mission: Transportlösungen jeder Größenordnung auf höchstem Niveau – schnell, sicher und effizient.</p>
+<p id="about-text-en" style="display:none;">At <strong>Logibase</strong>, we are a team of top-class specialists in transport and logistics. Our expertise allows us to handle even the most complex transport projects reliably, safely, and on time. We value precision, professional planning, and personalized service. Every assignment is handled individually, and our team works closely together to deliver the best solutions for our clients. Our mission: Transport solutions of any scale at the highest level – fast, safe, and efficient.</p>
+</section>
+
+<section id="contact" class="container">
+<h2 class="section-title">Kontakt / Contact</h2>
+<p><strong>Telefon:</strong> 0152 38976222</p>
+<p><strong>E-Mail:</strong> info@logibase.de</p>
+<p><strong>Adresse:</strong> Schönefeld, Theodor-Fontane-Allee 2</p>
+<p>Formular / Form:</p>
+<form>
+<input type="text" placeholder="Name / Name" required><br><br>
+<input type="email" placeholder="E-Mail / Email" required><br><br>
+<textarea placeholder="Nachricht / Message" required></textarea><br><br>
+<button type="submit">Senden / Send</button>
+</form>
+<div id="map" style="margin-top:20px;">
+<iframe src="https://www.google.com/maps?q=Schönefeld,+Theodor-Fontane-Allee+2&output=embed" width="100%" height="300" style="border:0;"></iframe>
+</div>
+</section>
+
+<footer>
+<p>&copy; 2025 Logibase. Alle Rechte vorbehalten / All rights reserved.</p>
+</footer>
+
+<script>
+function switchLanguage(lang){
+if(lang==='de'){
+document.getElementById('home-text-de').style.display='block';
+document.getElementById('home-text-en').style.display='none';
+document.getElementById('services-de').style.display='inline';
+document.getElementById('services-en').style.display='none';
+document.getElementById('services2-de').style.display='inline';
+document.getElementById('services2-en').style.display='none';
+document.getElementById('about-text-de').style.display='block';
+document.getElementById('about-text-en').style.display='none';
+} else {
+document.getElementById('home-text-de').style.display='none';
+document.getElementById('home-text-en').style.display='block';
+document.getElementById('services-de').style.display='none';
+document.getElementById('services-en').style.display='inline';
+document.getElementById('services2-de').style.display='none';
+document.getElementById('services2-en').style.display='inline';
+document.getElementById('about-text-de').style.display='none';
+document.getElementById('about-text-en').style.display='block';
+}
+}
+</script>
+
+</body>
+</html>
