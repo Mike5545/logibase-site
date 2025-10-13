@@ -279,6 +279,83 @@
             border-color: #000;
         }
 
+        /* Pallet Type Selector */
+        .pallet-type-selector {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .pallet-type-btn {
+            padding: 0.8rem;
+            border: 2px solid #e0e0e0;
+            background: #fff;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+            font-weight: 500;
+            border-radius: 6px;
+            font-size: 0.9rem;
+        }
+
+        .pallet-type-btn.active {
+            background: #000;
+            color: #fff;
+            border-color: #000;
+        }
+
+        /* Individual Pallets */
+        .individual-pallets {
+            margin-bottom: 1rem;
+        }
+
+        .pallet-item {
+            display: grid;
+            grid-template-columns: 1fr 1fr auto;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            padding: 1rem;
+            border: 1px solid #e0e0e0;
+            border-radius: 6px;
+            background: #f9f9f9;
+            align-items: end;
+        }
+
+        .add-pallet-btn {
+            background: #000;
+            color: #fff;
+            border: none;
+            padding: 0.7rem 1rem;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 1.5rem;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+        }
+
+        .add-pallet-btn:hover {
+            background: #333;
+        }
+
+        .remove-pallet-btn {
+            background: #ff4444;
+            color: white;
+            border: none;
+            padding: 0.5rem;
+            border-radius: 4px;
+            cursor: pointer;
+            height: fit-content;
+        }
+
+        .remove-pallet-btn:hover {
+            background: #cc0000;
+        }
+
         /* Dimensions Input */
         .dimensions-input {
             display: grid;
@@ -540,12 +617,57 @@
             position: relative;
             overflow: hidden;
             border-radius: 6px;
+            cursor: pointer;
         }
 
         .vehicle-image img {
             width: 100%;
             height: 100%;
             object-fit: cover;
+            transition: opacity 0.3s ease;
+        }
+
+        .vehicle-image:hover img {
+            opacity: 0.7;
+        }
+
+        .pallet-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: white;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+        }
+
+        .vehicle-image:hover .pallet-overlay {
+            display: flex;
+        }
+
+        .pallet-diagram {
+            width: 100%;
+            height: 100%;
+            display: grid;
+            gap: 2px;
+            background: #f0f0f0;
+            padding: 5px;
+            border-radius: 4px;
+        }
+
+        .pallet-cell {
+            background: #4CAF50;
+            border: 1px solid #388E3C;
+            border-radius: 2px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 0.7rem;
+            font-weight: bold;
         }
 
         .vehicle-logo {
@@ -558,6 +680,7 @@
             border-radius: 20px;
             font-weight: bold;
             font-size: 0.9rem;
+            z-index: 2;
         }
 
         .vehicle-specs {
@@ -621,6 +744,14 @@
             }
             
             .cargo-type-selector {
+                grid-template-columns: 1fr;
+            }
+            
+            .pallet-type-selector {
+                grid-template-columns: 1fr;
+            }
+            
+            .pallet-item {
                 grid-template-columns: 1fr;
             }
             
@@ -766,52 +897,47 @@
                         <label class="lang-en">What would you like to transport?</label>
                         <div class="cargo-type-selector">
                             <div class="cargo-type-btn active" data-type="individual">
-                                <span class="lang-de">Individueller Fracht</span>
-                                <span class="lang-en">Individual Cargo</span>
+                                <span class="lang-de">Individuelle Paletten</span>
+                                <span class="lang-en">Individual Pallets</span>
                             </div>
-                            <div class="cargo-type-btn" data-type="pallets">
+                            <div class="cargo-type-btn" data-type="standard">
+                                <span class="lang-de">Standard Paletten</span>
+                                <span class="lang-en">Standard Pallets</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Individual Pallets -->
+                    <div class="form-group full-width" id="individual-pallets-group">
+                        <div class="individual-pallets" id="individual-pallets-container">
+                            <!-- Individual pallets will be added here dynamically -->
+                        </div>
+                        <button type="button" class="add-pallet-btn" id="add-pallet-btn">+</button>
+                    </div>
+
+                    <!-- Standard Pallets -->
+                    <div class="form-group full-width" id="standard-pallets-group" style="display: none;">
+                        <div class="pallet-type-selector">
+                            <div class="pallet-type-btn active" data-type="euro">
                                 <span class="lang-de">Europaletten</span>
                                 <span class="lang-en">Euro Pallets</span>
+                                <br><small>120×80 cm</small>
+                            </div>
+                            <div class="pallet-type-btn" data-type="dusseldorf">
+                                <span class="lang-de">Düsseldorfer Paletten</span>
+                                <span class="lang-en">Dusseldorf Pallets</span>
+                                <br><small>120×100 cm</small>
                             </div>
                         </div>
-                    </div>
-
-                    <!-- Individual Cargo Fields -->
-                    <div class="form-group full-width" id="individual-cargo-group">
-                        <div class="dimensions-input">
-                            <div class="dimension-item">
-                                <label for="cargo-length" class="lang-de">Länge (cm)</label>
-                                <label for="cargo-length" class="lang-en">Length (cm)</label>
-                                <input type="number" id="cargo-length" name="cargo-length" min="0" value="100">
-                            </div>
-                            <div class="dimension-item">
-                                <label for="cargo-width" class="lang-de">Breite (cm)</label>
-                                <label for="cargo-width" class="lang-en">Width (cm)</label>
-                                <input type="number" id="cargo-width" name="cargo-width" min="0" value="80">
-                            </div>
-                            <div class="dimension-item">
-                                <label for="cargo-height" class="lang-de">Höhe (cm)</label>
-                                <label for="cargo-height" class="lang-en">Height (cm)</label>
-                                <input type="number" id="cargo-height" name="cargo-height" min="0" value="60">
-                            </div>
-                        </div>
+                        
                         <div class="form-group">
-                            <label for="cargo-weight" class="lang-de">Gewicht (kg)</label>
-                            <label for="cargo-weight" class="lang-en">Weight (kg)</label>
-                            <input type="number" id="cargo-weight" name="cargo-weight" min="0" value="500">
-                        </div>
-                    </div>
-
-                    <!-- Pallets Fields -->
-                    <div class="form-group full-width" id="pallets-group" style="display: none;">
-                        <div class="form-group">
-                            <label for="pallet-count" class="lang-de">Anzahl Europaletten</label>
-                            <label for="pallet-count" class="lang-en">Number of Euro Pallets</label>
+                            <label for="pallet-count" class="lang-de">Anzahl Paletten</label>
+                            <label for="pallet-count" class="lang-en">Number of Pallets</label>
                             <input type="number" id="pallet-count" name="pallet-count" min="0" value="1">
                         </div>
                         <div class="form-group">
-                            <label for="pallet-weight" class="lang-de">Gesamtgewicht pro Palette (kg)</label>
-                            <label for="pallet-weight" class="lang-en">Total Weight per Pallet (kg)</label>
+                            <label for="pallet-weight" class="lang-de">Gewicht pro Palette (kg)</label>
+                            <label for="pallet-weight" class="lang-en">Weight per Pallet (kg)</label>
                             <input type="number" id="pallet-weight" name="pallet-weight" min="0" value="500">
                         </div>
                     </div>
@@ -840,6 +966,7 @@
                     <h3 class="lang-de">Geschätzter Transportpreis</h3>
                     <h3 class="lang-en">Estimated Transport Price</h3>
                     <div class="price-estimate" id="priceEstimate">-</div>
+                    <div class="total-weight" id="totalWeight"></div>
                     <div class="price-note lang-de">
                         * Dies ist eine grobe Preisschätzung. Der endgültige Preis kann je nach genauer Strecke und Fracht variieren.
                     </div>
@@ -892,197 +1019,7 @@
                 <p class="lang-en">Modern and reliable trucks for every transport requirement</p>
                 
                 <div class="vehicle-grid">
-                    <!-- 3,5-Tonner -->
-                    <div class="vehicle-card">
-                        <div class="vehicle-image">
-                            <img src="https://images.unsplash.com/photo-1553440569-bcc63803a83d?w=400&h=300&fit=crop" alt="3,5-Tonner">
-                            <div class="vehicle-logo">LB</div>
-                        </div>
-                        <h3>3,5-Tonner</h3>
-                        <p><strong class="lang-de">Kleintransport</strong><strong class="lang-en">Small Transport</strong></p>
-                        <div class="vehicle-specs">
-                            <div class="spec-item">
-                                <span class="spec-label lang-de">Max. Gewicht:</span>
-                                <span class="spec-label lang-en">Max. Weight:</span>
-                                <span class="spec-value">1.100 kg</span>
-                            </div>
-                            <div class="spec-item">
-                                <span class="spec-label lang-de">Lademeter:</span>
-                                <span class="spec-label lang-en">Loading Meters:</span>
-                                <span class="spec-value">4,5 ldm</span>
-                            </div>
-                            <div class="spec-item">
-                                <span class="spec-label lang-de">Ladehöhe:</span>
-                                <span class="spec-label lang-en">Loading Height:</span>
-                                <span class="spec-value">1,8 m</span>
-                            </div>
-                            <div class="spec-item">
-                                <span class="spec-label lang-de">Volumen:</span>
-                                <span class="spec-label lang-en">Volume:</span>
-                                <span class="spec-value">12 m³</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- 7,5-Tonner -->
-                    <div class="vehicle-card">
-                        <div class="vehicle-image">
-                            <img src="https://images.unsplash.com/photo-1581093458791-8a6b6d47e7f0?w=400&h=300&fit=crop" alt="7,5-Tonner">
-                            <div class="vehicle-logo">LB</div>
-                        </div>
-                        <h3>7,5-Tonner</h3>
-                        <p><strong class="lang-de">Mitteltransport</strong><strong class="lang-en">Medium Transport</strong></p>
-                        <div class="vehicle-specs">
-                            <div class="spec-item">
-                                <span class="spec-label lang-de">Max. Gewicht:</span>
-                                <span class="spec-label lang-en">Max. Weight:</span>
-                                <span class="spec-value">4.500 kg</span>
-                            </div>
-                            <div class="spec-item">
-                                <span class="spec-label lang-de">Lademeter:</span>
-                                <span class="spec-label lang-en">Loading Meters:</span>
-                                <span class="spec-value">6,0 ldm</span>
-                            </div>
-                            <div class="spec-item">
-                                <span class="spec-label lang-de">Ladehöhe:</span>
-                                <span class="spec-label lang-en">Loading Height:</span>
-                                <span class="spec-value">2,4 m</span>
-                            </div>
-                            <div class="spec-item">
-                                <span class="spec-label lang-de">Volumen:</span>
-                                <span class="spec-label lang-en">Volume:</span>
-                                <span class="spec-value">28 m³</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- 12-Tonner -->
-                    <div class="vehicle-card">
-                        <div class="vehicle-image">
-                            <img src="https://images.unsplash.com/photo-1567797412668-3c5fae7c8b8c?w=400&h=300&fit=crop" alt="12-Tonner">
-                            <div class="vehicle-logo">LB</div>
-                        </div>
-                        <h3>12-Tonner</h3>
-                        <p><strong class="lang-de">Großtransport</strong><strong class="lang-en">Large Transport</strong></p>
-                        <div class="vehicle-specs">
-                            <div class="spec-item">
-                                <span class="spec-label lang-de">Max. Gewicht:</span>
-                                <span class="spec-label lang-en">Max. Weight:</span>
-                                <span class="spec-value">7.000 kg</span>
-                            </div>
-                            <div class="spec-item">
-                                <span class="spec-label lang-de">Lademeter:</span>
-                                <span class="spec-label lang-en">Loading Meters:</span>
-                                <span class="spec-value">7,3 ldm</span>
-                            </div>
-                            <div class="spec-item">
-                                <span class="spec-label lang-de">Ladehöhe:</span>
-                                <span class="spec-label lang-en">Loading Height:</span>
-                                <span class="spec-value">2,7 m</span>
-                            </div>
-                            <div class="spec-item">
-                                <span class="spec-label lang-de">Volumen:</span>
-                                <span class="spec-label lang-en">Volume:</span>
-                                <span class="spec-value">40 m³</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- 18-Tonner -->
-                    <div class="vehicle-card">
-                        <div class="vehicle-image">
-                            <img src="https://images.unsplash.com/photo-1578530332818-6ba53e3a1b56?w=400&h=300&fit=crop" alt="18-Tonner">
-                            <div class="vehicle-logo">LB</div>
-                        </div>
-                        <h3>18-Tonner</h3>
-                        <p><strong class="lang-de">Schwerlasttransport</strong><strong class="lang-en">Heavy Transport</strong></p>
-                        <div class="vehicle-specs">
-                            <div class="spec-item">
-                                <span class="spec-label lang-de">Max. Gewicht:</span>
-                                <span class="spec-label lang-en">Max. Weight:</span>
-                                <span class="spec-value">12.000 kg</span>
-                            </div>
-                            <div class="spec-item">
-                                <span class="spec-label lang-de">Lademeter:</span>
-                                <span class="spec-label lang-en">Loading Meters:</span>
-                                <span class="spec-value">9,6 ldm</span>
-                            </div>
-                            <div class="spec-item">
-                                <span class="spec-label lang-de">Ladehöhe:</span>
-                                <span class="spec-label lang-en">Loading Height:</span>
-                                <span class="spec-value">2,7 m</span>
-                            </div>
-                            <div class="spec-item">
-                                <span class="spec-label lang-de">Volumen:</span>
-                                <span class="spec-label lang-en">Volume:</span>
-                                <span class="spec-value">60 m³</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- 40-Tonner Sattelzug -->
-                    <div class="vehicle-card">
-                        <div class="vehicle-image">
-                            <img src="https://images.unsplash.com/photo-1586528116314-48f3dab5d71c?w=400&h=300&fit=crop" alt="40-Tonner Sattelzug">
-                            <div class="vehicle-logo">LB</div>
-                        </div>
-                        <h3>40-Tonner Sattelzug</h3>
-                        <p><strong class="lang-de">Schwertransport</strong><strong class="lang-en">Special Transport</strong></p>
-                        <div class="vehicle-specs">
-                            <div class="spec-item">
-                                <span class="spec-label lang-de">Max. Gewicht:</span>
-                                <span class="spec-label lang-en">Max. Weight:</span>
-                                <span class="spec-value">24.000 kg</span>
-                            </div>
-                            <div class="spec-item">
-                                <span class="spec-label lang-de">Lademeter:</span>
-                                <span class="spec-label lang-en">Loading Meters:</span>
-                                <span class="spec-value">13,6 ldm</span>
-                            </div>
-                            <div class="spec-item">
-                                <span class="spec-label lang-de">Ladehöhe:</span>
-                                <span class="spec-label lang-en">Loading Height:</span>
-                                <span class="spec-value">2,7 m</span>
-                            </div>
-                            <div class="spec-item">
-                                <span class="spec-label lang-de">Volumen:</span>
-                                <span class="spec-label lang-en">Volume:</span>
-                                <span class="spec-value">90 m³</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Mega Trailer -->
-                    <div class="vehicle-card">
-                        <div class="vehicle-image">
-                            <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=400&h=300&fit=crop" alt="Mega Trailer">
-                            <div class="vehicle-logo">LB</div>
-                        </div>
-                        <h3>Mega Trailer</h3>
-                        <p><strong class="lang-de">Maximaltransport</strong><strong class="lang-en">Maximum Transport</strong></p>
-                        <div class="vehicle-specs">
-                            <div class="spec-item">
-                                <span class="spec-label lang-de">Max. Gewicht:</span>
-                                <span class="spec-label lang-en">Max. Weight:</span>
-                                <span class="spec-value">40.000 kg</span>
-                            </div>
-                            <div class="spec-item">
-                                <span class="spec-label lang-de">Lademeter:</span>
-                                <span class="spec-label lang-en">Loading Meters:</span>
-                                <span class="spec-value">18,0 ldm</span>
-                            </div>
-                            <div class="spec-item">
-                                <span class="spec-label lang-de">Ladehöhe:</span>
-                                <span class="spec-label lang-en">Loading Height:</span>
-                                <span class="spec-value">3,0 m</span>
-                            </div>
-                            <div class="spec-item">
-                                <span class="spec-label lang-de">Volumen:</span>
-                                <span class="spec-label lang-en">Volume:</span>
-                                <span class="spec-value">120 m³</span>
-                            </div>
-                        </div>
-                    </div>
+                    <!-- Vehicles will be populated by JavaScript -->
                 </div>
             </div>
         </section>
@@ -1108,16 +1045,108 @@
     </footer>
 
     <script>
+        // Vehicle data with pallet configurations
+        const vehicleData = {
+            '3.5t': { 
+                name: '3,5-Tonner',
+                basePrice: 100,
+                perKm: 1.0,
+                perKg: 0.12,
+                perPallet: 25,
+                maxWeight: 1100,
+                maxPallets: 6,
+                loadingMeters: 4.5,
+                palletConfig: {
+                    euro: { rows: 2, cols: 3 },
+                    dusseldorf: { rows: 2, cols: 2 }
+                },
+                image: 'https://images.unsplash.com/photo-1553440569-bcc63803a83d?w=400&h=300&fit=crop'
+            },
+            '7.5t': { 
+                name: '7,5-Tonner',
+                basePrice: 150,
+                perKm: 1.2,
+                perKg: 0.10,
+                perPallet: 20,
+                maxWeight: 4500,
+                maxPallets: 10,
+                loadingMeters: 6.0,
+                palletConfig: {
+                    euro: { rows: 2, cols: 5 },
+                    dusseldorf: { rows: 2, cols: 4 }
+                },
+                image: 'https://images.unsplash.com/photo-1581093458791-8a6b6d47e7f0?w=400&h=300&fit=crop'
+            },
+            '12t': { 
+                name: '12-Tonner',
+                basePrice: 200,
+                perKm: 1.4,
+                perKg: 0.08,
+                perPallet: 18,
+                maxWeight: 7000,
+                maxPallets: 12,
+                loadingMeters: 7.3,
+                palletConfig: {
+                    euro: { rows: 2, cols: 6 },
+                    dusseldorf: { rows: 2, cols: 5 }
+                },
+                image: 'https://images.unsplash.com/photo-1567797412668-3c5fae7c8b8c?w=400&h=300&fit=crop'
+            },
+            '18t': { 
+                name: '18-Tonner',
+                basePrice: 280,
+                perKm: 1.6,
+                perKg: 0.06,
+                perPallet: 16,
+                maxWeight: 12000,
+                maxPallets: 18,
+                loadingMeters: 9.6,
+                palletConfig: {
+                    euro: { rows: 3, cols: 6 },
+                    dusseldorf: { rows: 3, cols: 5 }
+                },
+                image: 'https://images.unsplash.com/photo-1578530332818-6ba53e3a1b56?w=400&h=300&fit=crop'
+            },
+            '40t': { 
+                name: '40-Tonner Sattelzug',
+                basePrice: 350,
+                perKm: 1.8,
+                perKg: 0.05,
+                perPallet: 15,
+                maxWeight: 24000,
+                maxPallets: 33,
+                loadingMeters: 13.6,
+                palletConfig: {
+                    euro: { rows: 3, cols: 11 },
+                    dusseldorf: { rows: 3, cols: 9 }
+                },
+                image: 'https://images.unsplash.com/photo-1586528116314-48f3dab5d71c?w=400&h=300&fit=crop'
+            },
+            'mega': { 
+                name: 'Mega Trailer',
+                basePrice: 450,
+                perKm: 2.0,
+                perKg: 0.04,
+                perPallet: 12,
+                maxWeight: 40000,
+                maxPallets: 50,
+                loadingMeters: 18.0,
+                palletConfig: {
+                    euro: { rows: 4, cols: 13 },
+                    dusseldorf: { rows: 4, cols: 10 }
+                },
+                image: 'https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=400&h=300&fit=crop'
+            }
+        };
+
         // Language Switching
         document.querySelectorAll('.lang-btn').forEach(btn => {
             btn.addEventListener('click', function() {
                 const lang = this.getAttribute('data-lang');
                 
-                // Update active button
                 document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
                 this.classList.add('active');
                 
-                // Show/hide language content
                 document.querySelectorAll('.lang-de').forEach(el => {
                     el.style.display = lang === 'de' ? 'block' : 'none';
                 });
@@ -1135,78 +1164,60 @@
                 
                 const type = this.getAttribute('data-type');
                 if (type === 'individual') {
-                    document.getElementById('individual-cargo-group').style.display = 'block';
-                    document.getElementById('pallets-group').style.display = 'none';
+                    document.getElementById('individual-pallets-group').style.display = 'block';
+                    document.getElementById('standard-pallets-group').style.display = 'none';
                 } else {
-                    document.getElementById('individual-cargo-group').style.display = 'none';
-                    document.getElementById('pallets-group').style.display = 'block';
+                    document.getElementById('individual-pallets-group').style.display = 'none';
+                    document.getElementById('standard-pallets-group').style.display = 'block';
                 }
             });
         });
 
-        // Vehicle Data
-        const vehicleData = {
-            '3.5t': { 
-                name: '3,5-Tonner', 
-                basePrice: 100,
-                perKm: 1.0,
-                perKg: 0.12,
-                perPallet: 25,
-                maxWeight: 1100,
-                maxPallets: 6,
-                volume: 12
-            },
-            '7.5t': { 
-                name: '7,5-Tonner', 
-                basePrice: 150,
-                perKm: 1.2,
-                perKg: 0.10,
-                perPallet: 20,
-                maxWeight: 4500,
-                maxPallets: 10,
-                volume: 28
-            },
-            '12t': { 
-                name: '12-Tonner', 
-                basePrice: 200,
-                perKm: 1.4,
-                perKg: 0.08,
-                perPallet: 18,
-                maxWeight: 7000,
-                maxPallets: 12,
-                volume: 40
-            },
-            '18t': { 
-                name: '18-Tonner', 
-                basePrice: 280,
-                perKm: 1.6,
-                perKg: 0.06,
-                perPallet: 16,
-                maxWeight: 12000,
-                maxPallets: 18,
-                volume: 60
-            },
-            '40t': { 
-                name: '40-Tonner Sattelzug', 
-                basePrice: 350,
-                perKm: 1.8,
-                perKg: 0.05,
-                perPallet: 15,
-                maxWeight: 24000,
-                maxPallets: 33,
-                volume: 90
-            },
-            'mega': { 
-                name: 'Mega Trailer', 
-                basePrice: 450,
-                perKm: 2.0,
-                perKg: 0.04,
-                perPallet: 12,
-                maxWeight: 40000,
-                maxPallets: 50,
-                volume: 120
-            }
-        };
+        // Pallet Type Switching
+        document.querySelectorAll('.pallet-type-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.pallet-type-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+
+        // Individual Pallets Management
+        let palletCounter = 0;
+        const individualPalletsContainer = document.getElementById('individual-pallets-container');
+        const addPalletBtn = document.getElementById('add-pallet-btn');
+
+        function addIndividualPallet() {
+            palletCounter++;
+            const palletItem = document.createElement('div');
+            palletItem.className = 'pallet-item';
+            palletItem.innerHTML = `
+                <div class="dimension-item">
+                    <label class="lang-de">Länge (cm)</label>
+                    <label class="lang-en">Length (cm)</label>
+                    <input type="number" name="pallet-length-${palletCounter}" min="0" value="120" required>
+                </div>
+                <div class="dimension-item">
+                    <label class="lang-de">Breite (cm)</label>
+                    <label class="lang-en">Width (cm)</label>
+                    <input type="number" name="pallet-width-${palletCounter}" min="0" value="80" required>
+                </div>
+                <div class="dimension-item">
+                    <label class="lang-de">Gewicht (kg)</label>
+                    <label class="lang-en">Weight (kg)</label>
+                    <input type="number" name="pallet-weight-${palletCounter}" min="0" value="500" required>
+                </div>
+                ${palletCounter > 1 ? '<button type="button" class="remove-pallet-btn" onclick="removePallet(this)">×</button>' : ''}
+            `;
+            individualPalletsContainer.appendChild(palletItem);
+        }
+
+        function removePallet(button) {
+            button.parentElement.remove();
+        }
+
+        addPalletBtn.addEventListener('click', addIndividualPallet);
+        // Add first pallet by default
+        addIndividualPallet();
 
         // Distance Matrix
         const distanceMatrix = {
@@ -1235,28 +1246,30 @@
             const distance = calculateDistance(fromLocation, toLocation);
             
             let price = vehicle.basePrice + (distance * vehicle.perKm);
-            
+            let totalWeight = 0;
+
             if (cargoType === 'individual') {
-                const weight = parseInt(formData.get('cargo-weight'));
-                price += weight * vehicle.perKg;
-                
-                // Add volume consideration
-                const length = parseInt(formData.get('cargo-length'));
-                const width = parseInt(formData.get('cargo-width'));
-                const height = parseInt(formData.get('cargo-height'));
-                const volume = (length * width * height) / 1000000; // Convert to m³
-                
-                if (volume > vehicle.volume * 0.8) {
-                    price *= 1.2; // 20% surcharge for high volume
-                }
+                // Calculate for individual pallets
+                const palletItems = document.querySelectorAll('.pallet-item');
+                palletItems.forEach(item => {
+                    const weight = parseInt(item.querySelector('input[type="number"]:last-child').value);
+                    totalWeight += weight;
+                    price += weight * vehicle.perKg;
+                });
+                price += palletItems.length * vehicle.perPallet;
             } else {
-                const pallets = parseInt(formData.get('pallet-count'));
+                // Calculate for standard pallets
+                const palletCount = parseInt(formData.get('pallet-count'));
                 const palletWeight = parseInt(formData.get('pallet-weight'));
-                price += pallets * vehicle.perPallet;
-                price += (pallets * palletWeight) * vehicle.perKg;
+                totalWeight = palletCount * palletWeight;
+                price += palletCount * vehicle.perPallet;
+                price += totalWeight * vehicle.perKg;
             }
             
-            return Math.round(price);
+            return {
+                price: Math.round(price),
+                weight: totalWeight
+            };
         }
 
         // Calculator Form Submission
@@ -1264,12 +1277,12 @@
             e.preventDefault();
             
             const formData = new FormData(this);
-            const price = calculatePrice(formData);
+            const result = calculatePrice(formData);
             
-            document.getElementById('priceEstimate').textContent = `${price} €`;
+            document.getElementById('priceEstimate').textContent = `${result.price} €`;
+            document.getElementById('totalWeight').textContent = `Gesamtgewicht: ${result.weight} kg`;
             document.getElementById('calculatorResult').style.display = 'block';
             
-            // Scroll to result
             document.getElementById('calculatorResult').scrollIntoView({ 
                 behavior: 'smooth',
                 block: 'center'
@@ -1292,17 +1305,18 @@
             closeModal();
             document.getElementById('successMessage').style.display = 'block';
             
-            // Scroll to success message
             document.getElementById('successMessage').scrollIntoView({ 
                 behavior: 'smooth',
                 block: 'center'
             });
             
-            // Reset form after 5 seconds
             setTimeout(() => {
                 document.getElementById('successMessage').style.display = 'none';
                 document.getElementById('transportCalculator').reset();
                 document.getElementById('calculatorResult').style.display = 'none';
+                // Reset individual pallets
+                individualPalletsContainer.innerHTML = '';
+                addIndividualPallet();
             }, 5000);
         });
 
@@ -1329,11 +1343,71 @@
 
         // Set default datetime values
         const now = new Date();
-        const loadingDate = new Date(now.getTime() + 24 * 60 * 60 * 1000); // Tomorrow
-        const unloadingDate = new Date(loadingDate.getTime() + 2 * 60 * 60 * 1000); // +2 hours
+        const loadingDate = new Date(now.getTime() + 24 * 60 * 60 * 1000);
+        const unloadingDate = new Date(loadingDate.getTime() + 2 * 60 * 60 * 1000);
         
         document.getElementById('loading-date').value = loadingDate.toISOString().slice(0, 16);
         document.getElementById('unloading-date').value = unloadingDate.toISOString().slice(0, 16);
+
+        // Generate vehicle cards with pallet diagrams
+        function generateVehicleCards() {
+            const vehicleGrid = document.querySelector('.vehicle-grid');
+            
+            Object.entries(vehicleData).forEach(([key, vehicle]) => {
+                const card = document.createElement('div');
+                card.className = 'vehicle-card';
+                
+                // Create pallet diagram for Euro pallets
+                const euroConfig = vehicle.palletConfig.euro;
+                let palletDiagramHTML = '';
+                
+                for (let i = 0; i < euroConfig.rows; i++) {
+                    for (let j = 0; j < euroConfig.cols; j++) {
+                        const palletNumber = i * euroConfig.cols + j + 1;
+                        if (palletNumber <= vehicle.maxPallets) {
+                            palletDiagramHTML += `<div class="pallet-cell">${palletNumber}</div>`;
+                        }
+                    }
+                }
+                
+                card.innerHTML = `
+                    <div class="vehicle-image">
+                        <img src="${vehicle.image}" alt="${vehicle.name}">
+                        <div class="pallet-overlay">
+                            <div class="pallet-diagram" style="grid-template-columns: repeat(${euroConfig.cols}, 1fr); grid-template-rows: repeat(${euroConfig.rows}, 1fr);">
+                                ${palletDiagramHTML}
+                            </div>
+                        </div>
+                        <div class="vehicle-logo">LB</div>
+                    </div>
+                    <h3>${vehicle.name}</h3>
+                    <p><strong class="lang-de">${key === '3.5t' ? 'Kleintransport' : key === '7.5t' ? 'Mitteltransport' : key === '12t' ? 'Großtransport' : key === '18t' ? 'Schwerlasttransport' : key === '40t' ? 'Schwertransport' : 'Maximaltransport'}</strong>
+                       <strong class="lang-en">${key === '3.5t' ? 'Small Transport' : key === '7.5t' ? 'Medium Transport' : key === '12t' ? 'Large Transport' : key === '18t' ? 'Heavy Transport' : key === '40t' ? 'Special Transport' : 'Maximum Transport'}</strong></p>
+                    <div class="vehicle-specs">
+                        <div class="spec-item">
+                            <span class="spec-label lang-de">Max. Gewicht:</span>
+                            <span class="spec-label lang-en">Max. Weight:</span>
+                            <span class="spec-value">${vehicle.maxWeight.toLocaleString()} kg</span>
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label lang-de">Europaletten:</span>
+                            <span class="spec-label lang-en">Euro Pallets:</span>
+                            <span class="spec-value">bis zu ${vehicle.maxPallets}</span>
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label lang-de">Lademeter:</span>
+                            <span class="spec-label lang-en">Loading Meters:</span>
+                            <span class="spec-value">${vehicle.loadingMeters} ldm</span>
+                        </div>
+                    </div>
+                `;
+                
+                vehicleGrid.appendChild(card);
+            });
+        }
+
+        // Initialize the page
+        generateVehicleCards();
     </script>
 </body>
 </html>
