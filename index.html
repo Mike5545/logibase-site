@@ -283,12 +283,12 @@
         .pallet-type-selector {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 1rem;
+            gap: 0.5rem;
             margin-bottom: 1rem;
         }
 
         .pallet-type-btn {
-            padding: 0.8rem;
+            padding: 0.6rem;
             border: 2px solid #e0e0e0;
             background: #fff;
             cursor: pointer;
@@ -296,7 +296,7 @@
             text-align: center;
             font-weight: 500;
             border-radius: 6px;
-            font-size: 0.9rem;
+            font-size: 0.8rem;
         }
 
         .pallet-type-btn.active {
@@ -666,8 +666,13 @@
             align-items: center;
             justify-content: center;
             color: white;
-            font-size: 0.7rem;
+            font-size: 0.6rem;
             font-weight: bold;
+        }
+
+        .pallet-cell.empty {
+            background: #e0e0e0;
+            border: 1px dashed #ccc;
         }
 
         .vehicle-logo {
@@ -704,6 +709,17 @@
         .spec-value {
             color: #000;
             font-weight: 500;
+        }
+
+        /* Auto Vehicle Selection */
+        .auto-selection-info {
+            background: #e8f5e8;
+            border: 1px solid #4CAF50;
+            border-radius: 6px;
+            padding: 0.8rem;
+            margin-top: 0.5rem;
+            font-size: 0.9rem;
+            display: none;
         }
 
         /* Footer */
@@ -919,14 +935,12 @@
                     <div class="form-group full-width" id="standard-pallets-group" style="display: none;">
                         <div class="pallet-type-selector">
                             <div class="pallet-type-btn active" data-type="euro">
-                                <span class="lang-de">Europaletten</span>
-                                <span class="lang-en">Euro Pallets</span>
-                                <br><small>120×80 cm</small>
+                                <span>Euro</span>
+                                <br><small>80×120 cm</small>
                             </div>
                             <div class="pallet-type-btn" data-type="dusseldorf">
-                                <span class="lang-de">Düsseldorfer Paletten</span>
-                                <span class="lang-en">Dusseldorf Pallets</span>
-                                <br><small>120×100 cm</small>
+                                <span>Düsseldorf</span>
+                                <br><small>100×120 cm</small>
                             </div>
                         </div>
                         
@@ -946,13 +960,16 @@
                         <label for="vehicle-type" class="lang-de">Fahrzeugtyp</label>
                         <label for="vehicle-type" class="lang-en">Vehicle Type</label>
                         <select id="vehicle-type" name="vehicle-type">
+                            <option value="auto">🔄 Auto-Auswahl</option>
                             <option value="3.5t">3,5-Tonner (bis 1.100 kg)</option>
                             <option value="7.5t">7,5-Tonner (bis 4.500 kg)</option>
                             <option value="12t">12-Tonner (bis 7.000 kg)</option>
                             <option value="18t">18-Tonner (bis 12.000 kg)</option>
                             <option value="40t">40-Tonner Sattelzug (bis 24.000 kg)</option>
                             <option value="mega">Mega Trailer (bis 40.000 kg)</option>
+                            <option value="consultation">Beratung erforderlich</option>
                         </select>
+                        <div class="auto-selection-info" id="autoSelectionInfo"></div>
                     </div>
                     
                     <div class="form-group full-width">
@@ -1045,32 +1062,36 @@
     </footer>
 
     <script>
-        // Vehicle data with pallet configurations
+        // Vehicle data with exact pallet configurations
         const vehicleData = {
             '3.5t': { 
                 name: '3,5-Tonner',
-                basePrice: 100,
-                perKm: 1.0,
-                perKg: 0.12,
-                perPallet: 25,
+                basePrice: 89,
+                perKm: 0.85,
+                perKg: 0.08,
+                perPallet: 18,
                 maxWeight: 1100,
                 maxPallets: 6,
-                loadingMeters: 4.5,
+                loadingMeters: 4.2,
+                internalLength: 3.2,  // meters
+                internalWidth: 1.8,   // meters
                 palletConfig: {
-                    euro: { rows: 2, cols: 3 },
-                    dusseldorf: { rows: 2, cols: 2 }
+                    euro: { rows: 2, cols: 3 },      // 80cm × 120cm pallets
+                    dusseldorf: { rows: 2, cols: 2 } // 100cm × 120cm pallets
                 },
                 image: 'https://images.unsplash.com/photo-1553440569-bcc63803a83d?w=400&h=300&fit=crop'
             },
             '7.5t': { 
                 name: '7,5-Tonner',
-                basePrice: 150,
-                perKm: 1.2,
-                perKg: 0.10,
-                perPallet: 20,
+                basePrice: 129,
+                perKm: 0.95,
+                perKg: 0.07,
+                perPallet: 16,
                 maxWeight: 4500,
                 maxPallets: 10,
-                loadingMeters: 6.0,
+                loadingMeters: 5.8,
+                internalLength: 4.8,
+                internalWidth: 2.1,
                 palletConfig: {
                     euro: { rows: 2, cols: 5 },
                     dusseldorf: { rows: 2, cols: 4 }
@@ -1079,13 +1100,15 @@
             },
             '12t': { 
                 name: '12-Tonner',
-                basePrice: 200,
-                perKm: 1.4,
-                perKg: 0.08,
-                perPallet: 18,
+                basePrice: 189,
+                perKm: 1.05,
+                perKg: 0.06,
+                perPallet: 14,
                 maxWeight: 7000,
                 maxPallets: 12,
-                loadingMeters: 7.3,
+                loadingMeters: 6.8,
+                internalLength: 6.2,
+                internalWidth: 2.3,
                 palletConfig: {
                     euro: { rows: 2, cols: 6 },
                     dusseldorf: { rows: 2, cols: 5 }
@@ -1094,13 +1117,15 @@
             },
             '18t': { 
                 name: '18-Tonner',
-                basePrice: 280,
-                perKm: 1.6,
-                perKg: 0.06,
-                perPallet: 16,
+                basePrice: 249,
+                perKm: 1.15,
+                perKg: 0.05,
+                perPallet: 12,
                 maxWeight: 12000,
                 maxPallets: 18,
-                loadingMeters: 9.6,
+                loadingMeters: 8.2,
+                internalLength: 7.8,
+                internalWidth: 2.45,
                 palletConfig: {
                     euro: { rows: 3, cols: 6 },
                     dusseldorf: { rows: 3, cols: 5 }
@@ -1109,30 +1134,34 @@
             },
             '40t': { 
                 name: '40-Tonner Sattelzug',
-                basePrice: 350,
-                perKm: 1.8,
-                perKg: 0.05,
-                perPallet: 15,
+                basePrice: 349,
+                perKm: 1.25,
+                perKg: 0.04,
+                perPallet: 10,
                 maxWeight: 24000,
                 maxPallets: 33,
                 loadingMeters: 13.6,
+                internalLength: 13.6,
+                internalWidth: 2.45,
                 palletConfig: {
-                    euro: { rows: 3, cols: 11 },
+                    euro: { rows: 3, cols: 11 },  // 3 Reihen × 11 Paletten
                     dusseldorf: { rows: 3, cols: 9 }
                 },
                 image: 'https://images.unsplash.com/photo-1586528116314-48f3dab5d71c?w=400&h=300&fit=crop'
             },
             'mega': { 
                 name: 'Mega Trailer',
-                basePrice: 450,
-                perKm: 2.0,
-                perKg: 0.04,
-                perPallet: 12,
+                basePrice: 449,
+                perKm: 1.45,
+                perKg: 0.035,
+                perPallet: 8,
                 maxWeight: 40000,
                 maxPallets: 50,
-                loadingMeters: 18.0,
+                loadingMeters: 13.6,
+                internalLength: 13.6,
+                internalWidth: 2.7,
                 palletConfig: {
-                    euro: { rows: 4, cols: 13 },
+                    euro: { rows: 4, cols: 13 },  // Höher, mehr Paletten in der Höhe
                     dusseldorf: { rows: 4, cols: 10 }
                 },
                 image: 'https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=400&h=300&fit=crop'
@@ -1170,6 +1199,7 @@
                     document.getElementById('individual-pallets-group').style.display = 'none';
                     document.getElementById('standard-pallets-group').style.display = 'block';
                 }
+                updateAutoVehicleSelection();
             });
         });
 
@@ -1178,6 +1208,7 @@
             btn.addEventListener('click', function() {
                 document.querySelectorAll('.pallet-type-btn').forEach(b => b.classList.remove('active'));
                 this.classList.add('active');
+                updateAutoVehicleSelection();
             });
         });
 
@@ -1209,15 +1240,78 @@
                 ${palletCounter > 1 ? '<button type="button" class="remove-pallet-btn" onclick="removePallet(this)">×</button>' : ''}
             `;
             individualPalletsContainer.appendChild(palletItem);
+            updateAutoVehicleSelection();
         }
 
         function removePallet(button) {
             button.parentElement.remove();
+            updateAutoVehicleSelection();
         }
 
         addPalletBtn.addEventListener('click', addIndividualPallet);
         // Add first pallet by default
         addIndividualPallet();
+
+        // Auto Vehicle Selection
+        function updateAutoVehicleSelection() {
+            const vehicleSelect = document.getElementById('vehicle-type');
+            const infoDiv = document.getElementById('autoSelectionInfo');
+            
+            if (vehicleSelect.value !== 'auto') return;
+            
+            const cargoType = document.querySelector('.cargo-type-btn.active').getAttribute('data-type');
+            let totalWeight = 0;
+            let palletCount = 0;
+            
+            if (cargoType === 'individual') {
+                const palletItems = document.querySelectorAll('.pallet-item');
+                palletCount = palletItems.length;
+                palletItems.forEach(item => {
+                    const weight = parseInt(item.querySelector('input[type="number"]:last-child').value);
+                    totalWeight += weight;
+                });
+            } else {
+                palletCount = parseInt(document.getElementById('pallet-count').value);
+                const palletWeight = parseInt(document.getElementById('pallet-weight').value);
+                totalWeight = palletCount * palletWeight;
+            }
+            
+            // Find suitable vehicle
+            let suitableVehicle = null;
+            for (const [key, vehicle] of Object.entries(vehicleData)) {
+                if (totalWeight <= vehicle.maxWeight && palletCount <= vehicle.maxPallets) {
+                    suitableVehicle = key;
+                    break;
+                }
+            }
+            
+            if (suitableVehicle) {
+                const vehicle = vehicleData[suitableVehicle];
+                infoDiv.style.display = 'block';
+                infoDiv.innerHTML = `
+                    <span class="lang-de">✅ Empfohlen: ${vehicle.name} - Passt zu Ihrem Transport (${palletCount} Paletten, ${totalWeight} kg)</span>
+                    <span class="lang-en">✅ Recommended: ${vehicle.name} - Suitable for your transport (${palletCount} pallets, ${totalWeight} kg)</span>
+                `;
+            } else {
+                infoDiv.style.display = 'block';
+                infoDiv.innerHTML = `
+                    <span class="lang-de">⚠️ Bitte wählen Sie "Beratung erforderlich" - Ihr Transport benötigt eine individuelle Lösung</span>
+                    <span class="lang-en">⚠️ Please select "Consultation required" - Your transport needs an individual solution</span>
+                `;
+            }
+        }
+
+        // Event listeners for auto selection
+        document.getElementById('pallet-count').addEventListener('input', updateAutoVehicleSelection);
+        document.getElementById('pallet-weight').addEventListener('input', updateAutoVehicleSelection);
+        document.getElementById('vehicle-type').addEventListener('change', function() {
+            const infoDiv = document.getElementById('autoSelectionInfo');
+            if (this.value !== 'auto') {
+                infoDiv.style.display = 'none';
+            } else {
+                updateAutoVehicleSelection();
+            }
+        });
 
         // Distance Matrix
         const distanceMatrix = {
@@ -1238,6 +1332,14 @@
         // Calculate Price
         function calculatePrice(formData) {
             const vehicleType = formData.get('vehicle-type');
+            if (vehicleType === 'auto' || vehicleType === 'consultation') {
+                return {
+                    price: 0,
+                    weight: 0,
+                    needsConsultation: true
+                };
+            }
+
             const fromLocation = formData.get('from-location');
             const toLocation = formData.get('to-location');
             const cargoType = document.querySelector('.cargo-type-btn.active').getAttribute('data-type');
@@ -1249,7 +1351,6 @@
             let totalWeight = 0;
 
             if (cargoType === 'individual') {
-                // Calculate for individual pallets
                 const palletItems = document.querySelectorAll('.pallet-item');
                 palletItems.forEach(item => {
                     const weight = parseInt(item.querySelector('input[type="number"]:last-child').value);
@@ -1258,7 +1359,6 @@
                 });
                 price += palletItems.length * vehicle.perPallet;
             } else {
-                // Calculate for standard pallets
                 const palletCount = parseInt(formData.get('pallet-count'));
                 const palletWeight = parseInt(formData.get('pallet-weight'));
                 totalWeight = palletCount * palletWeight;
@@ -1268,7 +1368,8 @@
             
             return {
                 price: Math.round(price),
-                weight: totalWeight
+                weight: totalWeight,
+                needsConsultation: false
             };
         }
 
@@ -1279,8 +1380,14 @@
             const formData = new FormData(this);
             const result = calculatePrice(formData);
             
-            document.getElementById('priceEstimate').textContent = `${result.price} €`;
-            document.getElementById('totalWeight').textContent = `Gesamtgewicht: ${result.weight} kg`;
+            if (result.needsConsultation) {
+                document.getElementById('priceEstimate').textContent = 'Beratung erforderlich';
+                document.getElementById('totalWeight').innerHTML = '<em>Bitte kontaktieren Sie uns für ein individuelles Angebot</em>';
+            } else {
+                document.getElementById('priceEstimate').textContent = `${result.price} €`;
+                document.getElementById('totalWeight').textContent = `Gesamtgewicht: ${result.weight} kg`;
+            }
+            
             document.getElementById('calculatorResult').style.display = 'block';
             
             document.getElementById('calculatorResult').scrollIntoView({ 
@@ -1349,7 +1456,7 @@
         document.getElementById('loading-date').value = loadingDate.toISOString().slice(0, 16);
         document.getElementById('unloading-date').value = unloadingDate.toISOString().slice(0, 16);
 
-        // Generate vehicle cards with pallet diagrams
+        // Generate vehicle cards with realistic pallet diagrams
         function generateVehicleCards() {
             const vehicleGrid = document.querySelector('.vehicle-grid');
             
@@ -1357,15 +1464,18 @@
                 const card = document.createElement('div');
                 card.className = 'vehicle-card';
                 
-                // Create pallet diagram for Euro pallets
+                // Create realistic pallet diagram for Euro pallets
                 const euroConfig = vehicle.palletConfig.euro;
                 let palletDiagramHTML = '';
+                let palletCount = 0;
                 
                 for (let i = 0; i < euroConfig.rows; i++) {
                     for (let j = 0; j < euroConfig.cols; j++) {
-                        const palletNumber = i * euroConfig.cols + j + 1;
-                        if (palletNumber <= vehicle.maxPallets) {
-                            palletDiagramHTML += `<div class="pallet-cell">${palletNumber}</div>`;
+                        palletCount++;
+                        if (palletCount <= vehicle.maxPallets) {
+                            palletDiagramHTML += `<div class="pallet-cell">${palletCount}</div>`;
+                        } else {
+                            palletDiagramHTML += `<div class="pallet-cell empty"></div>`;
                         }
                     }
                 }
@@ -1408,6 +1518,9 @@
 
         // Initialize the page
         generateVehicleCards();
+
+        // Initialize auto selection
+        updateAutoVehicleSelection();
     </script>
 </body>
 </html>
