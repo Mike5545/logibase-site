@@ -9,20 +9,19 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            font-family: 'Segoe UI', Arial, sans-serif;
         }
 
         body {
-            font-family: 'Arial', sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
             line-height: 1.6;
-            color: #000;
-            background: #fff;
         }
 
         /* Header */
         header {
-            background: #fff;
-            padding: 1rem 2rem;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            background: white;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.1);
             position: fixed;
             width: 100%;
             top: 0;
@@ -35,71 +34,49 @@
             align-items: center;
             max-width: 1200px;
             margin: 0 auto;
+            padding: 1rem 2rem;
         }
 
         .logo {
             display: flex;
             align-items: center;
-            gap: 0.5rem;
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: #000;
+            gap: 0.8rem;
             text-decoration: none;
         }
 
         .logo-icon {
-            width: 45px;
-            height: 45px;
-            background: #000;
+            width: 50px;
+            height: 50px;
+            background: #0056b3;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             color: white;
             font-weight: bold;
-            font-size: 1.3rem;
-            position: relative;
-            overflow: hidden;
-            border: 2px solid #000;
-        }
-
-        .logo-icon::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: 
-                linear-gradient(45deg, transparent 45%, #fff 45%, #fff 55%, transparent 55%),
-                linear-gradient(-45deg, transparent 45%, #fff 45%, #fff 55%, transparent 55%);
-            background-size: 20px 20px;
-            opacity: 0.1;
+            font-size: 1.4rem;
         }
 
         .logo-text {
-            font-size: 1.5rem;
+            font-size: 1.6rem;
             font-weight: 700;
-            background: linear-gradient(45deg, #000, #333);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            color: #0056b3;
         }
 
         .nav-links {
             display: flex;
             gap: 2rem;
-            align-items: center;
         }
 
         .nav-link {
-            color: #000;
+            color: #333;
             text-decoration: none;
             font-weight: 500;
-            transition: color 0.3s ease;
+            transition: color 0.3s;
         }
 
         .nav-link:hover {
-            color: #333;
+            color: #0056b3;
         }
 
         .language-switcher {
@@ -110,87 +87,71 @@
 
         .lang-btn {
             background: none;
-            border: 1px solid #000;
+            border: 1px solid #0056b3;
             padding: 0.4rem 0.8rem;
             cursor: pointer;
             font-size: 0.8rem;
             transition: all 0.3s ease;
             border-radius: 4px;
+            color: #0056b3;
         }
 
         .lang-btn.active {
-            background: #000;
+            background: #0056b3;
             color: #fff;
         }
 
         .lang-btn:hover {
-            background: #000;
+            background: #0056b3;
             color: #fff;
         }
 
         /* Hero Section */
         .hero {
-            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-            padding: 8rem 2rem 4rem;
+            background: linear-gradient(rgba(0, 86, 179, 0.8), rgba(0, 86, 179, 0.9)), url('https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
             text-align: center;
+            padding: 10rem 2rem 6rem;
+            margin-top: 70px;
         }
 
         .hero h1 {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
             font-weight: 300;
         }
 
         .hero p {
-            font-size: 1.2rem;
-            margin-bottom: 2rem;
-            max-width: 800px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .cta-buttons {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-            flex-wrap: wrap;
+            font-size: 1.3rem;
+            max-width: 700px;
+            margin: 0 auto 2.5rem;
         }
 
         .cta-button {
-            background: #000;
-            color: #fff;
-            padding: 0.8rem 1.5rem;
+            background: white;
+            color: #0056b3;
+            padding: 0.9rem 2rem;
             border: none;
-            font-size: 1rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border-radius: 50px;
             cursor: pointer;
             transition: all 0.3s ease;
             text-decoration: none;
             display: inline-block;
-            border-radius: 6px;
-            font-weight: 500;
-        }
-
-        .cta-button.secondary {
-            background: transparent;
-            color: #000;
-            border: 2px solid #000;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
         }
 
         .cta-button:hover {
-            background: #333;
-            color: #fff;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-        }
-
-        .cta-button.secondary:hover {
-            background: #000;
-            color: #fff;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.15);
         }
 
         /* Calculator Section */
         .calculator {
-            padding: 4rem 2rem;
+            padding: 5rem 2rem;
             background: #f8f9fa;
         }
 
@@ -201,7 +162,8 @@
         }
 
         .calculator h2 {
-            font-size: 2rem;
+            font-size: 2.5rem;
+            color: #0056b3;
             margin-bottom: 1rem;
             font-weight: 300;
         }
@@ -209,12 +171,13 @@
         .calculator > .calculator-container > p {
             margin-bottom: 2rem;
             color: #666;
+            font-size: 1.2rem;
         }
 
         .calculator-form {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 1.2rem;
+            gap: 1.5rem;
             margin-bottom: 2rem;
         }
 
@@ -231,16 +194,16 @@
         .form-group label {
             margin-bottom: 0.5rem;
             font-weight: 600;
-            font-size: 0.9rem;
+            font-size: 0.95rem;
             color: #333;
         }
 
         .form-group input,
         .form-group select {
-            padding: 0.7rem;
+            padding: 0.9rem;
             border: 1px solid #ddd;
             background: #fff;
-            font-size: 0.95rem;
+            font-size: 1rem;
             border-radius: 6px;
             transition: border-color 0.3s ease;
         }
@@ -248,9 +211,38 @@
         .form-group input:focus,
         .form-group select:focus {
             outline: none;
-            border-color: #000;
+            border-color: #0056b3;
+            box-shadow: 0 0 0 2px rgba(0, 86, 179, 0.1);
         }
 
+        /* Date Time Input - Improved Design */
+        .date-time-input {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+
+        .date-time-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .date-time-input input {
+            padding: 0.9rem;
+            border: 1px solid #ddd;
+            background: #fff;
+            font-size: 1rem;
+            border-radius: 6px;
+            transition: border-color 0.3s ease;
+        }
+
+        .date-time-input input:focus {
+            outline: none;
+            border-color: #0056b3;
+            box-shadow: 0 0 0 2px rgba(0, 86, 179, 0.1);
+        }
+
+        /* Cargo Type Selector */
         .cargo-type-selector {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -259,7 +251,7 @@
         }
 
         .cargo-type-btn {
-            padding: 1rem;
+            padding: 1.2rem;
             border: 2px solid #e0e0e0;
             background: #fff;
             cursor: pointer;
@@ -267,28 +259,29 @@
             text-align: center;
             font-weight: 600;
             border-radius: 6px;
+            font-size: 1rem;
         }
 
         .cargo-type-btn.active {
-            background: #000;
+            background: #0056b3;
             color: #fff;
-            border-color: #000;
+            border-color: #0056b3;
         }
 
         .cargo-type-btn:hover {
-            border-color: #000;
+            border-color: #0056b3;
         }
 
         /* Pallet Type Selector */
         .pallet-type-selector {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 0.5rem;
+            gap: 0.8rem;
             margin-bottom: 1rem;
         }
 
         .pallet-type-btn {
-            padding: 0.6rem;
+            padding: 0.8rem;
             border: 2px solid #e0e0e0;
             background: #fff;
             cursor: pointer;
@@ -296,36 +289,36 @@
             text-align: center;
             font-weight: 500;
             border-radius: 6px;
-            font-size: 0.8rem;
+            font-size: 0.9rem;
         }
 
         .pallet-type-btn.active {
-            background: #000;
+            background: #0056b3;
             color: #fff;
-            border-color: #000;
+            border-color: #0056b3;
         }
 
         /* Stapelbar Styles */
         .stapelbar-container {
             display: flex;
             align-items: center;
-            gap: 0.5rem;
+            gap: 0.8rem;
             margin-bottom: 1rem;
-            padding: 0.8rem;
-            background: #f8f9fa;
+            padding: 1rem;
+            background: #f0f4f8;
             border-radius: 6px;
             border: 1px solid #e0e0e0;
         }
 
         .stapelbar-checkbox {
-            width: 18px;
-            height: 18px;
+            width: 20px;
+            height: 20px;
             cursor: pointer;
         }
 
         .stapelbar-label {
             font-weight: 600;
-            font-size: 0.9rem;
+            font-size: 0.95rem;
             color: #333;
             cursor: pointer;
         }
@@ -334,7 +327,7 @@
             display: none;
             grid-template-columns: 1fr 1fr;
             gap: 1rem;
-            margin-top: 0.5rem;
+            margin-top: 0.8rem;
         }
 
         .level-item {
@@ -343,14 +336,14 @@
         }
 
         .level-item label {
-            margin-bottom: 0.3rem;
+            margin-bottom: 0.4rem;
             font-weight: 600;
-            font-size: 0.8rem;
+            font-size: 0.85rem;
             color: #333;
         }
 
         .level-item input {
-            padding: 0.5rem;
+            padding: 0.7rem;
             border: 1px solid #ddd;
             background: #fff;
             font-size: 0.9rem;
@@ -365,9 +358,9 @@
         .pallet-item {
             display: grid;
             grid-template-columns: 1fr 1fr 1fr auto;
-            gap: 0.8rem;
+            gap: 1rem;
             margin-bottom: 1rem;
-            padding: 1rem;
+            padding: 1.2rem;
             border: 1px solid #e0e0e0;
             border-radius: 6px;
             background: #f9f9f9;
@@ -375,111 +368,68 @@
         }
 
         .add-pallet-btn {
-            background: #000;
+            background: #0056b3;
             color: #fff;
             border: none;
-            padding: 0.7rem 1rem;
+            padding: 0.8rem 1.2rem;
             border-radius: 6px;
             cursor: pointer;
             font-size: 1.5rem;
-            width: 40px;
-            height: 40px;
+            width: 45px;
+            height: 45px;
             display: flex;
             align-items: center;
             justify-content: center;
             margin-bottom: 1rem;
+            transition: background 0.3s;
         }
 
         .add-pallet-btn:hover {
-            background: #333;
+            background: #004494;
         }
 
         .remove-pallet-btn {
             background: #ff4444;
             color: white;
             border: none;
-            padding: 0.3rem 0.5rem;
+            padding: 0.4rem 0.6rem;
             border-radius: 4px;
             cursor: pointer;
             height: fit-content;
-            font-size: 0.8rem;
-            width: 25px;
-            height: 25px;
+            font-size: 0.9rem;
+            width: 30px;
+            height: 30px;
             display: flex;
             align-items: center;
             justify-content: center;
+            transition: background 0.3s;
         }
 
         .remove-pallet-btn:hover {
             background: #cc0000;
         }
 
-        /* Dimensions Input */
-        .dimensions-input {
-            display: grid;
-            grid-template-columns: 1fr 1fr 1fr;
-            gap: 1rem;
+        /* Vehicle Selector */
+        .vehicle-selector {
             margin-bottom: 1rem;
         }
 
-        .dimension-item {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .dimension-item label {
-            margin-bottom: 0.5rem;
-            font-weight: 600;
+        .auto-selection-info {
+            background: #e8f5e8;
+            border: 1px solid #4CAF50;
+            border-radius: 6px;
+            padding: 0.8rem;
+            margin-top: 0.5rem;
             font-size: 0.9rem;
-            color: #333;
-        }
-
-        .dimension-item input {
-            padding: 0.7rem;
-            border: 1px solid #ddd;
-            background: #fff;
-            font-size: 0.95rem;
-            border-radius: 6px;
-            transition: border-color 0.3s ease;
-        }
-
-        .dimension-item input:focus {
-            outline: none;
-            border-color: #000;
-        }
-
-        /* Date Time Input */
-        .date-time-input {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1rem;
-        }
-
-        .date-time-group {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .date-time-input input {
-            padding: 0.7rem;
-            border: 1px solid #ddd;
-            background: #fff;
-            font-size: 0.95rem;
-            border-radius: 6px;
-            transition: border-color 0.3s ease;
-        }
-
-        .date-time-input input:focus {
-            outline: none;
-            border-color: #000;
+            display: none;
         }
 
         .submit-btn {
-            background: #000;
+            background: #0056b3;
             color: #fff;
-            padding: 0.9rem 2rem;
+            padding: 1rem 2rem;
             border: none;
-            font-size: 1rem;
+            font-size: 1.1rem;
             cursor: pointer;
             transition: all 0.3s ease;
             margin-top: 1rem;
@@ -489,39 +439,40 @@
         }
 
         .submit-btn:hover {
-            background: #333;
+            background: #004494;
             transform: translateY(-2px);
             box-shadow: 0 4px 12px rgba(0,0,0,0.15);
         }
 
         .calculator-result {
             background: #fff;
-            padding: 2rem;
-            border: 2px solid #000;
+            padding: 2.5rem;
+            border: 2px solid #0056b3;
             margin-top: 2rem;
             display: none;
             border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
         }
 
         .price-estimate {
-            font-size: 2rem;
+            font-size: 2.5rem;
             font-weight: bold;
-            color: #000;
+            color: #0056b3;
             margin: 1rem 0;
         }
 
         .price-note {
-            font-size: 0.9rem;
+            font-size: 0.95rem;
             color: #666;
             margin-bottom: 1rem;
         }
 
         .request-btn {
-            background: #000;
+            background: #0056b3;
             color: #fff;
-            padding: 0.9rem 2rem;
+            padding: 1rem 2rem;
             border: none;
-            font-size: 1rem;
+            font-size: 1.1rem;
             cursor: pointer;
             transition: all 0.3s ease;
             margin-top: 1rem;
@@ -531,9 +482,152 @@
         }
 
         .request-btn:hover {
-            background: #333;
+            background: #004494;
             transform: translateY(-2px);
             box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+
+        /* Vehicles Section */
+        .vehicles {
+            padding: 5rem 2rem;
+            background: #fff;
+        }
+
+        .vehicles-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: #0056b3;
+            margin-bottom: 1rem;
+            font-weight: 300;
+        }
+
+        .section-title p {
+            font-size: 1.2rem;
+            color: #666;
+            max-width: 700px;
+            margin: 0 auto 3rem;
+        }
+
+        .vehicle-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .vehicle-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .vehicle-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+        }
+
+        .vehicle-image {
+            height: 220px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .vehicle-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .vehicle-card:hover .vehicle-image img {
+            transform: scale(1.05);
+        }
+
+        .vehicle-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: #0056b3;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .vehicle-content {
+            padding: 1.5rem;
+        }
+
+        .vehicle-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #333;
+        }
+
+        .vehicle-specs {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .spec-item {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .spec-label {
+            font-size: 0.85rem;
+            color: #666;
+            margin-bottom: 0.3rem;
+        }
+
+        .spec-value {
+            font-weight: 600;
+            color: #333;
+        }
+
+        .vehicle-description {
+            color: #666;
+            margin-bottom: 1.5rem;
+            line-height: 1.5;
+        }
+
+        .vehicle-price {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid #eee;
+        }
+
+        .price-tag {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #0056b3;
+        }
+
+        .select-btn {
+            background: #0056b3;
+            color: white;
+            border: none;
+            padding: 0.6rem 1.2rem;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background 0.3s;
+        }
+
+        .select-btn:hover {
+            background: #004494;
         }
 
         /* Contact Modal */
@@ -552,8 +646,8 @@
 
         .modal {
             background: white;
-            padding: 2rem;
-            border-radius: 10px;
+            padding: 2.5rem;
+            border-radius: 12px;
             width: 90%;
             max-width: 500px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.2);
@@ -562,18 +656,19 @@
         .modal h3 {
             margin-bottom: 1rem;
             text-align: center;
-            font-size: 1.5rem;
+            font-size: 1.8rem;
             font-weight: 300;
+            color: #0056b3;
         }
 
         .modal-form {
             display: flex;
             flex-direction: column;
-            gap: 1rem;
+            gap: 1.2rem;
         }
 
         .modal-form input {
-            padding: 0.75rem;
+            padding: 0.9rem;
             border: 1px solid #ddd;
             font-size: 1rem;
             border-radius: 6px;
@@ -582,23 +677,25 @@
 
         .modal-form input:focus {
             outline: none;
-            border-color: #000;
+            border-color: #0056b3;
+            box-shadow: 0 0 0 2px rgba(0, 86, 179, 0.1);
         }
 
         .modal-submit-btn {
-            background: #000;
+            background: #0056b3;
             color: #fff;
             padding: 0.9rem;
             border: none;
-            font-size: 1rem;
+            font-size: 1.1rem;
             cursor: pointer;
             transition: all 0.3s ease;
             border-radius: 6px;
             font-weight: 600;
+            margin-top: 0.5rem;
         }
 
         .modal-submit-btn:hover {
-            background: #333;
+            background: #004494;
         }
 
         /* Success Message */
@@ -606,466 +703,53 @@
             background: #d4edda;
             border: 1px solid #c3e6cb;
             color: #155724;
-            padding: 1rem;
-            border-radius: 5px;
+            padding: 1.2rem;
+            border-radius: 6px;
             margin: 1rem 0;
             text-align: center;
             display: none;
         }
 
-        /* Vehicles Section */
-        .vehicles {
-            padding: 4rem 2rem;
-            background: #fff;
-        }
-
-        .vehicles-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            text-align: center;
-        }
-
-        .vehicles h2 {
-            font-size: 2rem;
-            margin-bottom: 1rem;
-            font-weight: 300;
-        }
-
-        .vehicles > .vehicles-container > p {
-            margin-bottom: 3rem;
-            color: #666;
-        }
-
-        .vehicle-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-top: 2rem;
-        }
-
-        .vehicle-card {
-            padding: 1.5rem;
-            border: 1px solid #e0e0e0;
-            background: #fff;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            position: relative;
-            border-radius: 8px;
-        }
-
-        .vehicle-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
-        }
-
-        .vehicle-card h3 {
-            margin-bottom: 1rem;
-            font-size: 1.3rem;
-            color: #000;
-        }
-
-        .vehicle-image {
-            width: 100%;
-            height: 200px;
-            background: #f8f9fa;
-            margin-bottom: 1rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border: 1px solid #e0e0e0;
-            position: relative;
-            overflow: hidden;
-            border-radius: 6px;
-            cursor: pointer;
-        }
-
-        .vehicle-image:hover img {
-            opacity: 0.7;
-        }
-
-        .pallet-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: white;
-            display: none;
-            align-items: center;
-            justify-content: center;
-            padding: 1rem;
-        }
-
-        .vehicle-image:hover .pallet-overlay {
-            display: flex;
-        }
-
-        .pallet-diagram {
-            width: 100%;
-            height: 100%;
-            display: grid;
-            gap: 2px;
-            background: #f0f0f0;
-            padding: 5px;
-            border-radius: 4px;
-        }
-
-        .pallet-cell {
-            background: #4CAF50;
-            border: 1px solid #388E3C;
-            border-radius: 2px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 0.6rem;
-            font-weight: bold;
-            position: relative;
-        }
-
-        .pallet-cell.empty {
-            background: #e0e0e0;
-            border: 1px dashed #ccc;
-        }
-
-        .level-indicator {
-            position: absolute;
-            top: 1px;
-            left: 2px;
-            background: rgba(0,0,0,0.7);
-            color: white;
-            padding: 1px 3px;
-            border-radius: 2px;
-            font-size: 0.5rem;
-            font-weight: bold;
-        }
-
-        .vehicle-logo {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            background: rgba(0, 0, 0, 0.7);
-            color: white;
-            padding: 5px 10px;
-            border-radius: 20px;
-            font-weight: bold;
-            font-size: 0.9rem;
-            z-index: 2;
-        }
-
-        .vehicle-specs {
-            margin-top: 1rem;
-            text-align: left;
-        }
-
-        .spec-item {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 0.5rem;
-            padding-bottom: 0.5rem;
-            border-bottom: 1px solid #f0f0f0;
-        }
-
-        .spec-label {
-            font-weight: 600;
-            color: #333;
-        }
-
-        .spec-value {
-            color: #000;
-            font-weight: 500;
-        }
-
-        /* Auto Vehicle Selection */
-        .auto-selection-info {
-            background: #e8f5e8;
-            border: 1px solid #4CAF50;
-            border-radius: 6px;
-            padding: 0.8rem;
-            margin-top: 0.5rem;
-            font-size: 0.9rem;
-            display: none;
-        }
-
-        /* Стили для рисованных машин */
-        .vehicle-drawing {
-            width: 100%;
-            height: 100%;
-            background: #f8f9fa;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-        }
-        
-        .drawing-bus {
-            width: 180px;
-            height: 80px;
-            background: #e0e0e0;
-            border: 2px solid #333;
-            border-radius: 10px 4px 4px 10px;
-            position: relative;
-        }
-        
-        .drawing-bus::before {
-            content: '';
-            position: absolute;
-            top: 15px;
-            left: 10px;
-            width: 120px;
-            height: 50px;
-            background: #fff;
-            border: 1px solid #333;
-        }
-        
-        .drawing-bus::after {
-            content: '';
-            position: absolute;
-            top: 25px;
-            right: 10px;
-            width: 30px;
-            height: 30px;
-            background: #fff;
-            border: 1px solid #333;
-        }
-        
-        .drawing-7-5t {
-            width: 220px;
-            height: 90px;
-            background: #e0e0e0;
-            border: 2px solid #333;
-            border-radius: 8px;
-            position: relative;
-        }
-        
-        .drawing-7-5t::before {
-            content: '';
-            position: absolute;
-            top: 15px;
-            left: 10px;
-            width: 150px;
-            height: 40px;
-            background: #fff;
-            border: 1px solid #333;
-        }
-        
-        .drawing-7-5t::after {
-            content: '';
-            position: absolute;
-            top: 20px;
-            right: 15px;
-            width: 40px;
-            height: 50px;
-            background: #fff;
-            border: 1px solid #333;
-        }
-        
-        .drawing-12t {
-            width: 260px;
-            height: 100px;
-            background: #e0e0e0;
-            border: 2px solid #333;
-            border-radius: 8px;
-            position: relative;
-        }
-        
-        .drawing-12t::before {
-            content: '';
-            position: absolute;
-            top: 15px;
-            left: 10px;
-            width: 200px;
-            height: 45px;
-            background: #fff;
-            border: 1px solid #333;
-        }
-        
-        .drawing-12t::after {
-            content: '';
-            position: absolute;
-            top: 20px;
-            right: 15px;
-            width: 40px;
-            height: 60px;
-            background: #fff;
-            border: 1px solid #333;
-        }
-        
-        .drawing-18t {
-            width: 300px;
-            height: 110px;
-            background: #e0e0e0;
-            border: 2px solid #333;
-            border-radius: 8px;
-            position: relative;
-        }
-        
-        .drawing-18t::before {
-            content: '';
-            position: absolute;
-            top: 15px;
-            left: 10px;
-            width: 240px;
-            height: 50px;
-            background: #fff;
-            border: 1px solid #333;
-        }
-        
-        .drawing-18t::after {
-            content: '';
-            position: absolute;
-            top: 20px;
-            right: 15px;
-            width: 40px;
-            height: 70px;
-            background: #fff;
-            border: 1px solid #333;
-        }
-        
-        .drawing-sattelzug {
-            width: 340px;
-            height: 100px;
-            position: relative;
-        }
-        
-        .drawing-sattelzug-truck {
-            width: 120px;
-            height: 80px;
-            background: #e0e0e0;
-            border: 2px solid #333;
-            border-radius: 8px 0 0 8px;
-            position: absolute;
-            left: 0;
-            top: 10px;
-        }
-        
-        .drawing-sattelzug-truck::before {
-            content: '';
-            position: absolute;
-            top: 15px;
-            left: 10px;
-            width: 80px;
-            height: 50px;
-            background: #fff;
-            border: 1px solid #333;
-        }
-        
-        .drawing-sattelzug-trailer {
-            width: 200px;
-            height: 90px;
-            background: #e0e0e0;
-            border: 2px solid #333;
-            border-radius: 0 8px 8px 0;
-            position: absolute;
-            right: 0;
-            top: 5px;
-        }
-        
-        .drawing-sattelzug-trailer::before {
-            content: '';
-            position: absolute;
-            top: 15px;
-            left: 10px;
-            width: 170px;
-            height: 55px;
-            background: #fff;
-            border: 1px solid #333;
-        }
-        
-        .drawing-mega {
-            width: 340px;
-            height: 120px;
-            position: relative;
-        }
-        
-        .drawing-mega-truck {
-            width: 120px;
-            height: 80px;
-            background: #e0e0e0;
-            border: 2px solid #333;
-            border-radius: 8px 0 0 8px;
-            position: absolute;
-            left: 0;
-            top: 20px;
-        }
-        
-        .drawing-mega-truck::before {
-            content: '';
-            position: absolute;
-            top: 15px;
-            left: 10px;
-            width: 80px;
-            height: 50px;
-            background: #fff;
-            border: 1px solid #333;
-        }
-        
-        .drawing-mega-trailer {
-            width: 200px;
-            height: 110px;
-            background: #e0e0e0;
-            border: 2px solid #333;
-            border-radius: 0 8px 8px 0;
-            position: absolute;
-            right: 0;
-            top: 5px;
-        }
-        
-        .drawing-mega-trailer::before {
-            content: '';
-            position: absolute;
-            top: 15px;
-            left: 10px;
-            width: 170px;
-            height: 75px;
-            background: #fff;
-            border: 1px solid #333;
-        }
-        
-        .wheel {
-            position: absolute;
-            width: 12px;
-            height: 12px;
-            background: #333;
-            border-radius: 50%;
-            bottom: -6px;
-        }
-        
-        .wheel-1 { left: 20px; }
-        .wheel-2 { left: 50px; }
-        .wheel-3 { right: 20px; }
-        .wheel-4 { right: 50px; }
-        
-        .sattelzug-wheel-1 { left: 20px; }
-        .sattelzug-wheel-2 { left: 50px; }
-        .sattelzug-wheel-3 { right: 150px; }
-        .sattelzug-wheel-4 { right: 120px; }
-        .sattelzug-wheel-5 { right: 50px; }
-        .sattelzug-wheel-6 { right: 20px; }
-        
-        .mega-wheel-1 { left: 20px; }
-        .mega-wheel-2 { left: 50px; }
-        .mega-wheel-3 { right: 150px; }
-        .mega-wheel-4 { right: 120px; }
-        .mega-wheel-5 { right: 50px; }
-        .mega-wheel-6 { right: 20px; }
-
         /* Footer */
         footer {
-            background: #000;
-            color: #fff;
-            padding: 2rem;
-            text-align: center;
+            background: #1a1a1a;
+            color: white;
+            padding: 4rem 2rem 2rem;
         }
 
-        .footer-contact {
-            margin: 2rem 0;
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
         }
 
-        .footer-contact a {
-            color: #fff;
-            text-decoration: none;
+        .footer-column h3 {
+            color: #0056b3;
+            margin-bottom: 1.5rem;
+            font-size: 1.3rem;
+        }
+
+        .footer-column p, .footer-column a {
+            color: #ccc;
+            margin-bottom: 0.8rem;
             display: block;
-            margin: 0.5rem 0;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-column a:hover {
+            color: white;
+        }
+
+        .copyright {
+            text-align: center;
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid #333;
+            color: #999;
+            font-size: 0.9rem;
         }
 
         /* Language Specific */
@@ -1074,84 +758,45 @@
 
         /* Responsive */
         @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2rem;
+            .header-content {
+                flex-direction: column;
+                gap: 1rem;
             }
-            
+
             .hero {
-                padding: 6rem 1rem 3rem;
+                padding: 8rem 1.5rem 4rem;
             }
-            
+
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+
             .calculator-form {
                 grid-template-columns: 1fr;
             }
-            
-            .cargo-type-selector {
-                grid-template-columns: 1fr;
-            }
-            
-            .pallet-type-selector {
-                grid-template-columns: 1fr;
-            }
-            
-            .pallet-item {
-                grid-template-columns: 1fr;
-            }
-            
+
             .date-time-input {
                 grid-template-columns: 1fr;
             }
-            
-            .dimensions-input {
+
+            .cargo-type-selector {
                 grid-template-columns: 1fr;
             }
-            
+
+            .pallet-type-selector {
+                grid-template-columns: 1fr;
+            }
+
+            .pallet-item {
+                grid-template-columns: 1fr;
+            }
+
             .vehicle-grid {
                 grid-template-columns: 1fr;
             }
-            
-            .cta-buttons {
-                flex-direction: column;
-                align-items: center;
-            }
-            
-            .cta-button {
-                width: 100%;
-                max-width: 300px;
-            }
 
-            .logo-text {
-                font-size: 1.3rem;
-            }
-
-            .logo-icon {
-                width: 40px;
-                height: 40px;
-                font-size: 1.1rem;
-            }
-
-            .nav-links {
-                gap: 1rem;
-            }
-
-            .header-content {
-                flex-direction: column;
-                gap: 1rem;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .header-content {
-                padding: 0 1rem;
-            }
-            
-            .logo-text {
-                display: none;
-            }
-
-            .nav-links {
-                flex-direction: column;
-                gap: 0.5rem;
+            .vehicle-specs {
+                grid-template-columns: 1fr;
             }
         }
     </style>
@@ -1166,10 +811,8 @@
                     <div class="logo-text">LOGIBASE</div>
                 </a>
                 <div class="nav-links">
-                    <a href="#vehicles" class="nav-link lang-de">Fahrzeuge</a>
-                    <a href="#vehicles" class="nav-link lang-en">Vehicles</a>
-                    <a href="#contact" class="nav-link lang-de">Kontakt</a>
-                    <a href="#contact" class="nav-link lang-en">Contact</a>
+                    <a href="#vehicles" class="nav-link">Fahrzeuge</a>
+                    <a href="#contact" class="nav-link">Kontakt</a>
                 </div>
             </div>
             <div class="language-switcher">
@@ -1179,348 +822,501 @@
         </div>
     </header>
 
-    <!-- Main Content -->
-    <div id="clientContent">
-        <!-- Hero Section -->
-        <section class="hero">
-            <h1 class="lang-de">Schnelle und zuverlässige Logistiklösungen</h1>
-            <h1 class="lang-en">Fast and Reliable Logistics Solutions</h1>
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1 class="lang-de">Schnelle und zuverlässige Logistiklösungen</h1>
+        <h1 class="lang-en">Fast and Reliable Logistics Solutions</h1>
+        
+        <p class="lang-de">Berechnen Sie sofort den Preis für Ihren Transport und erhalten Sie innerhalb von 30 Minuten ein persönliches Angebot.</p>
+        <p class="lang-en">Calculate the price for your transport instantly and receive a personal offer within 30 minutes.</p>
+        
+        <div class="cta-buttons">
+            <a href="#calculator" class="cta-button lang-de">Preis berechnen</a>
+            <a href="#calculator" class="cta-button lang-en">Calculate Price</a>
+        </div>
+    </section>
+
+    <!-- Calculator Section -->
+    <section class="calculator" id="calculator">
+        <div class="calculator-container">
+            <h2 class="lang-de">Transportpreis berechnen</h2>
+            <h2 class="lang-en">Calculate Transport Price</h2>
             
-            <p class="lang-de">Berechnen Sie sofort den Preis für Ihren Transport und erhalten Sie innerhalb von 30 Minuten ein persönliches Angebot.</p>
-            <p class="lang-en">Calculate the price for your transport instantly and receive a personal offer within 30 minutes.</p>
+            <p class="lang-de">Geben Sie Ihre Transportdaten ein und erhalten Sie eine sofortige Preisübersicht</p>
+            <p class="lang-en">Enter your transport data and get an instant price overview</p>
             
-            <div class="cta-buttons">
-                <a href="#calculator" class="cta-button lang-de">Preis berechnen</a>
-                <a href="#calculator" class="cta-button lang-en">Calculate Price</a>
-            </div>
-        </section>
-
-        <!-- Calculator Section -->
-        <section class="calculator" id="calculator">
-            <div class="calculator-container">
-                <h2 class="lang-de">Transportpreis berechnen</h2>
-                <h2 class="lang-en">Calculate Transport Price</h2>
-                
-                <p class="lang-de">Geben Sie Ihre Transportdaten ein und erhalten Sie eine sofortige Preisübersicht</p>
-                <p class="lang-en">Enter your transport data and get an instant price overview</p>
-                
-                <form class="calculator-form" id="transportCalculator">
-                    <div class="form-group full-width">
-                        <label for="from-location" class="lang-de">Von (PLZ/Ort)</label>
-                        <label for="from-location" class="lang-en">From (ZIP/City)</label>
-                        <input type="text" id="from-location" name="from-location" placeholder="z.B. 10115 Berlin" required>
-                    </div>
-
-                    <div class="form-group full-width">
-                        <label for="to-location" class="lang-de">Nach (PLZ/Ort)</label>
-                        <label for="to-location" class="lang-en">To (ZIP/City)</label>
-                        <input type="text" id="to-location" name="to-location" placeholder="z.B. 80331 München" required>
-                    </div>
-
-                    <!-- Date Time Input -->
-                    <div class="form-group full-width">
-                        <label class="lang-de">Terminplanung</label>
-                        <label class="lang-en">Scheduling</label>
-                        <div class="date-time-input">
-                            <div class="date-time-group">
-                                <label for="loading-date" class="lang-de">Beladung am</label>
-                                <label for="loading-date" class="lang-en">Loading on</label>
-                                <input type="datetime-local" id="loading-date" name="loading-date">
-                            </div>
-                            <div class="date-time-group">
-                                <label for="unloading-date" class="lang-de">Entladung am</label>
-                                <label for="unloading-date" class="lang-en">Unloading on</label>
-                                <input type="datetime-local" id="unloading-date" name="unloading-date">
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="form-group full-width">
-                        <label class="lang-de">Was möchten Sie transportieren?</label>
-                        <label class="lang-en">What would you like to transport?</label>
-                        <div class="cargo-type-selector">
-                            <div class="cargo-type-btn active" data-type="individual">
-                                <span class="lang-de">Individuelle Paletten</span>
-                                <span class="lang-en">Individual Pallets</span>
-                            </div>
-                            <div class="cargo-type-btn" data-type="standard">
-                                <span class="lang-de">Standard Paletten</span>
-                                <span class="lang-en">Standard Pallets</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Individual Pallets -->
-                    <div class="form-group full-width" id="individual-pallets-group">
-                        <!-- Stapelbar Option -->
-                        <div class="stapelbar-container">
-                            <input type="checkbox" id="stapelbar" class="stapelbar-checkbox">
-                            <label for="stapelbar" class="stapelbar-label lang-de">Stapelbar (Paletten können übereinander gestapelt werden)</label>
-                            <label for="stapelbar" class="stapelbar-label lang-en">Stackable (Pallets can be stacked on top of each other)</label>
-                        </div>
-
-                        <div class="levels-input" id="levels-input">
-                            <div class="level-item">
-                                <label class="lang-de">Anzahl Ebenen</label>
-                                <label class="lang-en">Number of Levels</label>
-                                <input type="number" id="level-count" min="1" max="3" value="2">
-                            </div>
-                            <div class="level-item">
-                                <label class="lang-de">Paletten pro Ebene</label>
-                                <label class="lang-en">Pallets per Level</label>
-                                <input type="number" id="pallets-per-level" min="1" value="1">
-                            </div>
-                        </div>
-
-                        <div class="individual-pallets" id="individual-pallets-container">
-                            <!-- Individual pallets will be added here dynamically -->
-                        </div>
-                        <button type="button" class="add-pallet-btn" id="add-pallet-btn">+</button>
-                    </div>
-
-                    <!-- Standard Pallets -->
-                    <div class="form-group full-width" id="standard-pallets-group" style="display: none;">
-                        <div class="pallet-type-selector">
-                            <div class="pallet-type-btn active" data-type="euro">
-                                <span>Euro</span>
-                                <br><small>80×120 cm</small>
-                            </div>
-                            <div class="pallet-type-btn" data-type="dusseldorf">
-                                <span>Düsseldorfer</span>
-                                <br><small>100×120 cm</small>
-                            </div>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="pallet-count" class="lang-de">Anzahl Paletten</label>
-                            <label for="pallet-count" class="lang-en">Number of Pallets</label>
-                            <input type="number" id="pallet-count" name="pallet-count" min="0" value="1">
-                        </div>
-                        <div class="form-group">
-                            <label for="pallet-weight" class="lang-de">Gewicht pro Palette (kg)</label>
-                            <label for="pallet-weight" class="lang-en">Weight per Pallet (kg)</label>
-                            <input type="number" id="pallet-weight" name="pallet-weight" min="0" value="500">
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="vehicle-type" class="lang-de">Fahrzeugtyp</label>
-                        <label for="vehicle-type" class="lang-en">Vehicle Type</label>
-                        <select id="vehicle-type" name="vehicle-type">
-                            <option value="auto">🔄 Auto-Auswahl</option>
-                            <option value="bus">Bus (bis 1.100 kg)</option>
-                            <option value="7.5t">7,5-Tonner (bis 2.350 kg)</option>
-                            <option value="12t">12-Tonner (bis 7.000 kg)</option>
-                            <option value="18t">18-Tonner (bis 12.000 kg)</option>
-                            <option value="sattelzug">Sattelzug (bis 24.000 kg)</option>
-                            <option value="mega">Mega Trailer (bis 24.000 kg)</option>
-                            <option value="consultation">Beratung erforderlich</option>
-                        </select>
-                        <div class="auto-selection-info" id="autoSelectionInfo"></div>
-                    </div>
-                    
-                    <div class="form-group full-width">
-                        <button type="submit" class="submit-btn lang-de">Preis berechnen</button>
-                        <button type="submit" class="submit-btn lang-en">Calculate Price</button>
-                    </div>
-                </form>
-                
-                <!-- Price Result -->
-                <div class="calculator-result" id="calculatorResult">
-                    <h3 class="lang-de">Geschätzter Transportpreis</h3>
-                    <h3 class="lang-en">Estimated Transport Price</h3>
-                    <div class="price-estimate" id="priceEstimate">-</div>
-                    <div class="total-weight" id="totalWeight"></div>
-                    <div class="price-note lang-de">
-                        * Dies ist eine grobe Preisschätzung. Der endgültige Preis kann je nach genauer Strecke und Fracht variieren.
-                    </div>
-                    <div class="price-note lang-en">
-                        * This is a rough price estimate. The final price may vary depending on the exact route and cargo.
-                    </div>
-                    <button class="request-btn" onclick="openModal()">
-                        <span class="lang-de">Genauestes Angebot erhalten und Auftrag bestätigen</span>
-                        <span class="lang-en">Get the most accurate offer and confirm order</span>
-                    </button>
+            <form class="calculator-form" id="transportCalculator">
+                <div class="form-group full-width">
+                    <label for="from-location" class="lang-de">Von (PLZ/Ort)</label>
+                    <label for="from-location" class="lang-en">From (ZIP/City)</label>
+                    <input type="text" id="from-location" name="from-location" placeholder="z.B. 10115 Berlin" required>
                 </div>
-            </div>
-        </section>
 
-        <!-- Contact Modal -->
-        <div class="modal-overlay" id="modalOverlay">
-            <div class="modal">
-                <h3 class="lang-de">Angebot anfordern</h3>
-                <h3 class="lang-en">Request Quote</h3>
-                <p class="lang-de">Geben Sie Ihre Daten ein und wir senden Ihnen innerhalb von 30 Minuten ein persönliches Angebot zu.</p>
-                <p class="lang-en">Enter your details and we will send you a personal offer within 30 minutes.</p>
-                
-                <form class="modal-form" id="modalForm">
-                    <input type="email" id="client-email" name="email" placeholder="Ihre E-Mail-Adresse" required>
-                    <input type="text" id="client-name" name="name" placeholder="Ihr Name">
-                    <input type="tel" id="client-phone" name="phone" placeholder="Telefon (optional)">
+                <div class="form-group full-width">
+                    <label for="to-location" class="lang-de">Nach (PLZ/Ort)</label>
+                    <label for="to-location" class="lang-en">To (ZIP/City)</label>
+                    <input type="text" id="to-location" name="to-location" placeholder="z.B. 80331 München" required>
+                </div>
+
+                <!-- Date Time Input - Improved Design -->
+                <div class="form-group full-width">
+                    <label class="lang-de">Terminplanung</label>
+                    <label class="lang-en">Scheduling</label>
+                    <div class="date-time-input">
+                        <div class="date-time-group">
+                            <label for="loading-date" class="lang-de">Beladung am</label>
+                            <label for="loading-date" class="lang-en">Loading on</label>
+                            <input type="datetime-local" id="loading-date" name="loading-date">
+                        </div>
+                        <div class="date-time-group">
+                            <label for="unloading-date" class="lang-de">Entladung am</label>
+                            <label for="unloading-date" class="lang-en">Unloading on</label>
+                            <input type="datetime-local" id="unloading-date" name="unloading-date">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group full-width">
+                    <label class="lang-de">Was möchten Sie transportieren?</label>
+                    <label class="lang-en">What would you like to transport?</label>
+                    <div class="cargo-type-selector">
+                        <div class="cargo-type-btn active" data-type="individual">
+                            <span class="lang-de">Individuelle Paletten</span>
+                            <span class="lang-en">Individual Pallets</span>
+                        </div>
+                        <div class="cargo-type-btn" data-type="standard">
+                            <span class="lang-de">Standard Paletten</span>
+                            <span class="lang-en">Standard Pallets</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Individual Pallets -->
+                <div class="form-group full-width" id="individual-pallets-group">
+                    <!-- Stapelbar Option -->
+                    <div class="stapelbar-container">
+                        <input type="checkbox" id="stapelbar" class="stapelbar-checkbox">
+                        <label for="stapelbar" class="stapelbar-label lang-de">Stapelbar (Paletten können übereinander gestapelt werden)</label>
+                        <label for="stapelbar" class="stapelbar-label lang-en">Stackable (Pallets can be stacked on top of each other)</label>
+                    </div>
+
+                    <div class="levels-input" id="levels-input">
+                        <div class="level-item">
+                            <label class="lang-de">Anzahl Ebenen</label>
+                            <label class="lang-en">Number of Levels</label>
+                            <input type="number" id="level-count" min="1" max="3" value="2">
+                        </div>
+                        <div class="level-item">
+                            <label class="lang-de">Paletten pro Ebene</label>
+                            <label class="lang-en">Pallets per Level</label>
+                            <input type="number" id="pallets-per-level" min="1" value="1">
+                        </div>
+                    </div>
+
+                    <div class="individual-pallets" id="individual-pallets-container">
+                        <!-- Individual pallets will be added here dynamically -->
+                    </div>
+                    <button type="button" class="add-pallet-btn" id="add-pallet-btn">+</button>
+                </div>
+
+                <!-- Standard Pallets -->
+                <div class="form-group full-width" id="standard-pallets-group" style="display: none;">
+                    <div class="pallet-type-selector">
+                        <div class="pallet-type-btn active" data-type="euro">
+                            <span>Euro</span>
+                            <br><small>80×120 cm</small>
+                        </div>
+                        <div class="pallet-type-btn" data-type="dusseldorf">
+                            <span>Düsseldorfer</span>
+                            <br><small>100×120 cm</small>
+                        </div>
+                    </div>
                     
-                    <button type="submit" class="modal-submit-btn lang-de">Angebot anfordern</button>
-                    <button type="submit" class="modal-submit-btn lang-en">Request Quote</button>
-                </form>
+                    <div class="form-group">
+                        <label for="pallet-count" class="lang-de">Anzahl Paletten</label>
+                        <label for="pallet-count" class="lang-en">Number of Pallets</label>
+                        <input type="number" id="pallet-count" name="pallet-count" min="0" value="1">
+                    </div>
+                    <div class="form-group">
+                        <label for="pallet-weight" class="lang-de">Gewicht pro Palette (kg)</label>
+                        <label for="pallet-weight" class="lang-en">Weight per Pallet (kg)</label>
+                        <input type="number" id="pallet-weight" name="pallet-weight" min="0" value="500">
+                    </div>
+                </div>
+
+                <div class="form-group full-width">
+                    <label for="vehicle-type" class="lang-de">Fahrzeugtyp</label>
+                    <label for="vehicle-type" class="lang-en">Vehicle Type</label>
+                    <select id="vehicle-type" name="vehicle-type">
+                        <option value="auto">🔄 Auto-Auswahl</option>
+                        <option value="bus">Transporter (bis 1.100 kg)</option>
+                        <option value="7.5t">7,5-Tonner (bis 2.350 kg)</option>
+                        <option value="12t">12-Tonner (bis 7.000 kg)</option>
+                        <option value="18t">18-Tonner (bis 12.000 kg)</option>
+                        <option value="sattelzug">Sattelzug (bis 24.000 kg)</option>
+                        <option value="mega">Mega Trailer (bis 24.000 kg)</option>
+                        <option value="consultation">Beratung erforderlich</option>
+                    </select>
+                    <div class="auto-selection-info" id="autoSelectionInfo"></div>
+                </div>
+                
+                <div class="form-group full-width">
+                    <button type="submit" class="submit-btn lang-de">Preis berechnen</button>
+                    <button type="submit" class="submit-btn lang-en">Calculate Price</button>
+                </div>
+            </form>
+            
+            <!-- Price Result -->
+            <div class="calculator-result" id="calculatorResult">
+                <h3 class="lang-de">Geschätzter Transportpreis</h3>
+                <h3 class="lang-en">Estimated Transport Price</h3>
+                <div class="price-estimate" id="priceEstimate">-</div>
+                <div class="total-weight" id="totalWeight"></div>
+                <div class="price-note lang-de">
+                    * Dies ist eine grobe Preisschätzung. Der endgültige Preis kann je nach genauer Strecke und Fracht variieren.
+                </div>
+                <div class="price-note lang-en">
+                    * This is a rough price estimate. The final price may vary depending on the exact route and cargo.
+                </div>
+                <button class="request-btn" onclick="openModal()">
+                    <span class="lang-de">Genauestes Angebot erhalten und Auftrag bestätigen</span>
+                    <span class="lang-en">Get the most accurate offer and confirm order</span>
+                </button>
             </div>
         </div>
+    </section>
 
-        <!-- Success Message -->
-        <div class="success-message" id="successMessage">
-            <strong class="lang-de">Vielen Dank für Ihre Anfrage!</strong>
-            <strong class="lang-en">Thank you for your request!</strong>
-            <br>
-            <span class="lang-de">Wir senden Ihnen innerhalb von 30 Minuten ein persönliches Angebot an Ihre E-Mail-Adresse.</span>
-            <span class="lang-en">We will send you a personal offer to your email address within 30 minutes.</span>
+    <!-- Contact Modal -->
+    <div class="modal-overlay" id="modalOverlay">
+        <div class="modal">
+            <h3 class="lang-de">Angebot anfordern</h3>
+            <h3 class="lang-en">Request Quote</h3>
+            <p class="lang-de">Geben Sie Ihre Daten ein und wir senden Ihnen innerhalb von 30 Minuten ein persönliches Angebot zu.</p>
+            <p class="lang-en">Enter your details and we will send you a personal offer within 30 minutes.</p>
+            
+            <form class="modal-form" id="modalForm">
+                <input type="email" id="client-email" name="email" placeholder="Ihre E-Mail-Adresse" required>
+                <input type="text" id="client-name" name="name" placeholder="Ihr Name">
+                <input type="tel" id="client-phone" name="phone" placeholder="Telefon (optional)">
+                
+                <button type="submit" class="modal-submit-btn lang-de">Angebot anfordern</button>
+                <button type="submit" class="modal-submit-btn lang-en">Request Quote</button>
+            </form>
         </div>
+    </div>
 
-        <!-- Vehicles Section -->
-        <section class="vehicles" id="vehicles">
-            <div class="vehicles-container">
+    <!-- Success Message -->
+    <div class="success-message" id="successMessage">
+        <strong class="lang-de">Vielen Dank für Ihre Anfrage!</strong>
+        <strong class="lang-en">Thank you for your request!</strong>
+        <br>
+        <span class="lang-de">Wir senden Ihnen innerhalb von 30 Minuten ein persönliches Angebot an Ihre E-Mail-Adresse.</span>
+        <span class="lang-en">We will send you a personal offer to your email address within 30 minutes.</span>
+    </div>
+
+    <!-- Vehicles Section -->
+    <section class="vehicles" id="vehicles">
+        <div class="vehicles-container">
+            <div class="section-title">
                 <h2 class="lang-de">Unsere Fahrzeugflotte</h2>
                 <h2 class="lang-en">Our Vehicle Fleet</h2>
                 
                 <p class="lang-de">Moderne und zuverlässige LKW für jede Transportanforderung</p>
                 <p class="lang-en">Modern and reliable trucks for every transport requirement</p>
-                
-                <div class="vehicle-grid">
-                    <!-- Vehicles will be populated by JavaScript -->
+            </div>
+            
+            <div class="vehicle-grid">
+                <!-- Transporter -->
+                <div class="vehicle-card">
+                    <div class="vehicle-image">
+                        <img src="https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="Transporter">
+                        <div class="vehicle-badge">Kleintransport</div>
+                    </div>
+                    <div class="vehicle-content">
+                        <h3>Transporter (bis 3,5t)</h3>
+                        <p class="vehicle-description lang-de">Ideal für kleine Sendungen, Expresslieferungen und den innerstädtischen Verkehr.</p>
+                        <p class="vehicle-description lang-en">Ideal for small shipments, express deliveries and inner-city traffic.</p>
+                        <div class="vehicle-specs">
+                            <div class="spec-item">
+                                <span class="spec-label lang-de">Ladefläche</span>
+                                <span class="spec-label lang-en">Loading area</span>
+                                <span class="spec-value">8 m³</span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-label lang-de">Max. Gewicht</span>
+                                <span class="spec-label lang-en">Max. weight</span>
+                                <span class="spec-value">1.100 kg</span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-label lang-de">Europaletten</span>
+                                <span class="spec-label lang-en">Euro pallets</span>
+                                <span class="spec-value">bis zu 4</span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-label lang-de">Ladehöhe</span>
+                                <span class="spec-label lang-en">Loading height</span>
+                                <span class="spec-value">1,8 m</span>
+                            </div>
+                        </div>
+                        <div class="vehicle-price">
+                            <span class="price-tag">Ab 79€</span>
+                            <button class="select-btn lang-de">Auswählen</button>
+                            <button class="select-btn lang-en">Select</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 7,5-Tonner -->
+                <div class="vehicle-card">
+                    <div class="vehicle-image">
+                        <img src="https://images.unsplash.com/photo-1580522154071-c6ca47a859ad?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="7,5-Tonner">
+                        <div class="vehicle-badge">Mitteltransport</div>
+                    </div>
+                    <div class="vehicle-content">
+                        <h3>7,5-Tonner LKW</h3>
+                        <p class="vehicle-description lang-de">Perfekt für mittlere Transporte mit guter Wendigkeit und einfacher Parkierbarkeit.</p>
+                        <p class="vehicle-description lang-en">Perfect for medium transports with good maneuverability and easy parking.</p>
+                        <div class="vehicle-specs">
+                            <div class="spec-item">
+                                <span class="spec-label lang-de">Ladefläche</span>
+                                <span class="spec-label lang-en">Loading area</span>
+                                <span class="spec-value">30 m³</span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-label lang-de">Max. Gewicht</span>
+                                <span class="spec-label lang-en">Max. weight</span>
+                                <span class="spec-value">2.350 kg</span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-label lang-de">Europaletten</span>
+                                <span class="spec-label lang-en">Euro pallets</span>
+                                <span class="spec-value">bis zu 10</span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-label lang-de">Ladehöhe</span>
+                                <span class="spec-label lang-en">Loading height</span>
+                                <span class="spec-value">2,4 m</span>
+                            </div>
+                        </div>
+                        <div class="vehicle-price">
+                            <span class="price-tag">Ab 129€</span>
+                            <button class="select-btn lang-de">Auswählen</button>
+                            <button class="select-btn lang-en">Select</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 12-Tonner -->
+                <div class="vehicle-card">
+                    <div class="vehicle-image">
+                        <img src="https://images.unsplash.com/photo-1557220285-1a0c0b5c32c9?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="12-Tonner">
+                        <div class="vehicle-badge">Großtransport</div>
+                    </div>
+                    <div class="vehicle-content">
+                        <h3>12-Tonner LKW</h3>
+                        <p class="vehicle-description lang-de">Für umfangreiche Transporte mit höherer Ladekapazität und Reichweite.</p>
+                        <p class="vehicle-description lang-en">For extensive transports with higher loading capacity and range.</p>
+                        <div class="vehicle-specs">
+                            <div class="spec-item">
+                                <span class="spec-label lang-de">Ladefläche</span>
+                                <span class="spec-label lang-en">Loading area</span>
+                                <span class="spec-value">45 m³</span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-label lang-de">Max. Gewicht</span>
+                                <span class="spec-label lang-en">Max. weight</span>
+                                <span class="spec-value">7.000 kg</span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-label lang-de">Europaletten</span>
+                                <span class="spec-label lang-en">Euro pallets</span>
+                                <span class="spec-value">bis zu 14</span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-label lang-de">Ladehöhe</span>
+                                <span class="spec-label lang-en">Loading height</span>
+                                <span class="spec-value">2,5 m</span>
+                            </div>
+                        </div>
+                        <div class="vehicle-price">
+                            <span class="price-tag">Ab 189€</span>
+                            <button class="select-btn lang-de">Auswählen</button>
+                            <button class="select-btn lang-en">Select</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 18-Tonner -->
+                <div class="vehicle-card">
+                    <div class="vehicle-image">
+                        <img src="https://images.unsplash.com/photo-1545173168-9f1947eebb7f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="18-Tonner">
+                        <div class="vehicle-badge">Schwerlast</div>
+                    </div>
+                    <div class="vehicle-content">
+                        <h3>18-Tonner LKW</h3>
+                        <p class="vehicle-description lang-de">Für schwere und voluminöse Güter mit ausgezeichneter Ladekapazität.</p>
+                        <p class="vehicle-description lang-en">For heavy and voluminous goods with excellent loading capacity.</p>
+                        <div class="vehicle-specs">
+                            <div class="spec-item">
+                                <span class="spec-label lang-de">Ladefläche</span>
+                                <span class="spec-label lang-en">Loading area</span>
+                                <span class="spec-value">60 m³</span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-label lang-de">Max. Gewicht</span>
+                                <span class="spec-label lang-en">Max. weight</span>
+                                <span class="spec-value">12.000 kg</span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-label lang-de">Europaletten</span>
+                                <span class="spec-label lang-en">Euro pallets</span>
+                                <span class="spec-value">bis zu 18</span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-label lang-de">Ladehöhe</span>
+                                <span class="spec-label lang-en">Loading height</span>
+                                <span class="spec-value">2,7 m</span>
+                            </div>
+                        </div>
+                        <div class="vehicle-price">
+                            <span class="price-tag">Ab 249€</span>
+                            <button class="select-btn lang-de">Auswählen</button>
+                            <button class="select-btn lang-en">Select</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sattelzug -->
+                <div class="vehicle-card">
+                    <div class="vehicle-image">
+                        <img src="https://images.unsplash.com/photo-1593941707882-a5bba5331f5a?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="Sattelzug">
+                        <div class="vehicle-badge">Schwertransport</div>
+                    </div>
+                    <div class="vehicle-content">
+                        <h3>Sattelzug</h3>
+                        <p class="vehicle-description lang-de">Maximale Kapazität für große Transportvolumen und schwere Güter.</p>
+                        <p class="vehicle-description lang-en">Maximum capacity for large transport volumes and heavy goods.</p>
+                        <div class="vehicle-specs">
+                            <div class="spec-item">
+                                <span class="spec-label lang-de">Ladefläche</span>
+                                <span class="spec-label lang-en">Loading area</span>
+                                <span class="spec-value">90 m³</span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-label lang-de">Max. Gewicht</span>
+                                <span class="spec-label lang-en">Max. weight</span>
+                                <span class="spec-value">24.000 kg</span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-label lang-de">Europaletten</span>
+                                <span class="spec-label lang-en">Euro pallets</span>
+                                <span class="spec-value">bis zu 33</span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-label lang-de">Ladehöhe</span>
+                                <span class="spec-label lang-en">Loading height</span>
+                                <span class="spec-value">2,65 m</span>
+                            </div>
+                        </div>
+                        <div class="vehicle-price">
+                            <span class="price-tag">Ab 349€</span>
+                            <button class="select-btn lang-de">Auswählen</button>
+                            <button class="select-btn lang-en">Select</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Mega Trailer -->
+                <div class="vehicle-card">
+                    <div class="vehicle-image">
+                        <img src="https://images.unsplash.com/photo-1511914265870-304d56d86e2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="Mega Trailer">
+                        <div class="vehicle-badge">Maximaltransport</div>
+                    </div>
+                    <div class="vehicle-content">
+                        <h3>Mega Trailer</h3>
+                        <p class="vehicle-description lang-de">Unsere größte Transportlösung mit extra hoher Ladekapazität.</p>
+                        <p class="vehicle-description lang-en">Our largest transport solution with extra high loading capacity.</p>
+                        <div class="vehicle-specs">
+                            <div class="spec-item">
+                                <span class="spec-label lang-de">Ladefläche</span>
+                                <span class="spec-label lang-en">Loading area</span>
+                                <span class="spec-value">100 m³</span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-label lang-de">Max. Gewicht</span>
+                                <span class="spec-label lang-en">Max. weight</span>
+                                <span class="spec-value">24.000 kg</span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-label lang-de">Europaletten</span>
+                                <span class="spec-label lang-en">Euro pallets</span>
+                                <span class="spec-value">bis zu 33</span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-label lang-de">Ladehöhe</span>
+                                <span class="spec-label lang-en">Loading height</span>
+                                <span class="spec-value">3,0 m</span>
+                            </div>
+                        </div>
+                        <div class="vehicle-price">
+                            <span class="price-tag">Ab 449€</span>
+                            <button class="select-btn lang-de">Auswählen</button>
+                            <button class="select-btn lang-en">Select</button>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </section>
-    </div>
+        </div>
+    </section>
 
     <!-- Footer -->
     <footer id="contact">
-        <div class="logo" style="color: #fff; margin-bottom: 1rem;">
-            <div class="logo-icon" style="background: #fff; color: #000; margin: 0 auto 0.5rem;">LB</div>
-            LOGIBASE
+        <div class="footer-content">
+            <div class="footer-column">
+                <h3>LogiBase</h3>
+                <p class="lang-de">Ihr zuverlässiger Partner für Transport und Logistik. Wir liefern Lösungen für jede Transportanforderung.</p>
+                <p class="lang-en">Your reliable partner for transport and logistics. We deliver solutions for every transport requirement.</p>
+            </div>
+            <div class="footer-column">
+                <h3 class="lang-de">Kontakt</h3>
+                <h3 class="lang-en">Contact</h3>
+                <p>Musterstraße 123</p>
+                <p>12345 Musterstadt</p>
+                <p>+49 123 456 789</p>
+                <a href="mailto:info@logibase.de">info@logibase.de</a>
+            </div>
+            <div class="footer-column">
+                <h3 class="lang-de">Leistungen</h3>
+                <h3 class="lang-en">Services</h3>
+                <a href="#" class="lang-de">Nationale Transporte</a>
+                <a href="#" class="lang-en">National transports</a>
+                <a href="#" class="lang-de">Europatransporte</a>
+                <a href="#" class="lang-en">European transports</a>
+                <a href="#" class="lang-de">Express-Lieferungen</a>
+                <a href="#" class="lang-en">Express deliveries</a>
+                <a href="#" class="lang-de">Schwertransporte</a>
+                <a href="#" class="lang-en">Heavy transports</a>
+            </div>
+            <div class="footer-column">
+                <h3 class="lang-de">Informationen</h3>
+                <h3 class="lang-en">Information</h3>
+                <a href="#" class="lang-de">Über uns</a>
+                <a href="#" class="lang-en">About us</a>
+                <a href="#" class="lang-de">Karriere</a>
+                <a href="#" class="lang-en">Career</a>
+                <a href="#" class="lang-de">Impressum</a>
+                <a href="#" class="lang-en">Legal notice</a>
+                <a href="#" class="lang-de">Datenschutz</a>
+                <a href="#" class="lang-en">Privacy policy</a>
+            </div>
         </div>
-        
-        <div class="footer-contact">
-            <a href="mailto:info@logibase.de">info@logibase.de</a>
-            <p class="lang-de">Telefon: +49 123 456 789</p>
-            <p class="lang-en">Phone: +49 123 456 789</p>
+        <div class="copyright">
+            <span class="lang-de">© 2024 LogiBase GmbH. Alle Rechte vorbehalten.</span>
+            <span class="lang-en">© 2024 LogiBase GmbH. All rights reserved.</span>
         </div>
-        
-        <p style="margin-top: 2rem; font-size: 0.9rem; opacity: 0.7;">
-            <span class="lang-de">© 2024 LogiBase. Alle Rechte vorbehalten.</span>
-            <span class="lang-en">© 2024 LogiBase. All rights reserved.</span>
-        </p>
     </footer>
 
     <script>
-        // Vehicle data with stapelbar support
-        const vehicleData = {
-            'bus': { 
-                name: 'Bus',
-                basePrice: 79,
-                perKm: 0.75,
-                perKg: 0.09,
-                perPallet: 20,
-                maxWeight: 1100,
-                maxPallets: 4,
-                internalLength: 320,
-                internalWidth: 125,
-                internalHeight: 160,
-                maxLevels: 1, // Bus kann nicht stapeln
-                palletConfig: {
-                    euro: { rows: 2, cols: 2 },
-                    dusseldorf: { rows: 1, cols: 2 }
-                },
-                type: 'bus'
-            },
-            '7.5t': { 
-                name: '7,5-Tonner',
-                basePrice: 129,
-                perKm: 0.95,
-                perKg: 0.07,
-                perPallet: 16,
-                maxWeight: 2350,
-                maxPallets: 10,
-                internalLength: 600,
-                internalWidth: 240,
-                internalHeight: 240,
-                maxLevels: 2,
-                palletConfig: {
-                    euro: { rows: 2, cols: 5 },
-                    dusseldorf: { rows: 2, cols: 4 }
-                },
-                type: '7-5t'
-            },
-            '12t': { 
-                name: '12-Tonner',
-                basePrice: 189,
-                perKm: 1.05,
-                perKg: 0.06,
-                perPallet: 14,
-                maxWeight: 7000,
-                maxPallets: 14,
-                internalLength: 680,
-                internalWidth: 230,
-                internalHeight: 250,
-                maxLevels: 2,
-                palletConfig: {
-                    euro: { rows: 2, cols: 7 },
-                    dusseldorf: { rows: 2, cols: 5 }
-                },
-                type: '12t'
-            },
-            '18t': { 
-                name: '18-Tonner',
-                basePrice: 249,
-                perKm: 1.15,
-                perKg: 0.05,
-                perPallet: 12,
-                maxWeight: 12000,
-                maxPallets: 18,
-                internalLength: 780,
-                internalWidth: 245,
-                internalHeight: 270,
-                maxLevels: 2,
-                palletConfig: {
-                    euro: { rows: 3, cols: 6 },
-                    dusseldorf: { rows: 3, cols: 5 }
-                },
-                type: '18t'
-            },
-            'sattelzug': {
-                name: 'Sattelzug',
-                basePrice: 349,
-                perKm: 1.25,
-                perKg: 0.04,
-                perPallet: 10,
-                maxWeight: 24000,
-                maxPallets: 33,
-                internalLength: 1360,
-                internalWidth: 240,
-                internalHeight: 265,
-                maxLevels: 2,
-                palletConfig: {
-                    euro: { rows: 3, cols: 11 },
-                    dusseldorf: { rows: 3, cols: 9 }
-                },
-                type: 'sattelzug'
-            },
-            'mega': { 
-                name: 'Mega Trailer',
-                basePrice: 449,
-                perKm: 1.45,
-                perKg: 0.035,
-                perPallet: 8,
-                maxWeight: 24000,
-                maxPallets: 33,
-                internalLength: 1360,
-                internalWidth: 240,
-                internalHeight: 300,
-                maxLevels: 3, // Mega kann höher stapeln
-                palletConfig: {
-                    euro: { rows: 3, cols: 11 },
-                    dusseldorf: { rows: 3, cols: 9 }
-                },
-                type: 'mega'
-            }
-        };
-
         // Language Switching
         document.querySelectorAll('.lang-btn').forEach(btn => {
             btn.addEventListener('click', function() {
@@ -1617,6 +1413,112 @@
         addPalletBtn.addEventListener('click', addIndividualPallet);
         // Add first pallet by default
         addIndividualPallet();
+
+        // Vehicle data
+        const vehicleData = {
+            'bus': { 
+                name: 'Transporter',
+                basePrice: 79,
+                perKm: 0.75,
+                perKg: 0.09,
+                perPallet: 20,
+                maxWeight: 1100,
+                maxPallets: 4,
+                internalLength: 320,
+                internalWidth: 125,
+                internalHeight: 160,
+                maxLevels: 1,
+                palletConfig: {
+                    euro: { rows: 2, cols: 2 },
+                    dusseldorf: { rows: 1, cols: 2 }
+                }
+            },
+            '7.5t': { 
+                name: '7,5-Tonner',
+                basePrice: 129,
+                perKm: 0.95,
+                perKg: 0.07,
+                perPallet: 16,
+                maxWeight: 2350,
+                maxPallets: 10,
+                internalLength: 600,
+                internalWidth: 240,
+                internalHeight: 240,
+                maxLevels: 2,
+                palletConfig: {
+                    euro: { rows: 2, cols: 5 },
+                    dusseldorf: { rows: 2, cols: 4 }
+                }
+            },
+            '12t': { 
+                name: '12-Tonner',
+                basePrice: 189,
+                perKm: 1.05,
+                perKg: 0.06,
+                perPallet: 14,
+                maxWeight: 7000,
+                maxPallets: 14,
+                internalLength: 680,
+                internalWidth: 230,
+                internalHeight: 250,
+                maxLevels: 2,
+                palletConfig: {
+                    euro: { rows: 2, cols: 7 },
+                    dusseldorf: { rows: 2, cols: 5 }
+                }
+            },
+            '18t': { 
+                name: '18-Tonner',
+                basePrice: 249,
+                perKm: 1.15,
+                perKg: 0.05,
+                perPallet: 12,
+                maxWeight: 12000,
+                maxPallets: 18,
+                internalLength: 780,
+                internalWidth: 245,
+                internalHeight: 270,
+                maxLevels: 2,
+                palletConfig: {
+                    euro: { rows: 3, cols: 6 },
+                    dusseldorf: { rows: 3, cols: 5 }
+                }
+            },
+            'sattelzug': {
+                name: 'Sattelzug',
+                basePrice: 349,
+                perKm: 1.25,
+                perKg: 0.04,
+                perPallet: 10,
+                maxWeight: 24000,
+                maxPallets: 33,
+                internalLength: 1360,
+                internalWidth: 240,
+                internalHeight: 265,
+                maxLevels: 2,
+                palletConfig: {
+                    euro: { rows: 3, cols: 11 },
+                    dusseldorf: { rows: 3, cols: 9 }
+                }
+            },
+            'mega': { 
+                name: 'Mega Trailer',
+                basePrice: 449,
+                perKm: 1.45,
+                perKg: 0.035,
+                perPallet: 8,
+                maxWeight: 24000,
+                maxPallets: 33,
+                internalLength: 1360,
+                internalWidth: 240,
+                internalHeight: 300,
+                maxLevels: 3,
+                palletConfig: {
+                    euro: { rows: 3, cols: 11 },
+                    dusseldorf: { rows: 3, cols: 9 }
+                }
+            }
+        };
 
         // Auto Vehicle Selection with stapelbar support
         function updateAutoVehicleSelection() {
@@ -1857,155 +1759,25 @@
             });
         });
 
-        // Generate vehicle cards with stapelbar diagrams
-        function generateVehicleCards() {
-            const vehicleGrid = document.querySelector('.vehicle-grid');
-            
-            Object.entries(vehicleData).forEach(([key, vehicle]) => {
-                const card = document.createElement('div');
-                card.className = 'vehicle-card';
-                
-                // Create pallet diagram for Euro pallets with levels
-                const euroConfig = vehicle.palletConfig.euro;
-                let palletDiagramHTML = '';
-                let palletCount = 0;
-                
-                for (let level = 0; level < Math.min(2, vehicle.maxLevels); level++) {
-                    for (let i = 0; i < euroConfig.rows; i++) {
-                        for (let j = 0; j < euroConfig.cols; j++) {
-                            palletCount++;
-                            if (palletCount <= vehicle.maxPallets) {
-                                palletDiagramHTML += `
-                                    <div class="pallet-cell">
-                                        ${palletCount}
-                                        ${vehicle.maxLevels > 1 ? `<span class="level-indicator">${level + 1}</span>` : ''}
-                                    </div>
-                                `;
-                            } else {
-                                palletDiagramHTML += `<div class="pallet-cell empty"></div>`;
-                            }
-                        }
-                    }
-                }
-                
-                // Create drawing based on vehicle type
-                let drawingHTML = '';
-                switch(vehicle.type) {
-                    case 'bus':
-                        drawingHTML = `
-                            <div class="drawing-bus">
-                                <div class="wheel wheel-1"></div>
-                                <div class="wheel wheel-2"></div>
-                                <div class="wheel wheel-3"></div>
-                                <div class="wheel wheel-4"></div>
-                            </div>
-                        `;
-                        break;
-                    case '7-5t':
-                        drawingHTML = `
-                            <div class="drawing-7-5t">
-                                <div class="wheel wheel-1"></div>
-                                <div class="wheel wheel-2"></div>
-                                <div class="wheel wheel-3"></div>
-                                <div class="wheel wheel-4"></div>
-                            </div>
-                        `;
-                        break;
-                    case '12t':
-                        drawingHTML = `
-                            <div class="drawing-12t">
-                                <div class="wheel wheel-1"></div>
-                                <div class="wheel wheel-2"></div>
-                                <div class="wheel wheel-3"></div>
-                                <div class="wheel wheel-4"></div>
-                            </div>
-                        `;
-                        break;
-                    case '18t':
-                        drawingHTML = `
-                            <div class="drawing-18t">
-                                <div class="wheel wheel-1"></div>
-                                <div class="wheel wheel-2"></div>
-                                <div class="wheel wheel-3"></div>
-                                <div class="wheel wheel-4"></div>
-                            </div>
-                        `;
-                        break;
-                    case 'sattelzug':
-                        drawingHTML = `
-                            <div class="drawing-sattelzug">
-                                <div class="drawing-sattelzug-truck">
-                                    <div class="wheel sattelzug-wheel-1"></div>
-                                    <div class="wheel sattelzug-wheel-2"></div>
-                                </div>
-                                <div class="drawing-sattelzug-trailer">
-                                    <div class="wheel sattelzug-wheel-3"></div>
-                                    <div class="wheel sattelzug-wheel-4"></div>
-                                    <div class="wheel sattelzug-wheel-5"></div>
-                                    <div class="wheel sattelzug-wheel-6"></div>
-                                </div>
-                            </div>
-                        `;
-                        break;
-                    case 'mega':
-                        drawingHTML = `
-                            <div class="drawing-mega">
-                                <div class="drawing-mega-truck">
-                                    <div class="wheel mega-wheel-1"></div>
-                                    <div class="wheel mega-wheel-2"></div>
-                                </div>
-                                <div class="drawing-mega-trailer">
-                                    <div class="wheel mega-wheel-3"></div>
-                                    <div class="wheel mega-wheel-4"></div>
-                                    <div class="wheel mega-wheel-5"></div>
-                                    <div class="wheel mega-wheel-6"></div>
-                                </div>
-                            </div>
-                        `;
-                        break;
-                }
-                
-                card.innerHTML = `
-                    <div class="vehicle-image">
-                        <div class="vehicle-drawing">
-                            ${drawingHTML}
-                        </div>
-                        <div class="pallet-overlay">
-                            <div class="pallet-diagram" style="grid-template-columns: repeat(${euroConfig.cols}, 1fr); grid-template-rows: repeat(${euroConfig.rows * Math.min(2, vehicle.maxLevels)}, 1fr);">
-                                ${palletDiagramHTML}
-                            </div>
-                        </div>
-                        <div class="vehicle-logo">LB</div>
-                    </div>
-                    <h3>${vehicle.name}</h3>
-                    <p><strong class="lang-de">${key === 'bus' ? 'Kleintransport' : key === '7.5t' ? 'Mitteltransport' : key === '12t' ? 'Großtransport' : key === '18t' ? 'Schwerlasttransport' : key === 'sattelzug' ? 'Schwertransport' : 'Maximaltransport'}</strong>
-                       <strong class="lang-en">${key === 'bus' ? 'Small Transport' : key === '7.5t' ? 'Medium Transport' : key === '12t' ? 'Large Transport' : key === '18t' ? 'Heavy Transport' : key === 'sattelzug' ? 'Special Transport' : 'Maximum Transport'}</strong></p>
-                    <div class="vehicle-specs">
-                        <div class="spec-item">
-                            <span class="spec-label lang-de">Max. Gewicht:</span>
-                            <span class="spec-label lang-en">Max. Weight:</span>
-                            <span class="spec-value">${vehicle.maxWeight.toLocaleString()} kg</span>
-                        </div>
-                        <div class="spec-item">
-                            <span class="spec-label lang-de">Europaletten:</span>
-                            <span class="spec-label lang-en">Euro Pallets:</span>
-                            <span class="spec-value">bis zu ${vehicle.maxPallets}</span>
-                        </div>
-                        <div class="spec-item">
-                            <span class="spec-label lang-de">Max. Stapelung:</span>
-                            <span class="spec-label lang-en">Max. Stacking:</span>
-                            <span class="spec-value">${vehicle.maxLevels} Ebenen</span>
-                        </div>
-                    </div>
-                `;
-                
-                vehicleGrid.appendChild(card);
+        // Vehicle selection functionality
+        document.querySelectorAll('.select-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                const vehicleCard = this.closest('.vehicle-card');
+                const vehicleName = vehicleCard.querySelector('h3').textContent;
+                alert(`Sie haben ${vehicleName} ausgewählt. Wir werden uns in Kürze mit Ihnen in Verbindung setzen.`);
             });
-        }
+        });
 
         // Initialize the page
-        generateVehicleCards();
         updateAutoVehicleSelection();
+        
+        // Set default dates for the datetime-local inputs
+        const now = new Date();
+        const loadingDate = new Date(now.getTime() + 24 * 60 * 60 * 1000); // Tomorrow
+        const unloadingDate = new Date(loadingDate.getTime() + 2 * 60 * 60 * 1000); // 2 hours later
+        
+        document.getElementById('loading-date').value = loadingDate.toISOString().slice(0, 16);
+        document.getElementById('unloading-date').value = unloadingDate.toISOString().slice(0, 16);
     </script>
 </body>
 </html>
