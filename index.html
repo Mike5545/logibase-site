@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LogiBase - Premium Logistiklösungen</title>
+    <title>LogiBase - Logistiklösungen</title>
     <style>
         * {
             margin: 0;
@@ -11,66 +11,56 @@
             box-sizing: border-box;
         }
 
-        :root {
-            --primary: #000;
-            --secondary: #333;
-            --accent: #0056b3;
-            --light: #f8f9fa;
-            --success: #28a745;
-            --border: #e0e0e0;
-        }
-
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Arial', sans-serif;
             line-height: 1.6;
             color: #000;
             background: #fff;
-            overflow-x: hidden;
         }
 
         /* Header */
         header {
             background: #fff;
             padding: 1rem 2rem;
-            box-shadow: 0 2px 20px rgba(0,0,0,0.08);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
             position: fixed;
             width: 100%;
             top: 0;
             z-index: 1000;
-            backdrop-filter: blur(10px);
         }
 
         .header-content {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            max-width: 1400px;
+            max-width: 1200px;
             margin: 0 auto;
         }
 
         .logo {
             display: flex;
             align-items: center;
-            gap: 0.8rem;
+            gap: 0.5rem;
             font-size: 1.5rem;
-            font-weight: 800;
+            font-weight: bold;
             color: #000;
             text-decoration: none;
         }
 
         .logo-icon {
-            width: 50px;
-            height: 50px;
-            background: linear-gradient(135deg, #000, #333);
-            border-radius: 12px;
+            width: 45px;
+            height: 45px;
+            background: #000;
+            border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             color: white;
             font-weight: bold;
-            font-size: 1.4rem;
+            font-size: 1.3rem;
             position: relative;
             overflow: hidden;
+            border: 2px solid #000;
         }
 
         .logo-icon::before {
@@ -81,71 +71,51 @@
             right: 0;
             bottom: 0;
             background: 
-                linear-gradient(45deg, transparent 45%, rgba(255,255,255,0.1) 45%, rgba(255,255,255,0.1) 55%, transparent 55%),
-                linear-gradient(-45deg, transparent 45%, rgba(255,255,255,0.1) 45%, rgba(255,255,255,0.1) 55%, transparent 55%);
+                linear-gradient(45deg, transparent 45%, #fff 45%, #fff 55%, transparent 55%),
+                linear-gradient(-45deg, transparent 45%, #fff 45%, #fff 55%, transparent 55%);
             background-size: 20px 20px;
+            opacity: 0.1;
         }
 
         .logo-text {
-            font-size: 1.6rem;
-            font-weight: 800;
-            background: linear-gradient(135deg, #000, #333);
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: linear-gradient(45deg, #000, #333);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
         .nav-links {
             display: flex;
-            gap: 2.5rem;
+            gap: 2rem;
             align-items: center;
         }
 
         .nav-link {
             color: #000;
             text-decoration: none;
-            font-weight: 600;
-            font-size: 1rem;
-            transition: all 0.3s ease;
-            position: relative;
+            font-weight: 500;
+            transition: color 0.3s ease;
         }
 
         .nav-link:hover {
-            color: var(--accent);
-        }
-
-        .nav-link::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: var(--accent);
-            transition: width 0.3s ease;
-        }
-
-        .nav-link:hover::after {
-            width: 100%;
+            color: #333;
         }
 
         .language-switcher {
             display: flex;
             gap: 0.5rem;
             align-items: center;
-            background: var(--light);
-            padding: 0.3rem;
-            border-radius: 8px;
         }
 
         .lang-btn {
             background: none;
-            border: none;
-            padding: 0.5rem 1rem;
+            border: 1px solid #000;
+            padding: 0.4rem 0.8rem;
             cursor: pointer;
-            font-size: 0.85rem;
-            font-weight: 600;
+            font-size: 0.8rem;
             transition: all 0.3s ease;
-            border-radius: 6px;
+            border-radius: 4px;
         }
 
         .lang-btn.active {
@@ -161,45 +131,27 @@
         /* Hero Section */
         .hero {
             background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-            padding: 12rem 2rem 6rem;
+            padding: 8rem 2rem 4rem;
             text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000" opacity="0.02"><path d="M500,250 L750,500 L500,750 L250,500 Z" fill="black"/></svg>');
-            background-size: 200px 200px;
         }
 
         .hero h1 {
-            font-size: 3.5rem;
-            margin-bottom: 1.5rem;
-            font-weight: 700;
-            background: linear-gradient(135deg, #000, #333);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            font-weight: 300;
         }
 
         .hero p {
-            font-size: 1.3rem;
-            margin-bottom: 3rem;
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
             max-width: 800px;
             margin-left: auto;
             margin-right: auto;
-            color: #666;
-            font-weight: 400;
         }
 
         .cta-buttons {
             display: flex;
-            gap: 1.5rem;
+            gap: 1rem;
             justify-content: center;
             flex-wrap: wrap;
         }
@@ -207,16 +159,15 @@
         .cta-button {
             background: #000;
             color: #fff;
-            padding: 1.2rem 2.5rem;
+            padding: 0.8rem 1.5rem;
             border: none;
-            font-size: 1.1rem;
+            font-size: 1rem;
             cursor: pointer;
             transition: all 0.3s ease;
             text-decoration: none;
             display: inline-block;
-            border-radius: 10px;
-            font-weight: 600;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            border-radius: 6px;
+            font-weight: 500;
         }
 
         .cta-button.secondary {
@@ -228,8 +179,8 @@
         .cta-button:hover {
             background: #333;
             color: #fff;
-            transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
         }
 
         .cta-button.secondary:hover {
@@ -239,33 +190,31 @@
 
         /* Calculator Section */
         .calculator {
-            padding: 6rem 2rem;
-            background: #fff;
+            padding: 4rem 2rem;
+            background: #f8f9fa;
         }
 
         .calculator-container {
-            max-width: 1000px;
+            max-width: 800px;
             margin: 0 auto;
             text-align: center;
         }
 
         .calculator h2 {
-            font-size: 2.5rem;
-            margin-bottom: 1.5rem;
-            font-weight: 700;
-            color: #000;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            font-weight: 300;
         }
 
         .calculator > .calculator-container > p {
-            margin-bottom: 3rem;
+            margin-bottom: 2rem;
             color: #666;
-            font-size: 1.1rem;
         }
 
         .calculator-form {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 1.5rem;
+            gap: 1.2rem;
             margin-bottom: 2rem;
         }
 
@@ -280,47 +229,44 @@
         }
 
         .form-group label {
-            margin-bottom: 0.7rem;
+            margin-bottom: 0.5rem;
             font-weight: 600;
-            font-size: 0.95rem;
+            font-size: 0.9rem;
             color: #333;
         }
 
         .form-group input,
         .form-group select {
-            padding: 1rem;
-            border: 2px solid #e0e0e0;
+            padding: 0.7rem;
+            border: 1px solid #ddd;
             background: #fff;
-            font-size: 1rem;
-            border-radius: 8px;
-            transition: all 0.3s ease;
+            font-size: 0.95rem;
+            border-radius: 6px;
+            transition: border-color 0.3s ease;
         }
 
         .form-group input:focus,
         .form-group select:focus {
             outline: none;
             border-color: #000;
-            box-shadow: 0 0 0 3px rgba(0,0,0,0.1);
         }
 
-        /* Compact Cargo Type Selector */
         .cargo-type-selector {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 1rem;
-            margin-bottom: 1.5rem;
+            margin-bottom: 1rem;
         }
 
         .cargo-type-btn {
-            padding: 1rem 1.5rem;
+            padding: 1rem;
             border: 2px solid #e0e0e0;
             background: #fff;
             cursor: pointer;
             transition: all 0.3s ease;
             text-align: center;
             font-weight: 600;
-            border-radius: 8px;
-            font-size: 0.9rem;
+            border-radius: 6px;
         }
 
         .cargo-type-btn.active {
@@ -331,27 +277,26 @@
 
         .cargo-type-btn:hover {
             border-color: #000;
-            transform: translateY(-2px);
         }
 
         /* Pallet Type Selector */
         .pallet-type-selector {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 0.8rem;
-            margin-bottom: 1.5rem;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
         }
 
         .pallet-type-btn {
-            padding: 0.8rem;
+            padding: 0.6rem;
             border: 2px solid #e0e0e0;
             background: #fff;
             cursor: pointer;
             transition: all 0.3s ease;
             text-align: center;
             font-weight: 500;
-            border-radius: 8px;
-            font-size: 0.85rem;
+            border-radius: 6px;
+            font-size: 0.8rem;
         }
 
         .pallet-type-btn.active {
@@ -360,42 +305,27 @@
             border-color: #000;
         }
 
-        .pallet-type-btn:hover {
-            border-color: #000;
-        }
-
         /* Stapelbar Styles */
         .stapelbar-container {
             display: flex;
             align-items: center;
-            gap: 1rem;
-            margin-bottom: 1.5rem;
-            padding: 1.2rem;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+            padding: 0.8rem;
             background: #f8f9fa;
-            border-radius: 8px;
-            border: 2px solid #e0e0e0;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .stapelbar-container:hover {
-            border-color: #000;
-        }
-
-        .stapelbar-container.active {
-            background: #e8f5e8;
-            border-color: #28a745;
+            border-radius: 6px;
+            border: 1px solid #e0e0e0;
         }
 
         .stapelbar-checkbox {
-            width: 20px;
-            height: 20px;
+            width: 18px;
+            height: 18px;
             cursor: pointer;
         }
 
         .stapelbar-label {
             font-weight: 600;
-            font-size: 0.95rem;
+            font-size: 0.9rem;
             color: #333;
             cursor: pointer;
         }
@@ -403,12 +333,8 @@
         .levels-input {
             display: none;
             grid-template-columns: 1fr 1fr;
-            gap: 1.5rem;
-            margin-top: 1rem;
-            padding: 1.5rem;
-            background: #fff;
-            border-radius: 8px;
-            border: 1px solid #e0e0e0;
+            gap: 1rem;
+            margin-top: 0.5rem;
         }
 
         .level-item {
@@ -417,92 +343,83 @@
         }
 
         .level-item label {
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.3rem;
             font-weight: 600;
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             color: #333;
         }
 
         .level-item input {
-            padding: 0.8rem;
-            border: 2px solid #e0e0e0;
+            padding: 0.5rem;
+            border: 1px solid #ddd;
             background: #fff;
             font-size: 0.9rem;
-            border-radius: 6px;
+            border-radius: 4px;
         }
 
         /* Individual Pallets */
         .individual-pallets {
-            margin-bottom: 1.5rem;
+            margin-bottom: 1rem;
         }
 
         .pallet-item {
             display: grid;
             grid-template-columns: 1fr 1fr 1fr auto;
-            gap: 1rem;
+            gap: 0.8rem;
             margin-bottom: 1rem;
-            padding: 1.5rem;
-            border: 2px solid #e0e0e0;
-            border-radius: 8px;
+            padding: 1rem;
+            border: 1px solid #e0e0e0;
+            border-radius: 6px;
             background: #f9f9f9;
             align-items: end;
-            transition: all 0.3s ease;
-        }
-
-        .pallet-item:hover {
-            border-color: #000;
         }
 
         .add-pallet-btn {
             background: #000;
             color: #fff;
             border: none;
-            padding: 0.8rem 1.2rem;
-            border-radius: 8px;
+            padding: 0.7rem 1rem;
+            border-radius: 6px;
             cursor: pointer;
-            font-size: 1.2rem;
-            width: 45px;
-            height: 45px;
+            font-size: 1.5rem;
+            width: 40px;
+            height: 40px;
             display: flex;
             align-items: center;
             justify-content: center;
             margin-bottom: 1rem;
-            transition: all 0.3s ease;
         }
 
         .add-pallet-btn:hover {
             background: #333;
-            transform: scale(1.05);
         }
 
         .remove-pallet-btn {
             background: #ff4444;
             color: white;
             border: none;
-            padding: 0.5rem 0.7rem;
-            border-radius: 6px;
+            padding: 0.3rem 0.5rem;
+            border-radius: 4px;
             cursor: pointer;
             height: fit-content;
-            font-size: 0.9rem;
-            width: 30px;
-            height: 30px;
+            font-size: 0.8rem;
+            width: 25px;
+            height: 25px;
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: all 0.3s ease;
         }
 
         .remove-pallet-btn:hover {
             background: #cc0000;
-            transform: scale(1.05);
         }
 
         /* Dimensions Input */
         .dimensions-input {
             display: grid;
             grid-template-columns: 1fr 1fr 1fr;
-            gap: 1.2rem;
-            margin-bottom: 1.5rem;
+            gap: 1rem;
+            margin-bottom: 1rem;
         }
 
         .dimension-item {
@@ -511,32 +428,31 @@
         }
 
         .dimension-item label {
-            margin-bottom: 0.7rem;
+            margin-bottom: 0.5rem;
             font-weight: 600;
             font-size: 0.9rem;
             color: #333;
         }
 
         .dimension-item input {
-            padding: 1rem;
-            border: 2px solid #e0e0e0;
+            padding: 0.7rem;
+            border: 1px solid #ddd;
             background: #fff;
             font-size: 0.95rem;
-            border-radius: 8px;
-            transition: all 0.3s ease;
+            border-radius: 6px;
+            transition: border-color 0.3s ease;
         }
 
         .dimension-item input:focus {
             outline: none;
             border-color: #000;
-            box-shadow: 0 0 0 3px rgba(0,0,0,0.1);
         }
 
         /* Date Time Input */
         .date-time-input {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 1.5rem;
+            gap: 1rem;
         }
 
         .date-time-group {
@@ -545,84 +461,79 @@
         }
 
         .date-time-input input {
-            padding: 1rem;
-            border: 2px solid #e0e0e0;
+            padding: 0.7rem;
+            border: 1px solid #ddd;
             background: #fff;
             font-size: 0.95rem;
-            border-radius: 8px;
-            transition: all 0.3s ease;
+            border-radius: 6px;
+            transition: border-color 0.3s ease;
         }
 
         .date-time-input input:focus {
             outline: none;
             border-color: #000;
-            box-shadow: 0 0 0 3px rgba(0,0,0,0.1);
         }
 
         .submit-btn {
             background: #000;
             color: #fff;
-            padding: 1.2rem 2.5rem;
+            padding: 0.9rem 2rem;
             border: none;
-            font-size: 1.1rem;
+            font-size: 1rem;
             cursor: pointer;
             transition: all 0.3s ease;
-            margin-top: 1.5rem;
+            margin-top: 1rem;
             width: 100%;
-            border-radius: 10px;
+            border-radius: 6px;
             font-weight: 600;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
         }
 
         .submit-btn:hover {
             background: #333;
             transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
         }
 
         .calculator-result {
             background: #fff;
-            padding: 3rem;
+            padding: 2rem;
             border: 2px solid #000;
             margin-top: 2rem;
             display: none;
-            border-radius: 12px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            border-radius: 8px;
         }
 
         .price-estimate {
-            font-size: 3rem;
-            font-weight: 800;
+            font-size: 2rem;
+            font-weight: bold;
             color: #000;
-            margin: 1.5rem 0;
+            margin: 1rem 0;
         }
 
         .price-note {
-            font-size: 0.95rem;
+            font-size: 0.9rem;
             color: #666;
-            margin-bottom: 1.5rem;
-            line-height: 1.5;
+            margin-bottom: 1rem;
         }
 
         .request-btn {
             background: #000;
             color: #fff;
-            padding: 1.2rem 2.5rem;
+            padding: 0.9rem 2rem;
             border: none;
-            font-size: 1.1rem;
+            font-size: 1rem;
             cursor: pointer;
             transition: all 0.3s ease;
-            margin-top: 1.5rem;
+            margin-top: 1rem;
             width: 100%;
-            border-radius: 10px;
+            border-radius: 6px;
             font-weight: 600;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
         }
 
         .request-btn:hover {
             background: #333;
             transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
         }
 
         /* Contact Modal */
@@ -637,269 +548,220 @@
             justify-content: center;
             align-items: center;
             z-index: 2000;
-            backdrop-filter: blur(5px);
         }
 
         .modal {
             background: white;
-            padding: 3rem;
-            border-radius: 15px;
+            padding: 2rem;
+            border-radius: 10px;
             width: 90%;
             max-width: 500px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.2);
-            transform: translateY(20px);
-            opacity: 0;
-            transition: all 0.3s ease;
-        }
-
-        .modal.show {
-            transform: translateY(0);
-            opacity: 1;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
         }
 
         .modal h3 {
-            margin-bottom: 1.5rem;
+            margin-bottom: 1rem;
             text-align: center;
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: #000;
+            font-size: 1.5rem;
+            font-weight: 300;
         }
 
         .modal-form {
             display: flex;
             flex-direction: column;
-            gap: 1.5rem;
+            gap: 1rem;
         }
 
         .modal-form input {
-            padding: 1rem;
-            border: 2px solid #e0e0e0;
+            padding: 0.75rem;
+            border: 1px solid #ddd;
             font-size: 1rem;
-            border-radius: 8px;
-            transition: all 0.3s ease;
+            border-radius: 6px;
+            transition: border-color 0.3s ease;
         }
 
         .modal-form input:focus {
             outline: none;
             border-color: #000;
-            box-shadow: 0 0 0 3px rgba(0,0,0,0.1);
         }
 
         .modal-submit-btn {
             background: #000;
             color: #fff;
-            padding: 1.2rem;
+            padding: 0.9rem;
             border: none;
-            font-size: 1.1rem;
+            font-size: 1rem;
             cursor: pointer;
             transition: all 0.3s ease;
-            border-radius: 10px;
+            border-radius: 6px;
             font-weight: 600;
-            margin-top: 1rem;
         }
 
         .modal-submit-btn:hover {
             background: #333;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
         }
 
         /* Success Message */
         .success-message {
             background: #d4edda;
-            border: 2px solid #c3e6cb;
+            border: 1px solid #c3e6cb;
             color: #155724;
-            padding: 1.5rem;
-            border-radius: 8px;
-            margin: 1.5rem 0;
+            padding: 1rem;
+            border-radius: 5px;
+            margin: 1rem 0;
             text-align: center;
             display: none;
-            font-weight: 600;
         }
 
         /* Vehicles Section */
         .vehicles {
-            padding: 6rem 2rem;
-            background: #f8f9fa;
+            padding: 4rem 2rem;
+            background: #fff;
         }
 
         .vehicles-container {
-            max-width: 1400px;
+            max-width: 1200px;
             margin: 0 auto;
             text-align: center;
         }
 
         .vehicles h2 {
-            font-size: 2.5rem;
-            margin-bottom: 1.5rem;
-            font-weight: 700;
-            color: #000;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            font-weight: 300;
         }
 
         .vehicles > .vehicles-container > p {
-            margin-bottom: 4rem;
+            margin-bottom: 3rem;
             color: #666;
-            font-size: 1.1rem;
         }
 
         .vehicle-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 2.5rem;
-            margin-top: 3rem;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
         }
 
         .vehicle-card {
-            padding: 2rem;
-            border: 2px solid #e0e0e0;
+            padding: 1.5rem;
+            border: 1px solid #e0e0e0;
             background: #fff;
-            transition: all 0.4s ease;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
             position: relative;
-            border-radius: 15px;
-            overflow: hidden;
+            border-radius: 8px;
         }
 
         .vehicle-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 50px rgba(0,0,0,0.15);
-            border-color: #000;
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
         }
 
         .vehicle-card h3 {
-            margin-bottom: 1.5rem;
-            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
             color: #000;
-            font-weight: 700;
         }
 
         .vehicle-image {
             width: 100%;
             height: 200px;
             background: #f8f9fa;
-            margin-bottom: 1.5rem;
+            margin-bottom: 1rem;
             display: flex;
             align-items: center;
             justify-content: center;
-            border: 2px solid #e0e0e0;
+            border: 1px solid #e0e0e0;
             position: relative;
             overflow: hidden;
-            border-radius: 12px;
+            border-radius: 6px;
             cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .vehicle-image:hover {
-            border-color: #000;
-        }
-
-        .vehicle-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: all 0.3s ease;
         }
 
         .vehicle-image:hover img {
-            transform: scale(1.05);
+            opacity: 0.7;
         }
 
-        /* 3D Loading Visualization */
-        .loading-visualization {
+        .pallet-overlay {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(255,255,255,0.95);
+            background: white;
             display: none;
             align-items: center;
             justify-content: center;
-            padding: 1.5rem;
-            z-index: 10;
-            backdrop-filter: blur(5px);
+            padding: 1rem;
         }
 
-        .vehicle-image:hover .loading-visualization {
+        .vehicle-image:hover .pallet-overlay {
             display: flex;
-            animation: fadeIn 0.3s ease;
         }
 
-        .pallet-diagram-3d {
+        .pallet-diagram {
             width: 100%;
             height: 100%;
             display: grid;
             gap: 2px;
             background: #f0f0f0;
-            padding: 8px;
-            border-radius: 8px;
-            transform-style: preserve-3d;
-            perspective: 1000px;
+            padding: 5px;
+            border-radius: 4px;
         }
 
-        .pallet-cell-3d {
+        .pallet-cell {
             background: #4CAF50;
             border: 1px solid #388E3C;
-            border-radius: 3px;
+            border-radius: 2px;
             display: flex;
             align-items: center;
             justify-content: center;
             color: white;
-            font-size: 0.7rem;
+            font-size: 0.6rem;
             font-weight: bold;
             position: relative;
-            transform: translateZ(0);
-            transition: all 0.3s ease;
         }
 
-        .pallet-cell-3d:nth-child(odd) {
-            background: #45a049;
+        .pallet-cell.empty {
+            background: #e0e0e0;
+            border: 1px dashed #ccc;
         }
 
-        .pallet-cell-3d.stack-2 {
-            transform: translateZ(20px);
-            background: #3d8b40;
-        }
-
-        .pallet-cell-3d.stack-3 {
-            transform: translateZ(40px);
-            background: #357c38;
-        }
-
-        .level-indicator-3d {
+        .level-indicator {
             position: absolute;
-            top: 2px;
-            left: 3px;
+            top: 1px;
+            left: 2px;
             background: rgba(0,0,0,0.7);
             color: white;
-            padding: 2px 4px;
-            border-radius: 3px;
-            font-size: 0.6rem;
+            padding: 1px 3px;
+            border-radius: 2px;
+            font-size: 0.5rem;
             font-weight: bold;
         }
 
         .vehicle-logo {
             position: absolute;
-            top: 15px;
-            right: 15px;
-            background: rgba(0, 0, 0, 0.8);
+            top: 10px;
+            right: 10px;
+            background: rgba(0, 0, 0, 0.7);
             color: white;
-            padding: 8px 15px;
-            border-radius: 25px;
-            font-weight: 700;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-weight: bold;
             font-size: 0.9rem;
-            z-index: 5;
+            z-index: 2;
         }
 
         .vehicle-specs {
-            margin-top: 1.5rem;
+            margin-top: 1rem;
             text-align: left;
         }
 
         .spec-item {
             display: flex;
             justify-content: space-between;
-            margin-bottom: 0.8rem;
-            padding-bottom: 0.8rem;
+            margin-bottom: 0.5rem;
+            padding-bottom: 0.5rem;
             border-bottom: 1px solid #f0f0f0;
         }
 
@@ -910,75 +772,300 @@
 
         .spec-value {
             color: #000;
-            font-weight: 600;
+            font-weight: 500;
         }
 
         /* Auto Vehicle Selection */
         .auto-selection-info {
             background: #e8f5e8;
-            border: 2px solid #4CAF50;
-            border-radius: 8px;
-            padding: 1rem;
-            margin-top: 0.8rem;
+            border: 1px solid #4CAF50;
+            border-radius: 6px;
+            padding: 0.8rem;
+            margin-top: 0.5rem;
             font-size: 0.9rem;
             display: none;
         }
 
-        /* Vehicle Images Placeholder */
-        .vehicle-placeholder {
+        /* Стили для рисованных машин */
+        .vehicle-drawing {
             width: 100%;
             height: 100%;
+            background: #f8f9fa;
             display: flex;
             align-items: center;
             justify-content: center;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            font-weight: 700;
-            font-size: 1.2rem;
             position: relative;
-            overflow: hidden;
         }
-
-        .vehicle-placeholder::before {
+        
+        .drawing-bus {
+            width: 180px;
+            height: 80px;
+            background: #e0e0e0;
+            border: 2px solid #333;
+            border-radius: 10px 4px 4px 10px;
+            position: relative;
+        }
+        
+        .drawing-bus::before {
             content: '';
             position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.1), transparent);
-            transform: rotate(45deg);
-            animation: shine 3s infinite;
+            top: 15px;
+            left: 10px;
+            width: 120px;
+            height: 50px;
+            background: #fff;
+            border: 1px solid #333;
         }
-
-        @keyframes shine {
-            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
-            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+        
+        .drawing-bus::after {
+            content: '';
+            position: absolute;
+            top: 25px;
+            right: 10px;
+            width: 30px;
+            height: 30px;
+            background: #fff;
+            border: 1px solid #333;
         }
-
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
+        
+        .drawing-7-5t {
+            width: 220px;
+            height: 90px;
+            background: #e0e0e0;
+            border: 2px solid #333;
+            border-radius: 8px;
+            position: relative;
         }
+        
+        .drawing-7-5t::before {
+            content: '';
+            position: absolute;
+            top: 15px;
+            left: 10px;
+            width: 150px;
+            height: 40px;
+            background: #fff;
+            border: 1px solid #333;
+        }
+        
+        .drawing-7-5t::after {
+            content: '';
+            position: absolute;
+            top: 20px;
+            right: 15px;
+            width: 40px;
+            height: 50px;
+            background: #fff;
+            border: 1px solid #333;
+        }
+        
+        .drawing-12t {
+            width: 260px;
+            height: 100px;
+            background: #e0e0e0;
+            border: 2px solid #333;
+            border-radius: 8px;
+            position: relative;
+        }
+        
+        .drawing-12t::before {
+            content: '';
+            position: absolute;
+            top: 15px;
+            left: 10px;
+            width: 200px;
+            height: 45px;
+            background: #fff;
+            border: 1px solid #333;
+        }
+        
+        .drawing-12t::after {
+            content: '';
+            position: absolute;
+            top: 20px;
+            right: 15px;
+            width: 40px;
+            height: 60px;
+            background: #fff;
+            border: 1px solid #333;
+        }
+        
+        .drawing-18t {
+            width: 300px;
+            height: 110px;
+            background: #e0e0e0;
+            border: 2px solid #333;
+            border-radius: 8px;
+            position: relative;
+        }
+        
+        .drawing-18t::before {
+            content: '';
+            position: absolute;
+            top: 15px;
+            left: 10px;
+            width: 240px;
+            height: 50px;
+            background: #fff;
+            border: 1px solid #333;
+        }
+        
+        .drawing-18t::after {
+            content: '';
+            position: absolute;
+            top: 20px;
+            right: 15px;
+            width: 40px;
+            height: 70px;
+            background: #fff;
+            border: 1px solid #333;
+        }
+        
+        .drawing-sattelzug {
+            width: 340px;
+            height: 100px;
+            position: relative;
+        }
+        
+        .drawing-sattelzug-truck {
+            width: 120px;
+            height: 80px;
+            background: #e0e0e0;
+            border: 2px solid #333;
+            border-radius: 8px 0 0 8px;
+            position: absolute;
+            left: 0;
+            top: 10px;
+        }
+        
+        .drawing-sattelzug-truck::before {
+            content: '';
+            position: absolute;
+            top: 15px;
+            left: 10px;
+            width: 80px;
+            height: 50px;
+            background: #fff;
+            border: 1px solid #333;
+        }
+        
+        .drawing-sattelzug-trailer {
+            width: 200px;
+            height: 90px;
+            background: #e0e0e0;
+            border: 2px solid #333;
+            border-radius: 0 8px 8px 0;
+            position: absolute;
+            right: 0;
+            top: 5px;
+        }
+        
+        .drawing-sattelzug-trailer::before {
+            content: '';
+            position: absolute;
+            top: 15px;
+            left: 10px;
+            width: 170px;
+            height: 55px;
+            background: #fff;
+            border: 1px solid #333;
+        }
+        
+        .drawing-mega {
+            width: 340px;
+            height: 120px;
+            position: relative;
+        }
+        
+        .drawing-mega-truck {
+            width: 120px;
+            height: 80px;
+            background: #e0e0e0;
+            border: 2px solid #333;
+            border-radius: 8px 0 0 8px;
+            position: absolute;
+            left: 0;
+            top: 20px;
+        }
+        
+        .drawing-mega-truck::before {
+            content: '';
+            position: absolute;
+            top: 15px;
+            left: 10px;
+            width: 80px;
+            height: 50px;
+            background: #fff;
+            border: 1px solid #333;
+        }
+        
+        .drawing-mega-trailer {
+            width: 200px;
+            height: 110px;
+            background: #e0e0e0;
+            border: 2px solid #333;
+            border-radius: 0 8px 8px 0;
+            position: absolute;
+            right: 0;
+            top: 5px;
+        }
+        
+        .drawing-mega-trailer::before {
+            content: '';
+            position: absolute;
+            top: 15px;
+            left: 10px;
+            width: 170px;
+            height: 75px;
+            background: #fff;
+            border: 1px solid #333;
+        }
+        
+        .wheel {
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            background: #333;
+            border-radius: 50%;
+            bottom: -6px;
+        }
+        
+        .wheel-1 { left: 20px; }
+        .wheel-2 { left: 50px; }
+        .wheel-3 { right: 20px; }
+        .wheel-4 { right: 50px; }
+        
+        .sattelzug-wheel-1 { left: 20px; }
+        .sattelzug-wheel-2 { left: 50px; }
+        .sattelzug-wheel-3 { right: 150px; }
+        .sattelzug-wheel-4 { right: 120px; }
+        .sattelzug-wheel-5 { right: 50px; }
+        .sattelzug-wheel-6 { right: 20px; }
+        
+        .mega-wheel-1 { left: 20px; }
+        .mega-wheel-2 { left: 50px; }
+        .mega-wheel-3 { right: 150px; }
+        .mega-wheel-4 { right: 120px; }
+        .mega-wheel-5 { right: 50px; }
+        .mega-wheel-6 { right: 20px; }
 
         /* Footer */
         footer {
             background: #000;
             color: #fff;
-            padding: 4rem 2rem;
+            padding: 2rem;
             text-align: center;
         }
 
         .footer-contact {
-            margin: 2.5rem 0;
+            margin: 2rem 0;
         }
 
         .footer-contact a {
             color: #fff;
             text-decoration: none;
             display: block;
-            margin: 0.7rem 0;
-            font-size: 1.1rem;
+            margin: 0.5rem 0;
         }
 
         /* Language Specific */
@@ -988,11 +1075,11 @@
         /* Responsive */
         @media (max-width: 768px) {
             .hero h1 {
-                font-size: 2.5rem;
+                font-size: 2rem;
             }
             
             .hero {
-                padding: 10rem 1rem 4rem;
+                padding: 6rem 1rem 3rem;
             }
             
             .calculator-form {
@@ -1034,26 +1121,22 @@
             }
 
             .logo-text {
-                font-size: 1.4rem;
+                font-size: 1.3rem;
             }
 
             .logo-icon {
-                width: 45px;
-                height: 45px;
-                font-size: 1.2rem;
+                width: 40px;
+                height: 40px;
+                font-size: 1.1rem;
             }
 
             .nav-links {
-                gap: 1.5rem;
+                gap: 1rem;
             }
 
             .header-content {
                 flex-direction: column;
-                gap: 1.5rem;
-            }
-            
-            .vehicle-card {
-                padding: 1.5rem;
+                gap: 1rem;
             }
         }
 
@@ -1063,16 +1146,12 @@
             }
             
             .logo-text {
-                display: block;
+                display: none;
             }
 
             .nav-links {
                 flex-direction: column;
-                gap: 1rem;
-            }
-            
-            .hero h1 {
-                font-size: 2rem;
+                gap: 0.5rem;
             }
         }
     </style>
@@ -1081,7 +1160,7 @@
     <!-- Header -->
     <header>
         <div class="header-content">
-            <div style="display: flex; align-items: center; gap: 3rem;">
+            <div style="display: flex; align-items: center; gap: 2rem;">
                 <a href="#" class="logo">
                     <div class="logo-icon">LB</div>
                     <div class="logo-text">LOGIBASE</div>
@@ -1104,26 +1183,26 @@
     <div id="clientContent">
         <!-- Hero Section -->
         <section class="hero">
-            <h1 class="lang-de">Premium Logistiklösungen für Ihren Erfolg</h1>
-            <h1 class="lang-en">Premium Logistics Solutions for Your Success</h1>
+            <h1 class="lang-de">Schnelle und zuverlässige Logistiklösungen</h1>
+            <h1 class="lang-en">Fast and Reliable Logistics Solutions</h1>
             
-            <p class="lang-de">Als Marktführer bieten wir maßgeschneiderte Transportlösungen mit modernster Technologie und höchster Zuverlässigkeit.</p>
-            <p class="lang-en">As market leader, we provide customized transport solutions with cutting-edge technology and highest reliability.</p>
+            <p class="lang-de">Berechnen Sie sofort den Preis für Ihren Transport und erhalten Sie innerhalb von 30 Minuten ein persönliches Angebot.</p>
+            <p class="lang-en">Calculate the price for your transport instantly and receive a personal offer within 30 minutes.</p>
             
             <div class="cta-buttons">
-                <a href="#calculator" class="cta-button lang-de">Jetzt Preis berechnen</a>
-                <a href="#calculator" class="cta-button lang-en">Calculate Price Now</a>
+                <a href="#calculator" class="cta-button lang-de">Preis berechnen</a>
+                <a href="#calculator" class="cta-button lang-en">Calculate Price</a>
             </div>
         </section>
 
         <!-- Calculator Section -->
         <section class="calculator" id="calculator">
             <div class="calculator-container">
-                <h2 class="lang-de">Transportpreis in Echtzeit berechnen</h2>
-                <h2 class="lang-en">Calculate Transport Price in Real Time</h2>
+                <h2 class="lang-de">Transportpreis berechnen</h2>
+                <h2 class="lang-en">Calculate Transport Price</h2>
                 
-                <p class="lang-de">Erhalten Sie sofort eine transparente Preisübersicht für Ihren Transport</p>
-                <p class="lang-en">Get an instant transparent price overview for your transport</p>
+                <p class="lang-de">Geben Sie Ihre Transportdaten ein und erhalten Sie eine sofortige Preisübersicht</p>
+                <p class="lang-en">Enter your transport data and get an instant price overview</p>
                 
                 <form class="calculator-form" id="transportCalculator">
                     <div class="form-group full-width">
@@ -1156,10 +1235,9 @@
                         </div>
                     </div>
 
-                    <!-- Compact Cargo Type Selector -->
                     <div class="form-group full-width">
-                        <label class="lang-de">Transportart auswählen</label>
-                        <label class="lang-en">Select Transport Type</label>
+                        <label class="lang-de">Was möchten Sie transportieren?</label>
+                        <label class="lang-en">What would you like to transport?</label>
                         <div class="cargo-type-selector">
                             <div class="cargo-type-btn active" data-type="individual">
                                 <span class="lang-de">Individuelle Paletten</span>
@@ -1249,19 +1327,19 @@
                 
                 <!-- Price Result -->
                 <div class="calculator-result" id="calculatorResult">
-                    <h3 class="lang-de">Ihr maßgeschneiderter Transportpreis</h3>
-                    <h3 class="lang-en">Your Customized Transport Price</h3>
+                    <h3 class="lang-de">Geschätzter Transportpreis</h3>
+                    <h3 class="lang-en">Estimated Transport Price</h3>
                     <div class="price-estimate" id="priceEstimate">-</div>
                     <div class="total-weight" id="totalWeight"></div>
                     <div class="price-note lang-de">
-                        * Inklusive Premium-Service: Echtzeit-Tracking, Versicherung und persönlicher Betreuung
+                        * Dies ist eine grobe Preisschätzung. Der endgültige Preis kann je nach genauer Strecke und Fracht variieren.
                     </div>
                     <div class="price-note lang-en">
-                        * Including premium service: Real-time tracking, insurance, and personal support
+                        * This is a rough price estimate. The final price may vary depending on the exact route and cargo.
                     </div>
                     <button class="request-btn" onclick="openModal()">
-                        <span class="lang-de">Premium-Angebot erhalten & Auftrag bestätigen</span>
-                        <span class="lang-en">Get Premium Offer & Confirm Order</span>
+                        <span class="lang-de">Genauestes Angebot erhalten und Auftrag bestätigen</span>
+                        <span class="lang-en">Get the most accurate offer and confirm order</span>
                     </button>
                 </div>
             </div>
@@ -1269,40 +1347,40 @@
 
         <!-- Contact Modal -->
         <div class="modal-overlay" id="modalOverlay">
-            <div class="modal" id="modal">
-                <h3 class="lang-de">Premium-Angebot anfordern</h3>
-                <h3 class="lang-en">Request Premium Quote</h3>
-                <p class="lang-de">Unser Expertenteam erstellt Ihnen innerhalb von 30 Minuten ein maßgeschneidertes Angebot.</p>
-                <p class="lang-en">Our expert team will create a customized offer for you within 30 minutes.</p>
+            <div class="modal">
+                <h3 class="lang-de">Angebot anfordern</h3>
+                <h3 class="lang-en">Request Quote</h3>
+                <p class="lang-de">Geben Sie Ihre Daten ein und wir senden Ihnen innerhalb von 30 Minuten ein persönliches Angebot zu.</p>
+                <p class="lang-en">Enter your details and we will send you a personal offer within 30 minutes.</p>
                 
                 <form class="modal-form" id="modalForm">
                     <input type="email" id="client-email" name="email" placeholder="Ihre E-Mail-Adresse" required>
                     <input type="text" id="client-name" name="name" placeholder="Ihr Name">
                     <input type="tel" id="client-phone" name="phone" placeholder="Telefon (optional)">
                     
-                    <button type="submit" class="modal-submit-btn lang-de">Premium-Angebot anfordern</button>
-                    <button type="submit" class="modal-submit-btn lang-en">Request Premium Quote</button>
+                    <button type="submit" class="modal-submit-btn lang-de">Angebot anfordern</button>
+                    <button type="submit" class="modal-submit-btn lang-en">Request Quote</button>
                 </form>
             </div>
         </div>
 
         <!-- Success Message -->
         <div class="success-message" id="successMessage">
-            <strong class="lang-de">Vielen Dank für Ihre Premium-Anfrage!</strong>
-            <strong class="lang-en">Thank you for your premium request!</strong>
+            <strong class="lang-de">Vielen Dank für Ihre Anfrage!</strong>
+            <strong class="lang-en">Thank you for your request!</strong>
             <br>
-            <span class="lang-de">Unser Expertenteam sendet Ihnen innerhalb von 30 Minuten Ihr maßgeschneidertes Angebot.</span>
-            <span class="lang-en">Our expert team will send you your customized offer within 30 minutes.</span>
+            <span class="lang-de">Wir senden Ihnen innerhalb von 30 Minuten ein persönliches Angebot an Ihre E-Mail-Adresse.</span>
+            <span class="lang-en">We will send you a personal offer to your email address within 30 minutes.</span>
         </div>
 
         <!-- Vehicles Section -->
         <section class="vehicles" id="vehicles">
             <div class="vehicles-container">
-                <h2 class="lang-de">Unsere Premium-Fahrzeugflotte</h2>
-                <h2 class="lang-en">Our Premium Vehicle Fleet</h2>
+                <h2 class="lang-de">Unsere Fahrzeugflotte</h2>
+                <h2 class="lang-en">Our Vehicle Fleet</h2>
                 
-                <p class="lang-de">Moderne Spezialfahrzeuge für jede Transportanforderung - optimiert für maximale Effizienz</p>
-                <p class="lang-en">Modern special vehicles for every transport requirement - optimized for maximum efficiency</p>
+                <p class="lang-de">Moderne und zuverlässige LKW für jede Transportanforderung</p>
+                <p class="lang-en">Modern and reliable trucks for every transport requirement</p>
                 
                 <div class="vehicle-grid">
                     <!-- Vehicles will be populated by JavaScript -->
@@ -1313,51 +1391,50 @@
 
     <!-- Footer -->
     <footer id="contact">
-        <div class="logo" style="color: #fff; margin-bottom: 2rem;">
-            <div class="logo-icon" style="background: #fff; color: #000; margin: 0 auto 1rem;">LB</div>
-            <div style="font-size: 2rem; font-weight: 800;">LOGIBASE</div>
+        <div class="logo" style="color: #fff; margin-bottom: 1rem;">
+            <div class="logo-icon" style="background: #fff; color: #000; margin: 0 auto 0.5rem;">LB</div>
+            LOGIBASE
         </div>
         
         <div class="footer-contact">
-            <a href="mailto:premium@logibase.de">premium@logibase.de</a>
+            <a href="mailto:info@logibase.de">info@logibase.de</a>
             <p class="lang-de">Telefon: +49 123 456 789</p>
             <p class="lang-en">Phone: +49 123 456 789</p>
         </div>
         
-        <p style="margin-top: 3rem; font-size: 1rem; opacity: 0.8;">
-            <span class="lang-de">© 2024 LogiBase Premium. Alle Rechte vorbehalten.</span>
-            <span class="lang-en">© 2024 LogiBase Premium. All rights reserved.</span>
+        <p style="margin-top: 2rem; font-size: 0.9rem; opacity: 0.7;">
+            <span class="lang-de">© 2024 LogiBase. Alle Rechte vorbehalten.</span>
+            <span class="lang-en">© 2024 LogiBase. All rights reserved.</span>
         </p>
     </footer>
 
     <script>
-        // Enhanced Vehicle Data with Realistic 3D Configurations
+        // Vehicle data with stapelbar support
         const vehicleData = {
             'bus': { 
-                name: 'Premium Bus',
-                basePrice: 89,
-                perKm: 0.85,
-                perKg: 0.08,
-                perPallet: 22,
+                name: 'Bus',
+                basePrice: 79,
+                perKm: 0.75,
+                perKg: 0.09,
+                perPallet: 20,
                 maxWeight: 1100,
                 maxPallets: 4,
                 internalLength: 320,
                 internalWidth: 125,
                 internalHeight: 160,
-                maxLevels: 1,
+                maxLevels: 1, // Bus kann nicht stapeln
                 palletConfig: {
-                    euro: { rows: 2, cols: 2, levels: 1 },
-                    dusseldorf: { rows: 1, cols: 2, levels: 1 }
+                    euro: { rows: 2, cols: 2 },
+                    dusseldorf: { rows: 1, cols: 2 }
                 },
-                type: 'bus',
-                imageColor: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)'
+                type: 'bus'
             },
             '7.5t': { 
-                name: '7,5-Tonner Premium',
-                basePrice: 149,
-                perKm: 1.05,
-                perKg: 0.06,
-                perPallet: 18,
+                name: '7,5-Tonner',
+                basePrice: 129,
+                perKm: 0.95,
+                perKg: 0.07,
+                perPallet: 16,
                 maxWeight: 2350,
                 maxPallets: 10,
                 internalLength: 600,
@@ -1365,18 +1442,17 @@
                 internalHeight: 240,
                 maxLevels: 2,
                 palletConfig: {
-                    euro: { rows: 2, cols: 5, levels: 2 },
-                    dusseldorf: { rows: 2, cols: 4, levels: 2 }
+                    euro: { rows: 2, cols: 5 },
+                    dusseldorf: { rows: 2, cols: 4 }
                 },
-                type: '7.5t',
-                imageColor: 'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)'
+                type: '7-5t'
             },
             '12t': { 
-                name: '12-Tonner Professional',
-                basePrice: 219,
-                perKm: 1.15,
-                perKg: 0.05,
-                perPallet: 16,
+                name: '12-Tonner',
+                basePrice: 189,
+                perKm: 1.05,
+                perKg: 0.06,
+                perPallet: 14,
                 maxWeight: 7000,
                 maxPallets: 14,
                 internalLength: 680,
@@ -1384,18 +1460,17 @@
                 internalHeight: 250,
                 maxLevels: 2,
                 palletConfig: {
-                    euro: { rows: 2, cols: 7, levels: 2 },
-                    dusseldorf: { rows: 2, cols: 5, levels: 2 }
+                    euro: { rows: 2, cols: 7 },
+                    dusseldorf: { rows: 2, cols: 5 }
                 },
-                type: '12t',
-                imageColor: 'linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)'
+                type: '12t'
             },
             '18t': { 
-                name: '18-Tonner Executive',
-                basePrice: 299,
-                perKm: 1.25,
-                perKg: 0.04,
-                perPallet: 14,
+                name: '18-Tonner',
+                basePrice: 249,
+                perKm: 1.15,
+                perKg: 0.05,
+                perPallet: 12,
                 maxWeight: 12000,
                 maxPallets: 18,
                 internalLength: 780,
@@ -1403,18 +1478,17 @@
                 internalHeight: 270,
                 maxLevels: 2,
                 palletConfig: {
-                    euro: { rows: 3, cols: 6, levels: 2 },
-                    dusseldorf: { rows: 3, cols: 5, levels: 2 }
+                    euro: { rows: 3, cols: 6 },
+                    dusseldorf: { rows: 3, cols: 5 }
                 },
-                type: '18t',
-                imageColor: 'linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)'
+                type: '18t'
             },
             'sattelzug': {
-                name: 'Sattelzug Premium',
-                basePrice: 399,
-                perKm: 1.35,
-                perKg: 0.035,
-                perPallet: 12,
+                name: 'Sattelzug',
+                basePrice: 349,
+                perKm: 1.25,
+                perKg: 0.04,
+                perPallet: 10,
                 maxWeight: 24000,
                 maxPallets: 33,
                 internalLength: 1360,
@@ -1422,30 +1496,28 @@
                 internalHeight: 265,
                 maxLevels: 2,
                 palletConfig: {
-                    euro: { rows: 3, cols: 11, levels: 2 },
-                    dusseldorf: { rows: 3, cols: 9, levels: 2 }
+                    euro: { rows: 3, cols: 11 },
+                    dusseldorf: { rows: 3, cols: 9 }
                 },
-                type: 'sattelzug',
-                imageColor: 'linear-gradient(135deg, #fa709a 0%, #fee140 100%)'
+                type: 'sattelzug'
             },
             'mega': { 
-                name: 'Mega Trailer Elite',
-                basePrice: 499,
-                perKm: 1.55,
-                perKg: 0.03,
-                perPallet: 10,
+                name: 'Mega Trailer',
+                basePrice: 449,
+                perKm: 1.45,
+                perKg: 0.035,
+                perPallet: 8,
                 maxWeight: 24000,
                 maxPallets: 33,
                 internalLength: 1360,
                 internalWidth: 240,
                 internalHeight: 300,
-                maxLevels: 3,
+                maxLevels: 3, // Mega kann höher stapeln
                 palletConfig: {
-                    euro: { rows: 3, cols: 11, levels: 3 },
-                    dusseldorf: { rows: 3, cols: 9, levels: 3 }
+                    euro: { rows: 3, cols: 11 },
+                    dusseldorf: { rows: 3, cols: 9 }
                 },
-                type: 'mega',
-                imageColor: 'linear-gradient(135deg, #a8edea 0%, #fed6e3 100%)'
+                type: 'mega'
             }
         };
 
@@ -1493,15 +1565,16 @@
             });
         });
 
-        // Enhanced Stapelbar functionality
+        // Stapelbar functionality
         const stapelbarCheckbox = document.getElementById('stapelbar');
         const levelsInput = document.getElementById('levels-input');
-        const stapelbarContainer = document.querySelector('.stapelbar-container');
 
-        stapelbarContainer.addEventListener('click', function() {
-            stapelbarCheckbox.checked = !stapelbarCheckbox.checked;
-            stapelbarContainer.classList.toggle('active', stapelbarCheckbox.checked);
-            levelsInput.style.display = stapelbarCheckbox.checked ? 'grid' : 'none';
+        stapelbarCheckbox.addEventListener('change', function() {
+            if (this.checked) {
+                levelsInput.style.display = 'grid';
+            } else {
+                levelsInput.style.display = 'none';
+            }
             updateAutoVehicleSelection();
         });
 
@@ -1518,17 +1591,17 @@
                 <div class="dimension-item">
                     <label class="lang-de">Länge (cm)</label>
                     <label class="lang-en">Length (cm)</label>
-                    <input type="number" name="pallet-length-${palletCounter}" min="0" placeholder="120" value="120">
+                    <input type="number" name="pallet-length-${palletCounter}" min="0" placeholder="120">
                 </div>
                 <div class="dimension-item">
                     <label class="lang-de">Breite (cm)</label>
                     <label class="lang-en">Width (cm)</label>
-                    <input type="number" name="pallet-width-${palletCounter}" min="0" placeholder="80" value="80">
+                    <input type="number" name="pallet-width-${palletCounter}" min="0" placeholder="80">
                 </div>
                 <div class="dimension-item">
                     <label class="lang-de">Gewicht (kg)</label>
                     <label class="lang-en">Weight (kg)</label>
-                    <input type="number" name="pallet-weight-${palletCounter}" min="0" placeholder="500" value="500">
+                    <input type="number" name="pallet-weight-${palletCounter}" min="0" placeholder="500">
                 </div>
                 ${palletCounter > 1 ? '<button type="button" class="remove-pallet-btn" onclick="removePallet(this)">×</button>' : ''}
             `;
@@ -1545,7 +1618,7 @@
         // Add first pallet by default
         addIndividualPallet();
 
-        // Enhanced Auto Vehicle Selection
+        // Auto Vehicle Selection with stapelbar support
         function updateAutoVehicleSelection() {
             const vehicleSelect = document.getElementById('vehicle-type');
             const infoDiv = document.getElementById('autoSelectionInfo');
@@ -1561,6 +1634,7 @@
                 const palletItems = document.querySelectorAll('.pallet-item');
                 palletCount = palletItems.length;
                 
+                // Calculate with stapelbar
                 if (stapelbarCheckbox.checked) {
                     const levelCount = parseInt(document.getElementById('level-count').value) || 1;
                     const palletsPerLevel = parseInt(document.getElementById('pallets-per-level').value) || 1;
@@ -1579,7 +1653,7 @@
                 totalWeight = palletCount * palletWeight;
             }
             
-            // Find suitable vehicle
+            // Find suitable vehicle considering stapelbar
             let suitableVehicle = null;
             for (const [key, vehicle] of Object.entries(vehicleData)) {
                 const canFitWeight = totalWeight <= vehicle.maxWeight;
@@ -1597,14 +1671,14 @@
                 const stackInfo = stapelbarCheckbox.checked ? ` (${levels} Ebenen)` : '';
                 infoDiv.style.display = 'block';
                 infoDiv.innerHTML = `
-                    <span class="lang-de">✅ Empfohlen: ${vehicle.name} - Passt perfekt zu Ihrem Transport (${palletCount} Paletten${stackInfo}, ${totalWeight} kg)</span>
-                    <span class="lang-en">✅ Recommended: ${vehicle.name} - Perfect for your transport (${palletCount} pallets${stackInfo}, ${totalWeight} kg)</span>
+                    <span class="lang-de">✅ Empfohlen: ${vehicle.name} - Passt zu Ihrem Transport (${palletCount} Paletten${stackInfo}, ${totalWeight} kg)</span>
+                    <span class="lang-en">✅ Recommended: ${vehicle.name} - Suitable for your transport (${palletCount} pallets${stackInfo}, ${totalWeight} kg)</span>
                 `;
             } else {
                 infoDiv.style.display = 'block';
                 infoDiv.innerHTML = `
-                    <span class="lang-de">👑 Bitte wählen Sie "Beratung erforderlich" - Unser Expertenteam erstellt Ihnen eine maßgeschneiderte Lösung</span>
-                    <span class="lang-en">👑 Please select "Consultation required" - Our expert team will create a customized solution for you</span>
+                    <span class="lang-de">⚠️ Bitte wählen Sie "Beratung erforderlich" - Ihr Transport benötigt eine individuelle Lösung</span>
+                    <span class="lang-en">⚠️ Please select "Consultation required" - Your transport needs an individual solution</span>
                 `;
             }
         }
@@ -1623,24 +1697,23 @@
             }
         });
 
-        // Enhanced Distance Matrix
+        // Distance Matrix
         const distanceMatrix = {
-            'berlin-münchen': 585, 'münchen-berlin': 585,
-            'hamburg-frankfurt': 492, 'frankfurt-hamburg': 492,
-            'köln-stuttgart': 373, 'stuttgart-köln': 373,
-            'düsseldorf-leipzig': 470, 'leipzig-düsseldorf': 470,
-            'nürnberg-dortmund': 420, 'dortmund-nürnberg': 420,
-            'essen-hannover': 230, 'hannover-essen': 230,
-            'default': 350
+            'berlin-münchen': 585,
+            'münchen-berlin': 585,
+            'hamburg-frankfurt': 492,
+            'frankfurt-hamburg': 492,
+            'köln-stuttgart': 373,
+            'stuttgart-köln': 373
         };
 
         // Calculate Distance
         function calculateDistance(from, to) {
             const key = `${from.toLowerCase()}-${to.toLowerCase()}`;
-            return distanceMatrix[key] || distanceMatrix[`${to.toLowerCase()}-${from.toLowerCase()}`] || distanceMatrix.default;
+            return distanceMatrix[key] || 300;
         }
 
-        // Enhanced Price Calculation
+        // Calculate Price with stapelbar support
         function calculatePrice(formData) {
             const vehicleType = formData.get('vehicle-type');
             if (vehicleType === 'auto' || vehicleType === 'consultation') {
@@ -1694,12 +1767,9 @@
                 price += totalWeight * vehicle.perKg;
             }
             
-            // Premium service charge
-            price *= 1.15; // 15% Premium-Service-Aufschlag
-            
             // Stapelbar surcharge
             if (stapelbarCheckbox.checked) {
-                price *= 1.1;
+                price *= 1.1; // 10% Aufschlag für Stapelung
             }
             
             return {
@@ -1709,7 +1779,7 @@
             };
         }
 
-        // Enhanced Calculator Form Submission
+        // Calculator Form Submission
         document.getElementById('transportCalculator').addEventListener('submit', function(e) {
             e.preventDefault();
             
@@ -1717,11 +1787,11 @@
             const result = calculatePrice(formData);
             
             if (result.needsConsultation) {
-                document.getElementById('priceEstimate').textContent = '👑 Premium-Beratung';
-                document.getElementById('totalWeight').innerHTML = '<em style="color: #666;">Unser Expertenteam erstellt Ihnen eine maßgeschneiderte Lösung</em>';
+                document.getElementById('priceEstimate').textContent = 'Beratung erforderlich';
+                document.getElementById('totalWeight').innerHTML = '<em>Bitte kontaktieren Sie uns für ein individuelles Angebot</em>';
             } else {
                 document.getElementById('priceEstimate').textContent = `${result.price} €`;
-                document.getElementById('totalWeight').textContent = `Gesamtgewicht: ${result.weight} kg | Inklusive Premium-Service`;
+                document.getElementById('totalWeight').textContent = `Gesamtgewicht: ${result.weight} kg`;
             }
             
             document.getElementById('calculatorResult').style.display = 'block';
@@ -1732,25 +1802,16 @@
             });
         });
 
-        // Enhanced Modal Functions
+        // Modal Functions
         function openModal() {
-            const modalOverlay = document.getElementById('modalOverlay');
-            const modal = document.getElementById('modal');
-            modalOverlay.style.display = 'flex';
-            setTimeout(() => {
-                modal.classList.add('show');
-            }, 10);
+            document.getElementById('modalOverlay').style.display = 'flex';
         }
 
         function closeModal() {
-            const modal = document.getElementById('modal');
-            modal.classList.remove('show');
-            setTimeout(() => {
-                document.getElementById('modalOverlay').style.display = 'none';
-            }, 300);
+            document.getElementById('modalOverlay').style.display = 'none';
         }
 
-        // Enhanced Modal Form Submission
+        // Modal Form Submission
         document.getElementById('modalForm').addEventListener('submit', function(e) {
             e.preventDefault();
             
@@ -1771,7 +1832,6 @@
                 addIndividualPallet();
                 // Reset stapelbar
                 stapelbarCheckbox.checked = false;
-                stapelbarContainer.classList.remove('active');
                 levelsInput.style.display = 'none';
             }, 5000);
         });
@@ -1797,7 +1857,7 @@
             });
         });
 
-        // Generate Premium Vehicle Cards with 3D Visualization
+        // Generate vehicle cards with stapelbar diagrams
         function generateVehicleCards() {
             const vehicleGrid = document.querySelector('.vehicle-grid');
             
@@ -1805,46 +1865,125 @@
                 const card = document.createElement('div');
                 card.className = 'vehicle-card';
                 
-                // Create realistic 3D pallet diagram for Euro pallets
+                // Create pallet diagram for Euro pallets with levels
                 const euroConfig = vehicle.palletConfig.euro;
                 let palletDiagramHTML = '';
-                let cellCounter = 0;
+                let palletCount = 0;
                 
-                for (let level = 1; level <= euroConfig.levels; level++) {
-                    for (let row = 0; row < euroConfig.rows; row++) {
-                        for (let col = 0; col < euroConfig.cols; col++) {
-                            cellCounter++;
-                            if (cellCounter <= vehicle.maxPallets) {
+                for (let level = 0; level < Math.min(2, vehicle.maxLevels); level++) {
+                    for (let i = 0; i < euroConfig.rows; i++) {
+                        for (let j = 0; j < euroConfig.cols; j++) {
+                            palletCount++;
+                            if (palletCount <= vehicle.maxPallets) {
                                 palletDiagramHTML += `
-                                    <div class="pallet-cell-3d stack-${level}">
-                                        ${cellCounter}
-                                        <span class="level-indicator-3d">${level}</span>
+                                    <div class="pallet-cell">
+                                        ${palletCount}
+                                        ${vehicle.maxLevels > 1 ? `<span class="level-indicator">${level + 1}</span>` : ''}
                                     </div>
                                 `;
+                            } else {
+                                palletDiagramHTML += `<div class="pallet-cell empty"></div>`;
                             }
                         }
                     }
                 }
                 
+                // Create drawing based on vehicle type
+                let drawingHTML = '';
+                switch(vehicle.type) {
+                    case 'bus':
+                        drawingHTML = `
+                            <div class="drawing-bus">
+                                <div class="wheel wheel-1"></div>
+                                <div class="wheel wheel-2"></div>
+                                <div class="wheel wheel-3"></div>
+                                <div class="wheel wheel-4"></div>
+                            </div>
+                        `;
+                        break;
+                    case '7-5t':
+                        drawingHTML = `
+                            <div class="drawing-7-5t">
+                                <div class="wheel wheel-1"></div>
+                                <div class="wheel wheel-2"></div>
+                                <div class="wheel wheel-3"></div>
+                                <div class="wheel wheel-4"></div>
+                            </div>
+                        `;
+                        break;
+                    case '12t':
+                        drawingHTML = `
+                            <div class="drawing-12t">
+                                <div class="wheel wheel-1"></div>
+                                <div class="wheel wheel-2"></div>
+                                <div class="wheel wheel-3"></div>
+                                <div class="wheel wheel-4"></div>
+                            </div>
+                        `;
+                        break;
+                    case '18t':
+                        drawingHTML = `
+                            <div class="drawing-18t">
+                                <div class="wheel wheel-1"></div>
+                                <div class="wheel wheel-2"></div>
+                                <div class="wheel wheel-3"></div>
+                                <div class="wheel wheel-4"></div>
+                            </div>
+                        `;
+                        break;
+                    case 'sattelzug':
+                        drawingHTML = `
+                            <div class="drawing-sattelzug">
+                                <div class="drawing-sattelzug-truck">
+                                    <div class="wheel sattelzug-wheel-1"></div>
+                                    <div class="wheel sattelzug-wheel-2"></div>
+                                </div>
+                                <div class="drawing-sattelzug-trailer">
+                                    <div class="wheel sattelzug-wheel-3"></div>
+                                    <div class="wheel sattelzug-wheel-4"></div>
+                                    <div class="wheel sattelzug-wheel-5"></div>
+                                    <div class="wheel sattelzug-wheel-6"></div>
+                                </div>
+                            </div>
+                        `;
+                        break;
+                    case 'mega':
+                        drawingHTML = `
+                            <div class="drawing-mega">
+                                <div class="drawing-mega-truck">
+                                    <div class="wheel mega-wheel-1"></div>
+                                    <div class="wheel mega-wheel-2"></div>
+                                </div>
+                                <div class="drawing-mega-trailer">
+                                    <div class="wheel mega-wheel-3"></div>
+                                    <div class="wheel mega-wheel-4"></div>
+                                    <div class="wheel mega-wheel-5"></div>
+                                    <div class="wheel mega-wheel-6"></div>
+                                </div>
+                            </div>
+                        `;
+                        break;
+                }
+                
                 card.innerHTML = `
                     <div class="vehicle-image">
-                        <div class="vehicle-placeholder" style="background: ${vehicle.imageColor};">
-                            ${vehicle.name}
+                        <div class="vehicle-drawing">
+                            ${drawingHTML}
                         </div>
-                        <div class="loading-visualization">
-                            <div class="pallet-diagram-3d" style="grid-template-columns: repeat(${euroConfig.cols}, 1fr); grid-template-rows: repeat(${euroConfig.rows * euroConfig.levels}, 1fr);">
+                        <div class="pallet-overlay">
+                            <div class="pallet-diagram" style="grid-template-columns: repeat(${euroConfig.cols}, 1fr); grid-template-rows: repeat(${euroConfig.rows * Math.min(2, vehicle.maxLevels)}, 1fr);">
                                 ${palletDiagramHTML}
                             </div>
                         </div>
-                        <div class="vehicle-logo">PREMIUM</div>
+                        <div class="vehicle-logo">LB</div>
                     </div>
                     <h3>${vehicle.name}</h3>
-                    <p><strong class="lang-de">${key === 'bus' ? 'Express-Lieferung' : key === '7.5t' ? 'City-Logistik' : key === '12t' ? 'Regional-Transport' : key === '18t' ? 'National-Transport' : key === 'sattelzug' ? 'Europalogistik' : 'Maximal-Logistik'}</strong>
-                       <strong class="lang-en">${key === 'bus' ? 'Express Delivery' : key === '7.5t' ? 'City Logistics' : key === '12t' ? 'Regional Transport' : key === '18t' ? 'National Transport' : key === 'sattelzug' ? 'Euro Logistics' : 'Maximum Logistics'}</strong></p>
+                    <p><strong class="lang-de">${key === 'bus' ? 'Kleintransport' : key === '7.5t' ? 'Mitteltransport' : key === '12t' ? 'Großtransport' : key === '18t' ? 'Schwerlasttransport' : key === 'sattelzug' ? 'Schwertransport' : 'Maximaltransport'}</strong>
+                       <strong class="lang-en">${key === 'bus' ? 'Small Transport' : key === '7.5t' ? 'Medium Transport' : key === '12t' ? 'Large Transport' : key === '18t' ? 'Heavy Transport' : key === 'sattelzug' ? 'Special Transport' : 'Maximum Transport'}</strong></p>
                     <div class="vehicle-specs">
                         <div class="spec-item">
-                            <span class="spec-label lang-de">Max. Kapazität:</span>
-                            <span class="spec-label lang-en">Max. Capacity:</span>
+                            <span class="spec-label lang-de">Max. Gewicht:</span>
+                            <span class="spec-label lang-en">Max. Weight:</span>
                             <span class="spec-value">${vehicle.maxWeight.toLocaleString()} kg</span>
                         </div>
                         <div class="spec-item">
@@ -1853,14 +1992,9 @@
                             <span class="spec-value">bis zu ${vehicle.maxPallets}</span>
                         </div>
                         <div class="spec-item">
-                            <span class="spec-label lang-de">Stapelung:</span>
-                            <span class="spec-label lang-en">Stacking:</span>
+                            <span class="spec-label lang-de">Max. Stapelung:</span>
+                            <span class="spec-label lang-en">Max. Stacking:</span>
                             <span class="spec-value">${vehicle.maxLevels} Ebenen</span>
-                        </div>
-                        <div class="spec-item">
-                            <span class="spec-label lang-de">Laderaum:</span>
-                            <span class="spec-label lang-en">Cargo Space:</span>
-                            <span class="spec-value">${vehicle.internalLength}×${vehicle.internalWidth}×${vehicle.internalHeight}cm</span>
                         </div>
                     </div>
                 `;
@@ -1869,23 +2003,9 @@
             });
         }
 
-        // Initialize the premium website
+        // Initialize the page
         generateVehicleCards();
         updateAutoVehicleSelection();
-
-        // Add interactive hover effects
-        document.addEventListener('DOMContentLoaded', function() {
-            // Add subtle animations to form elements
-            const formInputs = document.querySelectorAll('input, select');
-            formInputs.forEach(input => {
-                input.addEventListener('focus', function() {
-                    this.parentElement.style.transform = 'translateY(-2px)';
-                });
-                input.addEventListener('blur', function() {
-                    this.parentElement.style.transform = 'translateY(0)';
-                });
-            });
-        });
     </script>
 </body>
 </html>
