@@ -5,6 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LogiBase - Professionelle Logistiklösungen</title>
     <style>
+        :root {
+            --primary: #000000;
+            --secondary: #333333;
+            --accent: #666666;
+            --light: #f8f8f8;
+            --white: #ffffff;
+            --border: #e0e0e0;
+            --shadow: 0 2px 10px rgba(0,0,0,0.08);
+            --transition: all 0.3s ease;
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -13,20 +24,20 @@
         }
 
         body {
-            background-color: #ffffff;
-            color: #333333;
+            background-color: var(--white);
+            color: var(--secondary);
             line-height: 1.6;
         }
 
         /* Header */
         header {
-            background: #ffffff;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            background: var(--white);
+            box-shadow: var(--shadow);
             position: fixed;
             width: 100%;
             top: 0;
             z-index: 1000;
-            border-bottom: 1px solid #e0e0e0;
+            border-bottom: 1px solid var(--border);
         }
 
         .header-content {
@@ -48,21 +59,21 @@
         .logo-icon {
             width: 50px;
             height: 50px;
-            background: #000000;
+            background: var(--primary);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: white;
+            color: var(--white);
             font-weight: bold;
             font-size: 1.4rem;
-            border: 2px solid #000000;
+            border: 2px solid var(--primary);
         }
 
         .logo-text {
             font-size: 1.6rem;
             font-weight: 700;
-            color: #000000;
+            color: var(--primary);
         }
 
         .nav-links {
@@ -71,15 +82,15 @@
         }
 
         .nav-link {
-            color: #333333;
+            color: var(--secondary);
             text-decoration: none;
             font-weight: 500;
-            transition: color 0.3s;
+            transition: var(--transition);
             position: relative;
         }
 
         .nav-link:hover {
-            color: #000000;
+            color: var(--primary);
         }
 
         .nav-link::after {
@@ -89,8 +100,8 @@
             left: 0;
             width: 0;
             height: 2px;
-            background: #000000;
-            transition: width 0.3s;
+            background: var(--primary);
+            transition: var(--transition);
         }
 
         .nav-link:hover::after {
@@ -105,24 +116,24 @@
 
         .lang-btn {
             background: none;
-            border: 1px solid #333333;
+            border: 1px solid var(--secondary);
             padding: 0.4rem 0.8rem;
             cursor: pointer;
             font-size: 0.8rem;
-            transition: all 0.3s ease;
+            transition: var(--transition);
             border-radius: 4px;
-            color: #333333;
+            color: var(--secondary);
         }
 
         .lang-btn.active {
-            background: #000000;
-            color: #ffffff;
-            border-color: #000000;
+            background: var(--primary);
+            color: var(--white);
+            border-color: var(--primary);
         }
 
         .lang-btn:hover {
-            background: #000000;
-            color: #ffffff;
+            background: var(--primary);
+            color: var(--white);
         }
 
         /* Hero Section */
@@ -130,11 +141,11 @@
             background: linear-gradient(rgba(255,255,255,0.9), rgba(255,255,255,0.95)), 
                         url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" fill="none" stroke="%23000" stroke-width="0.5" opacity="0.1"/></svg>');
             background-size: cover, 20px 20px;
-            color: #000000;
+            color: var(--primary);
             text-align: center;
             padding: 10rem 2rem 6rem;
             margin-top: 70px;
-            border-bottom: 1px solid #e0e0e0;
+            border-bottom: 1px solid var(--border);
         }
 
         .hero h1 {
@@ -148,7 +159,7 @@
             font-size: 1.2rem;
             max-width: 700px;
             margin: 0 auto 2.5rem;
-            color: #666666;
+            color: var(--accent);
             font-weight: 300;
         }
 
@@ -160,32 +171,32 @@
         }
 
         .cta-button {
-            background: #000000;
-            color: #ffffff;
+            background: var(--primary);
+            color: var(--white);
             padding: 0.8rem 1.5rem;
-            border: 2px solid #000000;
+            border: 2px solid var(--primary);
             font-size: 0.9rem;
             font-weight: 600;
             border-radius: 4px;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: var(--transition);
             text-decoration: none;
             display: inline-block;
             letter-spacing: 0.5px;
         }
 
         .cta-button:hover {
-            background: #ffffff;
-            color: #000000;
+            background: var(--white);
+            color: var(--primary);
             transform: translateY(-2px);
             box-shadow: 0 5px 15px rgba(0,0,0,0.1);
         }
 
         /* Calculator Section */
         .calculator {
-            padding: 3rem 2rem;
-            background: #f8f8f8;
-            border-bottom: 1px solid #e0e0e0;
+            padding: 4rem 2rem;
+            background: var(--light);
+            border-bottom: 1px solid var(--border);
         }
 
         .calculator-container {
@@ -196,15 +207,15 @@
 
         .calculator h2 {
             font-size: 2rem;
-            color: #000000;
+            color: var(--primary);
             margin-bottom: 1rem;
             font-weight: 300;
             letter-spacing: -0.5px;
         }
 
         .calculator > .calculator-container > p {
-            margin-bottom: 1.5rem;
-            color: #666666;
+            margin-bottom: 2rem;
+            color: var(--accent);
             font-size: 1rem;
             font-weight: 300;
         }
@@ -212,8 +223,8 @@
         .calculator-form {
             display: flex;
             flex-direction: column;
-            gap: 1rem;
-            margin-bottom: 1.5rem;
+            gap: 1.2rem;
+            margin-bottom: 2rem;
         }
 
         .form-group {
@@ -223,29 +234,29 @@
         }
 
         .form-group label {
-            margin-bottom: 0.4rem;
+            margin-bottom: 0.5rem;
             font-weight: 600;
-            font-size: 0.85rem;
-            color: #333333;
+            font-size: 0.9rem;
+            color: var(--secondary);
             letter-spacing: 0.3px;
         }
 
         .form-group input,
         .form-group select {
-            padding: 0.7rem;
-            border: 1px solid #cccccc;
-            background: #ffffff;
+            padding: 0.8rem;
+            border: 1px solid var(--border);
+            background: var(--white);
             font-size: 0.9rem;
-            border-radius: 4px;
-            transition: all 0.3s ease;
-            color: #333333;
+            border-radius: 6px;
+            transition: var(--transition);
+            color: var(--secondary);
         }
 
         .form-group input:focus,
         .form-group select:focus {
             outline: none;
-            border-color: #000000;
-            box-shadow: 0 0 0 2px rgba(0,0,0,0.1);
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(0,0,0,0.1);
         }
 
         /* Date Time Input */
@@ -261,110 +272,110 @@
         }
 
         .date-time-input input {
-            padding: 0.7rem;
-            border: 1px solid #cccccc;
-            background: #ffffff;
+            padding: 0.8rem;
+            border: 1px solid var(--border);
+            background: var(--white);
             font-size: 0.9rem;
-            border-radius: 4px;
-            transition: all 0.3s ease;
-            color: #333333;
+            border-radius: 6px;
+            transition: var(--transition);
+            color: var(--secondary);
         }
 
         .date-time-input input:focus {
             outline: none;
-            border-color: #000000;
-            box-shadow: 0 0 0 2px rgba(0,0,0,0.1);
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(0,0,0,0.1);
         }
 
         /* Cargo Type Selector */
         .cargo-type-selector {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 0.8rem;
-            margin-bottom: 0.8rem;
+            gap: 1rem;
+            margin-bottom: 1rem;
         }
 
         .cargo-type-btn {
-            padding: 0.8rem;
-            border: 2px solid #cccccc;
-            background: #ffffff;
+            padding: 1rem;
+            border: 2px solid var(--border);
+            background: var(--white);
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: var(--transition);
             text-align: center;
             font-weight: 600;
-            border-radius: 4px;
-            font-size: 0.85rem;
-            color: #333333;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            color: var(--secondary);
         }
 
         .cargo-type-btn.active {
-            background: #000000;
-            color: #ffffff;
-            border-color: #000000;
+            background: var(--primary);
+            color: var(--white);
+            border-color: var(--primary);
         }
 
         .cargo-type-btn:hover {
-            border-color: #000000;
+            border-color: var(--primary);
         }
 
         /* Pallet Type Selector */
         .pallet-type-selector {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 0.6rem;
-            margin-bottom: 0.8rem;
+            gap: 0.8rem;
+            margin-bottom: 1rem;
         }
 
         .pallet-type-btn {
-            padding: 0.6rem;
-            border: 2px solid #cccccc;
-            background: #ffffff;
+            padding: 0.8rem;
+            border: 2px solid var(--border);
+            background: var(--white);
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: var(--transition);
             text-align: center;
             font-weight: 500;
-            border-radius: 4px;
-            font-size: 0.75rem;
-            color: #333333;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            color: var(--secondary);
         }
 
         .pallet-type-btn.active {
-            background: #000000;
-            color: #ffffff;
-            border-color: #000000;
+            background: var(--primary);
+            color: var(--white);
+            border-color: var(--primary);
         }
 
         /* Stapelbar Styles */
         .stapelbar-container {
             display: flex;
             align-items: center;
-            gap: 0.6rem;
-            margin-bottom: 0.8rem;
-            padding: 0.8rem;
+            gap: 0.8rem;
+            margin-bottom: 1rem;
+            padding: 1rem;
             background: #f0f0f0;
-            border-radius: 4px;
-            border: 1px solid #cccccc;
+            border-radius: 6px;
+            border: 1px solid var(--border);
         }
 
         .stapelbar-checkbox {
-            width: 18px;
-            height: 18px;
+            width: 20px;
+            height: 20px;
             cursor: pointer;
-            accent-color: #000000;
+            accent-color: var(--primary);
         }
 
         .stapelbar-label {
             font-weight: 600;
-            font-size: 0.8rem;
-            color: #333333;
+            font-size: 0.85rem;
+            color: var(--secondary);
             cursor: pointer;
         }
 
         .levels-input {
             display: none;
             grid-template-columns: 1fr 1fr;
-            gap: 0.8rem;
-            margin-top: 0.6rem;
+            gap: 1rem;
+            margin-top: 0.8rem;
         }
 
         .level-item {
@@ -373,34 +384,34 @@
         }
 
         .level-item label {
-            margin-bottom: 0.3rem;
+            margin-bottom: 0.4rem;
             font-weight: 600;
-            font-size: 0.75rem;
-            color: #333333;
+            font-size: 0.8rem;
+            color: var(--secondary);
         }
 
         .level-item input {
-            padding: 0.5rem;
-            border: 1px solid #cccccc;
-            background: #ffffff;
+            padding: 0.6rem;
+            border: 1px solid var(--border);
+            background: var(--white);
             font-size: 0.8rem;
-            border-radius: 4px;
+            border-radius: 6px;
         }
 
         /* Individual Pallets - Korrigiertes Layout */
         .individual-pallets {
-            margin-bottom: 0.8rem;
+            margin-bottom: 1rem;
         }
 
         .pallet-item {
             display: grid;
             grid-template-columns: 1fr 1fr 1fr 1fr auto;
             gap: 0.8rem;
-            margin-bottom: 0.8rem;
-            padding: 0.8rem;
-            border: 1px solid #cccccc;
-            border-radius: 4px;
-            background: #ffffff;
+            margin-bottom: 1rem;
+            padding: 1rem;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            background: var(--white);
             align-items: end;
         }
 
@@ -410,145 +421,146 @@
         }
 
         .dimension-item label {
-            margin-bottom: 0.3rem;
+            margin-bottom: 0.4rem;
             font-weight: 600;
             font-size: 0.75rem;
-            color: #333333;
+            color: var(--secondary);
         }
 
         .dimension-item input {
-            padding: 0.5rem;
-            border: 1px solid #cccccc;
-            background: #ffffff;
+            padding: 0.6rem;
+            border: 1px solid var(--border);
+            background: var(--white);
             font-size: 0.8rem;
-            border-radius: 4px;
+            border-radius: 6px;
+            width: 100%;
         }
 
         .add-pallet-btn {
-            background: #000000;
-            color: #ffffff;
-            border: 2px solid #000000;
+            background: var(--primary);
+            color: var(--white);
+            border: 2px solid var(--primary);
             padding: 0.6rem 1rem;
-            border-radius: 4px;
+            border-radius: 6px;
             cursor: pointer;
             font-size: 1.2rem;
-            width: 35px;
-            height: 35px;
+            width: 40px;
+            height: 40px;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-bottom: 0.8rem;
-            transition: all 0.3s;
+            margin-bottom: 1rem;
+            transition: var(--transition);
         }
 
         .add-pallet-btn:hover {
-            background: #ffffff;
-            color: #000000;
+            background: var(--white);
+            color: var(--primary);
         }
 
         .remove-pallet-btn {
-            background: #333333;
-            color: white;
+            background: var(--secondary);
+            color: var(--white);
             border: none;
-            padding: 0.3rem 0.5rem;
-            border-radius: 4px;
+            padding: 0.4rem 0.6rem;
+            border-radius: 6px;
             cursor: pointer;
             height: fit-content;
             font-size: 0.8rem;
-            width: 25px;
-            height: 25px;
+            width: 30px;
+            height: 30px;
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: background 0.3s;
+            transition: var(--transition);
         }
 
         .remove-pallet-btn:hover {
-            background: #000000;
+            background: var(--primary);
         }
 
         /* Vehicle Selector */
         .vehicle-selector {
-            margin-bottom: 0.8rem;
+            margin-bottom: 1rem;
         }
 
         .auto-selection-info {
             background: #f0f0f0;
-            border: 1px solid #cccccc;
-            border-radius: 4px;
-            padding: 0.6rem;
-            margin-top: 0.4rem;
-            font-size: 0.75rem;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 0.8rem;
+            margin-top: 0.5rem;
+            font-size: 0.8rem;
             display: none;
-            color: #333333;
+            color: var(--secondary);
         }
 
         .submit-btn {
-            background: #000000;
-            color: #ffffff;
-            padding: 0.8rem 1.5rem;
-            border: 2px solid #000000;
-            font-size: 0.9rem;
+            background: var(--primary);
+            color: var(--white);
+            padding: 1rem 2rem;
+            border: 2px solid var(--primary);
+            font-size: 1rem;
             cursor: pointer;
-            transition: all 0.3s ease;
-            margin-top: 0.8rem;
+            transition: var(--transition);
+            margin-top: 1rem;
             width: auto;
-            border-radius: 4px;
+            border-radius: 6px;
             font-weight: 600;
             letter-spacing: 0.5px;
             display: inline-block;
         }
 
         .submit-btn:hover {
-            background: #ffffff;
-            color: #000000;
+            background: var(--white);
+            color: var(--primary);
             transform: translateY(-2px);
             box-shadow: 0 5px 15px rgba(0,0,0,0.1);
         }
 
         .calculator-result {
-            background: #ffffff;
-            padding: 1.5rem;
-            border: 2px solid #000000;
-            margin-top: 1.5rem;
+            background: var(--white);
+            padding: 2rem;
+            border: 2px solid var(--primary);
+            margin-top: 2rem;
             display: none;
-            border-radius: 4px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            border-radius: 8px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
         }
 
         .price-estimate {
-            font-size: 1.8rem;
+            font-size: 2rem;
             font-weight: bold;
-            color: #000000;
-            margin: 0.8rem 0;
+            color: var(--primary);
+            margin: 1rem 0;
             letter-spacing: -1px;
         }
 
         .price-note {
-            font-size: 0.8rem;
-            color: #666666;
-            margin-bottom: 0.8rem;
+            font-size: 0.85rem;
+            color: var(--accent);
+            margin-bottom: 1rem;
             font-weight: 300;
         }
 
         .request-btn {
-            background: #000000;
-            color: #ffffff;
-            padding: 0.8rem 1.5rem;
-            border: 2px solid #000000;
-            font-size: 0.9rem;
+            background: var(--primary);
+            color: var(--white);
+            padding: 1rem 2rem;
+            border: 2px solid var(--primary);
+            font-size: 1rem;
             cursor: pointer;
-            transition: all 0.3s ease;
-            margin-top: 0.8rem;
+            transition: var(--transition);
+            margin-top: 1rem;
             width: 100%;
-            border-radius: 4px;
+            border-radius: 6px;
             font-weight: 600;
             letter-spacing: 0.5px;
         }
 
         .request-btn:hover {
-            background: #ffffff;
-            color: #000000;
+            background: var(--white);
+            color: var(--primary);
             transform: translateY(-2px);
             box-shadow: 0 5px 15px rgba(0,0,0,0.1);
         }
@@ -556,8 +568,8 @@
         /* Vehicles Section */
         .vehicles {
             padding: 5rem 2rem;
-            background: #ffffff;
-            border-bottom: 1px solid #e0e0e0;
+            background: var(--white);
+            border-bottom: 1px solid var(--border);
         }
 
         .vehicles-container {
@@ -568,7 +580,7 @@
 
         .section-title h2 {
             font-size: 2.5rem;
-            color: #000000;
+            color: var(--primary);
             margin-bottom: 1rem;
             font-weight: 300;
             letter-spacing: -0.5px;
@@ -576,7 +588,7 @@
 
         .section-title p {
             font-size: 1.2rem;
-            color: #666666;
+            color: var(--accent);
             max-width: 700px;
             margin: 0 auto 3rem;
             font-weight: 300;
@@ -589,30 +601,30 @@
         }
 
         .vehicle-card {
-            background: white;
-            border-radius: 8px;
+            background: var(--white);
+            border-radius: 12px;
             overflow: hidden;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.08);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            border: 1px solid #e0e0e0;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            transition: var(--transition);
+            border: 1px solid var(--border);
             position: relative;
-            height: 400px;
+            height: 420px;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
         }
 
         .vehicle-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
-            border-color: #000000;
+            transform: translateY(-8px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+            border-color: var(--primary);
         }
 
         .vehicle-image {
-            height: 220px;
+            height: 240px;
             overflow: hidden;
             position: relative;
-            background: #f8f8f8;
+            background: var(--light);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -628,30 +640,30 @@
         }
 
         .pallet-visualization svg {
-            width: 80%;
-            height: 80%;
-            transition: all 0.3s ease;
+            width: 85%;
+            height: 85%;
+            transition: var(--transition);
         }
 
         .vehicle-card:hover .pallet-visualization svg {
-            transform: scale(1.05);
+            transform: scale(1.08);
         }
 
         .vehicle-badge {
             position: absolute;
             top: 15px;
             right: 15px;
-            background: #000000;
-            color: white;
-            padding: 0.5rem 1rem;
-            border-radius: 4px;
+            background: var(--primary);
+            color: var(--white);
+            padding: 0.6rem 1.2rem;
+            border-radius: 20px;
             font-weight: 600;
             font-size: 0.9rem;
             letter-spacing: 0.5px;
         }
 
         .vehicle-content {
-            padding: 1.5rem;
+            padding: 1.8rem;
             flex-grow: 1;
             display: flex;
             flex-direction: column;
@@ -659,9 +671,9 @@
         }
 
         .vehicle-content h3 {
-            font-size: 1.5rem;
+            font-size: 1.6rem;
             margin-bottom: 1rem;
-            color: #000000;
+            color: var(--primary);
             font-weight: 600;
         }
 
@@ -678,22 +690,24 @@
         }
 
         .spec-label {
-            font-size: 0.85rem;
-            color: #666666;
-            margin-bottom: 0.3rem;
+            font-size: 0.9rem;
+            color: var(--accent);
+            margin-bottom: 0.4rem;
             font-weight: 500;
         }
 
         .spec-value {
             font-weight: 600;
-            color: #000000;
+            color: var(--primary);
+            font-size: 1rem;
         }
 
         .vehicle-description {
-            color: #666666;
+            color: var(--accent);
             margin-bottom: 1.5rem;
             line-height: 1.5;
             font-weight: 300;
+            font-size: 0.95rem;
         }
 
         .vehicle-price {
@@ -702,24 +716,25 @@
             align-items: center;
             margin-top: 1rem;
             padding-top: 1rem;
-            border-top: 1px solid #e0e0e0;
+            border-top: 1px solid var(--border);
         }
 
         .select-btn {
-            background: #000000;
-            color: white;
-            border: 2px solid #000000;
-            padding: 0.6rem 1.2rem;
-            border-radius: 4px;
+            background: var(--primary);
+            color: var(--white);
+            border: 2px solid var(--primary);
+            padding: 0.8rem 1.5rem;
+            border-radius: 6px;
             cursor: pointer;
             font-weight: 600;
-            transition: all 0.3s;
+            transition: var(--transition);
             letter-spacing: 0.5px;
+            font-size: 0.9rem;
         }
 
         .select-btn:hover {
-            background: #ffffff;
-            color: #000000;
+            background: var(--white);
+            color: var(--primary);
         }
 
         /* Contact Modal */
@@ -737,88 +752,88 @@
         }
 
         .modal {
-            background: white;
-            padding: 2rem;
-            border-radius: 8px;
+            background: var(--white);
+            padding: 2.5rem;
+            border-radius: 12px;
             width: 90%;
-            max-width: 450px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-            border: 2px solid #000000;
+            max-width: 500px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+            border: 2px solid var(--primary);
         }
 
         .modal h3 {
-            margin-bottom: 1rem;
+            margin-bottom: 1.2rem;
             text-align: center;
-            font-size: 1.5rem;
+            font-size: 1.6rem;
             font-weight: 300;
-            color: #000000;
+            color: var(--primary);
             letter-spacing: -0.5px;
         }
 
         .modal-form {
             display: flex;
             flex-direction: column;
-            gap: 1rem;
+            gap: 1.2rem;
         }
 
         .modal-form input, .modal-form textarea {
-            padding: 0.8rem;
-            border: 1px solid #cccccc;
-            font-size: 0.9rem;
-            border-radius: 4px;
-            transition: border-color 0.3s ease;
-            background: #ffffff;
-            color: #333333;
+            padding: 1rem;
+            border: 1px solid var(--border);
+            font-size: 0.95rem;
+            border-radius: 6px;
+            transition: var(--transition);
+            background: var(--white);
+            color: var(--secondary);
         }
 
         .modal-form textarea {
-            min-height: 100px;
+            min-height: 120px;
             resize: vertical;
         }
 
         .modal-form input:focus, .modal-form textarea:focus {
             outline: none;
-            border-color: #000000;
-            box-shadow: 0 0 0 2px rgba(0,0,0,0.1);
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(0,0,0,0.1);
         }
 
         .modal-submit-btn {
-            background: #000000;
-            color: #fff;
-            padding: 0.8rem;
-            border: 2px solid #000000;
-            font-size: 0.9rem;
+            background: var(--primary);
+            color: var(--white);
+            padding: 1rem;
+            border: 2px solid var(--primary);
+            font-size: 1rem;
             cursor: pointer;
-            transition: all 0.3s ease;
-            border-radius: 4px;
+            transition: var(--transition);
+            border-radius: 6px;
             font-weight: 600;
-            margin-top: 0.5rem;
+            margin-top: 0.8rem;
             letter-spacing: 0.5px;
         }
 
         .modal-submit-btn:hover {
-            background: #ffffff;
-            color: #000000;
+            background: var(--white);
+            color: var(--primary);
         }
 
         /* Success Message */
         .success-message {
-            background: #f0f0f0;
-            border: 1px solid #cccccc;
-            color: #333333;
-            padding: 1rem;
-            border-radius: 4px;
-            margin: 1rem 0;
+            background: #f0f8f0;
+            border: 1px solid #4CAF50;
+            color: #2E7D32;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 1.5rem 0;
             text-align: center;
             display: none;
             font-weight: 500;
-            font-size: 0.9rem;
+            font-size: 1rem;
         }
 
         /* Footer */
         footer {
-            background: #000000;
-            color: white;
+            background: var(--primary);
+            color: var(--white);
             padding: 4rem 2rem 2rem;
         }
 
@@ -831,7 +846,7 @@
         }
 
         .footer-column h3 {
-            color: #ffffff;
+            color: var(--white);
             margin-bottom: 1.5rem;
             font-size: 1.3rem;
             font-weight: 600;
@@ -842,12 +857,12 @@
             margin-bottom: 0.8rem;
             display: block;
             text-decoration: none;
-            transition: color 0.3s;
+            transition: var(--transition);
             font-weight: 300;
         }
 
         .footer-column a:hover {
-            color: #ffffff;
+            color: var(--white);
         }
 
         .copyright {
@@ -866,9 +881,9 @@
 
         /* Custom Request Section */
         .custom-request {
-            padding: 3rem 2rem;
-            background: #f8f8f8;
-            border-bottom: 1px solid #e0e0e0;
+            padding: 4rem 2rem;
+            background: var(--light);
+            border-bottom: 1px solid var(--border);
         }
 
         .custom-request-container {
@@ -879,15 +894,15 @@
 
         .custom-request h2 {
             font-size: 2rem;
-            color: #000000;
+            color: var(--primary);
             margin-bottom: 1rem;
             font-weight: 300;
             letter-spacing: -0.5px;
         }
 
         .custom-request > .custom-request-container > p {
-            margin-bottom: 1.5rem;
-            color: #666666;
+            margin-bottom: 2rem;
+            color: var(--accent);
             font-size: 1rem;
             font-weight: 300;
         }
@@ -895,26 +910,26 @@
         .custom-request-form {
             display: flex;
             flex-direction: column;
-            gap: 1rem;
-            margin-bottom: 1.5rem;
+            gap: 1.2rem;
+            margin-bottom: 2rem;
         }
 
         .custom-request-form textarea {
-            padding: 0.8rem;
-            border: 1px solid #cccccc;
-            font-size: 0.9rem;
-            border-radius: 4px;
-            transition: border-color 0.3s ease;
-            background: #ffffff;
-            color: #333333;
-            min-height: 120px;
+            padding: 1rem;
+            border: 1px solid var(--border);
+            font-size: 0.95rem;
+            border-radius: 6px;
+            transition: var(--transition);
+            background: var(--white);
+            color: var(--secondary);
+            min-height: 140px;
             resize: vertical;
         }
 
         .custom-request-form textarea:focus {
             outline: none;
-            border-color: #000000;
-            box-shadow: 0 0 0 2px rgba(0,0,0,0.1);
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(0,0,0,0.1);
         }
 
         /* Responsive */
@@ -950,6 +965,7 @@
 
             .pallet-item {
                 grid-template-columns: 1fr;
+                gap: 0.6rem;
             }
 
             .vehicle-grid {
@@ -1253,7 +1269,210 @@
                     </div>
                 </div>
 
-                <!-- Weitere Fahrzeugkarten bleiben gleich -->
+                <!-- 7,5-Tonner -->
+                <div class="vehicle-card">
+                    <div class="vehicle-image">
+                        <div class="pallet-visualization" id="visualization-7.5t">
+                            <!-- SVG visualization will be inserted here -->
+                        </div>
+                        <div class="vehicle-badge">Mitteltransport</div>
+                    </div>
+                    <div class="vehicle-content">
+                        <h3>7,5-Tonner LKW</h3>
+                        <p class="vehicle-description lang-de">Perfekt für mittlere Transporte mit guter Wendigkeit und einfacher Parkierbarkeit.</p>
+                        <p class="vehicle-description lang-en">Perfect for medium transports with good maneuverability and easy parking.</p>
+                        <div class="vehicle-specs">
+                            <div class="spec-item">
+                                <span class="spec-label lang-de">Lademeter</span>
+                                <span class="spec-label lang-en">Loading meters</span>
+                                <span class="spec-value">6 m</span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-label lang-de">Max. Gewicht</span>
+                                <span class="spec-label lang-en">Max. weight</span>
+                                <span class="spec-value">2.350 kg</span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-label lang-de">Europaletten</span>
+                                <span class="spec-label lang-en">Euro pallets</span>
+                                <span class="spec-value">10-12</span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-label lang-de">Ladehöhe</span>
+                                <span class="spec-label lang-en">Loading height</span>
+                                <span class="spec-value">2,4 m</span>
+                            </div>
+                        </div>
+                        <div class="vehicle-price">
+                            <button class="select-btn lang-de" data-vehicle="7,5-Tonner LKW">Auswählen</button>
+                            <button class="select-btn lang-en" data-vehicle="7,5-Tonner LKW">Select</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 12-Tonner -->
+                <div class="vehicle-card">
+                    <div class="vehicle-image">
+                        <div class="pallet-visualization" id="visualization-12t">
+                            <!-- SVG visualization will be inserted here -->
+                        </div>
+                        <div class="vehicle-badge">Großtransport</div>
+                    </div>
+                    <div class="vehicle-content">
+                        <h3>12-Tonner LKW</h3>
+                        <p class="vehicle-description lang-de">Für umfangreiche Transporte mit höherer Ladekapazität und Reichweite.</p>
+                        <p class="vehicle-description lang-en">For extensive transports with higher loading capacity and range.</p>
+                        <div class="vehicle-specs">
+                            <div class="spec-item">
+                                <span class="spec-label lang-de">Lademeter</span>
+                                <span class="spec-label lang-en">Loading meters</span>
+                                <span class="spec-value">7,3 - 7,4 m</span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-label lang-de">Max. Gewicht</span>
+                                <span class="spec-label lang-en">Max. weight</span>
+                                <span class="spec-value">7.000 kg</span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-label lang-de">Europaletten</span>
+                                <span class="spec-label lang-en">Euro pallets</span>
+                                <span class="spec-value">bis zu 17</span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-label lang-de">Ladehöhe</span>
+                                <span class="spec-label lang-en">Loading height</span>
+                                <span class="spec-value">2,5 m</span>
+                            </div>
+                        </div>
+                        <div class="vehicle-price">
+                            <button class="select-btn lang-de" data-vehicle="12-Tonner LKW">Auswählen</button>
+                            <button class="select-btn lang-en" data-vehicle="12-Tonner LKW">Select</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 18-Tonner -->
+                <div class="vehicle-card">
+                    <div class="vehicle-image">
+                        <div class="pallet-visualization" id="visualization-18t">
+                            <!-- SVG visualization will be inserted here -->
+                        </div>
+                        <div class="vehicle-badge">Schwerlast</div>
+                    </div>
+                    <div class="vehicle-content">
+                        <h3>18-Tonner LKW</h3>
+                        <p class="vehicle-description lang-de">Für schwere und voluminöse Güter mit ausgezeichneter Ladekapazität.</p>
+                        <p class="vehicle-description lang-en">For heavy and voluminous goods with excellent loading capacity.</p>
+                        <div class="vehicle-specs">
+                            <div class="spec-item">
+                                <span class="spec-label lang-de">Lademeter</span>
+                                <span class="spec-label lang-en">Loading meters</span>
+                                <span class="spec-value">9,6 m</span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-label lang-de">Max. Gewicht</span>
+                                <span class="spec-label lang-en">Max. weight</span>
+                                <span class="spec-value">12.000 kg</span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-label lang-de">Europaletten</span>
+                                <span class="spec-label lang-en">Euro pallets</span>
+                                <span class="spec-value">bis zu 18</span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-label lang-de">Ladehöhe</span>
+                                <span class="spec-label lang-en">Loading height</span>
+                                <span class="spec-value">2,7 m</span>
+                            </div>
+                        </div>
+                        <div class="vehicle-price">
+                            <button class="select-btn lang-de" data-vehicle="18-Tonner LKW">Auswählen</button>
+                            <button class="select-btn lang-en" data-vehicle="18-Tonner LKW">Select</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sattelzug -->
+                <div class="vehicle-card">
+                    <div class="vehicle-image">
+                        <div class="pallet-visualization" id="visualization-sattelzug">
+                            <!-- SVG visualization will be inserted here -->
+                        </div>
+                        <div class="vehicle-badge">Schwertransport</div>
+                    </div>
+                    <div class="vehicle-content">
+                        <h3>Sattelzug</h3>
+                        <p class="vehicle-description lang-de">Maximale Kapazität für große Transportvolumen und schwere Güter.</p>
+                        <p class="vehicle-description lang-en">Maximum capacity for large transport volumes and heavy goods.</p>
+                        <div class="vehicle-specs">
+                            <div class="spec-item">
+                                <span class="spec-label lang-de">Lademeter</span>
+                                <span class="spec-label lang-en">Loading meters</span>
+                                <span class="spec-value">13,6 m</span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-label lang-de">Max. Gewicht</span>
+                                <span class="spec-label lang-en">Max. weight</span>
+                                <span class="spec-value">24.000 kg</span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-label lang-de">Europaletten</span>
+                                <span class="spec-label lang-en">Euro pallets</span>
+                                <span class="spec-value">bis zu 33</span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-label lang-de">Ladehöhe</span>
+                                <span class="spec-label lang-en">Loading height</span>
+                                <span class="spec-value">2,65 m</span>
+                            </div>
+                        </div>
+                        <div class="vehicle-price">
+                            <button class="select-btn lang-de" data-vehicle="Sattelzug">Auswählen</button>
+                            <button class="select-btn lang-en" data-vehicle="Sattelzug">Select</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sattelzug Megatrailer -->
+                <div class="vehicle-card">
+                    <div class="vehicle-image">
+                        <div class="pallet-visualization" id="visualization-mega">
+                            <!-- SVG visualization will be inserted here -->
+                        </div>
+                        <div class="vehicle-badge">Maximaltransport</div>
+                    </div>
+                    <div class="vehicle-content">
+                        <h3>Sattelzug Megatrailer</h3>
+                        <p class="vehicle-description lang-de">Unsere größte Transportlösung mit extra hoher Ladekapazität.</p>
+                        <p class="vehicle-description lang-en">Our largest transport solution with extra high loading capacity.</p>
+                        <div class="vehicle-specs">
+                            <div class="spec-item">
+                                <span class="spec-label lang-de">Lademeter</span>
+                                <span class="spec-label lang-en">Loading meters</span>
+                                <span class="spec-value">13,6 m</span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-label lang-de">Max. Gewicht</span>
+                                <span class="spec-label lang-en">Max. weight</span>
+                                <span class="spec-value">24.000 kg</span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-label lang-de">Europaletten</span>
+                                <span class="spec-label lang-en">Euro pallets</span>
+                                <span class="spec-value">bis zu 33</span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-label lang-de">Ladehöhe</span>
+                                <span class="spec-label lang-en">Loading height</span>
+                                <span class="spec-value">3,0 m</span>
+                            </div>
+                        </div>
+                        <div class="vehicle-price">
+                            <button class="select-btn lang-de" data-vehicle="Sattelzug Megatrailer">Auswählen</button>
+                            <button class="select-btn lang-en" data-vehicle="Sattelzug Megatrailer">Select</button>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
