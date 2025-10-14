@@ -1,9 +1,10 @@
+html
 <!DOCTYPE html>
 <html lang="de">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LogiBase - Logistiklösungen</title>
+    <title>LogiBase - Professionelle Logistiklösungen</title>
     <style>
         * {
             margin: 0;
@@ -13,19 +14,20 @@
         }
 
         body {
-            background-color: #f8f9fa;
-            color: #333;
+            background-color: #ffffff;
+            color: #333333;
             line-height: 1.6;
         }
 
         /* Header */
         header {
-            background: white;
-            box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+            background: #ffffff;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
             position: fixed;
             width: 100%;
             top: 0;
             z-index: 1000;
+            border-bottom: 1px solid #e0e0e0;
         }
 
         .header-content {
@@ -47,7 +49,7 @@
         .logo-icon {
             width: 50px;
             height: 50px;
-            background: #0056b3;
+            background: #000000;
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -55,12 +57,13 @@
             color: white;
             font-weight: bold;
             font-size: 1.4rem;
+            border: 2px solid #000000;
         }
 
         .logo-text {
             font-size: 1.6rem;
             font-weight: 700;
-            color: #0056b3;
+            color: #000000;
         }
 
         .nav-links {
@@ -69,14 +72,30 @@
         }
 
         .nav-link {
-            color: #333;
+            color: #333333;
             text-decoration: none;
             font-weight: 500;
             transition: color 0.3s;
+            position: relative;
         }
 
         .nav-link:hover {
-            color: #0056b3;
+            color: #000000;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #000000;
+            transition: width 0.3s;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
         }
 
         .language-switcher {
@@ -87,98 +106,108 @@
 
         .lang-btn {
             background: none;
-            border: 1px solid #0056b3;
+            border: 1px solid #333333;
             padding: 0.4rem 0.8rem;
             cursor: pointer;
             font-size: 0.8rem;
             transition: all 0.3s ease;
             border-radius: 4px;
-            color: #0056b3;
+            color: #333333;
         }
 
         .lang-btn.active {
-            background: #0056b3;
-            color: #fff;
+            background: #000000;
+            color: #ffffff;
+            border-color: #000000;
         }
 
         .lang-btn:hover {
-            background: #0056b3;
-            color: #fff;
+            background: #000000;
+            color: #ffffff;
         }
 
         /* Hero Section */
         .hero {
-            background: linear-gradient(rgba(0, 86, 179, 0.8), rgba(0, 86, 179, 0.9)), url('https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80');
-            background-size: cover;
-            background-position: center;
-            color: white;
+            background: linear-gradient(rgba(255,255,255,0.9), rgba(255,255,255,0.95)), 
+                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" fill="none" stroke="%23000" stroke-width="0.5" opacity="0.1"/></svg>');
+            background-size: cover, 20px 20px;
+            color: #000000;
             text-align: center;
             padding: 10rem 2rem 6rem;
             margin-top: 70px;
+            border-bottom: 1px solid #e0e0e0;
         }
 
         .hero h1 {
             font-size: 3rem;
             margin-bottom: 1.5rem;
             font-weight: 300;
+            letter-spacing: -0.5px;
         }
 
         .hero p {
             font-size: 1.3rem;
             max-width: 700px;
             margin: 0 auto 2.5rem;
+            color: #666666;
+            font-weight: 300;
         }
 
         .cta-button {
-            background: white;
-            color: #0056b3;
+            background: #000000;
+            color: #ffffff;
             padding: 0.9rem 2rem;
-            border: none;
+            border: 2px solid #000000;
             font-size: 1.1rem;
             font-weight: 600;
-            border-radius: 50px;
+            border-radius: 0;
             cursor: pointer;
             transition: all 0.3s ease;
             text-decoration: none;
             display: inline-block;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            letter-spacing: 0.5px;
         }
 
         .cta-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+            background: #ffffff;
+            color: #000000;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
         }
 
-        /* Calculator Section */
+        /* Calculator Section - Kompakt */
         .calculator {
-            padding: 5rem 2rem;
-            background: #f8f9fa;
+            padding: 3rem 2rem;
+            background: #f8f8f8;
+            border-bottom: 1px solid #e0e0e0;
         }
 
         .calculator-container {
-            max-width: 800px;
+            max-width: 600px;
             margin: 0 auto;
             text-align: center;
         }
 
         .calculator h2 {
-            font-size: 2.5rem;
-            color: #0056b3;
+            font-size: 2rem;
+            color: #000000;
             margin-bottom: 1rem;
             font-weight: 300;
+            letter-spacing: -0.5px;
         }
 
         .calculator > .calculator-container > p {
-            margin-bottom: 2rem;
-            color: #666;
-            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            color: #666666;
+            font-size: 1rem;
+            font-weight: 300;
         }
 
         .calculator-form {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1.5rem;
-            margin-bottom: 2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
         }
 
         .form-group {
@@ -187,39 +216,37 @@
             text-align: left;
         }
 
-        .form-group.full-width {
-            grid-column: 1 / -1;
-        }
-
         .form-group label {
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.4rem;
             font-weight: 600;
-            font-size: 0.95rem;
-            color: #333;
+            font-size: 0.85rem;
+            color: #333333;
+            letter-spacing: 0.3px;
         }
 
         .form-group input,
         .form-group select {
-            padding: 0.9rem;
-            border: 1px solid #ddd;
-            background: #fff;
-            font-size: 1rem;
-            border-radius: 6px;
-            transition: border-color 0.3s ease;
+            padding: 0.7rem;
+            border: 1px solid #cccccc;
+            background: #ffffff;
+            font-size: 0.9rem;
+            border-radius: 0;
+            transition: all 0.3s ease;
+            color: #333333;
         }
 
         .form-group input:focus,
         .form-group select:focus {
             outline: none;
-            border-color: #0056b3;
-            box-shadow: 0 0 0 2px rgba(0, 86, 179, 0.1);
+            border-color: #000000;
+            box-shadow: 0 0 0 2px rgba(0,0,0,0.1);
         }
 
-        /* Date Time Input - Improved Design */
+        /* Date Time Input - Kompakt */
         .date-time-input {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 1.5rem;
+            gap: 1rem;
         }
 
         .date-time-group {
@@ -228,106 +255,110 @@
         }
 
         .date-time-input input {
-            padding: 0.9rem;
-            border: 1px solid #ddd;
-            background: #fff;
-            font-size: 1rem;
-            border-radius: 6px;
-            transition: border-color 0.3s ease;
+            padding: 0.7rem;
+            border: 1px solid #cccccc;
+            background: #ffffff;
+            font-size: 0.9rem;
+            border-radius: 0;
+            transition: all 0.3s ease;
+            color: #333333;
         }
 
         .date-time-input input:focus {
             outline: none;
-            border-color: #0056b3;
-            box-shadow: 0 0 0 2px rgba(0, 86, 179, 0.1);
+            border-color: #000000;
+            box-shadow: 0 0 0 2px rgba(0,0,0,0.1);
         }
 
-        /* Cargo Type Selector */
+        /* Cargo Type Selector - Kompakt */
         .cargo-type-selector {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 1rem;
-            margin-bottom: 1rem;
+            gap: 0.8rem;
+            margin-bottom: 0.8rem;
         }
 
         .cargo-type-btn {
-            padding: 1.2rem;
-            border: 2px solid #e0e0e0;
-            background: #fff;
+            padding: 0.8rem;
+            border: 2px solid #cccccc;
+            background: #ffffff;
             cursor: pointer;
             transition: all 0.3s ease;
             text-align: center;
             font-weight: 600;
-            border-radius: 6px;
-            font-size: 1rem;
+            border-radius: 0;
+            font-size: 0.85rem;
+            color: #333333;
         }
 
         .cargo-type-btn.active {
-            background: #0056b3;
-            color: #fff;
-            border-color: #0056b3;
+            background: #000000;
+            color: #ffffff;
+            border-color: #000000;
         }
 
         .cargo-type-btn:hover {
-            border-color: #0056b3;
+            border-color: #000000;
         }
 
-        /* Pallet Type Selector */
+        /* Pallet Type Selector - Kompakt */
         .pallet-type-selector {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 0.8rem;
-            margin-bottom: 1rem;
+            gap: 0.6rem;
+            margin-bottom: 0.8rem;
         }
 
         .pallet-type-btn {
-            padding: 0.8rem;
-            border: 2px solid #e0e0e0;
-            background: #fff;
+            padding: 0.6rem;
+            border: 2px solid #cccccc;
+            background: #ffffff;
             cursor: pointer;
             transition: all 0.3s ease;
             text-align: center;
             font-weight: 500;
-            border-radius: 6px;
-            font-size: 0.9rem;
+            border-radius: 0;
+            font-size: 0.75rem;
+            color: #333333;
         }
 
         .pallet-type-btn.active {
-            background: #0056b3;
-            color: #fff;
-            border-color: #0056b3;
+            background: #000000;
+            color: #ffffff;
+            border-color: #000000;
         }
 
-        /* Stapelbar Styles */
+        /* Stapelbar Styles - Kompakt */
         .stapelbar-container {
             display: flex;
             align-items: center;
-            gap: 0.8rem;
-            margin-bottom: 1rem;
-            padding: 1rem;
-            background: #f0f4f8;
-            border-radius: 6px;
-            border: 1px solid #e0e0e0;
+            gap: 0.6rem;
+            margin-bottom: 0.8rem;
+            padding: 0.8rem;
+            background: #f0f0f0;
+            border-radius: 0;
+            border: 1px solid #cccccc;
         }
 
         .stapelbar-checkbox {
-            width: 20px;
-            height: 20px;
+            width: 18px;
+            height: 18px;
             cursor: pointer;
+            accent-color: #000000;
         }
 
         .stapelbar-label {
             font-weight: 600;
-            font-size: 0.95rem;
-            color: #333;
+            font-size: 0.8rem;
+            color: #333333;
             cursor: pointer;
         }
 
         .levels-input {
             display: none;
             grid-template-columns: 1fr 1fr;
-            gap: 1rem;
-            margin-top: 0.8rem;
+            gap: 0.8rem;
+            margin-top: 0.6rem;
         }
 
         .level-item {
@@ -336,69 +367,70 @@
         }
 
         .level-item label {
-            margin-bottom: 0.4rem;
+            margin-bottom: 0.3rem;
             font-weight: 600;
-            font-size: 0.85rem;
-            color: #333;
+            font-size: 0.75rem;
+            color: #333333;
         }
 
         .level-item input {
-            padding: 0.7rem;
-            border: 1px solid #ddd;
-            background: #fff;
-            font-size: 0.9rem;
-            border-radius: 4px;
+            padding: 0.5rem;
+            border: 1px solid #cccccc;
+            background: #ffffff;
+            font-size: 0.8rem;
+            border-radius: 0;
         }
 
-        /* Individual Pallets */
+        /* Individual Pallets - Kompakt */
         .individual-pallets {
-            margin-bottom: 1rem;
+            margin-bottom: 0.8rem;
         }
 
         .pallet-item {
             display: grid;
             grid-template-columns: 1fr 1fr 1fr auto;
-            gap: 1rem;
-            margin-bottom: 1rem;
-            padding: 1.2rem;
-            border: 1px solid #e0e0e0;
-            border-radius: 6px;
-            background: #f9f9f9;
+            gap: 0.8rem;
+            margin-bottom: 0.8rem;
+            padding: 0.8rem;
+            border: 1px solid #cccccc;
+            border-radius: 0;
+            background: #ffffff;
             align-items: end;
         }
 
         .add-pallet-btn {
-            background: #0056b3;
-            color: #fff;
-            border: none;
-            padding: 0.8rem 1.2rem;
-            border-radius: 6px;
+            background: #000000;
+            color: #ffffff;
+            border: 2px solid #000000;
+            padding: 0.6rem 1rem;
+            border-radius: 0;
             cursor: pointer;
-            font-size: 1.5rem;
-            width: 45px;
-            height: 45px;
+            font-size: 1.2rem;
+            width: 35px;
+            height: 35px;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-bottom: 1rem;
-            transition: background 0.3s;
+            margin-bottom: 0.8rem;
+            transition: all 0.3s;
         }
 
         .add-pallet-btn:hover {
-            background: #004494;
+            background: #ffffff;
+            color: #000000;
         }
 
         .remove-pallet-btn {
-            background: #ff4444;
+            background: #333333;
             color: white;
             border: none;
-            padding: 0.4rem 0.6rem;
-            border-radius: 4px;
+            padding: 0.3rem 0.5rem;
+            border-radius: 0;
             cursor: pointer;
             height: fit-content;
-            font-size: 0.9rem;
-            width: 30px;
-            height: 30px;
+            font-size: 0.8rem;
+            width: 25px;
+            height: 25px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -406,91 +438,99 @@
         }
 
         .remove-pallet-btn:hover {
-            background: #cc0000;
+            background: #000000;
         }
 
-        /* Vehicle Selector */
+        /* Vehicle Selector - Kompakt */
         .vehicle-selector {
-            margin-bottom: 1rem;
+            margin-bottom: 0.8rem;
         }
 
         .auto-selection-info {
-            background: #e8f5e8;
-            border: 1px solid #4CAF50;
-            border-radius: 6px;
-            padding: 0.8rem;
-            margin-top: 0.5rem;
-            font-size: 0.9rem;
+            background: #f0f0f0;
+            border: 1px solid #cccccc;
+            border-radius: 0;
+            padding: 0.6rem;
+            margin-top: 0.4rem;
+            font-size: 0.75rem;
             display: none;
+            color: #333333;
         }
 
         .submit-btn {
-            background: #0056b3;
-            color: #fff;
-            padding: 1rem 2rem;
-            border: none;
-            font-size: 1.1rem;
+            background: #000000;
+            color: #ffffff;
+            padding: 0.8rem 1.5rem;
+            border: 2px solid #000000;
+            font-size: 0.9rem;
             cursor: pointer;
             transition: all 0.3s ease;
-            margin-top: 1rem;
+            margin-top: 0.8rem;
             width: 100%;
-            border-radius: 6px;
+            border-radius: 0;
             font-weight: 600;
+            letter-spacing: 0.5px;
         }
 
         .submit-btn:hover {
-            background: #004494;
+            background: #ffffff;
+            color: #000000;
             transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
         }
 
         .calculator-result {
-            background: #fff;
-            padding: 2.5rem;
-            border: 2px solid #0056b3;
-            margin-top: 2rem;
+            background: #ffffff;
+            padding: 1.5rem;
+            border: 2px solid #000000;
+            margin-top: 1.5rem;
             display: none;
-            border-radius: 8px;
+            border-radius: 0;
             box-shadow: 0 5px 15px rgba(0,0,0,0.05);
         }
 
         .price-estimate {
-            font-size: 2.5rem;
+            font-size: 1.8rem;
             font-weight: bold;
-            color: #0056b3;
-            margin: 1rem 0;
+            color: #000000;
+            margin: 0.8rem 0;
+            letter-spacing: -1px;
         }
 
         .price-note {
-            font-size: 0.95rem;
-            color: #666;
-            margin-bottom: 1rem;
+            font-size: 0.8rem;
+            color: #666666;
+            margin-bottom: 0.8rem;
+            font-weight: 300;
         }
 
         .request-btn {
-            background: #0056b3;
-            color: #fff;
-            padding: 1rem 2rem;
-            border: none;
-            font-size: 1.1rem;
+            background: #000000;
+            color: #ffffff;
+            padding: 0.8rem 1.5rem;
+            border: 2px solid #000000;
+            font-size: 0.9rem;
             cursor: pointer;
             transition: all 0.3s ease;
-            margin-top: 1rem;
+            margin-top: 0.8rem;
             width: 100%;
-            border-radius: 6px;
+            border-radius: 0;
             font-weight: 600;
+            letter-spacing: 0.5px;
         }
 
         .request-btn:hover {
-            background: #004494;
+            background: #ffffff;
+            color: #000000;
             transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
         }
 
         /* Vehicles Section */
         .vehicles {
             padding: 5rem 2rem;
-            background: #fff;
+            background: #ffffff;
+            border-bottom: 1px solid #e0e0e0;
         }
 
         .vehicles-container {
@@ -501,16 +541,18 @@
 
         .section-title h2 {
             font-size: 2.5rem;
-            color: #0056b3;
+            color: #000000;
             margin-bottom: 1rem;
             font-weight: 300;
+            letter-spacing: -0.5px;
         }
 
         .section-title p {
             font-size: 1.2rem;
-            color: #666;
+            color: #666666;
             max-width: 700px;
             margin: 0 auto 3rem;
+            font-weight: 300;
         }
 
         .vehicle-grid {
@@ -521,21 +563,24 @@
 
         .vehicle-card {
             background: white;
-            border-radius: 12px;
+            border-radius: 0;
             overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            box-shadow: 0 3px 10px rgba(0,0,0,0.08);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid #e0e0e0;
         }
 
         .vehicle-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+            border-color: #000000;
         }
 
         .vehicle-image {
             height: 220px;
             overflow: hidden;
             position: relative;
+            background: #f8f8f8;
         }
 
         .vehicle-image img {
@@ -543,22 +588,25 @@
             height: 100%;
             object-fit: cover;
             transition: transform 0.5s ease;
+            filter: grayscale(100%);
         }
 
         .vehicle-card:hover .vehicle-image img {
             transform: scale(1.05);
+            filter: grayscale(0%);
         }
 
         .vehicle-badge {
             position: absolute;
             top: 15px;
             right: 15px;
-            background: #0056b3;
+            background: #000000;
             color: white;
             padding: 0.5rem 1rem;
-            border-radius: 20px;
+            border-radius: 0;
             font-weight: 600;
             font-size: 0.9rem;
+            letter-spacing: 0.5px;
         }
 
         .vehicle-content {
@@ -568,7 +616,8 @@
         .vehicle-content h3 {
             font-size: 1.5rem;
             margin-bottom: 1rem;
-            color: #333;
+            color: #000000;
+            font-weight: 600;
         }
 
         .vehicle-specs {
@@ -585,19 +634,21 @@
 
         .spec-label {
             font-size: 0.85rem;
-            color: #666;
+            color: #666666;
             margin-bottom: 0.3rem;
+            font-weight: 500;
         }
 
         .spec-value {
             font-weight: 600;
-            color: #333;
+            color: #000000;
         }
 
         .vehicle-description {
-            color: #666;
+            color: #666666;
             margin-bottom: 1.5rem;
             line-height: 1.5;
+            font-weight: 300;
         }
 
         .vehicle-price {
@@ -606,28 +657,30 @@
             align-items: center;
             margin-top: 1rem;
             padding-top: 1rem;
-            border-top: 1px solid #eee;
+            border-top: 1px solid #e0e0e0;
         }
 
         .price-tag {
             font-size: 1.3rem;
             font-weight: 700;
-            color: #0056b3;
+            color: #000000;
         }
 
         .select-btn {
-            background: #0056b3;
+            background: #000000;
             color: white;
-            border: none;
+            border: 2px solid #000000;
             padding: 0.6rem 1.2rem;
-            border-radius: 6px;
+            border-radius: 0;
             cursor: pointer;
             font-weight: 600;
-            transition: background 0.3s;
+            transition: all 0.3s;
+            letter-spacing: 0.5px;
         }
 
         .select-btn:hover {
-            background: #004494;
+            background: #ffffff;
+            color: #000000;
         }
 
         /* Contact Modal */
@@ -637,7 +690,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0,0,0,0.5);
+            background: rgba(0,0,0,0.7);
             display: none;
             justify-content: center;
             align-items: center;
@@ -646,73 +699,81 @@
 
         .modal {
             background: white;
-            padding: 2.5rem;
-            border-radius: 12px;
+            padding: 2rem;
+            border-radius: 0;
             width: 90%;
-            max-width: 500px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            max-width: 450px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            border: 2px solid #000000;
         }
 
         .modal h3 {
             margin-bottom: 1rem;
             text-align: center;
-            font-size: 1.8rem;
+            font-size: 1.5rem;
             font-weight: 300;
-            color: #0056b3;
+            color: #000000;
+            letter-spacing: -0.5px;
         }
 
         .modal-form {
             display: flex;
             flex-direction: column;
-            gap: 1.2rem;
+            gap: 1rem;
         }
 
         .modal-form input {
-            padding: 0.9rem;
-            border: 1px solid #ddd;
-            font-size: 1rem;
-            border-radius: 6px;
+            padding: 0.8rem;
+            border: 1px solid #cccccc;
+            font-size: 0.9rem;
+            border-radius: 0;
             transition: border-color 0.3s ease;
+            background: #ffffff;
+            color: #333333;
         }
 
         .modal-form input:focus {
             outline: none;
-            border-color: #0056b3;
-            box-shadow: 0 0 0 2px rgba(0, 86, 179, 0.1);
+            border-color: #000000;
+            box-shadow: 0 0 0 2px rgba(0,0,0,0.1);
         }
 
         .modal-submit-btn {
-            background: #0056b3;
+            background: #000000;
             color: #fff;
-            padding: 0.9rem;
-            border: none;
-            font-size: 1.1rem;
+            padding: 0.8rem;
+            border: 2px solid #000000;
+            font-size: 0.9rem;
             cursor: pointer;
             transition: all 0.3s ease;
-            border-radius: 6px;
+            border-radius: 0;
             font-weight: 600;
             margin-top: 0.5rem;
+            letter-spacing: 0.5px;
         }
 
         .modal-submit-btn:hover {
-            background: #004494;
+            background: #ffffff;
+            color: #000000;
         }
 
         /* Success Message */
         .success-message {
-            background: #d4edda;
-            border: 1px solid #c3e6cb;
-            color: #155724;
-            padding: 1.2rem;
-            border-radius: 6px;
+            background: #f0f0f0;
+            border: 1px solid #cccccc;
+            color: #333333;
+            padding: 1rem;
+            border-radius: 0;
             margin: 1rem 0;
             text-align: center;
             display: none;
+            font-weight: 500;
+            font-size: 0.9rem;
         }
 
         /* Footer */
         footer {
-            background: #1a1a1a;
+            background: #000000;
             color: white;
             padding: 4rem 2rem 2rem;
         }
@@ -726,30 +787,33 @@
         }
 
         .footer-column h3 {
-            color: #0056b3;
+            color: #ffffff;
             margin-bottom: 1.5rem;
             font-size: 1.3rem;
+            font-weight: 600;
         }
 
         .footer-column p, .footer-column a {
-            color: #ccc;
+            color: #cccccc;
             margin-bottom: 0.8rem;
             display: block;
             text-decoration: none;
             transition: color 0.3s;
+            font-weight: 300;
         }
 
         .footer-column a:hover {
-            color: white;
+            color: #ffffff;
         }
 
         .copyright {
             text-align: center;
             margin-top: 3rem;
             padding-top: 2rem;
-            border-top: 1px solid #333;
-            color: #999;
+            border-top: 1px solid #333333;
+            color: #999999;
             font-size: 0.9rem;
+            font-weight: 300;
         }
 
         /* Language Specific */
@@ -836,7 +900,7 @@
         </div>
     </section>
 
-    <!-- Calculator Section -->
+    <!-- Calculator Section - Kompakt -->
     <section class="calculator" id="calculator">
         <div class="calculator-container">
             <h2 class="lang-de">Transportpreis berechnen</h2>
@@ -846,20 +910,20 @@
             <p class="lang-en">Enter your transport data and get an instant price overview</p>
             
             <form class="calculator-form" id="transportCalculator">
-                <div class="form-group full-width">
+                <div class="form-group">
                     <label for="from-location" class="lang-de">Von (PLZ/Ort)</label>
                     <label for="from-location" class="lang-en">From (ZIP/City)</label>
                     <input type="text" id="from-location" name="from-location" placeholder="z.B. 10115 Berlin" required>
                 </div>
 
-                <div class="form-group full-width">
+                <div class="form-group">
                     <label for="to-location" class="lang-de">Nach (PLZ/Ort)</label>
                     <label for="to-location" class="lang-en">To (ZIP/City)</label>
                     <input type="text" id="to-location" name="to-location" placeholder="z.B. 80331 München" required>
                 </div>
 
-                <!-- Date Time Input - Improved Design -->
-                <div class="form-group full-width">
+                <!-- Date Time Input -->
+                <div class="form-group">
                     <label class="lang-de">Terminplanung</label>
                     <label class="lang-en">Scheduling</label>
                     <div class="date-time-input">
@@ -876,7 +940,7 @@
                     </div>
                 </div>
 
-                <div class="form-group full-width">
+                <div class="form-group">
                     <label class="lang-de">Was möchten Sie transportieren?</label>
                     <label class="lang-en">What would you like to transport?</label>
                     <div class="cargo-type-selector">
@@ -892,7 +956,7 @@
                 </div>
 
                 <!-- Individual Pallets -->
-                <div class="form-group full-width" id="individual-pallets-group">
+                <div class="form-group" id="individual-pallets-group">
                     <!-- Stapelbar Option -->
                     <div class="stapelbar-container">
                         <input type="checkbox" id="stapelbar" class="stapelbar-checkbox">
@@ -920,7 +984,7 @@
                 </div>
 
                 <!-- Standard Pallets -->
-                <div class="form-group full-width" id="standard-pallets-group" style="display: none;">
+                <div class="form-group" id="standard-pallets-group" style="display: none;">
                     <div class="pallet-type-selector">
                         <div class="pallet-type-btn active" data-type="euro">
                             <span>Euro</span>
@@ -944,23 +1008,23 @@
                     </div>
                 </div>
 
-                <div class="form-group full-width">
+                <div class="form-group">
                     <label for="vehicle-type" class="lang-de">Fahrzeugtyp</label>
                     <label for="vehicle-type" class="lang-en">Vehicle Type</label>
                     <select id="vehicle-type" name="vehicle-type">
                         <option value="auto">🔄 Auto-Auswahl</option>
-                        <option value="bus">Transporter (bis 1.100 kg)</option>
+                        <option value="bus">3,5-Tonner (bis 1.100 kg)</option>
                         <option value="7.5t">7,5-Tonner (bis 2.350 kg)</option>
                         <option value="12t">12-Tonner (bis 7.000 kg)</option>
                         <option value="18t">18-Tonner (bis 12.000 kg)</option>
                         <option value="sattelzug">Sattelzug (bis 24.000 kg)</option>
-                        <option value="mega">Mega Trailer (bis 24.000 kg)</option>
+                        <option value="mega">Sattelzug Megatrailer (bis 24.000 kg)</option>
                         <option value="consultation">Beratung erforderlich</option>
                     </select>
                     <div class="auto-selection-info" id="autoSelectionInfo"></div>
                 </div>
                 
-                <div class="form-group full-width">
+                <div class="form-group">
                     <button type="submit" class="submit-btn lang-de">Preis berechnen</button>
                     <button type="submit" class="submit-btn lang-en">Calculate Price</button>
                 </div>
@@ -1026,14 +1090,14 @@
             </div>
             
             <div class="vehicle-grid">
-                <!-- Transporter -->
+                <!-- 3,5-Tonner -->
                 <div class="vehicle-card">
                     <div class="vehicle-image">
-                        <img src="https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="Transporter">
+                        <img src="https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="3,5-Tonner">
                         <div class="vehicle-badge">Kleintransport</div>
                     </div>
                     <div class="vehicle-content">
-                        <h3>Transporter (bis 3,5t)</h3>
+                        <h3>3,5-Tonner Transporter</h3>
                         <p class="vehicle-description lang-de">Ideal für kleine Sendungen, Expresslieferungen und den innerstädtischen Verkehr.</p>
                         <p class="vehicle-description lang-en">Ideal for small shipments, express deliveries and inner-city traffic.</p>
                         <div class="vehicle-specs">
@@ -1226,14 +1290,14 @@
                     </div>
                 </div>
 
-                <!-- Mega Trailer -->
+                <!-- Sattelzug Megatrailer -->
                 <div class="vehicle-card">
                     <div class="vehicle-image">
-                        <img src="https://images.unsplash.com/photo-1511914265870-304d56d86e2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="Mega Trailer">
+                        <img src="https://images.unsplash.com/photo-1511914265870-304d56d86e2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="Sattelzug Megatrailer">
                         <div class="vehicle-badge">Maximaltransport</div>
                     </div>
                     <div class="vehicle-content">
-                        <h3>Mega Trailer</h3>
+                        <h3>Sattelzug Megatrailer</h3>
                         <p class="vehicle-description lang-de">Unsere größte Transportlösung mit extra hoher Ladekapazität.</p>
                         <p class="vehicle-description lang-en">Our largest transport solution with extra high loading capacity.</p>
                         <div class="vehicle-specs">
@@ -1417,7 +1481,7 @@
         // Vehicle data
         const vehicleData = {
             'bus': { 
-                name: 'Transporter',
+                name: '3,5-Tonner',
                 basePrice: 79,
                 perKm: 0.75,
                 perKg: 0.09,
@@ -1502,7 +1566,7 @@
                 }
             },
             'mega': { 
-                name: 'Mega Trailer',
+                name: 'Sattelzug Megatrailer',
                 basePrice: 449,
                 perKm: 1.45,
                 perKg: 0.035,
