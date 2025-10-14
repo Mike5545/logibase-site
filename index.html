@@ -465,10 +465,11 @@
             cursor: pointer;
             transition: all 0.3s ease;
             margin-top: 0.8rem;
-            width: 100%;
+            width: auto;
             border-radius: 0;
             font-weight: 600;
             letter-spacing: 0.5px;
+            display: inline-block;
         }
 
         .submit-btn:hover {
@@ -567,6 +568,11 @@
             box-shadow: 0 3px 10px rgba(0,0,0,0.08);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             border: 1px solid #e0e0e0;
+            position: relative;
+            height: 400px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
         }
 
         .vehicle-card:hover {
@@ -580,19 +586,23 @@
             overflow: hidden;
             position: relative;
             background: #f8f8f8;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
-        .vehicle-image img {
+        .vehicle-image .pallet-visualization {
             width: 100%;
             height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s ease;
-            filter: grayscale(100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
         }
 
-        .vehicle-card:hover .vehicle-image img {
-            transform: scale(1.05);
-            filter: grayscale(0%);
+        .pallet-visualization svg {
+            width: 80%;
+            height: 80%;
         }
 
         .vehicle-badge {
@@ -610,6 +620,10 @@
 
         .vehicle-content {
             padding: 1.5rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
         }
 
         .vehicle-content h3 {
@@ -657,12 +671,6 @@
             margin-top: 1rem;
             padding-top: 1rem;
             border-top: 1px solid #e0e0e0;
-        }
-
-        .price-tag {
-            font-size: 1.3rem;
-            font-weight: 700;
-            color: #000000;
         }
 
         .select-btn {
@@ -1092,7 +1100,9 @@
                 <!-- 3,5-Tonner -->
                 <div class="vehicle-card">
                     <div class="vehicle-image">
-                        <img src="https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="3,5-Tonner">
+                        <div class="pallet-visualization" id="visualization-bus">
+                            <!-- SVG visualization will be inserted here -->
+                        </div>
                         <div class="vehicle-badge">Kleintransport</div>
                     </div>
                     <div class="vehicle-content">
@@ -1101,9 +1111,9 @@
                         <p class="vehicle-description lang-en">Ideal for small shipments, express deliveries and inner-city traffic.</p>
                         <div class="vehicle-specs">
                             <div class="spec-item">
-                                <span class="spec-label lang-de">Ladefläche</span>
-                                <span class="spec-label lang-en">Loading area</span>
-                                <span class="spec-value">8 m³</span>
+                                <span class="spec-label lang-de">Lademeter</span>
+                                <span class="spec-label lang-en">Loading meters</span>
+                                <span class="spec-value">3,2 - 4,5 m</span>
                             </div>
                             <div class="spec-item">
                                 <span class="spec-label lang-de">Max. Gewicht</span>
@@ -1122,7 +1132,6 @@
                             </div>
                         </div>
                         <div class="vehicle-price">
-                            <span class="price-tag">Ab 79€</span>
                             <button class="select-btn lang-de">Auswählen</button>
                             <button class="select-btn lang-en">Select</button>
                         </div>
@@ -1132,7 +1141,9 @@
                 <!-- 7,5-Tonner -->
                 <div class="vehicle-card">
                     <div class="vehicle-image">
-                        <img src="https://images.unsplash.com/photo-1580522154071-c6ca47a859ad?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="7,5-Tonner">
+                        <div class="pallet-visualization" id="visualization-7.5t">
+                            <!-- SVG visualization will be inserted here -->
+                        </div>
                         <div class="vehicle-badge">Mitteltransport</div>
                     </div>
                     <div class="vehicle-content">
@@ -1141,9 +1152,9 @@
                         <p class="vehicle-description lang-en">Perfect for medium transports with good maneuverability and easy parking.</p>
                         <div class="vehicle-specs">
                             <div class="spec-item">
-                                <span class="spec-label lang-de">Ladefläche</span>
-                                <span class="spec-label lang-en">Loading area</span>
-                                <span class="spec-value">30 m³</span>
+                                <span class="spec-label lang-de">Lademeter</span>
+                                <span class="spec-label lang-en">Loading meters</span>
+                                <span class="spec-value">6 m</span>
                             </div>
                             <div class="spec-item">
                                 <span class="spec-label lang-de">Max. Gewicht</span>
@@ -1153,7 +1164,7 @@
                             <div class="spec-item">
                                 <span class="spec-label lang-de">Europaletten</span>
                                 <span class="spec-label lang-en">Euro pallets</span>
-                                <span class="spec-value">bis zu 10</span>
+                                <span class="spec-value">10-12</span>
                             </div>
                             <div class="spec-item">
                                 <span class="spec-label lang-de">Ladehöhe</span>
@@ -1162,7 +1173,6 @@
                             </div>
                         </div>
                         <div class="vehicle-price">
-                            <span class="price-tag">Ab 129€</span>
                             <button class="select-btn lang-de">Auswählen</button>
                             <button class="select-btn lang-en">Select</button>
                         </div>
@@ -1172,7 +1182,9 @@
                 <!-- 12-Tonner -->
                 <div class="vehicle-card">
                     <div class="vehicle-image">
-                        <img src="https://images.unsplash.com/photo-1557220285-1a0c0b5c32c9?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="12-Tonner">
+                        <div class="pallet-visualization" id="visualization-12t">
+                            <!-- SVG visualization will be inserted here -->
+                        </div>
                         <div class="vehicle-badge">Großtransport</div>
                     </div>
                     <div class="vehicle-content">
@@ -1181,9 +1193,9 @@
                         <p class="vehicle-description lang-en">For extensive transports with higher loading capacity and range.</p>
                         <div class="vehicle-specs">
                             <div class="spec-item">
-                                <span class="spec-label lang-de">Ladefläche</span>
-                                <span class="spec-label lang-en">Loading area</span>
-                                <span class="spec-value">45 m³</span>
+                                <span class="spec-label lang-de">Lademeter</span>
+                                <span class="spec-label lang-en">Loading meters</span>
+                                <span class="spec-value">7,3 - 7,4 m</span>
                             </div>
                             <div class="spec-item">
                                 <span class="spec-label lang-de">Max. Gewicht</span>
@@ -1193,7 +1205,7 @@
                             <div class="spec-item">
                                 <span class="spec-label lang-de">Europaletten</span>
                                 <span class="spec-label lang-en">Euro pallets</span>
-                                <span class="spec-value">bis zu 14</span>
+                                <span class="spec-value">bis zu 17</span>
                             </div>
                             <div class="spec-item">
                                 <span class="spec-label lang-de">Ladehöhe</span>
@@ -1202,7 +1214,6 @@
                             </div>
                         </div>
                         <div class="vehicle-price">
-                            <span class="price-tag">Ab 189€</span>
                             <button class="select-btn lang-de">Auswählen</button>
                             <button class="select-btn lang-en">Select</button>
                         </div>
@@ -1212,7 +1223,9 @@
                 <!-- 18-Tonner -->
                 <div class="vehicle-card">
                     <div class="vehicle-image">
-                        <img src="https://images.unsplash.com/photo-1545173168-9f1947eebb7f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="18-Tonner">
+                        <div class="pallet-visualization" id="visualization-18t">
+                            <!-- SVG visualization will be inserted here -->
+                        </div>
                         <div class="vehicle-badge">Schwerlast</div>
                     </div>
                     <div class="vehicle-content">
@@ -1221,9 +1234,9 @@
                         <p class="vehicle-description lang-en">For heavy and voluminous goods with excellent loading capacity.</p>
                         <div class="vehicle-specs">
                             <div class="spec-item">
-                                <span class="spec-label lang-de">Ladefläche</span>
-                                <span class="spec-label lang-en">Loading area</span>
-                                <span class="spec-value">60 m³</span>
+                                <span class="spec-label lang-de">Lademeter</span>
+                                <span class="spec-label lang-en">Loading meters</span>
+                                <span class="spec-value">9,6 m</span>
                             </div>
                             <div class="spec-item">
                                 <span class="spec-label lang-de">Max. Gewicht</span>
@@ -1242,7 +1255,6 @@
                             </div>
                         </div>
                         <div class="vehicle-price">
-                            <span class="price-tag">Ab 249€</span>
                             <button class="select-btn lang-de">Auswählen</button>
                             <button class="select-btn lang-en">Select</button>
                         </div>
@@ -1252,7 +1264,9 @@
                 <!-- Sattelzug -->
                 <div class="vehicle-card">
                     <div class="vehicle-image">
-                        <img src="https://images.unsplash.com/photo-1593941707882-a5bba5331f5a?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="Sattelzug">
+                        <div class="pallet-visualization" id="visualization-sattelzug">
+                            <!-- SVG visualization will be inserted here -->
+                        </div>
                         <div class="vehicle-badge">Schwertransport</div>
                     </div>
                     <div class="vehicle-content">
@@ -1261,9 +1275,9 @@
                         <p class="vehicle-description lang-en">Maximum capacity for large transport volumes and heavy goods.</p>
                         <div class="vehicle-specs">
                             <div class="spec-item">
-                                <span class="spec-label lang-de">Ladefläche</span>
-                                <span class="spec-label lang-en">Loading area</span>
-                                <span class="spec-value">90 m³</span>
+                                <span class="spec-label lang-de">Lademeter</span>
+                                <span class="spec-label lang-en">Loading meters</span>
+                                <span class="spec-value">13,6 m</span>
                             </div>
                             <div class="spec-item">
                                 <span class="spec-label lang-de">Max. Gewicht</span>
@@ -1282,7 +1296,6 @@
                             </div>
                         </div>
                         <div class="vehicle-price">
-                            <span class="price-tag">Ab 349€</span>
                             <button class="select-btn lang-de">Auswählen</button>
                             <button class="select-btn lang-en">Select</button>
                         </div>
@@ -1292,7 +1305,9 @@
                 <!-- Sattelzug Megatrailer -->
                 <div class="vehicle-card">
                     <div class="vehicle-image">
-                        <img src="https://images.unsplash.com/photo-1511914265870-304d56d86e2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="Sattelzug Megatrailer">
+                        <div class="pallet-visualization" id="visualization-mega">
+                            <!-- SVG visualization will be inserted here -->
+                        </div>
                         <div class="vehicle-badge">Maximaltransport</div>
                     </div>
                     <div class="vehicle-content">
@@ -1301,9 +1316,9 @@
                         <p class="vehicle-description lang-en">Our largest transport solution with extra high loading capacity.</p>
                         <div class="vehicle-specs">
                             <div class="spec-item">
-                                <span class="spec-label lang-de">Ladefläche</span>
-                                <span class="spec-label lang-en">Loading area</span>
-                                <span class="spec-value">100 m³</span>
+                                <span class="spec-label lang-de">Lademeter</span>
+                                <span class="spec-label lang-en">Loading meters</span>
+                                <span class="spec-value">13,6 m</span>
                             </div>
                             <div class="spec-item">
                                 <span class="spec-label lang-de">Max. Gewicht</span>
@@ -1322,7 +1337,6 @@
                             </div>
                         </div>
                         <div class="vehicle-price">
-                            <span class="price-tag">Ab 449€</span>
                             <button class="select-btn lang-de">Auswählen</button>
                             <button class="select-btn lang-en">Select</button>
                         </div>
@@ -1831,6 +1845,90 @@
             });
         });
 
+        // Create pallet visualization SVGs
+        function createPalletVisualization(vehicleType, containerId) {
+            const container = document.getElementById(containerId);
+            const vehicle = vehicleData[vehicleType];
+            
+            if (!vehicle) return;
+            
+            const svgNS = "http://www.w3.org/2000/svg";
+            const svg = document.createElementNS(svgNS, "svg");
+            svg.setAttribute("viewBox", "0 0 200 120");
+            svg.setAttribute("preserveAspectRatio", "xMidYMid meet");
+            
+            // Truck outline
+            const truckRect = document.createElementNS(svgNS, "rect");
+            truckRect.setAttribute("x", "10");
+            truckRect.setAttribute("y", "10");
+            truckRect.setAttribute("width", "180");
+            truckRect.setAttribute("height", "100");
+            truckRect.setAttribute("fill", "#f5f5f5");
+            truckRect.setAttribute("stroke", "#333");
+            truckRect.setAttribute("stroke-width", "1");
+            svg.appendChild(truckRect);
+            
+            // Calculate pallet positions
+            const palletWidth = 24; // Euro pallet width in viewBox units
+            const palletHeight = 16; // Euro pallet height in viewBox units
+            const marginX = 15;
+            const marginY = 15;
+            
+            const maxCols = vehicle.palletConfig.euro.cols;
+            const maxRows = vehicle.palletConfig.euro.rows;
+            
+            // Draw pallets
+            for (let row = 0; row < maxRows; row++) {
+                for (let col = 0; col < maxCols; col++) {
+                    const x = marginX + col * (palletWidth + 2);
+                    const y = marginY + row * (palletHeight + 2);
+                    
+                    // Only draw if it fits
+                    if (x + palletWidth <= 190 && y + palletHeight <= 110) {
+                        const palletRect = document.createElementNS(svgNS, "rect");
+                        palletRect.setAttribute("x", x);
+                        palletRect.setAttribute("y", y);
+                        palletRect.setAttribute("width", palletWidth);
+                        palletRect.setAttribute("height", palletHeight);
+                        palletRect.setAttribute("fill", "#000");
+                        palletRect.setAttribute("opacity", "0.7");
+                        svg.appendChild(palletRect);
+                        
+                        // Add pallet lines for detail
+                        const line1 = document.createElementNS(svgNS, "line");
+                        line1.setAttribute("x1", x + 5);
+                        line1.setAttribute("y1", y + 4);
+                        line1.setAttribute("x2", x + palletWidth - 5);
+                        line1.setAttribute("y2", y + 4);
+                        line1.setAttribute("stroke", "#fff");
+                        line1.setAttribute("stroke-width", "0.5");
+                        svg.appendChild(line1);
+                        
+                        const line2 = document.createElementNS(svgNS, "line");
+                        line2.setAttribute("x1", x + 5);
+                        line2.setAttribute("y1", y + palletHeight - 4);
+                        line2.setAttribute("x2", x + palletWidth - 5);
+                        line2.setAttribute("y2", y + palletHeight - 4);
+                        line2.setAttribute("stroke", "#fff");
+                        line2.setAttribute("stroke-width", "0.5");
+                        svg.appendChild(line2);
+                    }
+                }
+            }
+            
+            // Add capacity text
+            const text = document.createElementNS(svgNS, "text");
+            text.setAttribute("x", "100");
+            text.setAttribute("y", "105");
+            text.setAttribute("text-anchor", "middle");
+            text.setAttribute("font-size", "8");
+            text.setAttribute("fill", "#333");
+            text.textContent = `${maxRows * maxCols} Europaletten`;
+            svg.appendChild(text);
+            
+            container.appendChild(svg);
+        }
+
         // Initialize the page
         updateAutoVehicleSelection();
         
@@ -1841,6 +1939,14 @@
         
         document.getElementById('loading-date').value = loadingDate.toISOString().slice(0, 16);
         document.getElementById('unloading-date').value = unloadingDate.toISOString().slice(0, 16);
+        
+        // Create pallet visualizations for all vehicles
+        createPalletVisualization('bus', 'visualization-bus');
+        createPalletVisualization('7.5t', 'visualization-7.5t');
+        createPalletVisualization('12t', 'visualization-12t');
+        createPalletVisualization('18t', 'visualization-18t');
+        createPalletVisualization('sattelzug', 'visualization-sattelzug');
+        createPalletVisualization('mega', 'visualization-mega');
     </script>
 </body>
 </html>
