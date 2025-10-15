@@ -1,0 +1,769 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LogiBase Admin</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #000000;
+            --primary-light: #333333;
+            --secondary: #666666;
+            --light: #ffffff;
+            --dark: #111111;
+            --gray-light: #f8f9fa;
+            --gray: #e9ecef;
+            --gray-dark: #6c757d;
+            --sidebar-width: 240px;
+            --header-height: 60px;
+            --transition: all 0.2s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', system-ui, sans-serif;
+        }
+
+        body {
+            background-color: var(--gray-light);
+            color: var(--dark);
+            line-height: 1.5;
+        }
+
+        .admin-container {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: var(--sidebar-width);
+            background: var(--light);
+            transition: var(--transition);
+            position: fixed;
+            height: 100vh;
+            overflow-y: auto;
+            z-index: 100;
+            border-right: 1px solid var(--gray);
+        }
+
+        .sidebar-header {
+            padding: 1.2rem;
+            border-bottom: 1px solid var(--gray);
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            height: var(--header-height);
+        }
+
+        .logo {
+            width: 36px;
+            height: 36px;
+            background: var(--primary);
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: var(--light);
+            font-size: 0.9rem;
+        }
+
+        .logo-text {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .sidebar-menu {
+            padding: 1rem 0;
+        }
+
+        .menu-item {
+            padding: 0.8rem 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            color: var(--secondary);
+            text-decoration: none;
+            transition: var(--transition);
+            font-size: 0.9rem;
+        }
+
+        .menu-item:hover, .menu-item.active {
+            background: var(--gray-light);
+            color: var(--primary);
+        }
+
+        .menu-item i {
+            width: 18px;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+
+        /* Main Content */
+        .main-content {
+            flex: 1;
+            margin-left: var(--sidebar-width);
+            transition: var(--transition);
+        }
+
+        /* Header */
+        .header {
+            height: var(--header-height);
+            background: var(--light);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 1.5rem;
+            position: sticky;
+            top: 0;
+            z-index: 99;
+            border-bottom: 1px solid var(--gray);
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.1rem;
+            color: var(--dark);
+            cursor: pointer;
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+        }
+
+        .user-avatar {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--light);
+            font-weight: 600;
+            font-size: 0.8rem;
+        }
+
+        /* Content Area */
+        .content {
+            padding: 1.5rem;
+        }
+
+        .page-title {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        /* Stats Grid */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .stat-card {
+            background: var(--light);
+            border-radius: 6px;
+            padding: 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            transition: var(--transition);
+            border: 1px solid var(--gray);
+        }
+
+        .stat-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            color: var(--light);
+            background: var(--primary);
+        }
+
+        .stat-info {
+            flex: 1;
+        }
+
+        .stat-value {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            line-height: 1.2;
+        }
+
+        .stat-label {
+            color: var(--secondary);
+            font-size: 0.8rem;
+        }
+
+        /* Tables */
+        .table-container {
+            background: var(--light);
+            border-radius: 6px;
+            overflow: hidden;
+            margin-bottom: 1.5rem;
+            border: 1px solid var(--gray);
+        }
+
+        .table-header {
+            padding: 1.2rem;
+            border-bottom: 1px solid var(--gray);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .table-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        .table-actions {
+            display: flex;
+            gap: 0.6rem;
+        }
+
+        .btn {
+            padding: 0.5rem 1rem;
+            border: 1px solid var(--gray);
+            border-radius: 4px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            font-size: 0.8rem;
+            background: var(--light);
+            color: var(--dark);
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: var(--light);
+            border-color: var(--primary);
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-light);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 0.8rem 1rem;
+            text-align: left;
+            border-bottom: 1px solid var(--gray);
+            font-size: 0.85rem;
+        }
+
+        th {
+            background: var(--gray-light);
+            font-weight: 600;
+            color: var(--dark);
+        }
+
+        tr:hover {
+            background: var(--gray-light);
+        }
+
+        .status-badge {
+            padding: 0.2rem 0.6rem;
+            border-radius: 3px;
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+
+        .status-pending {
+            background: #fff3cd;
+            color: #856404;
+        }
+
+        .status-confirmed {
+            background: #d1ecf1;
+            color: #0c5460;
+        }
+
+        .status-in-progress {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .status-completed {
+            background: #e2e3e5;
+            color: #383d41;
+        }
+
+        .status-cancelled {
+            background: #f8d7da;
+            color: #721c24;
+        }
+
+        /* Quick Actions */
+        .quick-actions {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .action-card {
+            background: var(--light);
+            border-radius: 6px;
+            padding: 1rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            transition: var(--transition);
+            border: 1px solid var(--gray);
+            cursor: pointer;
+        }
+
+        .action-card:hover {
+            border-color: var(--primary);
+        }
+
+        .action-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 6px;
+            background: var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--light);
+            font-size: 1rem;
+            margin-bottom: 0.6rem;
+        }
+
+        .action-title {
+            font-weight: 600;
+            color: var(--primary);
+            font-size: 0.85rem;
+        }
+
+        /* Charts */
+        .charts-container {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .chart-card {
+            background: var(--light);
+            border-radius: 6px;
+            padding: 1.2rem;
+            border: 1px solid var(--gray);
+        }
+
+        .chart-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .chart-title {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        .chart-placeholder {
+            height: 200px;
+            background: var(--gray-light);
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--gray-dark);
+            font-size: 0.8rem;
+        }
+
+        /* Recent Activity */
+        .activity-list {
+            background: var(--light);
+            border-radius: 6px;
+            padding: 1.2rem;
+            border: 1px solid var(--gray);
+        }
+
+        .activity-item {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            padding: 0.6rem 0;
+            border-bottom: 1px solid var(--gray);
+        }
+
+        .activity-item:last-child {
+            border-bottom: none;
+        }
+
+        .activity-icon {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: var(--gray-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--dark);
+            font-size: 0.8rem;
+        }
+
+        .activity-content {
+            flex: 1;
+        }
+
+        .activity-text {
+            margin-bottom: 0.2rem;
+            font-size: 0.85rem;
+        }
+
+        .activity-time {
+            font-size: 0.75rem;
+            color: var(--gray-dark);
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .charts-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .sidebar {
+                transform: translateX(-100%);
+            }
+            
+            .sidebar.active {
+                transform: translateX(0);
+            }
+            
+            .main-content {
+                margin-left: 0;
+            }
+            
+            .menu-toggle {
+                display: block;
+            }
+            
+            .table-container {
+                overflow-x: auto;
+            }
+            
+            table {
+                min-width: 700px;
+            }
+            
+            .quick-actions {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .quick-actions {
+                grid-template-columns: 1fr;
+            }
+            
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="admin-container">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">LB</div>
+                <div class="logo-text">LogiBase</div>
+            </div>
+            <div class="sidebar-menu">
+                <a href="#" class="menu-item active">
+                    <i class="fas fa-tachometer-alt"></i>
+                    <span>Dashboard</span>
+                </a>
+                <a href="#" class="menu-item">
+                    <i class="fas fa-shipping-fast"></i>
+                    <span>Aufträge</span>
+                </a>
+                <a href="#" class="menu-item">
+                    <i class="fas fa-users"></i>
+                    <span>Kunden</span>
+                </a>
+                <a href="#" class="menu-item">
+                    <i class="fas fa-truck"></i>
+                    <span>Fahrzeuge</span>
+                </a>
+                <a href="#" class="menu-item">
+                    <i class="fas fa-file-invoice"></i>
+                    <span>Rechnungen</span>
+                </a>
+                <a href="#" class="menu-item">
+                    <i class="fas fa-cog"></i>
+                    <span>Einstellungen</span>
+                </a>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Header -->
+            <div class="header">
+                <div class="header-left">
+                    <button class="menu-toggle">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <div class="page-info">
+                        <h1 style="font-size: 1.2rem;">Dashboard</h1>
+                    </div>
+                </div>
+                <div class="header-right">
+                    <div class="user-info">
+                        <div class="user-avatar">MA</div>
+                        <div style="font-size: 0.85rem;">
+                            <div style="font-weight: 600;">Max Admin</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Content -->
+            <div class="content">
+                <!-- Quick Actions -->
+                <div class="quick-actions">
+                    <div class="action-card">
+                        <div class="action-icon">
+                            <i class="fas fa-plus"></i>
+                        </div>
+                        <div class="action-title">Neuer Auftrag</div>
+                    </div>
+                    <div class="action-card">
+                        <div class="action-icon">
+                            <i class="fas fa-file-invoice"></i>
+                        </div>
+                        <div class="action-title">Rechnung</div>
+                    </div>
+                    <div class="action-card">
+                        <div class="action-icon">
+                            <i class="fas fa-truck"></i>
+                        </div>
+                        <div class="action-title">Fahrzeug</div>
+                    </div>
+                    <div class="action-card">
+                        <div class="action-icon">
+                            <i class="fas fa-route"></i>
+                        </div>
+                        <div class="action-title">Route</div>
+                    </div>
+                </div>
+
+                <!-- Stats Grid -->
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-shipping-fast"></i>
+                        </div>
+                        <div class="stat-info">
+                            <div class="stat-value">24</div>
+                            <div class="stat-label">Neue Aufträge</div>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-truck-loading"></i>
+                        </div>
+                        <div class="stat-info">
+                            <div class="stat-value">18</div>
+                            <div class="stat-label">Aktiv</div>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                        <div class="stat-info">
+                            <div class="stat-value">42</div>
+                            <div class="stat-label">Abgeschlossen</div>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-euro-sign"></i>
+                        </div>
+                        <div class="stat-info">
+                            <div class="stat-value">€8,450</div>
+                            <div class="stat-label">Umsatz</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Charts -->
+                <div class="charts-container">
+                    <div class="chart-card">
+                        <div class="chart-header">
+                            <div class="chart-title">Auftragsübersicht</div>
+                        </div>
+                        <div class="chart-placeholder">
+                            Auftragsstatistik Diagramm
+                        </div>
+                    </div>
+                    <div class="chart-card">
+                        <div class="chart-header">
+                            <div class="chart-title">Fahrzeugauslastung</div>
+                        </div>
+                        <div class="chart-placeholder">
+                            Auslastung Diagramm
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Recent Orders -->
+                <div class="table-container">
+                    <div class="table-header">
+                        <div class="table-title">Aktuelle Aufträge</div>
+                        <div class="table-actions">
+                            <button class="btn btn-primary">
+                                <i class="fas fa-plus"></i>
+                                Neu
+                            </button>
+                        </div>
+                    </div>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Kunde</th>
+                                <th>Route</th>
+                                <th>Fahrzeug</th>
+                                <th>Status</th>
+                                <th>Preis</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>#4821</td>
+                                <td>Müller GmbH</td>
+                                <td>Berlin → München</td>
+                                <td>12-Tonner</td>
+                                <td><span class="status-badge status-in-progress">Unterwegs</span></td>
+                                <td>€850</td>
+                            </tr>
+                            <tr>
+                                <td>#4820</td>
+                                <td>Schmidt & Co.</td>
+                                <td>Hamburg → Köln</td>
+                                <td>7,5-Tonner</td>
+                                <td><span class="status-badge status-confirmed">Bestätigt</span></td>
+                                <td>€520</td>
+                            </tr>
+                            <tr>
+                                <td>#4819</td>
+                                <td>Weber Logistik</td>
+                                <td>Frankfurt → Stuttgart</td>
+                                <td>Sattelzug</td>
+                                <td><span class="status-badge status-pending">In Bearbeitung</span></td>
+                                <td>€1,250</td>
+                            </tr>
+                            <tr>
+                                <td>#4818</td>
+                                <td>Fischer Transport</td>
+                                <td>Dresden → Leipzig</td>
+                                <td>3,5-Tonner</td>
+                                <td><span class="status-badge status-completed">Abgeschlossen</span></td>
+                                <td>€320</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Recent Activity -->
+                <div class="activity-list">
+                    <div style="font-weight: 600; margin-bottom: 0.8rem; color: var(--primary);">Letzte Aktivitäten</div>
+                    <div class="activity-item">
+                        <div class="activity-icon">
+                            <i class="fas fa-shipping-fast"></i>
+                        </div>
+                        <div class="activity-content">
+                            <div class="activity-text">Neuer Auftrag #4821 von Müller GmbH</div>
+                            <div class="activity-time">Vor 15 Minuten</div>
+                        </div>
+                    </div>
+                    <div class="activity-item">
+                        <div class="activity-icon">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                        <div class="activity-content">
+                            <div class="activity-text">Auftrag #4818 abgeschlossen</div>
+                            <div class="activity-time">Vor 2 Stunden</div>
+                        </div>
+                    </div>
+                    <div class="activity-item">
+                        <div class="activity-icon">
+                            <i class="fas fa-file-invoice"></i>
+                        </div>
+                        <div class="activity-content">
+                            <div class="activity-text">Rechnung für #4817 erstellt</div>
+                            <div class="activity-time">Gestern, 16:30</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Toggle sidebar on mobile
+        document.querySelector('.menu-toggle').addEventListener('click', function() {
+            document.querySelector('.sidebar').classList.toggle('active');
+        });
+
+        // Quick action cards
+        const actionCards = document.querySelectorAll('.action-card');
+        actionCards.forEach(card => {
+            card.addEventListener('click', function() {
+                const title = this.querySelector('.action-title').textContent;
+                alert(`Aktion "${title}" wurde ausgewählt.`);
+            });
+        });
+    </script>
+</body>
+</html>
