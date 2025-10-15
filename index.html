@@ -144,7 +144,7 @@
             padding: 1rem 2rem;
             background: var(--light);
             border-bottom: 1px solid var(--border);
-            display: block;
+            display: none;
         }
 
         .login-container {
@@ -414,7 +414,7 @@
         }
 
         .pallet-type-btn {
-            padding: 0.5rem;
+            padding: 0.7rem;
             border: 2px solid var(--border);
             background: var(--white);
             cursor: pointer;
@@ -422,7 +422,7 @@
             text-align: center;
             font-weight: 500;
             border-radius: 6px;
-            font-size: 0.7rem;
+            font-size: 0.75rem;
             color: var(--secondary);
         }
 
@@ -948,7 +948,7 @@
             padding: 2rem;
             border-radius: 12px;
             width: 90%;
-            max-width: 500px;
+            max-width: 450px;
             box-shadow: 0 20px 40px rgba(0,0,0,0.3);
             border: 2px solid var(--primary);
             position: relative;
@@ -1525,7 +1525,7 @@
 
     <!-- Vehicle Selection Modal -->
     <div class="modal-overlay" id="vehicleModalOverlay">
-        <div class="modal" style="max-width: 500px;">
+        <div class="modal" style="max-width: 450px;">
             <button class="modal-close-btn" onclick="closeVehicleModal()">×</button>
             
             <h3 class="lang-de">Transportanfrage für <span id="selectedVehicleName"></span></h3>
@@ -1729,7 +1729,7 @@
                             <div class="spec-item">
                                 <span class="spec-label lang-de">Europaletten</span>
                                 <span class="spec-label lang-en">Euro pallets</span>
-                                <span class="spec-value">bis zu 5</span>
+                                <span class="spec-value">bis zu 4</span>
                             </div>
                             <div class="spec-item">
                                 <span class="spec-label lang-de">Ladehöhe</span>
@@ -1768,7 +1768,7 @@
                             <div class="spec-item">
                                 <span class="spec-label lang-de">Europaletten</span>
                                 <span class="spec-label lang-en">Euro pallets</span>
-                                <span class="spec-value">bis zu 15</span>
+                                <span class="spec-value">10-12</span>
                             </div>
                             <div class="spec-item">
                                 <span class="spec-label lang-de">Ladehöhe</span>
@@ -1797,7 +1797,7 @@
                             <div class="spec-item">
                                 <span class="spec-label lang-de">Lademeter</span>
                                 <span class="spec-label lang-en">Loading meters</span>
-                                <span class="spec-value">7,2 m</span>
+                                <span class="spec-value">7,3 - 7,4 m</span>
                             </div>
                             <div class="spec-item">
                                 <span class="spec-label lang-de">Max. Gewicht</span>
@@ -1807,7 +1807,7 @@
                             <div class="spec-item">
                                 <span class="spec-label lang-de">Europaletten</span>
                                 <span class="spec-label lang-en">Euro pallets</span>
-                                <span class="spec-value">bis zu 18</span>
+                                <span class="spec-value">bis zu 17</span>
                             </div>
                             <div class="spec-item">
                                 <span class="spec-label lang-de">Ladehöhe</span>
@@ -2144,13 +2144,13 @@
                 perKg: 0.09,
                 perPallet: 20,
                 maxWeight: 1100,
-                maxPallets: 5,
+                maxPallets: 4,
                 internalLength: 320,
                 internalWidth: 125,
                 internalHeight: 160,
                 maxLevels: 1,
                 palletConfig: {
-                    euro: { rows: 2, cols: 2, extra: 1 },
+                    euro: { rows: 2, cols: 2 },
                     dusseldorf: { rows: 1, cols: 2 }
                 }
             },
@@ -2161,13 +2161,13 @@
                 perKg: 0.07,
                 perPallet: 16,
                 maxWeight: 2350,
-                maxPallets: 15,
+                maxPallets: 10,
                 internalLength: 600,
                 internalWidth: 240,
                 internalHeight: 240,
                 maxLevels: 2,
                 palletConfig: {
-                    euro: { rows: 3, cols: 5 },
+                    euro: { rows: 2, cols: 5 },
                     dusseldorf: { rows: 2, cols: 4 }
                 }
             },
@@ -2178,13 +2178,13 @@
                 perKg: 0.06,
                 perPallet: 14,
                 maxWeight: 7000,
-                maxPallets: 18,
-                internalLength: 720,
+                maxPallets: 14,
+                internalLength: 680,
                 internalWidth: 230,
                 internalHeight: 250,
                 maxLevels: 2,
                 palletConfig: {
-                    euro: { rows: 2, cols: 9 },
+                    euro: { rows: 2, cols: 7 },
                     dusseldorf: { rows: 2, cols: 5 }
                 }
             },
@@ -2352,9 +2352,9 @@
         let vehiclePalletCounter = 0;
         
         const vehicleSpecs = {
-            '3,5-Tonner Transporter': { maxWeight: 1100, maxPallets: 5 },
-            '7,5-Tonner LKW': { maxWeight: 2350, maxPallets: 15 },
-            '12-Tonner LKW': { maxWeight: 7000, maxPallets: 18 },
+            '3,5-Tonner Transporter': { maxWeight: 1100, maxPallets: 4 },
+            '7,5-Tonner LKW': { maxWeight: 2350, maxPallets: 12 },
+            '12-Tonner LKW': { maxWeight: 7000, maxPallets: 17 },
             '18-Tonner LKW': { maxWeight: 12000, maxPallets: 18 },
             'Sattelzug': { maxWeight: 24000, maxPallets: 33 },
             'Sattelzug Megatrailer': { maxWeight: 24000, maxPallets: 33 }
@@ -2588,226 +2588,490 @@
         }
 
         // =============================================
-        // FORM VALIDATION
+        // FORM SUBMISSION HANDLERS
         // =============================================
-        function validateForm() {
-            let isValid = true;
+        document.getElementById('transportCalculator').addEventListener('submit', async function(e) {
+            e.preventDefault();
             
-            // Validate from location
-            const fromLocation = document.getElementById('from-location');
-            const fromLocationError = document.getElementById('from-location-error');
-            if (!fromLocation.value.trim()) {
-                fromLocationError.textContent = 'Bitte geben Sie einen Abholort an';
-                fromLocationError.className = 'validation-message error';
-                isValid = false;
-            } else {
-                fromLocationError.className = 'validation-message';
-            }
+            const submitBtn = this.querySelector('.submit-btn');
+            const submitText = submitBtn.querySelector('.submit-text');
+            const originalText = submitText.textContent;
             
-            // Validate to location
-            const toLocation = document.getElementById('to-location');
-            const toLocationError = document.getElementById('to-location-error');
-            if (!toLocation.value.trim()) {
-                toLocationError.textContent = 'Bitte geben Sie einen Lieferort an';
-                toLocationError.className = 'validation-message error';
-                isValid = false;
-            } else {
-                toLocationError.className = 'validation-message';
-            }
+            // Show loading state
+            submitText.innerHTML = '<span class="loading-spinner"></span> Berechne...';
+            submitBtn.disabled = true;
             
-            // Validate dates
-            const loadingDate = document.getElementById('loading-date');
-            const unloadingDate = document.getElementById('unloading-date');
-            
-            if (loadingDate.value && unloadingDate.value) {
-                const loadTime = new Date(loadingDate.value);
-                const unloadTime = new Date(unloadingDate.value);
+            try {
+                await new Promise(resolve => setTimeout(resolve, 800));
                 
-                if (unloadTime <= loadTime) {
-                    alert('Das Entladedatum muss nach dem Beladedatum liegen');
-                    isValid = false;
+                const formData = new FormData(this);
+                const result = calculatePrice(formData);
+                
+                if (result.error) {
+                    document.getElementById('priceEstimate').textContent = 'Fehler';
+                    document.getElementById('totalWeight').innerHTML = 
+                        `<em style="color: #d32f2f;">${result.error}</em>`;
+                } else if (result.needsConsultation) {
+                    document.getElementById('priceEstimate').textContent = 'Beratung erforderlich';
+                    document.getElementById('totalWeight').innerHTML = 
+                        '<em>Bitte kontaktieren Sie uns für ein individuelles Angebot</em>';
+                } else {
+                    document.getElementById('priceEstimate').textContent = `${result.price} €`;
+                    document.getElementById('totalWeight').textContent = `Gesamtgewicht: ${result.weight} kg`;
+                    
+                    const instantResult = calculateInstantVehicleSelection();
+                    if (instantResult.vehicle) {
+                        document.getElementById('totalWeight').innerHTML += 
+                            `<br><small>Empfohlenes Fahrzeug: <strong>${instantResult.vehicle.name}</strong></small>`;
+                    }
                 }
+                
+                document.getElementById('calculatorResult').style.display = 'block';
+                document.getElementById('calculatorResult').scrollIntoView({ 
+                    behavior: 'smooth',
+                    block: 'center'
+                });
+                
+            } catch (error) {
+                console.error('Unerwarteter Fehler:', error);
+                document.getElementById('priceEstimate').textContent = 'Systemfehler';
+                document.getElementById('totalWeight').innerHTML = 
+                    '<em style="color: #d32f2f;">Bitte versuchen Sie es später erneut</em>';
+            } finally {
+                // Reset button state
+                submitText.textContent = originalText;
+                submitBtn.disabled = false;
+            }
+        });
+
+        document.getElementById('vehicleModalForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(this);
+            const email = document.getElementById('vehicle-client-email').value;
+            const name = document.getElementById('vehicle-client-name').value;
+            const phone = document.getElementById('vehicle-client-phone').value;
+            
+            let cargoInfo = '';
+            const cargoType = document.querySelector('#vehicleModalForm .cargo-type-btn.active').getAttribute('data-type');
+            
+            if (cargoType === 'individual') {
+                const palletItems = document.querySelectorAll('#vehicle-individual-pallets-container .pallet-item');
+                cargoInfo = `Individuelle Paletten: ${palletItems.length} Stück`;
+                
+                if (document.getElementById('vehicle-stapelbar').checked) {
+                    const levels = document.getElementById('vehicle-level-count').value;
+                    const perLevel = document.getElementById('vehicle-pallets-per-level').value;
+                    cargoInfo += ` (gestapelt: ${levels} Ebenen × ${perLevel} Paletten)`;
+                }
+            } else {
+                const palletCount = document.getElementById('vehicle-pallet-count').value;
+                const palletWeight = document.getElementById('vehicle-pallet-weight').value;
+                cargoInfo = `Standard Paletten: ${palletCount} Stück, ${palletWeight} kg pro Palette`;
             }
             
-            return isValid;
-        }
+            const requestData = {
+                vehicle: selectedVehicle,
+                from: document.getElementById('vehicle-from-location').value,
+                to: document.getElementById('vehicle-to-location').value,
+                loadingDate: document.getElementById('vehicle-loading-date').value,
+                unloadingDate: document.getElementById('vehicle-unloading-date').value,
+                cargo: cargoInfo,
+                additionalInfo: document.getElementById('vehicle-additional-info').value,
+                contact: { email, name, phone }
+            };
+            
+            console.log('Sending vehicle request:', requestData);
+            
+            closeVehicleModal();
+            showEnhancedSuccessMessage('vehicle');
+            
+            setTimeout(() => {
+                document.getElementById('vehicleModalForm').reset();
+                document.getElementById('vehicle-individual-pallets-container').innerHTML = '';
+                addVehiclePallet();
+                document.getElementById('vehicle-stapelbar').checked = false;
+                document.getElementById('vehicle-levels-input').style.display = 'none';
+            }, 3000);
+        });
+
+        document.getElementById('modalForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const email = document.getElementById('client-email').value;
+            const name = document.getElementById('client-name').value;
+            const phone = document.getElementById('client-phone').value;
+            const requestInfo = document.getElementById('request-info').value;
+            
+            console.log('Sending request to backend...', {
+                email, name, phone, requestInfo, type: currentModalType
+            });
+            
+            closeModal();
+            showEnhancedSuccessMessage(currentModalType);
+            
+            setTimeout(() => {
+                if (currentModalType === 'calculator') {
+                    document.getElementById('transportCalculator').reset();
+                    document.getElementById('calculatorResult').style.display = 'none';
+                    individualPalletsContainer.innerHTML = '';
+                    addIndividualPallet();
+                    stapelbarCheckbox.checked = false;
+                    levelsInput.style.display = 'none';
+                    document.getElementById('instantVehicleResult').style.display = 'none';
+                }
+                document.getElementById('modalForm').reset();
+            }, 3000);
+        });
+
+        document.getElementById('customRequestForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const requestDetails = document.getElementById('request-details').value;
+            document.getElementById('request-info').value = `Individuelle Transportanfrage:\n${requestDetails}`;
+            openModal('custom');
+        });
 
         // =============================================
         // AUTO VEHICLE SELECTION
         // =============================================
         function updateAutoVehicleSelection() {
-            const vehicleTypeSelect = document.getElementById('vehicle-type');
-            const autoSelectionInfo = document.getElementById('autoSelectionInfo');
+            const vehicleSelect = document.getElementById('vehicle-type');
+            const infoDiv = document.getElementById('autoSelectionInfo');
             
-            if (vehicleTypeSelect.value !== 'auto') {
-                autoSelectionInfo.style.display = 'none';
-                return;
-            }
-            
-            // Calculate total weight and volume
-            let totalWeight = 0;
-            let totalVolume = 0;
+            if (vehicleSelect.value !== 'auto') return;
             
             const cargoType = document.querySelector('.cargo-type-btn.active').getAttribute('data-type');
+            let totalWeight = 0;
+            let palletCount = 0;
+            let levels = 1;
             
             if (cargoType === 'individual') {
                 const palletItems = document.querySelectorAll('.pallet-item');
+                palletCount = palletItems.length;
                 
                 if (stapelbarCheckbox.checked) {
                     const levelCount = parseInt(document.getElementById('level-count').value) || 1;
                     const palletsPerLevel = parseInt(document.getElementById('pallets-per-level').value) || 1;
-                    const totalPallets = palletsPerLevel * levelCount;
+                    levels = levelCount;
+                    palletCount = palletsPerLevel * levelCount;
+                }
+                
+                palletItems.forEach(item => {
+                    const weightInput = item.querySelector('input[type="number"]:nth-child(4)');
+                    const weight = weightInput.value ? parseInt(weightInput.value) : 0;
+                    totalWeight += weight * (stapelbarCheckbox.checked ? palletCount : 1);
+                });
+            } else {
+                palletCount = parseInt(document.getElementById('pallet-count').value) || 0;
+                const palletWeight = parseInt(document.getElementById('pallet-weight').value) || 0;
+                totalWeight = palletCount * palletWeight;
+            }
+            
+            let suitableVehicle = null;
+            for (const [key, vehicle] of Object.entries(vehicleData)) {
+                const canFitWeight = totalWeight <= vehicle.maxWeight;
+                const canFitPallets = palletCount <= vehicle.maxPallets;
+                const canStack = !stapelbarCheckbox.checked || levels <= vehicle.maxLevels;
+                
+                if (canFitWeight && canFitPallets && canStack) {
+                    suitableVehicle = key;
+                    break;
+                }
+            }
+            
+            if (suitableVehicle) {
+                const vehicle = vehicleData[suitableVehicle];
+                const stackInfo = stapelbarCheckbox.checked ? ` (${levels} Ebenen)` : '';
+                infoDiv.style.display = 'block';
+                infoDiv.innerHTML = `
+                    <span class="lang-de">✅ Empfohlen: ${vehicle.name} - Passt zu Ihrem Transport (${palletCount} Paletten${stackInfo}, ${totalWeight} kg)</span>
+                    <span class="lang-en">✅ Recommended: ${vehicle.name} - Suitable for your transport (${palletCount} pallets${stackInfo}, ${totalWeight} kg)</span>
+                `;
+            } else {
+                infoDiv.style.display = 'block';
+                infoDiv.innerHTML = `
+                    <span class="lang-de">⚠️ Bitte wählen Sie "Beratung erforderlich" - Ihr Transport benötigt eine individuelle Lösung</span>
+                    <span class="lang-en">⚠️ Please select "Consultation required" - Your transport needs an individual solution</span>
+                `;
+            }
+        }
+
+        // =============================================
+        // IMPROVED VEHICLE SELECTION LOGIC
+        // =============================================
+        function calculateInstantVehicleSelection() {
+            const cargoType = document.querySelector('.cargo-type-btn.active').getAttribute('data-type');
+            let totalWeight = 0;
+            let palletCount = 0;
+            let totalVolume = 0;
+            let maxPalletHeight = 0;
+            
+            if (cargoType === 'individual') {
+                const palletItems = document.querySelectorAll('.pallet-item');
+                palletCount = palletItems.length;
+                
+                palletItems.forEach(item => {
+                    const length = parseInt(item.querySelector('input[type="number"]:nth-child(1)').value) || 0;
+                    const width = parseInt(item.querySelector('input[type="number"]:nth-child(2)').value) || 0;
+                    const height = parseInt(item.querySelector('input[type="number"]:nth-child(3)').value) || 0;
+                    const weight = parseInt(item.querySelector('input[type="number"]:nth-child(4)').value) || 0;
                     
-                    palletItems.forEach(item => {
-                        const lengthInput = item.querySelector('input[type="number"]:nth-child(1)');
-                        const widthInput = item.querySelector('input[type="number"]:nth-child(2)');
-                        const heightInput = item.querySelector('input[type="number"]:nth-child(3)');
-                        const weightInput = item.querySelector('input[type="number"]:nth-child(4)');
-                        
-                        const length = lengthInput.value ? parseInt(lengthInput.value) : 0;
-                        const width = widthInput.value ? parseInt(widthInput.value) : 0;
-                        const height = heightInput.value ? parseInt(heightInput.value) : 0;
-                        const weight = weightInput.value ? parseInt(weightInput.value) : 0;
-                        
-                        totalWeight += weight * totalPallets;
-                        totalVolume += (length * width * height) * totalPallets;
-                    });
-                } else {
-                    palletItems.forEach(item => {
-                        const lengthInput = item.querySelector('input[type="number"]:nth-child(1)');
-                        const widthInput = item.querySelector('input[type="number"]:nth-child(2)');
-                        const heightInput = item.querySelector('input[type="number"]:nth-child(3)');
-                        const weightInput = item.querySelector('input[type="number"]:nth-child(4)');
-                        
-                        const length = lengthInput.value ? parseInt(lengthInput.value) : 0;
-                        const width = widthInput.value ? parseInt(widthInput.value) : 0;
-                        const height = heightInput.value ? parseInt(heightInput.value) : 0;
-                        const weight = weightInput.value ? parseInt(weightInput.value) : 0;
-                        
-                        totalWeight += weight;
-                        totalVolume += length * width * height;
-                    });
+                    totalVolume += (length * width * height) / 1000000; // Convert to m³
+                    totalWeight += weight;
+                    maxPalletHeight = Math.max(maxPalletHeight, height);
+                });
+                
+                // Handle stacking logic
+                if (stapelbarCheckbox.checked) {
+                    const levelCount = parseInt(document.getElementById('level-count').value) || 1;
+                    const palletsPerLevel = parseInt(document.getElementById('pallets-per-level').value) || 1;
+                    
+                    // Calculate total stacked height
+                    const stackedHeight = maxPalletHeight * levelCount;
+                    
+                    // Update counts for stacked scenario
+                    palletCount = palletsPerLevel * levelCount;
+                    totalWeight *= palletCount;
+                    totalVolume *= palletCount;
+                    
+                    return findSuitableVehicle(totalWeight, palletCount, totalVolume, stackedHeight);
                 }
             } else {
-                const palletCount = parseInt(document.getElementById('pallet-count').value) || 0;
+                palletCount = parseInt(document.getElementById('pallet-count').value) || 0;
                 const palletWeight = parseInt(document.getElementById('pallet-weight').value) || 0;
                 totalWeight = palletCount * palletWeight;
                 
-                // Estimate volume for standard pallets
+                // Determine pallet type
                 const palletType = document.querySelector('.pallet-type-btn.active').getAttribute('data-type');
-                const palletVolume = palletType === 'euro' ? (120 * 80 * 150) : (120 * 100 * 150);
+                const palletVolume = palletType === 'euro' ? 0.96 : 1.2; // m³
                 totalVolume = palletCount * palletVolume;
             }
             
-            // Find suitable vehicle
-            let recommendedVehicle = 'consultation';
-            let recommendationText = '';
-            
-            if (totalWeight <= 1100 && totalVolume <= 320 * 125 * 160) {
-                recommendedVehicle = 'bus';
-                recommendationText = '3,5-Tonner empfohlen';
-            } else if (totalWeight <= 2350 && totalVolume <= 600 * 240 * 240) {
-                recommendedVehicle = '7.5t';
-                recommendationText = '7,5-Tonner empfohlen';
-            } else if (totalWeight <= 7000 && totalVolume <= 720 * 230 * 250) {
-                recommendedVehicle = '12t';
-                recommendationText = '12-Tonner empfohlen';
-            } else if (totalWeight <= 12000 && totalVolume <= 780 * 245 * 270) {
-                recommendedVehicle = '18t';
-                recommendationText = '18-Tonner empfohlen';
-            } else if (totalWeight <= 24000 && totalVolume <= 1360 * 240 * 265) {
-                recommendedVehicle = 'sattelzug';
-                recommendationText = 'Sattelzug empfohlen';
-            } else if (totalWeight <= 24000 && totalVolume <= 1360 * 240 * 300) {
-                recommendedVehicle = 'mega';
-                recommendationText = 'Sattelzug Megatrailer empfohlen';
-            } else {
-                recommendationText = 'Beratung erforderlich';
-            }
-            
-            // Update display
-            autoSelectionInfo.textContent = `Geschätztes Gewicht: ${totalWeight} kg, Empfohlen: ${recommendationText}`;
-            autoSelectionInfo.style.display = 'block';
-            
-            // Update instant vehicle display
-            updateInstantVehicleDisplay();
+            return findSuitableVehicle(totalWeight, palletCount, totalVolume);
         }
 
-        // =============================================
-        // INSTANT VEHICLE DISPLAY
-        // =============================================
+        function findSuitableVehicle(weight, pallets, volume, stackedHeight = 0) {
+            const vehicles = [
+                { id: 'bus', name: '3,5-Tonner', maxWeight: 1100, maxPallets: 4, maxVolume: 8, maxHeight: 160 },
+                { id: '7.5t', name: '7,5-Tonner', maxWeight: 2350, maxPallets: 12, maxVolume: 20, maxHeight: 240 },
+                { id: '12t', name: '12-Tonner', maxWeight: 7000, maxPallets: 17, maxVolume: 35, maxHeight: 250 },
+                { id: '18t', name: '18-Tonner', maxWeight: 12000, maxPallets: 18, maxVolume: 45, maxHeight: 270 },
+                { id: 'sattelzug', name: 'Sattelzug', maxWeight: 24000, maxPallets: 33, maxVolume: 85, maxHeight: 265 },
+                { id: 'mega', name: 'Megatrailer', maxWeight: 24000, maxPallets: 33, maxVolume: 100, maxHeight: 300 }
+            ];
+            
+            // Check if stacked height exceeds vehicle height
+            if (stackedHeight > 0) {
+                for (const vehicle of vehicles) {
+                    const fitsWeight = weight <= vehicle.maxWeight;
+                    const fitsPallets = pallets <= vehicle.maxPallets;
+                    const fitsVolume = volume <= vehicle.maxVolume;
+                    const fitsHeight = stackedHeight <= vehicle.maxHeight;
+                    
+                    if (fitsWeight && fitsPallets && fitsVolume && fitsHeight) {
+                        return {
+                            vehicle: vehicle,
+                            fitsPerfectly: true,
+                            message: `Perfekt für ${pallets} Paletten, ${weight}kg, ${volume.toFixed(1)}m³`
+                        };
+                    }
+                }
+                
+                // If no vehicle fits the stacked height, find the closest
+                const closest = vehicles.reduce((closest, current) => {
+                    const currentFit = (current.maxWeight - weight) + (current.maxPallets - pallets) * 100 + (current.maxHeight - stackedHeight) * 10;
+                    const closestFit = (closest.maxWeight - weight) + (closest.maxPallets - pallets) * 100 + (closest.maxHeight - stackedHeight) * 10;
+                    return currentFit >= 0 && currentFit < closestFit ? current : closest;
+                });
+                
+                return {
+                    vehicle: closest,
+                    fitsPerfectly: false,
+                    message: `Benötigt ${closest.name} - Gestapelte Höhe (${stackedHeight}cm) übersteigt kleinere Fahrzeuge`
+                };
+            }
+            
+            // Standard selection without stacking
+            for (const vehicle of vehicles) {
+                const fitsWeight = weight <= vehicle.maxWeight;
+                const fitsPallets = pallets <= vehicle.maxPallets;
+                const fitsVolume = volume <= vehicle.maxVolume;
+                
+                if (fitsWeight && fitsPallets && fitsVolume) {
+                    return {
+                        vehicle: vehicle,
+                        fitsPerfectly: true,
+                        message: `Perfekt für ${pallets} Paletten, ${weight}kg, ${volume.toFixed(1)}m³`
+                    };
+                }
+            }
+            
+            // If no vehicle fits perfectly, find the closest match
+            const closest = vehicles.reduce((closest, current) => {
+                const currentFit = (current.maxWeight - weight) + (current.maxPallets - pallets) * 100;
+                const closestFit = (closest.maxWeight - weight) + (closest.maxPallets - pallets) * 100;
+                return currentFit >= 0 && currentFit < closestFit ? current : closest;
+            });
+            
+            // Check if any vehicle can handle the load at all
+            const canHandleWeight = vehicles.some(v => v.maxWeight >= weight);
+            const canHandlePallets = vehicles.some(v => v.maxPallets >= pallets);
+            
+            if (!canHandleWeight || !canHandlePallets) {
+                return {
+                    vehicle: null,
+                    fitsPerfectly: false,
+                    message: `Für Ihren Transport (${pallets} Paletten, ${weight}kg) ist kein Fahrzeug verfügbar. Bitte kontaktieren Sie uns für eine individuelle Lösung.`
+                };
+            }
+            
+            return {
+                vehicle: closest,
+                fitsPerfectly: false,
+                message: `Benötigt ${closest.name} - ${pallets} Paletten, ${weight}kg übersteigt kleinere Fahrzeuge`
+            };
+        }
+
         function updateInstantVehicleDisplay() {
-            const instantVehicleResult = document.getElementById('instantVehicleResult');
-            const recommendedVehicle = document.getElementById('recommendedVehicle');
+            const result = calculateInstantVehicleSelection();
+            const container = document.getElementById('instantVehicleResult');
+            const vehicleElement = document.getElementById('recommendedVehicle');
             
-            // Get current form data
-            const fromLocation = document.getElementById('from-location').value;
-            const toLocation = document.getElementById('to-location').value;
-            const vehicleType = document.getElementById('vehicle-type').value;
-            
-            if (!fromLocation || !toLocation) {
-                instantVehicleResult.style.display = 'none';
+            if (!result.vehicle && !result.fitsPerfectly) {
+                container.style.display = 'block';
+                vehicleElement.innerHTML = `
+                    <div class="instant-error">
+                        <strong class="lang-de">❌ Kein passendes Fahrzeug verfügbar</strong>
+                        <strong class="lang-en">❌ No suitable vehicle available</strong>
+                        <div class="vehicle-capacity">${result.message}</div>
+                    </div>
+                `;
                 return;
             }
             
-            // Calculate distance
-            const distance = calculateDistance(fromLocation, toLocation);
-            
-            // Determine vehicle recommendation
-            let vehicleName = '';
-            let vehicleCapacity = '';
-            
-            if (vehicleType === 'auto') {
-                // Use auto-selection logic
-                updateAutoVehicleSelection();
-                const autoSelectionInfo = document.getElementById('autoSelectionInfo');
-                const infoText = autoSelectionInfo.textContent;
-                
-                if (infoText.includes('3,5-Tonner')) {
-                    vehicleName = '3,5-Tonner';
-                    vehicleCapacity = 'Bis zu 1.100 kg, 5 Europaletten';
-                } else if (infoText.includes('7,5-Tonner')) {
-                    vehicleName = '7,5-Tonner';
-                    vehicleCapacity = 'Bis zu 2.350 kg, 15 Europaletten';
-                } else if (infoText.includes('12-Tonner')) {
-                    vehicleName = '12-Tonner';
-                    vehicleCapacity = 'Bis zu 7.000 kg, bis zu 18 Europaletten';
-                } else if (infoText.includes('18-Tonner')) {
-                    vehicleName = '18-Tonner';
-                    vehicleCapacity = 'Bis zu 12.000 kg, bis zu 18 Europaletten';
-                } else if (infoText.includes('Sattelzug')) {
-                    vehicleName = 'Sattelzug';
-                    vehicleCapacity = 'Bis zu 24.000 kg, bis zu 33 Europaletten';
-                } else {
-                    vehicleName = 'Beratung erforderlich';
-                    vehicleCapacity = 'Kontaktieren Sie uns für ein maßgeschneidertes Angebot';
-                }
-            } else {
-                // Use selected vehicle
-                const vehicleOptions = {
-                    'bus': { name: '3,5-Tonner', capacity: 'Bis zu 1.100 kg, 5 Europaletten' },
-                    '7.5t': { name: '7,5-Tonner', capacity: 'Bis zu 2.350 kg, 15 Europaletten' },
-                    '12t': { name: '12-Tonner', capacity: 'Bis zu 7.000 kg, bis zu 18 Europaletten' },
-                    '18t': { name: '18-Tonner', capacity: 'Bis zu 12.000 kg, bis zu 18 Europaletten' },
-                    'sattelzug': { name: 'Sattelzug', capacity: 'Bis zu 24.000 kg, bis zu 33 Europaletten' },
-                    'mega': { name: 'Sattelzug Megatrailer', capacity: 'Bis zu 24.000 kg, bis zu 33 Europaletten' },
-                    'consultation': { name: 'Beratung erforderlich', capacity: 'Kontaktieren Sie uns für ein maßgeschneidertes Angebot' }
-                };
-                
-                const vehicle = vehicleOptions[vehicleType] || { name: 'Unbekannt', capacity: '' };
-                vehicleName = vehicle.name;
-                vehicleCapacity = vehicle.capacity;
+            if (!result.vehicle) {
+                container.style.display = 'none';
+                return;
             }
             
-            // Update display
-            recommendedVehicle.textContent = vehicleName;
-            recommendedVehicle.nextElementSibling.textContent = vehicleCapacity;
+            container.style.display = 'block';
             
-            instantVehicleResult.style.display = 'block';
+            if (result.fitsPerfectly) {
+                vehicleElement.innerHTML = `
+                    <div class="instant-feedback">
+                        <strong>${result.vehicle.name}</strong>
+                        <div class="vehicle-capacity">${result.message}</div>
+                    </div>
+                `;
+            } else {
+                vehicleElement.innerHTML = `
+                    <div class="instant-warning">
+                        <strong>${result.vehicle.name} erforderlich</strong>
+                        <div class="vehicle-capacity">${result.message}</div>
+                    </div>
+                `;
+            }
+        }
+
+        function initializeInstantUpdates() {
+            const instantUpdateElements = [
+                'from-location', 'to-location', 'pallet-count', 'pallet-weight',
+                'level-count', 'pallets-per-level'
+            ];
+            
+            instantUpdateElements.forEach(id => {
+                const element = document.getElementById(id);
+                if (element) {
+                    element.addEventListener('input', updateInstantVehicleDisplay);
+                }
+            });
+            
+            document.addEventListener('input', function(e) {
+                if (e.target.name && e.target.name.includes('pallet-')) {
+                    updateInstantVehicleDisplay();
+                }
+            });
+            
+            document.querySelectorAll('.cargo-type-btn').forEach(btn => {
+                btn.addEventListener('click', updateInstantVehicleDisplay);
+            });
+            
+            stapelbarCheckbox.addEventListener('change', updateInstantVehicleDisplay);
         }
 
         // =============================================
-        // FORM DATA PERSISTENCE
+        // ENHANCED SUCCESS MESSAGE SYSTEM
+        // =============================================
+        function showEnhancedSuccessMessage(requestType = 'transport') {
+            const successMessage = document.getElementById('successMessage');
+            
+            if (requestType === 'vehicle') {
+                successMessage.innerHTML = `
+                    <strong class="lang-de">✅ Vielen Dank für Ihre Fahrzeuganfrage!</strong>
+                    <strong class="lang-en">✅ Thank you for your vehicle request!</strong>
+                    <br>
+                    <span class="lang-de">
+                        Wir haben Ihre Anfrage für den <strong>${selectedVehicle}</strong> erhalten.<br>
+                        <strong>Innerhalb von 30 Minuten</strong> senden wir Ihnen ein persönliches Angebot.
+                    </span>
+                    <span class="lang-en">
+                        We have received your request for the <strong>${selectedVehicle}</strong>.<br>
+                        <strong>Within 30 minutes</strong> we will send you a personal offer.
+                    </span>
+                    <div style="margin-top: 1rem; padding: 1rem; background: #ffffff; border-radius: 6px;">
+                        <strong class="lang-de">📞 Brauchen Sie schneller eine Antwort?</strong>
+                        <strong class="lang-en">📞 Need a faster response?</strong>
+                        <br>
+                        <span class="lang-de">Rufen Sie uns an: <strong>+49 123 456 789</strong></span>
+                        <span class="lang-en">Call us: <strong>+49 123 456 789</strong></span>
+                    </div>
+                `;
+            } else if (requestType === 'transport') {
+                successMessage.innerHTML = `
+                    <strong class="lang-de">✅ Vielen Dank für Ihre Transportanfrage!</strong>
+                    <strong class="lang-en">✅ Thank you for your transport request!</strong>
+                    <br>
+                    <span class="lang-de">
+                        Wir haben Ihre Anfrage erhalten und prüfen die Details.<br>
+                        <strong>Innerhalb von 30 Minuten</strong> senden wir Ihnen ein persönliches Angebot an Ihre E-Mail-Adresse.
+                    </span>
+                    <span class="lang-en">
+                        We have received your request and are checking the details.<br>
+                        <strong>Within 30 minutes</strong> we will send you a personal offer to your email address.
+                    </span>
+                    <div style="margin-top: 1rem; padding: 1rem; background: #ffffff; border-radius: 6px;">
+                        <strong class="lang-de">📞 Brauchen Sie schneller eine Antwort?</strong>
+                        <strong class="lang-en">📞 Need a faster response?</strong>
+                        <br>
+                        <span class="lang-de">Rufen Sie uns an: <strong>+49 123 456 789</strong></span>
+                        <span class="lang-en">Call us: <strong>+49 123 456 789</strong></span>
+                    </div>
+                `;
+            } else {
+                successMessage.innerHTML = `
+                    <strong class="lang-de">✅ Vielen Dank für Ihre Anfrage!</strong>
+                    <strong class="lang-en">✅ Thank you for your request!</strong>
+                    <br>
+                    <span class="lang-de">
+                        Wir kümmern uns um Ihr Anliegen und melden uns innerhalb von 30 Minuten bei Ihnen.
+                    </span>
+                    <span class="lang-en">
+                        We will take care of your request and get back to you within 30 minutes.
+                    </span>
+                `;
+            }
+            
+            successMessage.style.display = 'block';
+            successMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            
+            setTimeout(() => {
+                successMessage.style.display = 'none';
+            }, 8000);
+        }
+
+        // =============================================
+        // LOCAL STORAGE FUNCTIONS
         // =============================================
         function saveFormData() {
             const formData = {
@@ -2815,359 +3079,347 @@
                 toLocation: document.getElementById('to-location').value,
                 loadingDate: document.getElementById('loading-date').value,
                 unloadingDate: document.getElementById('unloading-date').value,
-                vehicleType: document.getElementById('vehicle-type').value,
                 cargoType: document.querySelector('.cargo-type-btn.active').getAttribute('data-type'),
-                stapelbar: stapelbarCheckbox.checked,
-                levelCount: document.getElementById('level-count').value,
-                palletsPerLevel: document.getElementById('pallets-per-level').value,
+                language: document.querySelector('.lang-btn.active').getAttribute('data-lang'),
                 palletCount: document.getElementById('pallet-count').value,
                 palletWeight: document.getElementById('pallet-weight').value,
-                individualPallets: []
+                vehicleType: document.getElementById('vehicle-type').value
             };
-            
-            // Save individual pallets
-            const palletItems = document.querySelectorAll('.pallet-item');
-            palletItems.forEach(item => {
-                const lengthInput = item.querySelector('input[type="number"]:nth-child(1)');
-                const widthInput = item.querySelector('input[type="number"]:nth-child(2)');
-                const heightInput = item.querySelector('input[type="number"]:nth-child(3)');
-                const weightInput = item.querySelector('input[type="number"]:nth-child(4)');
-                
-                formData.individualPallets.push({
-                    length: lengthInput.value,
-                    width: widthInput.value,
-                    height: heightInput.value,
-                    weight: weightInput.value
-                });
-            });
-            
-            localStorage.setItem('logibaseFormData', JSON.stringify(formData));
+            localStorage.setItem('logibase_form_data', JSON.stringify(formData));
         }
 
         function loadFormData() {
-            const savedData = localStorage.getItem('logibaseFormData');
-            if (!savedData) return;
-            
-            const formData = JSON.parse(savedData);
-            
-            document.getElementById('from-location').value = formData.fromLocation || '';
-            document.getElementById('to-location').value = formData.toLocation || '';
-            document.getElementById('loading-date').value = formData.loadingDate || '';
-            document.getElementById('unloading-date').value = formData.unloadingDate || '';
-            document.getElementById('vehicle-type').value = formData.vehicleType || 'auto';
-            
-            // Set cargo type
-            const cargoType = formData.cargoType || 'individual';
-            document.querySelectorAll('.cargo-type-btn').forEach(btn => {
-                btn.classList.remove('active');
-                if (btn.getAttribute('data-type') === cargoType) {
-                    btn.classList.add('active');
-                }
-            });
-            
-            // Update cargo type display
-            toggleCargoType();
-            
-            // Load stapelbar settings
-            stapelbarCheckbox.checked = formData.stapelbar || false;
-            toggleStapelbar();
-            
-            document.getElementById('level-count').value = formData.levelCount || '2';
-            document.getElementById('pallets-per-level').value = formData.palletsPerLevel || '1';
-            document.getElementById('pallet-count').value = formData.palletCount || '1';
-            document.getElementById('pallet-weight').value = formData.palletWeight || '500';
-            
-            // Load individual pallets
-            if (formData.individualPallets && formData.individualPallets.length > 0) {
-                individualPalletsContainer.innerHTML = '';
-                formData.individualPallets.forEach((pallet, index) => {
-                    if (index === 0) {
-                        // First pallet already exists
-                        const firstPallet = individualPalletsContainer.querySelector('.pallet-item');
-                        if (firstPallet) {
-                            const inputs = firstPallet.querySelectorAll('input');
-                            inputs[0].value = pallet.length || '120';
-                            inputs[1].value = pallet.width || '80';
-                            inputs[2].value = pallet.height || '100';
-                            inputs[3].value = pallet.weight || '500';
-                        }
-                    } else {
-                        // Add additional pallets
-                        addIndividualPallet();
-                        const newPallet = individualPalletsContainer.lastElementChild;
-                        const inputs = newPallet.querySelectorAll('input');
-                        inputs[0].value = pallet.length || '120';
-                        inputs[1].value = pallet.width || '80';
-                        inputs[2].value = pallet.height || '100';
-                        inputs[3].value = pallet.weight || '500';
-                    }
-                });
-            }
-            
-            updateAutoVehicleSelection();
-            updateInstantVehicleDisplay();
-        }
-
-        // =============================================
-        // PALLET VISUALIZATION
-        // =============================================
-        function createPalletVisualization(vehicleType, containerId) {
-            const container = document.getElementById(containerId);
-            if (!container) return;
-            
-            const svgNS = "http://www.w3.org/2000/svg";
-            const svg = document.createElementNS(svgNS, "svg");
-            svg.setAttribute("viewBox", "0 0 200 120");
-            
-            // Get vehicle data
-            const vehicle = vehicleData[vehicleType];
-            if (!vehicle) return;
-            
-            // Draw truck outline
-            const truck = document.createElementNS(svgNS, "rect");
-            truck.setAttribute("x", "10");
-            truck.setAttribute("y", "10");
-            truck.setAttribute("width", "180");
-            truck.setAttribute("height", "100");
-            truck.setAttribute("fill", "#f0f0f0");
-            truck.setAttribute("stroke", "#333");
-            truck.setAttribute("stroke-width", "1");
-            svg.appendChild(truck);
-            
-            // Draw pallets based on vehicle capacity
-            const palletConfig = vehicle.palletConfig.euro;
-            const rows = palletConfig.rows;
-            const cols = palletConfig.cols;
-            
-            const palletWidth = 160 / cols;
-            const palletHeight = 80 / rows;
-            
-            for (let row = 0; row < rows; row++) {
-                for (let col = 0; col < cols; col++) {
-                    const x = 20 + col * palletWidth;
-                    const y = 20 + row * palletHeight;
-                    
-                    const pallet = document.createElementNS(svgNS, "rect");
-                    pallet.setAttribute("x", x);
-                    pallet.setAttribute("y", y);
-                    pallet.setAttribute("width", palletWidth - 2);
-                    pallet.setAttribute("height", palletHeight - 2);
-                    pallet.setAttribute("fill", "#4CAF50");
-                    pallet.setAttribute("stroke", "#2E7D32");
-                    pallet.setAttribute("stroke-width", "0.5");
-                    pallet.setAttribute("opacity", "0.7");
-                    svg.appendChild(pallet);
+            const saved = localStorage.getItem('logibase_form_data');
+            if (saved) {
+                const formData = JSON.parse(saved);
+                
+                document.querySelector(`[data-lang="${formData.language}"]`).click();
+                
+                document.getElementById('from-location').value = formData.fromLocation || '';
+                document.getElementById('to-location').value = formData.toLocation || '';
+                document.getElementById('loading-date').value = formData.loadingDate || '';
+                document.getElementById('unloading-date').value = formData.unloadingDate || '';
+                document.getElementById('pallet-count').value = formData.palletCount || '1';
+                document.getElementById('pallet-weight').value = formData.palletWeight || '500';
+                document.getElementById('vehicle-type').value = formData.vehicleType || 'auto';
+                
+                if (formData.cargoType) {
+                    document.querySelector(`[data-type="${formData.cargoType}"]`).click();
                 }
             }
-            
-            // Special case for 3.5t with extra pallet
-            if (vehicleType === 'bus' && palletConfig.extra) {
-                const extraPallet = document.createElementNS(svgNS, "rect");
-                extraPallet.setAttribute("x", 20 + cols * palletWidth);
-                extraPallet.setAttribute("y", 20);
-                extraPallet.setAttribute("width", palletWidth - 2);
-                extraPallet.setAttribute("height", palletHeight - 2);
-                extraPallet.setAttribute("fill", "#4CAF50");
-                extraPallet.setAttribute("stroke", "#2E7D32");
-                extraPallet.setAttribute("stroke-width", "0.5");
-                extraPallet.setAttribute("opacity", "0.7");
-                svg.appendChild(extraPallet);
-            }
-            
-            container.appendChild(svg);
         }
 
         // =============================================
         // DATE VALIDATION
         // =============================================
         function setupDateValidation() {
-            const loadingDate = document.getElementById('loading-date');
-            const unloadingDate = document.getElementById('unloading-date');
-            const vehicleLoadingDate = document.getElementById('vehicle-loading-date');
-            const vehicleUnloadingDate = document.getElementById('vehicle-unloading-date');
-            
-            // Set minimum dates to current date/time for all date inputs
             const now = new Date();
             const nowString = now.toISOString().slice(0, 16);
             
-            // Set min attribute for all date inputs
-            [loadingDate, unloadingDate, vehicleLoadingDate, vehicleUnloadingDate].forEach(input => {
-                if (input) {
-                    input.min = nowString;
+            // Set minimum dates for main calculator
+            document.getElementById('loading-date').min = nowString;
+            document.getElementById('unloading-date').min = nowString;
+            
+            // Set initial values for main calculator
+            const loadingDate = new Date(now.getTime() + 24 * 60 * 60 * 1000);
+            const loadingDateString = loadingDate.toISOString().slice(0, 16);
+            
+            const unloadingDate = new Date(loadingDate.getTime() + 2 * 60 * 60 * 1000);
+            const unloadingDateString = unloadingDate.toISOString().slice(0, 16);
+            
+            document.getElementById('loading-date').value = loadingDateString;
+            document.getElementById('unloading-date').value = unloadingDateString;
+            
+            // Add change listeners to ensure unloading date is after loading date
+            document.getElementById('loading-date').addEventListener('change', function() {
+                const unloadingDateField = document.getElementById('unloading-date');
+                if (this.value > unloadingDateField.value) {
+                    unloadingDateField.value = this.value;
                 }
+                unloadingDateField.min = this.value;
             });
             
-            // Set default values (tomorrow for loading, +2 hours for unloading)
-            const tomorrow = new Date(now.getTime() + 24 * 60 * 60 * 1000);
-            const tomorrowString = tomorrow.toISOString().slice(0, 16);
-            
-            const unloadingDefault = new Date(tomorrow.getTime() + 2 * 60 * 60 * 1000);
-            const unloadingDefaultString = unloadingDefault.toISOString().slice(0, 16);
-            
-            loadingDate.value = tomorrowString;
-            unloadingDate.value = unloadingDefaultString;
-            
-            // Add change listeners
-            loadingDate.addEventListener('change', function() {
-                unloadingDate.min = this.value;
-                if (unloadingDate.value < this.value) {
-                    unloadingDate.value = this.value;
+            document.getElementById('vehicle-loading-date').addEventListener('change', function() {
+                const unloadingDateField = document.getElementById('vehicle-unloading-date');
+                if (this.value > unloadingDateField.value) {
+                    unloadingDateField.value = this.value;
                 }
+                unloadingDateField.min = this.value;
+            });
+        }
+
+        // =============================================
+        // VISUALIZATION FUNCTIONS
+        // =============================================
+        function createPalletVisualization(vehicleType, containerId) {
+            const container = document.getElementById(containerId);
+            const vehicle = vehicleData[vehicleType];
+            
+            if (!vehicle) return;
+            
+            const svgNS = "http://www.w3.org/2000/svg";
+            const svg = document.createElementNS(svgNS, "svg");
+            svg.setAttribute("viewBox", "0 0 200 120");
+            svg.setAttribute("preserveAspectRatio", "xMidYMid meet");
+            
+            const truckRect = document.createElementNS(svgNS, "rect");
+            truckRect.setAttribute("x", "10");
+            truckRect.setAttribute("y", "10");
+            truckRect.setAttribute("width", "180");
+            truckRect.setAttribute("height", "100");
+            truckRect.setAttribute("fill", "#f5f5f5");
+            truckRect.setAttribute("stroke", "#333");
+            truckRect.setAttribute("stroke-width", "1");
+            svg.appendChild(truckRect);
+            
+            const palletWidth = 24;
+            const palletHeight = 16;
+            const marginX = 15;
+            const marginY = 15;
+            
+            const maxCols = vehicle.palletConfig.euro.cols;
+            const maxRows = vehicle.palletConfig.euro.rows;
+            
+            for (let row = 0; row < maxRows; row++) {
+                for (let col = 0; col < maxCols; col++) {
+                    const x = marginX + col * (palletWidth + 2);
+                    const y = marginY + row * (palletHeight + 2);
+                    
+                    if (x + palletWidth <= 190 && y + palletHeight <= 110) {
+                        const palletRect = document.createElementNS(svgNS, "rect");
+                        palletRect.setAttribute("x", x);
+                        palletRect.setAttribute("y", y);
+                        palletRect.setAttribute("width", palletWidth);
+                        palletRect.setAttribute("height", palletHeight);
+                        palletRect.setAttribute("fill", "#000");
+                        palletRect.setAttribute("opacity", "0.7");
+                        svg.appendChild(palletRect);
+                        
+                        const line1 = document.createElementNS(svgNS, "line");
+                        line1.setAttribute("x1", x + 5);
+                        line1.setAttribute("y1", y + 4);
+                        line1.setAttribute("x2", x + palletWidth - 5);
+                        line1.setAttribute("y2", y + 4);
+                        line1.setAttribute("stroke", "#fff");
+                        line1.setAttribute("stroke-width", "0.5");
+                        svg.appendChild(line1);
+                        
+                        const line2 = document.createElementNS(svgNS, "line");
+                        line2.setAttribute("x1", x + 5);
+                        line2.setAttribute("y1", y + palletHeight - 4);
+                        line2.setAttribute("x2", x + palletWidth - 5);
+                        line2.setAttribute("y2", y + palletHeight - 4);
+                        line2.setAttribute("stroke", "#fff");
+                        line2.setAttribute("stroke-width", "0.5");
+                        svg.appendChild(line2);
+                    }
+                }
+            }
+            
+            const text = document.createElementNS(svgNS, "text");
+            text.setAttribute("x", "100");
+            text.setAttribute("y", "105");
+            text.setAttribute("text-anchor", "middle");
+            text.setAttribute("font-size", "8");
+            text.setAttribute("fill", "#333");
+            text.textContent = `${maxRows * maxCols} Europaletten`;
+            svg.appendChild(text);
+            
+            container.appendChild(svg);
+        }
+
+        // =============================================
+        // EVENT LISTENERS
+        // =============================================
+        document.querySelectorAll('.lang-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const lang = this.getAttribute('data-lang');
+                
+                document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                
+                document.querySelectorAll('.lang-de').forEach(el => {
+                    el.style.display = lang === 'de' ? 'block' : 'none';
+                });
+                document.querySelectorAll('.lang-en').forEach(el => {
+                    el.style.display = lang === 'en' ? 'block' : 'none';
+                });
+                
                 saveFormData();
             });
-            
-            unloadingDate.addEventListener('change', function() {
+        });
+
+        document.querySelectorAll('.cargo-type-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.cargo-type-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                
+                const type = this.getAttribute('data-type');
+                if (type === 'individual') {
+                    document.getElementById('individual-pallets-group').style.display = 'block';
+                    document.getElementById('standard-pallets-group').style.display = 'none';
+                } else {
+                    document.getElementById('individual-pallets-group').style.display = 'none';
+                    document.getElementById('standard-pallets-group').style.display = 'block';
+                }
+                updateAutoVehicleSelection();
                 saveFormData();
             });
-            
-            vehicleLoadingDate.addEventListener('change', function() {
-                vehicleUnloadingDate.min = this.value;
-                if (vehicleUnloadingDate.value < this.value) {
-                    vehicleUnloadingDate.value = this.value;
+        });
+
+        document.querySelectorAll('.pallet-type-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.pallet-type-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                updateAutoVehicleSelection();
+                saveFormData();
+            });
+        });
+
+        document.querySelectorAll('.select-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                const vehicleName = this.getAttribute('data-vehicle');
+                openVehicleModal(vehicleName);
+            });
+        });
+
+        stapelbarCheckbox.addEventListener('change', function() {
+            if (this.checked) {
+                levelsInput.style.display = 'grid';
+            } else {
+                levelsInput.style.display = 'none';
+            }
+            updateAutoVehicleSelection();
+            saveFormData();
+        });
+
+        addPalletBtn.addEventListener('click', addIndividualPallet);
+
+        document.getElementById('from-location').addEventListener('blur', function() {
+            validateLocationInput(this);
+            saveFormData();
+        });
+
+        document.getElementById('to-location').addEventListener('blur', function() {
+            validateLocationInput(this);
+            saveFormData();
+        });
+
+        document.getElementById('pallet-count').addEventListener('blur', function() {
+            validateNumberInput(this, 1, 100);
+            saveFormData();
+        });
+
+        document.getElementById('pallet-weight').addEventListener('blur', function() {
+            validateNumberInput(this, 1, 2000);
+            saveFormData();
+        });
+
+        document.getElementById('vehicle-type').addEventListener('change', function() {
+            const infoDiv = document.getElementById('autoSelectionInfo');
+            if (this.value !== 'auto') {
+                infoDiv.style.display = 'none';
+            } else {
+                updateAutoVehicleSelection();
+            }
+            saveFormData();
+        });
+
+        document.getElementById('pallet-count').addEventListener('input', updateAutoVehicleSelection);
+        document.getElementById('pallet-weight').addEventListener('input', updateAutoVehicleSelection);
+        document.getElementById('level-count').addEventListener('input', updateAutoVehicleSelection);
+        document.getElementById('pallets-per-level').addEventListener('input', updateAutoVehicleSelection);
+
+        document.querySelectorAll('input, select').forEach(element => {
+            element.addEventListener('change', saveFormData);
+        });
+
+        document.getElementById('modalOverlay').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeModal();
+            }
+        });
+
+        document.getElementById('vehicleModalOverlay').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeVehicleModal();
+            }
+        });
+
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
                 }
             });
+        });
+
+        // =============================================
+        // VALIDATION FUNCTIONS
+        // =============================================
+        function validateLocationInput(input) {
+            const value = input.value.trim();
+            const isValid = value.length >= 2;
+            const errorElement = document.getElementById(input.id + '-error');
+            
+            if (!isValid && value) {
+                input.style.borderColor = '#d32f2f';
+                errorElement.textContent = 'Bitte geben Sie einen gültigen Ort ein (mind. 2 Zeichen)';
+                errorElement.className = 'validation-message error';
+                return false;
+            } else if (isValid) {
+                input.style.borderColor = '#4CAF50';
+                errorElement.textContent = '';
+                errorElement.className = 'validation-message';
+                return true;
+            } else {
+                input.style.borderColor = '#e0e0e0';
+                errorElement.textContent = '';
+                errorElement.className = 'validation-message';
+                return false;
+            }
+        }
+
+        function validateNumberInput(input, min = 0, max = 10000) {
+            const value = parseInt(input.value) || 0;
+            const isValid = value >= min && value <= max;
+            const errorElement = document.getElementById(input.id + '-error');
+            
+            if (!isValid && input.value) {
+                input.style.borderColor = '#d32f2f';
+                errorElement.textContent = `Wert muss zwischen ${min} und ${max} liegen`;
+                errorElement.className = 'validation-message error';
+                return false;
+            } else if (isValid) {
+                input.style.borderColor = '#4CAF50';
+                errorElement.textContent = '';
+                errorElement.className = 'validation-message';
+                return true;
+            } else {
+                input.style.borderColor = '#e0e0e0';
+                errorElement.textContent = '';
+                errorElement.className = 'validation-message';
+                return false;
+            }
         }
 
         // =============================================
         // INITIALIZATION
         // =============================================
         document.addEventListener('DOMContentLoaded', function() {
-            // Initialize cargo type toggle
-            document.querySelectorAll('.cargo-type-btn').forEach(btn => {
-                btn.addEventListener('click', function() {
-                    document.querySelectorAll('.cargo-type-btn').forEach(b => b.classList.remove('active'));
-                    this.classList.add('active');
-                    toggleCargoType();
-                    updateAutoVehicleSelection();
-                    updateInstantVehicleDisplay();
-                    saveFormData();
-                });
-            });
+            addIndividualPallet();
+            addVehiclePallet();
             
-            // Initialize pallet type toggle
-            document.querySelectorAll('.pallet-type-btn').forEach(btn => {
-                btn.addEventListener('click', function() {
-                    document.querySelectorAll('.pallet-type-btn').forEach(b => b.classList.remove('active'));
-                    this.classList.add('active');
-                    updateAutoVehicleSelection();
-                    updateInstantVehicleDisplay();
-                    saveFormData();
-                });
-            });
-            
-            // Initialize stapelbar toggle
-            stapelbarCheckbox.addEventListener('change', function() {
-                toggleStapelbar();
-                updateAutoVehicleSelection();
-                updateInstantVehicleDisplay();
-                saveFormData();
-            });
-            
-            // Initialize add pallet button
-            addPalletBtn.addEventListener('click', addIndividualPallet);
-            
-            // Initialize form inputs for auto-update
-            const autoUpdateInputs = [
-                'from-location', 'to-location', 'vehicle-type', 
-                'pallet-count', 'pallet-weight', 'level-count', 'pallets-per-level'
-            ];
-            
-            autoUpdateInputs.forEach(id => {
-                const element = document.getElementById(id);
-                if (element) {
-                    element.addEventListener('input', function() {
-                        updateAutoVehicleSelection();
-                        updateInstantVehicleDisplay();
-                        saveFormData();
-                    });
-                }
-            });
-            
-            // Initialize individual pallet inputs
-            individualPalletsContainer.addEventListener('input', function() {
-                updateAutoVehicleSelection();
-                updateInstantVehicleDisplay();
-                saveFormData();
-            });
-            
-            // Initialize calculator form submission
-            document.getElementById('transportCalculator').addEventListener('submit', function(e) {
-                e.preventDefault();
-                
-                if (!validateForm()) {
-                    return;
-                }
-                
-                const formData = new FormData(this);
-                const result = calculatePrice(formData);
-                
-                const calculatorResult = document.getElementById('calculatorResult');
-                const priceEstimate = document.getElementById('priceEstimate');
-                const totalWeight = document.getElementById('totalWeight');
-                
-                if (result.needsConsultation) {
-                    priceEstimate.textContent = 'Beratung erforderlich';
-                    totalWeight.textContent = '';
-                    calculatorResult.style.display = 'block';
-                    openModal('calculator');
-                } else if (result.error) {
-                    alert('Fehler bei der Berechnung: ' + result.error);
-                } else {
-                    priceEstimate.textContent = result.price + ' €';
-                    totalWeight.textContent = 'Gesamtgewicht: ' + result.weight + ' kg';
-                    calculatorResult.style.display = 'block';
-                }
-            });
-            
-            // Initialize custom request form
-            document.getElementById('customRequestForm').addEventListener('submit', function(e) {
-                e.preventDefault();
-                openModal('custom');
-            });
-            
-            // Initialize modal forms
-            document.getElementById('modalForm').addEventListener('submit', function(e) {
-                e.preventDefault();
-                document.getElementById('successMessage').style.display = 'block';
-                closeModal();
-                
-                // Reset form after successful submission
-                setTimeout(function() {
-                    document.getElementById('successMessage').style.display = 'none';
-                }, 5000);
-            });
-            
-            document.getElementById('vehicleModalForm').addEventListener('submit', function(e) {
-                e.preventDefault();
-                document.getElementById('successMessage').style.display = 'block';
-                closeVehicleModal();
-                
-                // Reset form after successful submission
-                setTimeout(function() {
-                    document.getElementById('successMessage').style.display = 'none';
-                }, 5000);
-            });
-            
-            // Initialize vehicle selection buttons
-            document.querySelectorAll('.select-btn').forEach(btn => {
-                btn.addEventListener('click', function() {
-                    const vehicleName = this.getAttribute('data-vehicle');
-                    openVehicleModal(vehicleName);
-                });
-            });
-            
-            // Initialize language switcher
-            document.querySelectorAll('.lang-btn').forEach(btn => {
-                btn.addEventListener('click', function() {
-                    const lang = this.getAttribute('data-lang');
-                    switchLanguage(lang);
-                });
-            });
-            
-            // Load saved form data
             loadFormData();
+            updateAutoVehicleSelection();
+            initializeInstantUpdates();
+            setupDateValidation();
             
-            // Create pallet visualizations
             createPalletVisualization('bus', 'visualization-bus');
             createPalletVisualization('7.5t', 'visualization-7.5t');
             createPalletVisualization('12t', 'visualization-12t');
@@ -3175,63 +3427,8 @@
             createPalletVisualization('sattelzug', 'visualization-sattelzug');
             createPalletVisualization('mega', 'visualization-mega');
             
-            // Set up date validation
-            setupDateValidation();
-            
-            // Initial instant vehicle display
-            setTimeout(updateInstantVehicleDisplay, 100);
+            setTimeout(updateInstantVehicleDisplay, 1000);
         });
-
-        // =============================================
-        // CARGO TYPE TOGGLE
-        // =============================================
-        function toggleCargoType() {
-            const cargoType = document.querySelector('.cargo-type-btn.active').getAttribute('data-type');
-            
-            if (cargoType === 'individual') {
-                document.getElementById('individual-pallets-group').style.display = 'block';
-                document.getElementById('standard-pallets-group').style.display = 'none';
-            } else {
-                document.getElementById('individual-pallets-group').style.display = 'none';
-                document.getElementById('standard-pallets-group').style.display = 'block';
-            }
-        }
-
-        // =============================================
-        // STAPELBAR TOGGLE
-        // =============================================
-        function toggleStapelbar() {
-            levelsInput.style.display = stapelbarCheckbox.checked ? 'grid' : 'none';
-        }
-
-        // =============================================
-        // LANGUAGE SWITCHER
-        // =============================================
-        function switchLanguage(lang) {
-            // Update language buttons
-            document.querySelectorAll('.lang-btn').forEach(btn => {
-                btn.classList.remove('active');
-                if (btn.getAttribute('data-lang') === lang) {
-                    btn.classList.add('active');
-                }
-            });
-            
-            // Show/hide language-specific content
-            document.querySelectorAll('.lang-de').forEach(el => {
-                el.style.display = lang === 'de' ? 'block' : 'none';
-            });
-            
-            document.querySelectorAll('.lang-en').forEach(el => {
-                el.style.display = lang === 'en' ? 'block' : 'none';
-            });
-            
-            // Save language preference
-            localStorage.setItem('logibaseLanguage', lang);
-        }
-
-        // Load saved language preference
-        const savedLanguage = localStorage.getItem('logibaseLanguage') || 'de';
-        switchLanguage(savedLanguage);
     </script>
 </body>
 </html>
