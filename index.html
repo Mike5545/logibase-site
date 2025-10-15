@@ -351,6 +351,7 @@
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 1rem;
+            display: none; /* Initially hidden */
         }
 
         .date-time-group {
@@ -405,24 +406,24 @@
             border-color: var(--primary);
         }
 
-        /* Pallet Type Selector - Smaller buttons */
+        /* Pallet Type Selector - Very small buttons */
         .pallet-type-selector {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 0.6rem;
+            gap: 0.3rem;
             margin-bottom: 1rem;
         }
 
         .pallet-type-btn {
-            padding: 0.7rem;
-            border: 2px solid var(--border);
+            padding: 0.4rem 0.6rem;
+            border: 1px solid var(--border);
             background: var(--white);
             cursor: pointer;
             transition: var(--transition);
             text-align: center;
             font-weight: 500;
-            border-radius: 6px;
-            font-size: 0.75rem;
+            border-radius: 4px;
+            font-size: 0.7rem;
             color: var(--secondary);
         }
 
@@ -438,22 +439,22 @@
             align-items: center;
             gap: 0.8rem;
             margin-bottom: 1rem;
-            padding: 1rem;
+            padding: 0.5rem;
             background: #f0f0f0;
             border-radius: 6px;
             border: 1px solid var(--border);
         }
 
         .stapelbar-checkbox {
-            width: 20px;
-            height: 20px;
+            width: 16px;
+            height: 16px;
             cursor: pointer;
             accent-color: var(--primary);
         }
 
         .stapelbar-label {
             font-weight: 600;
-            font-size: 0.85rem;
+            font-size: 0.75rem;
             color: var(--secondary);
             cursor: pointer;
         }
@@ -492,14 +493,15 @@
 
         .pallet-item {
             display: grid;
-            grid-template-columns: 1fr 1fr 1fr 1fr auto;
-            gap: 0.8rem;
+            grid-template-columns: 1fr 1fr 1fr 1fr auto auto;
+            gap: 0.6rem;
             margin-bottom: 1rem;
             padding: 1rem;
             border: 1px solid var(--border);
             border-radius: 6px;
             background: var(--white);
             align-items: end;
+            position: relative;
         }
 
         .dimension-item {
@@ -534,8 +536,8 @@
         }
 
         .quantity-btn {
-            width: 20px;
-            height: 15px;
+            width: 18px;
+            height: 14px;
             background: var(--primary);
             color: white;
             border: none;
@@ -593,6 +595,61 @@
 
         .remove-pallet-btn:hover {
             background: var(--primary);
+        }
+
+        .duplicate-pallet-btn {
+            background: var(--accent);
+            color: var(--white);
+            border: none;
+            padding: 0.4rem 0.6rem;
+            border-radius: 6px;
+            cursor: pointer;
+            height: fit-content;
+            font-size: 0.8rem;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+        }
+
+        .duplicate-pallet-btn:hover {
+            background: var(--primary);
+        }
+
+        /* Standard Pallets Compact */
+        .standard-pallets-compact {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 1rem;
+            align-items: end;
+        }
+
+        .standard-pallet-fields {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .compact-field {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .compact-field label {
+            margin-bottom: 0.4rem;
+            font-weight: 600;
+            font-size: 0.75rem;
+            color: var(--secondary);
+        }
+
+        .compact-field input {
+            padding: 0.6rem;
+            border: 1px solid var(--border);
+            background: var(--white);
+            font-size: 0.8rem;
+            border-radius: 6px;
         }
 
         /* Vehicle Selector */
@@ -841,6 +898,52 @@
             transform: scale(1.08);
         }
 
+        .loading-plan {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255,255,255,0.95);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 10;
+        }
+
+        .vehicle-card:hover .loading-plan {
+            display: flex;
+        }
+
+        .loading-plan-content {
+            padding: 1rem;
+            text-align: center;
+        }
+
+        .loading-plan-title {
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            color: var(--primary);
+        }
+
+        .loading-plan-grid {
+            display: inline-grid;
+            gap: 2px;
+            margin: 0.5rem 0;
+        }
+
+        .pallet-slot {
+            width: 20px;
+            height: 20px;
+            background: var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 0.6rem;
+            border-radius: 2px;
+        }
+
         .vehicle-badge {
             position: absolute;
             top: 15px;
@@ -852,6 +955,7 @@
             font-weight: 600;
             font-size: 0.9rem;
             letter-spacing: 0.5px;
+            z-index: 20;
         }
 
         .vehicle-content {
@@ -948,7 +1052,7 @@
             padding: 2rem;
             border-radius: 12px;
             width: 90%;
-            max-width: 450px;
+            max-width: 500px; /* Wider modal */
             box-shadow: 0 20px 40px rgba(0,0,0,0.3);
             border: 2px solid var(--primary);
             position: relative;
@@ -1333,8 +1437,8 @@
                     <div class="validation-message" id="to-location-error"></div>
                 </div>
 
-                <!-- Date Time Input -->
-                <div class="form-group">
+                <!-- Date Time Input - Initially hidden -->
+                <div class="form-group" id="date-time-group" style="display: none;">
                     <label class="lang-de">Terminplanung</label>
                     <label class="lang-en">Scheduling</label>
                     <div class="date-time-input">
@@ -1368,26 +1472,6 @@
 
                 <!-- Individual Pallets -->
                 <div class="form-group" id="individual-pallets-group">
-                    <!-- Stapelbar Option -->
-                    <div class="stapelbar-container">
-                        <input type="checkbox" id="stapelbar" class="stapelbar-checkbox">
-                        <label for="stapelbar" class="stapelbar-label lang-de">Stapelbar (Paletten können übereinander gestapelt werden)</label>
-                        <label for="stapelbar" class="stapelbar-label lang-en">Stackable (Pallets can be stacked on top of each other)</label>
-                    </div>
-
-                    <div class="levels-input" id="levels-input">
-                        <div class="level-item">
-                            <label class="lang-de">Anzahl Ebenen</label>
-                            <label class="lang-en">Number of Levels</label>
-                            <input type="number" id="level-count" min="1" max="3" value="2">
-                        </div>
-                        <div class="level-item">
-                            <label class="lang-de">Paletten pro Ebene</label>
-                            <label class="lang-en">Pallets per Level</label>
-                            <input type="number" id="pallets-per-level" min="1" value="1">
-                        </div>
-                    </div>
-
                     <div class="individual-pallets" id="individual-pallets-container">
                         <!-- Individual pallets will be added here dynamically -->
                     </div>
@@ -1407,18 +1491,27 @@
                         </div>
                     </div>
                     
-                    <div class="form-group">
-                        <label for="pallet-count" class="lang-de">Anzahl Paletten</label>
-                        <label for="pallet-count" class="lang-en">Number of Pallets</label>
-                        <input type="number" id="pallet-count" name="pallet-count" min="1" value="1">
-                        <div class="validation-message" id="pallet-count-error"></div>
+                    <div class="standard-pallets-compact">
+                        <div class="standard-pallet-fields">
+                            <div class="compact-field">
+                                <label for="pallet-count" class="lang-de">Anzahl Paletten</label>
+                                <label for="pallet-count" class="lang-en">Number of Pallets</label>
+                                <input type="number" id="pallet-count" name="pallet-count" min="1" value="1">
+                            </div>
+                            <div class="compact-field">
+                                <label for="pallet-weight" class="lang-de">Gewicht pro Palette (kg)</label>
+                                <label for="pallet-weight" class="lang-en">Weight per Pallet (kg)</label>
+                                <input type="number" id="pallet-weight" name="pallet-weight" min="1" value="500">
+                            </div>
+                        </div>
+                        <div class="stapelbar-container" style="margin: 0;">
+                            <input type="checkbox" id="standard-stapelbar" class="stapelbar-checkbox">
+                            <label for="standard-stapelbar" class="stapelbar-label lang-de">Stapelbar</label>
+                            <label for="standard-stapelbar" class="stapelbar-label lang-en">Stackable</label>
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <label for="pallet-weight" class="lang-de">Gewicht pro Palette (kg)</label>
-                        <label for="pallet-weight" class="lang-en">Weight per Pallet (kg)</label>
-                        <input type="number" id="pallet-weight" name="pallet-weight" min="1" value="500">
-                        <div class="validation-message" id="pallet-weight-error"></div>
-                    </div>
+                    <div class="validation-message" id="pallet-count-error"></div>
+                    <div class="validation-message" id="pallet-weight-error"></div>
                 </div>
 
                 <div class="form-group">
@@ -1525,7 +1618,7 @@
 
     <!-- Vehicle Selection Modal -->
     <div class="modal-overlay" id="vehicleModalOverlay">
-        <div class="modal" style="max-width: 450px;">
+        <div class="modal" style="max-width: 500px;">
             <button class="modal-close-btn" onclick="closeVehicleModal()">×</button>
             
             <h3 class="lang-de">Transportanfrage für <span id="selectedVehicleName"></span></h3>
@@ -1600,25 +1693,6 @@
 
                 <!-- Individual Pallets -->
                 <div class="form-group" id="vehicle-individual-pallets">
-                    <div class="stapelbar-container">
-                        <input type="checkbox" id="vehicle-stapelbar" class="stapelbar-checkbox" onchange="toggleVehicleStapelbar()">
-                        <label for="vehicle-stapelbar" class="stapelbar-label lang-de">Stapelbar</label>
-                        <label for="vehicle-stapelbar" class="stapelbar-label lang-en">Stackable</label>
-                    </div>
-
-                    <div class="levels-input" id="vehicle-levels-input" style="display: none;">
-                        <div class="level-item">
-                            <label class="lang-de">Anzahl Ebenen</label>
-                            <label class="lang-en">Number of Levels</label>
-                            <input type="number" id="vehicle-level-count" min="1" max="3" value="2">
-                        </div>
-                        <div class="level-item">
-                            <label class="lang-de">Paletten pro Ebene</label>
-                            <label class="lang-en">Pallets per Level</label>
-                            <input type="number" id="vehicle-pallets-per-level" min="1" value="1">
-                        </div>
-                    </div>
-
                     <div class="individual-pallets" id="vehicle-individual-pallets-container">
                         <!-- Individual pallets will be added here -->
                     </div>
@@ -1638,15 +1712,24 @@
                         </div>
                     </div>
                     
-                    <div class="form-group">
-                        <label for="vehicle-pallet-count" class="lang-de">Anzahl Paletten</label>
-                        <label for="vehicle-pallet-count" class="lang-en">Number of Pallets</label>
-                        <input type="number" id="vehicle-pallet-count" name="pallet-count" min="1" value="1">
-                    </div>
-                    <div class="form-group">
-                        <label for="vehicle-pallet-weight" class="lang-de">Gewicht pro Palette (kg)</label>
-                        <label for="vehicle-pallet-weight" class="lang-en">Weight per Pallet (kg)</label>
-                        <input type="number" id="vehicle-pallet-weight" name="pallet-weight" min="1" value="500">
+                    <div class="standard-pallets-compact">
+                        <div class="standard-pallet-fields">
+                            <div class="compact-field">
+                                <label for="vehicle-pallet-count" class="lang-de">Anzahl Paletten</label>
+                                <label for="vehicle-pallet-count" class="lang-en">Number of Pallets</label>
+                                <input type="number" id="vehicle-pallet-count" name="pallet-count" min="1" value="1">
+                            </div>
+                            <div class="compact-field">
+                                <label for="vehicle-pallet-weight" class="lang-de">Gewicht pro Palette (kg)</label>
+                                <label for="vehicle-pallet-weight" class="lang-en">Weight per Pallet (kg)</label>
+                                <input type="number" id="vehicle-pallet-weight" name="pallet-weight" min="1" value="500">
+                            </div>
+                        </div>
+                        <div class="stapelbar-container" style="margin: 0;">
+                            <input type="checkbox" id="vehicle-standard-stapelbar" class="stapelbar-checkbox">
+                            <label for="vehicle-standard-stapelbar" class="stapelbar-label lang-de">Stapelbar</label>
+                            <label for="vehicle-standard-stapelbar" class="stapelbar-label lang-en">Stackable</label>
+                        </div>
                     </div>
                 </div>
 
@@ -1709,6 +1792,17 @@
                 <div class="vehicle-card">
                     <div class="vehicle-image">
                         <div class="pallet-visualization" id="visualization-bus"></div>
+                        <div class="loading-plan">
+                            <div class="loading-plan-content">
+                                <div class="loading-plan-title">Ladeplan - 6 Europaletten</div>
+                                <div class="loading-plan-grid" style="grid-template-columns: repeat(2, 1fr);">
+                                    <div class="pallet-slot">1</div><div class="pallet-slot">2</div>
+                                    <div class="pallet-slot">3</div><div class="pallet-slot">4</div>
+                                    <div class="pallet-slot">5</div><div class="pallet-slot">6</div>
+                                </div>
+                                <div style="font-size: 0.8rem; margin-top: 0.5rem;">← Vorne (Fahrerkabine)</div>
+                            </div>
+                        </div>
                         <div class="vehicle-badge">Kleintransport</div>
                     </div>
                     <div class="vehicle-content">
@@ -1729,7 +1823,7 @@
                             <div class="spec-item">
                                 <span class="spec-label lang-de">Europaletten</span>
                                 <span class="spec-label lang-en">Euro pallets</span>
-                                <span class="spec-value">bis zu 4</span>
+                                <span class="spec-value">bis zu 6</span>
                             </div>
                             <div class="spec-item">
                                 <span class="spec-label lang-de">Ladehöhe</span>
@@ -1748,6 +1842,19 @@
                 <div class="vehicle-card">
                     <div class="vehicle-image">
                         <div class="pallet-visualization" id="visualization-7.5t"></div>
+                        <div class="loading-plan">
+                            <div class="loading-plan-content">
+                                <div class="loading-plan-title">Ladeplan - 10 Europaletten</div>
+                                <div class="loading-plan-grid" style="grid-template-columns: repeat(2, 1fr);">
+                                    <div class="pallet-slot">1</div><div class="pallet-slot">2</div>
+                                    <div class="pallet-slot">3</div><div class="pallet-slot">4</div>
+                                    <div class="pallet-slot">5</div><div class="pallet-slot">6</div>
+                                    <div class="pallet-slot">7</div><div class="pallet-slot">8</div>
+                                    <div class="pallet-slot">9</div><div class="pallet-slot">10</div>
+                                </div>
+                                <div style="font-size: 0.8rem; margin-top: 0.5rem;">← Vorne (Fahrerkabine)</div>
+                            </div>
+                        </div>
                         <div class="vehicle-badge">Mitteltransport</div>
                     </div>
                     <div class="vehicle-content">
@@ -1768,7 +1875,7 @@
                             <div class="spec-item">
                                 <span class="spec-label lang-de">Europaletten</span>
                                 <span class="spec-label lang-en">Euro pallets</span>
-                                <span class="spec-value">10-12</span>
+                                <span class="spec-value">10</span>
                             </div>
                             <div class="spec-item">
                                 <span class="spec-label lang-de">Ladehöhe</span>
@@ -1787,6 +1894,21 @@
                 <div class="vehicle-card">
                     <div class="vehicle-image">
                         <div class="pallet-visualization" id="visualization-12t"></div>
+                        <div class="loading-plan">
+                            <div class="loading-plan-content">
+                                <div class="loading-plan-title">Ladeplan - 14 Europaletten</div>
+                                <div class="loading-plan-grid" style="grid-template-columns: repeat(2, 1fr);">
+                                    <div class="pallet-slot">1</div><div class="pallet-slot">2</div>
+                                    <div class="pallet-slot">3</div><div class="pallet-slot">4</div>
+                                    <div class="pallet-slot">5</div><div class="pallet-slot">6</div>
+                                    <div class="pallet-slot">7</div><div class="pallet-slot">8</div>
+                                    <div class="pallet-slot">9</div><div class="pallet-slot">10</div>
+                                    <div class="pallet-slot">11</div><div class="pallet-slot">12</div>
+                                    <div class="pallet-slot">13</div><div class="pallet-slot">14</div>
+                                </div>
+                                <div style="font-size: 0.8rem; margin-top: 0.5rem;">← Vorne (Fahrerkabine)</div>
+                            </div>
+                        </div>
                         <div class="vehicle-badge">Großtransport</div>
                     </div>
                     <div class="vehicle-content">
@@ -1807,7 +1929,7 @@
                             <div class="spec-item">
                                 <span class="spec-label lang-de">Europaletten</span>
                                 <span class="spec-label lang-en">Euro pallets</span>
-                                <span class="spec-value">bis zu 17</span>
+                                <span class="spec-value">14</span>
                             </div>
                             <div class="spec-item">
                                 <span class="spec-label lang-de">Ladehöhe</span>
@@ -1826,6 +1948,17 @@
                 <div class="vehicle-card">
                     <div class="vehicle-image">
                         <div class="pallet-visualization" id="visualization-18t"></div>
+                        <div class="loading-plan">
+                            <div class="loading-plan-content">
+                                <div class="loading-plan-title">Ladeplan - 18 Europaletten</div>
+                                <div class="loading-plan-grid" style="grid-template-columns: repeat(6, 1fr);">
+                                    <div class="pallet-slot">1</div><div class="pallet-slot">2</div><div class="pallet-slot">3</div><div class="pallet-slot">4</div><div class="pallet-slot">5</div><div class="pallet-slot">6</div>
+                                    <div class="pallet-slot">7</div><div class="pallet-slot">8</div><div class="pallet-slot">9</div><div class="pallet-slot">10</div><div class="pallet-slot">11</div><div class="pallet-slot">12</div>
+                                    <div class="pallet-slot">13</div><div class="pallet-slot">14</div><div class="pallet-slot">15</div><div class="pallet-slot">16</div><div class="pallet-slot">17</div><div class="pallet-slot">18</div>
+                                </div>
+                                <div style="font-size: 0.8rem; margin-top: 0.5rem;">← Vorne (Fahrerkabine)</div>
+                            </div>
+                        </div>
                         <div class="vehicle-badge">Schwerlast</div>
                     </div>
                     <div class="vehicle-content">
@@ -1846,7 +1979,7 @@
                             <div class="spec-item">
                                 <span class="spec-label lang-de">Europaletten</span>
                                 <span class="spec-label lang-en">Euro pallets</span>
-                                <span class="spec-value">bis zu 18</span>
+                                <span class="spec-value">18</span>
                             </div>
                             <div class="spec-item">
                                 <span class="spec-label lang-de">Ladehöhe</span>
@@ -1865,6 +1998,17 @@
                 <div class="vehicle-card">
                     <div class="vehicle-image">
                         <div class="pallet-visualization" id="visualization-sattelzug"></div>
+                        <div class="loading-plan">
+                            <div class="loading-plan-content">
+                                <div class="loading-plan-title">Ladeplan - 33 Europaletten</div>
+                                <div class="loading-plan-grid" style="grid-template-columns: repeat(12, 1fr);">
+                                    <div class="pallet-slot">1</div><div class="pallet-slot">2</div><div class="pallet-slot">3</div><div class="pallet-slot" style="background: #ccc;"></div><div class="pallet-slot">4</div><div class="pallet-slot">5</div><div class="pallet-slot">6</div><div class="pallet-slot" style="background: #ccc;"></div><div class="pallet-slot">7</div><div class="pallet-slot">8</div><div class="pallet-slot">9</div><div class="pallet-slot" style="background: #ccc;"></div><div class="pallet-slot">10</div><div class="pallet-slot">11</div><div class="pallet-slot">12</div>
+                                    <div class="pallet-slot">13</div><div class="pallet-slot">14</div><div class="pallet-slot">15</div><div class="pallet-slot" style="background: #ccc;"></div><div class="pallet-slot">16</div><div class="pallet-slot">17</div><div class="pallet-slot">18</div><div class="pallet-slot" style="background: #ccc;"></div><div class="pallet-slot">19</div><div class="pallet-slot">20</div><div class="pallet-slot">21</div><div class="pallet-slot" style="background: #ccc;"></div><div class="pallet-slot">22</div><div class="pallet-slot">23</div><div class="pallet-slot">24</div>
+                                    <div class="pallet-slot">25</div><div class="pallet-slot">26</div><div class="pallet-slot">27</div><div class="pallet-slot" style="background: #ccc;"></div><div class="pallet-slot">28</div><div class="pallet-slot">29</div><div class="pallet-slot">30</div><div class="pallet-slot" style="background: #ccc;"></div><div class="pallet-slot">31</div><div class="pallet-slot">32</div><div class="pallet-slot">33</div>
+                                </div>
+                                <div style="font-size: 0.7rem; margin-top: 0.5rem;">Graue Felder = Gänge zwischen Paletten</div>
+                            </div>
+                        </div>
                         <div class="vehicle-badge">Schwertransport</div>
                     </div>
                     <div class="vehicle-content">
@@ -1885,7 +2029,7 @@
                             <div class="spec-item">
                                 <span class="spec-label lang-de">Europaletten</span>
                                 <span class="spec-label lang-en">Euro pallets</span>
-                                <span class="spec-value">bis zu 33</span>
+                                <span class="spec-value">33</span>
                             </div>
                             <div class="spec-item">
                                 <span class="spec-label lang-de">Ladehöhe</span>
@@ -1904,6 +2048,17 @@
                 <div class="vehicle-card">
                     <div class="vehicle-image">
                         <div class="pallet-visualization" id="visualization-mega"></div>
+                        <div class="loading-plan">
+                            <div class="loading-plan-content">
+                                <div class="loading-plan-title">Ladeplan - 33 Europaletten</div>
+                                <div class="loading-plan-grid" style="grid-template-columns: repeat(12, 1fr);">
+                                    <div class="pallet-slot">1</div><div class="pallet-slot">2</div><div class="pallet-slot">3</div><div class="pallet-slot" style="background: #ccc;"></div><div class="pallet-slot">4</div><div class="pallet-slot">5</div><div class="pallet-slot">6</div><div class="pallet-slot" style="background: #ccc;"></div><div class="pallet-slot">7</div><div class="pallet-slot">8</div><div class="pallet-slot">9</div><div class="pallet-slot" style="background: #ccc;"></div><div class="pallet-slot">10</div><div class="pallet-slot">11</div><div class="pallet-slot">12</div>
+                                    <div class="pallet-slot">13</div><div class="pallet-slot">14</div><div class="pallet-slot">15</div><div class="pallet-slot" style="background: #ccc;"></div><div class="pallet-slot">16</div><div class="pallet-slot">17</div><div class="pallet-slot">18</div><div class="pallet-slot" style="background: #ccc;"></div><div class="pallet-slot">19</div><div class="pallet-slot">20</div><div class="pallet-slot">21</div><div class="pallet-slot" style="background: #ccc;"></div><div class="pallet-slot">22</div><div class="pallet-slot">23</div><div class="pallet-slot">24</div>
+                                    <div class="pallet-slot">25</div><div class="pallet-slot">26</div><div class="pallet-slot">27</div><div class="pallet-slot" style="background: #ccc;"></div><div class="pallet-slot">28</div><div class="pallet-slot">29</div><div class="pallet-slot">30</div><div class="pallet-slot" style="background: #ccc;"></div><div class="pallet-slot">31</div><div class="pallet-slot">32</div><div class="pallet-slot">33</div>
+                                </div>
+                                <div style="font-size: 0.7rem; margin-top: 0.5rem;">Graue Felder = Gänge zwischen Paletten</div>
+                            </div>
+                        </div>
                         <div class="vehicle-badge">Maximaltransport</div>
                     </div>
                     <div class="vehicle-content">
@@ -1924,7 +2079,7 @@
                             <div class="spec-item">
                                 <span class="spec-label lang-de">Europaletten</span>
                                 <span class="spec-label lang-en">Euro pallets</span>
-                                <span class="spec-value">bis zu 33</span>
+                                <span class="spec-value">33</span>
                             </div>
                             <div class="spec-item">
                                 <span class="spec-label lang-de">Ladehöhe</span>
@@ -2026,6 +2181,12 @@
             if (users[username] && users[username].password === password) {
                 showUserInfo(username);
                 localStorage.setItem('loggedInUser', username);
+                
+                // Redirect to Dashboard for admin
+                if (username === 'admin') {
+                    window.location.href = 'https://github.com/your-username/your-repo/blob/main/Dashboard.html';
+                }
+                
                 alert('Erfolgreich angemeldet als ' + users[username].name);
             } else {
                 alert('Ungültiger Benutzername oder Passwort');
@@ -2144,14 +2305,14 @@
                 perKg: 0.09,
                 perPallet: 20,
                 maxWeight: 1100,
-                maxPallets: 4,
+                maxPallets: 6, // Updated to 6
                 internalLength: 320,
                 internalWidth: 125,
                 internalHeight: 160,
                 maxLevels: 1,
                 palletConfig: {
-                    euro: { rows: 2, cols: 2 },
-                    dusseldorf: { rows: 1, cols: 2 }
+                    euro: { rows: 3, cols: 2 }, // 6 pallets
+                    dusseldorf: { rows: 2, cols: 2 } // 4 pallets
                 }
             },
             '7.5t': { 
@@ -2161,14 +2322,14 @@
                 perKg: 0.07,
                 perPallet: 16,
                 maxWeight: 2350,
-                maxPallets: 10,
+                maxPallets: 10, // Updated to 10
                 internalLength: 600,
                 internalWidth: 240,
                 internalHeight: 240,
                 maxLevels: 2,
                 palletConfig: {
-                    euro: { rows: 2, cols: 5 },
-                    dusseldorf: { rows: 2, cols: 4 }
+                    euro: { rows: 5, cols: 2 }, // 10 pallets
+                    dusseldorf: { rows: 4, cols: 2 } // 8 pallets
                 }
             },
             '12t': { 
@@ -2178,14 +2339,14 @@
                 perKg: 0.06,
                 perPallet: 14,
                 maxWeight: 7000,
-                maxPallets: 14,
+                maxPallets: 14, // Updated to 14
                 internalLength: 680,
                 internalWidth: 230,
                 internalHeight: 250,
                 maxLevels: 2,
                 palletConfig: {
-                    euro: { rows: 2, cols: 7 },
-                    dusseldorf: { rows: 2, cols: 5 }
+                    euro: { rows: 7, cols: 2 }, // 14 pallets
+                    dusseldorf: { rows: 5, cols: 2 } // 10 pallets
                 }
             },
             '18t': { 
@@ -2195,14 +2356,14 @@
                 perKg: 0.05,
                 perPallet: 12,
                 maxWeight: 12000,
-                maxPallets: 18,
+                maxPallets: 18, // Updated to 18
                 internalLength: 780,
                 internalWidth: 245,
                 internalHeight: 270,
                 maxLevels: 2,
                 palletConfig: {
-                    euro: { rows: 3, cols: 6 },
-                    dusseldorf: { rows: 3, cols: 5 }
+                    euro: { rows: 3, cols: 6 }, // 18 pallets
+                    dusseldorf: { rows: 3, cols: 5 } // 15 pallets
                 }
             },
             'sattelzug': {
@@ -2212,14 +2373,14 @@
                 perKg: 0.04,
                 perPallet: 10,
                 maxWeight: 24000,
-                maxPallets: 33,
+                maxPallets: 33, // Updated to 33
                 internalLength: 1360,
                 internalWidth: 240,
                 internalHeight: 265,
                 maxLevels: 2,
                 palletConfig: {
-                    euro: { rows: 3, cols: 11 },
-                    dusseldorf: { rows: 3, cols: 9 }
+                    euro: { rows: 3, cols: 11 }, // 33 pallets
+                    dusseldorf: { rows: 3, cols: 9 } // 27 pallets
                 }
             },
             'mega': { 
@@ -2229,14 +2390,14 @@
                 perKg: 0.035,
                 perPallet: 8,
                 maxWeight: 24000,
-                maxPallets: 33,
+                maxPallets: 33, // Updated to 33
                 internalLength: 1360,
                 internalWidth: 240,
                 internalHeight: 300,
                 maxLevels: 3,
                 palletConfig: {
-                    euro: { rows: 3, cols: 11 },
-                    dusseldorf: { rows: 3, cols: 9 }
+                    euro: { rows: 3, cols: 11 }, // 33 pallets
+                    dusseldorf: { rows: 3, cols: 9 } // 27 pallets
                 }
             }
         };
@@ -2278,27 +2439,15 @@
                 
                 if (cargoType === 'individual') {
                     const palletItems = document.querySelectorAll('.pallet-item');
+                    totalPallets = palletItems.length;
                     
-                    if (stapelbarCheckbox.checked) {
-                        const levelCount = parseInt(document.getElementById('level-count').value) || 1;
-                        const palletsPerLevel = parseInt(document.getElementById('pallets-per-level').value) || 1;
-                        totalPallets = palletsPerLevel * levelCount;
-                        
-                        palletItems.forEach(item => {
-                            const weightInput = item.querySelector('input[type="number"]:nth-child(4)');
-                            const weight = weightInput.value ? parseInt(weightInput.value) : 0;
-                            totalWeight += weight * totalPallets;
-                            price += weight * totalPallets * vehicle.perKg;
-                        });
-                    } else {
-                        totalPallets = palletItems.length;
-                        palletItems.forEach(item => {
-                            const weightInput = item.querySelector('input[type="number"]:nth-child(4)');
-                            const weight = weightInput.value ? parseInt(weightInput.value) : 0;
-                            totalWeight += weight;
-                            price += weight * vehicle.perKg;
-                        });
-                    }
+                    palletItems.forEach(item => {
+                        const weightInput = item.querySelector('input[type="number"]:nth-child(4)');
+                        const weight = weightInput.value ? parseInt(weightInput.value) : 0;
+                        totalWeight += weight;
+                        price += weight * vehicle.perKg;
+                    });
+                    
                     price += totalPallets * vehicle.perPallet;
                 } else {
                     totalPallets = parseInt(formData.get('pallet-count')) || 0;
@@ -2309,7 +2458,8 @@
                 }
                 
                 // Additional factors
-                if (stapelbarCheckbox.checked) {
+                const standardStapelbar = document.getElementById('standard-stapelbar');
+                if (standardStapelbar && standardStapelbar.checked) {
                     price *= 1.1; // 10% extra for stacking
                 }
                 
@@ -2352,9 +2502,9 @@
         let vehiclePalletCounter = 0;
         
         const vehicleSpecs = {
-            '3,5-Tonner Transporter': { maxWeight: 1100, maxPallets: 4 },
-            '7,5-Tonner LKW': { maxWeight: 2350, maxPallets: 12 },
-            '12-Tonner LKW': { maxWeight: 7000, maxPallets: 17 },
+            '3,5-Tonner Transporter': { maxWeight: 1100, maxPallets: 6 },
+            '7,5-Tonner LKW': { maxWeight: 2350, maxPallets: 10 },
+            '12-Tonner LKW': { maxWeight: 7000, maxPallets: 14 },
             '18-Tonner LKW': { maxWeight: 12000, maxPallets: 18 },
             'Sattelzug': { maxWeight: 24000, maxPallets: 33 },
             'Sattelzug Megatrailer': { maxWeight: 24000, maxPallets: 33 }
@@ -2441,6 +2591,7 @@
                         <button type="button" class="quantity-btn">-</button>
                     </div>
                 </div>
+                <button type="button" class="duplicate-pallet-btn" onclick="duplicateVehiclePallet(this)">+</button>
                 ${vehiclePalletCounter > 1 ? '<button type="button" class="remove-pallet-btn" onclick="removeVehiclePallet(this)">×</button>' : ''}
             `;
             container.appendChild(palletItem);
@@ -2461,6 +2612,28 @@
                     };
                 }
             });
+        }
+
+        function duplicateVehiclePallet(button) {
+            const palletItem = button.parentElement;
+            const container = document.getElementById('vehicle-individual-pallets-container');
+            const newPalletItem = palletItem.cloneNode(true);
+            
+            // Update the duplicate button to remove button for the new pallet
+            const duplicateBtn = newPalletItem.querySelector('.duplicate-pallet-btn');
+            duplicateBtn.textContent = '+';
+            duplicateBtn.onclick = function() { duplicateVehiclePallet(this); };
+            
+            // Add remove button
+            const removeBtn = document.createElement('button');
+            removeBtn.type = 'button';
+            removeBtn.className = 'remove-pallet-btn';
+            removeBtn.textContent = '×';
+            removeBtn.onclick = function() { removeVehiclePallet(this); };
+            newPalletItem.appendChild(removeBtn);
+            
+            container.appendChild(newPalletItem);
+            vehiclePalletCounter++;
         }
 
         function removeVehiclePallet(button) {
@@ -2490,12 +2663,6 @@
             button.classList.add('active');
         }
 
-        function toggleVehicleStapelbar() {
-            const checkbox = document.getElementById('vehicle-stapelbar');
-            const levelsInput = document.getElementById('vehicle-levels-input');
-            levelsInput.style.display = checkbox.checked ? 'grid' : 'none';
-        }
-
         // =============================================
         // BASIC FUNCTIONALITY
         // =============================================
@@ -2503,8 +2670,6 @@
         let palletCounter = 0;
         const individualPalletsContainer = document.getElementById('individual-pallets-container');
         const addPalletBtn = document.getElementById('add-pallet-btn');
-        const stapelbarCheckbox = document.getElementById('stapelbar');
-        const levelsInput = document.getElementById('levels-input');
 
         function openModal(type, vehicleName = '') {
             currentModalType = type;
@@ -2566,12 +2731,45 @@
                     <label class="lang-en">Weight (kg)</label>
                     <input type="number" name="pallet-weight-${palletCounter}" min="0" placeholder="500" value="500">
                 </div>
+                <button type="button" class="duplicate-pallet-btn" onclick="duplicatePallet(this)">+</button>
                 ${palletCounter > 1 ? '<button type="button" class="remove-pallet-btn" onclick="removePallet(this)">×</button>' : ''}
             `;
             individualPalletsContainer.appendChild(palletItem);
             
             // Add quantity controls to each input
             const inputs = palletItem.querySelectorAll('input');
+            inputs.forEach(input => {
+                const controls = createQuantityControls(input);
+                input.parentElement.appendChild(controls);
+            });
+            
+            updateAutoVehicleSelection();
+            saveFormData();
+        }
+
+        function duplicatePallet(button) {
+            const palletItem = button.parentElement;
+            const container = document.getElementById('individual-pallets-container');
+            const newPalletItem = palletItem.cloneNode(true);
+            
+            // Update the duplicate button to remove button for the new pallet
+            const duplicateBtn = newPalletItem.querySelector('.duplicate-pallet-btn');
+            duplicateBtn.textContent = '+';
+            duplicateBtn.onclick = function() { duplicatePallet(this); };
+            
+            // Add remove button
+            const removeBtn = document.createElement('button');
+            removeBtn.type = 'button';
+            removeBtn.className = 'remove-pallet-btn';
+            removeBtn.textContent = '×';
+            removeBtn.onclick = function() { removePallet(this); };
+            newPalletItem.appendChild(removeBtn);
+            
+            container.appendChild(newPalletItem);
+            palletCounter++;
+            
+            // Add quantity controls to new inputs
+            const inputs = newPalletItem.querySelectorAll('input');
             inputs.forEach(input => {
                 const controls = createQuantityControls(input);
                 input.parentElement.appendChild(controls);
@@ -2658,12 +2856,6 @@
             if (cargoType === 'individual') {
                 const palletItems = document.querySelectorAll('#vehicle-individual-pallets-container .pallet-item');
                 cargoInfo = `Individuelle Paletten: ${palletItems.length} Stück`;
-                
-                if (document.getElementById('vehicle-stapelbar').checked) {
-                    const levels = document.getElementById('vehicle-level-count').value;
-                    const perLevel = document.getElementById('vehicle-pallets-per-level').value;
-                    cargoInfo += ` (gestapelt: ${levels} Ebenen × ${perLevel} Paletten)`;
-                }
             } else {
                 const palletCount = document.getElementById('vehicle-pallet-count').value;
                 const palletWeight = document.getElementById('vehicle-pallet-weight').value;
@@ -2690,8 +2882,6 @@
                 document.getElementById('vehicleModalForm').reset();
                 document.getElementById('vehicle-individual-pallets-container').innerHTML = '';
                 addVehiclePallet();
-                document.getElementById('vehicle-stapelbar').checked = false;
-                document.getElementById('vehicle-levels-input').style.display = 'none';
             }, 3000);
         });
 
@@ -2716,8 +2906,6 @@
                     document.getElementById('calculatorResult').style.display = 'none';
                     individualPalletsContainer.innerHTML = '';
                     addIndividualPallet();
-                    stapelbarCheckbox.checked = false;
-                    levelsInput.style.display = 'none';
                     document.getElementById('instantVehicleResult').style.display = 'none';
                 }
                 document.getElementById('modalForm').reset();
@@ -2744,23 +2932,15 @@
             const cargoType = document.querySelector('.cargo-type-btn.active').getAttribute('data-type');
             let totalWeight = 0;
             let palletCount = 0;
-            let levels = 1;
             
             if (cargoType === 'individual') {
                 const palletItems = document.querySelectorAll('.pallet-item');
                 palletCount = palletItems.length;
                 
-                if (stapelbarCheckbox.checked) {
-                    const levelCount = parseInt(document.getElementById('level-count').value) || 1;
-                    const palletsPerLevel = parseInt(document.getElementById('pallets-per-level').value) || 1;
-                    levels = levelCount;
-                    palletCount = palletsPerLevel * levelCount;
-                }
-                
                 palletItems.forEach(item => {
                     const weightInput = item.querySelector('input[type="number"]:nth-child(4)');
                     const weight = weightInput.value ? parseInt(weightInput.value) : 0;
-                    totalWeight += weight * (stapelbarCheckbox.checked ? palletCount : 1);
+                    totalWeight += weight;
                 });
             } else {
                 palletCount = parseInt(document.getElementById('pallet-count').value) || 0;
@@ -2772,9 +2952,8 @@
             for (const [key, vehicle] of Object.entries(vehicleData)) {
                 const canFitWeight = totalWeight <= vehicle.maxWeight;
                 const canFitPallets = palletCount <= vehicle.maxPallets;
-                const canStack = !stapelbarCheckbox.checked || levels <= vehicle.maxLevels;
                 
-                if (canFitWeight && canFitPallets && canStack) {
+                if (canFitWeight && canFitPallets) {
                     suitableVehicle = key;
                     break;
                 }
@@ -2782,11 +2961,10 @@
             
             if (suitableVehicle) {
                 const vehicle = vehicleData[suitableVehicle];
-                const stackInfo = stapelbarCheckbox.checked ? ` (${levels} Ebenen)` : '';
                 infoDiv.style.display = 'block';
                 infoDiv.innerHTML = `
-                    <span class="lang-de">✅ Empfohlen: ${vehicle.name} - Passt zu Ihrem Transport (${palletCount} Paletten${stackInfo}, ${totalWeight} kg)</span>
-                    <span class="lang-en">✅ Recommended: ${vehicle.name} - Suitable for your transport (${palletCount} pallets${stackInfo}, ${totalWeight} kg)</span>
+                    <span class="lang-de">✅ Empfohlen: ${vehicle.name} - Passt zu Ihrem Transport (${palletCount} Paletten, ${totalWeight} kg)</span>
+                    <span class="lang-en">✅ Recommended: ${vehicle.name} - Suitable for your transport (${palletCount} pallets, ${totalWeight} kg)</span>
                 `;
             } else {
                 infoDiv.style.display = 'block';
@@ -2805,7 +2983,6 @@
             let totalWeight = 0;
             let palletCount = 0;
             let totalVolume = 0;
-            let maxPalletHeight = 0;
             
             if (cargoType === 'individual') {
                 const palletItems = document.querySelectorAll('.pallet-item');
@@ -2819,24 +2996,7 @@
                     
                     totalVolume += (length * width * height) / 1000000; // Convert to m³
                     totalWeight += weight;
-                    maxPalletHeight = Math.max(maxPalletHeight, height);
                 });
-                
-                // Handle stacking logic
-                if (stapelbarCheckbox.checked) {
-                    const levelCount = parseInt(document.getElementById('level-count').value) || 1;
-                    const palletsPerLevel = parseInt(document.getElementById('pallets-per-level').value) || 1;
-                    
-                    // Calculate total stacked height
-                    const stackedHeight = maxPalletHeight * levelCount;
-                    
-                    // Update counts for stacked scenario
-                    palletCount = palletsPerLevel * levelCount;
-                    totalWeight *= palletCount;
-                    totalVolume *= palletCount;
-                    
-                    return findSuitableVehicle(totalWeight, palletCount, totalVolume, stackedHeight);
-                }
             } else {
                 palletCount = parseInt(document.getElementById('pallet-count').value) || 0;
                 const palletWeight = parseInt(document.getElementById('pallet-weight').value) || 0;
@@ -2851,48 +3011,17 @@
             return findSuitableVehicle(totalWeight, palletCount, totalVolume);
         }
 
-        function findSuitableVehicle(weight, pallets, volume, stackedHeight = 0) {
+        function findSuitableVehicle(weight, pallets, volume) {
             const vehicles = [
-                { id: 'bus', name: '3,5-Tonner', maxWeight: 1100, maxPallets: 4, maxVolume: 8, maxHeight: 160 },
-                { id: '7.5t', name: '7,5-Tonner', maxWeight: 2350, maxPallets: 12, maxVolume: 20, maxHeight: 240 },
-                { id: '12t', name: '12-Tonner', maxWeight: 7000, maxPallets: 17, maxVolume: 35, maxHeight: 250 },
-                { id: '18t', name: '18-Tonner', maxWeight: 12000, maxPallets: 18, maxVolume: 45, maxHeight: 270 },
-                { id: 'sattelzug', name: 'Sattelzug', maxWeight: 24000, maxPallets: 33, maxVolume: 85, maxHeight: 265 },
-                { id: 'mega', name: 'Megatrailer', maxWeight: 24000, maxPallets: 33, maxVolume: 100, maxHeight: 300 }
+                { id: 'bus', name: '3,5-Tonner', maxWeight: 1100, maxPallets: 6, maxVolume: 8 },
+                { id: '7.5t', name: '7,5-Tonner', maxWeight: 2350, maxPallets: 10, maxVolume: 20 },
+                { id: '12t', name: '12-Tonner', maxWeight: 7000, maxPallets: 14, maxVolume: 35 },
+                { id: '18t', name: '18-Tonner', maxWeight: 12000, maxPallets: 18, maxVolume: 45 },
+                { id: 'sattelzug', name: 'Sattelzug', maxWeight: 24000, maxPallets: 33, maxVolume: 85 },
+                { id: 'mega', name: 'Megatrailer', maxWeight: 24000, maxPallets: 33, maxVolume: 100 }
             ];
             
-            // Check if stacked height exceeds vehicle height
-            if (stackedHeight > 0) {
-                for (const vehicle of vehicles) {
-                    const fitsWeight = weight <= vehicle.maxWeight;
-                    const fitsPallets = pallets <= vehicle.maxPallets;
-                    const fitsVolume = volume <= vehicle.maxVolume;
-                    const fitsHeight = stackedHeight <= vehicle.maxHeight;
-                    
-                    if (fitsWeight && fitsPallets && fitsVolume && fitsHeight) {
-                        return {
-                            vehicle: vehicle,
-                            fitsPerfectly: true,
-                            message: `Perfekt für ${pallets} Paletten, ${weight}kg, ${volume.toFixed(1)}m³`
-                        };
-                    }
-                }
-                
-                // If no vehicle fits the stacked height, find the closest
-                const closest = vehicles.reduce((closest, current) => {
-                    const currentFit = (current.maxWeight - weight) + (current.maxPallets - pallets) * 100 + (current.maxHeight - stackedHeight) * 10;
-                    const closestFit = (closest.maxWeight - weight) + (closest.maxPallets - pallets) * 100 + (closest.maxHeight - stackedHeight) * 10;
-                    return currentFit >= 0 && currentFit < closestFit ? current : closest;
-                });
-                
-                return {
-                    vehicle: closest,
-                    fitsPerfectly: false,
-                    message: `Benötigt ${closest.name} - Gestapelte Höhe (${stackedHeight}cm) übersteigt kleinere Fahrzeuge`
-                };
-            }
-            
-            // Standard selection without stacking
+            // Standard selection
             for (const vehicle of vehicles) {
                 const fitsWeight = weight <= vehicle.maxWeight;
                 const fitsPallets = pallets <= vehicle.maxPallets;
@@ -2976,8 +3105,7 @@
 
         function initializeInstantUpdates() {
             const instantUpdateElements = [
-                'from-location', 'to-location', 'pallet-count', 'pallet-weight',
-                'level-count', 'pallets-per-level'
+                'from-location', 'to-location', 'pallet-count', 'pallet-weight'
             ];
             
             instantUpdateElements.forEach(id => {
@@ -2996,8 +3124,6 @@
             document.querySelectorAll('.cargo-type-btn').forEach(btn => {
                 btn.addEventListener('click', updateInstantVehicleDisplay);
             });
-            
-            stapelbarCheckbox.addEventListener('change', updateInstantVehicleDisplay);
         }
 
         // =============================================
@@ -3283,17 +3409,22 @@
             });
         });
 
-        stapelbarCheckbox.addEventListener('change', function() {
-            if (this.checked) {
-                levelsInput.style.display = 'grid';
-            } else {
-                levelsInput.style.display = 'none';
+        addPalletBtn.addEventListener('click', addIndividualPallet);
+
+        // Show date-time when user starts typing in location fields
+        document.getElementById('from-location').addEventListener('input', function() {
+            if (this.value.length > 0) {
+                document.getElementById('date-time-group').style.display = 'block';
+                document.querySelector('.date-time-input').style.display = 'grid';
             }
-            updateAutoVehicleSelection();
-            saveFormData();
         });
 
-        addPalletBtn.addEventListener('click', addIndividualPallet);
+        document.getElementById('to-location').addEventListener('input', function() {
+            if (this.value.length > 0) {
+                document.getElementById('date-time-group').style.display = 'block';
+                document.querySelector('.date-time-input').style.display = 'grid';
+            }
+        });
 
         document.getElementById('from-location').addEventListener('blur', function() {
             validateLocationInput(this);
@@ -3327,8 +3458,6 @@
 
         document.getElementById('pallet-count').addEventListener('input', updateAutoVehicleSelection);
         document.getElementById('pallet-weight').addEventListener('input', updateAutoVehicleSelection);
-        document.getElementById('level-count').addEventListener('input', updateAutoVehicleSelection);
-        document.getElementById('pallets-per-level').addEventListener('input', updateAutoVehicleSelection);
 
         document.querySelectorAll('input, select').forEach(element => {
             element.addEventListener('change', saveFormData);
