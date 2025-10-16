@@ -139,7 +139,7 @@
             color: var(--white);
         }
 
-        /* Mini Login Section - KORRIGIERTE POSITION */
+        /* Mini Login Section */
         .login-section {
             padding: 0.3rem 2rem;
             background: var(--light);
@@ -147,7 +147,7 @@
             display: flex;
             justify-content: flex-end;
             align-items: center;
-            margin-top: 83px; /* Korrigierte Position */
+            margin-top: 83px;
             min-height: 40px;
         }
 
@@ -1288,7 +1288,7 @@
         </div>
     </header>
 
-    <!-- Mini Login Section - KORRIGIERTE POSITION -->
+    <!-- Mini Login Section -->
     <section class="login-section" id="loginSection">
         <div class="login-container">
             <form class="login-form" id="loginForm">
@@ -1342,7 +1342,7 @@
                 <!-- Initially Hidden Sections -->
                 <div class="hidden-section" id="date-time-section">
                     <div class="form-group">
-                        <label class="lang-de">Terminplanung</label>
+                        <label class="lang-de">Terminplaning</label>
                         <label class="lang-en">Scheduling</label>
                         <div class="date-time-input">
                             <div class="date-time-group">
@@ -2007,12 +2007,12 @@
         ];
 
         // =============================================
-        // ENHANCED VEHICLE SELECTION LOGIC
+        // IMPROVED VEHICLE SELECTION LOGIC
         // =============================================
         function autoSelectVehicle(cargoData) {
-            const { totalWeight, totalPallets, maxPalletHeight, maxPalletLength } = cargoData;
+            const { totalWeight, totalPallets, maxPalletHeight, maxPalletLength, maxPalletWidth } = cargoData;
             
-            console.log('Auto selecting vehicle for:', cargoData);
+            console.log('Auto selecting vehicle for cargo:', cargoData);
             
             // Filter vehicles that can handle the height
             let suitableVehicles = vehicleCapacities.filter(vehicle => 
@@ -2047,12 +2047,17 @@
             // Check loading meter if we have pallet length data
             if (maxPalletLength > 0) {
                 suitableVehicles = suitableVehicles.filter(vehicle => {
-                    const loadingMeter = vehicle.loadingMeter;
-                    return loadingMeter.max >= maxPalletLength;
+                    // Calculate how many pallets fit in length
+                    const palletsInLength = Math.floor(vehicle.loadingMeter.max * 100 / maxPalletLength);
+                    // Calculate how many pallets fit in width (assuming standard width arrangement)
+                    const palletsInWidth = Math.floor(240 / maxPalletWidth); // Standard truck width ~2.4m
+                    
+                    const totalPossiblePallets = palletsInLength * palletsInWidth;
+                    return totalPossiblePallets >= totalPallets;
                 });
                 
                 if (suitableVehicles.length === 0) {
-                    console.log('No vehicles suitable for length:', maxPalletLength);
+                    console.log('No vehicles suitable for dimensions');
                     return 'consultation';
                 }
             }
@@ -2066,7 +2071,7 @@
         }
 
         // =============================================
-        // CARGO DATA CALCULATION
+        // IMPROVED CARGO DATA CALCULATION
         // =============================================
         function calculateCargoData() {
             const cargoType = document.querySelector('.cargo-type-btn.active').getAttribute('data-type');
@@ -2074,21 +2079,27 @@
             let totalPallets = 0;
             let maxPalletHeight = 0;
             let maxPalletLength = 0;
+            let maxPalletWidth = 0;
             
             if (cargoType === 'individual') {
                 const stackingInfo = calculateStacking();
                 totalWeight = stackingInfo.totalWeight;
                 totalPallets = stackingInfo.effectivePallets;
                 
-                // Find maximum dimensions
+                // Find maximum dimensions from individual pallets
                 const palletItems = document.querySelectorAll('.pallet-item');
                 palletItems.forEach(item => {
                     const lengthInput = item.querySelector('input[type="number"]:nth-child(1)');
+                    const widthInput = item.querySelector('input[type="number"]:nth-child(2)');
                     const heightInput = item.querySelector('input[type="number"]:nth-child(3)');
                     
                     if (lengthInput) {
                         const length = parseInt(lengthInput.value) || 0;
                         if (length > maxPalletLength) maxPalletLength = length;
+                    }
+                    if (widthInput) {
+                        const width = parseInt(widthInput.value) || 0;
+                        if (width > maxPalletWidth) maxPalletWidth = width;
                     }
                     if (heightInput) {
                         const height = parseInt(heightInput.value) || 0;
@@ -2103,10 +2114,12 @@
                 // For standard pallets, use standard dimensions
                 const palletType = document.querySelector('.pallet-type-btn.active').getAttribute('data-type');
                 if (palletType === 'euro') {
-                    maxPalletLength = 120; // Euro pallet length
+                    maxPalletLength = 120;
+                    maxPalletWidth = 80;
                     maxPalletHeight = stackingInfo.maxPalletHeight || 150;
                 } else {
-                    maxPalletLength = 120; // Düsseldorfer pallet length
+                    maxPalletLength = 120;
+                    maxPalletWidth = 100;
                     maxPalletHeight = stackingInfo.maxPalletHeight || 150;
                 }
             }
@@ -2115,7 +2128,8 @@
                 totalWeight,
                 totalPallets,
                 maxPalletHeight,
-                maxPalletLength
+                maxPalletLength,
+                maxPalletWidth
             };
         }
 
@@ -2141,6 +2155,7 @@
                         autoInfo.style.display = 'block';
                     } else {
                         const vehicleData = getVehicleData(selectedVehicle);
+                        const cargoData = calculateCargoData();
                         autoInfo.innerHTML = `<strong>✅ Automatisch ausgewählt:</strong> ${vehicleData.name} - Passt optimal zu Ihrer Fracht (${cargoData.totalWeight} kg, ${cargoData.totalPallets} Paletten, ${cargoData.maxPalletHeight} cm Höhe)`;
                         autoInfo.style.display = 'block';
                     }
@@ -2210,7 +2225,7 @@
                     totalWeight: totalWeight * levelsPerStack,
                     spaceSaving: spaceSaving,
                     isStacked: true,
-                    maxPalletHeight: maxPalletHeight
+                    maxPalletHeight: maxPalletHeight * levelsPerStack
                 };
             } else {
                 document.getElementById('individual-stacking-info').classList.remove('visible');
@@ -2256,7 +2271,7 @@
                     totalWeight: palletWeight * effectivePallets,
                     spaceSaving: spaceSaving,
                     isStacked: true,
-                    maxPalletHeight: standardPalletHeight
+                    maxPalletHeight: standardPalletHeight * levelsPerStack
                 };
             } else {
                 document.getElementById('standard-stacking-info').classList.remove('visible');
