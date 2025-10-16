@@ -491,6 +491,7 @@
             transform: translateY(-2px);
         }
 
+        /* SMALLER Pallet Type Selector */
         .pallet-type-selector {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -499,7 +500,7 @@
         }
 
         .pallet-type-btn {
-            padding: 0.8rem 0.5rem;
+            padding: 0.5rem 0.3rem; /* Smaller padding */
             border: 1px solid var(--border);
             background: var(--white);
             cursor: pointer;
@@ -507,8 +508,14 @@
             text-align: center;
             font-weight: 500;
             border-radius: 6px;
-            font-size: 0.8rem;
+            font-size: 0.75rem; /* Smaller font */
             color: var(--secondary);
+            height: auto;
+            min-height: 50px; /* Reduced height */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
         }
 
         .pallet-type-btn.active {
@@ -519,6 +526,12 @@
 
         .pallet-type-btn:hover {
             border-color: var(--primary);
+        }
+
+        .pallet-type-btn small {
+            font-size: 0.65rem; /* Smaller size text */
+            margin-top: 2px;
+            opacity: 0.8;
         }
 
         /* Individual Pallets */
@@ -2107,6 +2120,51 @@
         }
 
         // =============================================
+        // REAL-TIME VEHICLE SELECTION
+        // =============================================
+        function updateVehicleSelection() {
+            const vehicleTypeSelect = document.getElementById('vehicle-type');
+            const currentSelection = vehicleTypeSelect.value;
+            
+            // Only auto-select if "Auto-Auswahl" is selected
+            if (currentSelection === 'auto') {
+                const cargoType = document.querySelector('.cargo-type-btn.active').getAttribute('data-type');
+                let totalWeight, totalPallets, maxPalletHeight = 0;
+                
+                if (cargoType === 'individual') {
+                    const stackingInfo = calculateStacking();
+                    totalWeight = stackingInfo.totalWeight;
+                    totalPallets = stackingInfo.effectivePallets;
+                    
+                    // Find maximum pallet height
+                    const palletItems = document.querySelectorAll('.pallet-item');
+                    palletItems.forEach(item => {
+                        const height = parseInt(item.querySelector('input[type="number"]:nth-child(3)').value) || 0;
+                        if (height > maxPalletHeight) maxPalletHeight = height;
+                    });
+                } else {
+                    const stackingInfo = calculateStandardStacking();
+                    totalWeight = stackingInfo.totalWeight;
+                    totalPallets = stackingInfo.effectivePallets;
+                    maxPalletHeight = 150; // Standard pallet height
+                }
+                
+                const selectedVehicle = autoSelectVehicle(totalWeight, totalPallets, maxPalletHeight);
+                vehicleTypeSelect.value = selectedVehicle;
+                
+                // Update auto selection info
+                const autoInfo = document.getElementById('autoSelectionInfo');
+                if (selectedVehicle === 'consultation') {
+                    autoInfo.innerHTML = '<strong>Beratung erforderlich:</strong> Ihre Fracht übersteigt unsere Standardkapazitäten. Bitte kontaktieren Sie uns für ein individuelles Angebot.';
+                } else {
+                    const vehicleData = getVehicleData(selectedVehicle);
+                    autoInfo.innerHTML = `<strong>Automatisch ausgewählt:</strong> ${vehicleData.name} - Passt optimal zu Ihrer Fracht (${totalWeight} kg, ${totalPallets} Paletten)`;
+                }
+                autoInfo.style.display = 'block';
+            }
+        }
+
+        // =============================================
         // PALETTE MANAGEMENT
         // =============================================
         function addIndividualPallet() {
@@ -2194,71 +2252,78 @@
         }
 
         // =============================================
+        // VEHICLE DATA
+        // =============================================
+        function getVehicleData(vehicleType) {
+            const vehicleData = {
+                'bus': { 
+                    name: '3,5-Tonner',
+                    basePrice: 79,
+                    perKm: 0.75,
+                    perKg: 0.09,
+                    perPallet: 20,
+                    maxWeight: 1100,
+                    maxPallets: 6,
+                    maxHeight: 180
+                },
+                '7.5t': { 
+                    name: '7,5-Tonner',
+                    basePrice: 129,
+                    perKm: 0.95,
+                    perKg: 0.07,
+                    perPallet: 16,
+                    maxWeight: 2350,
+                    maxPallets: 10,
+                    maxHeight: 240
+                },
+                '12t': { 
+                    name: '12-Tonner',
+                    basePrice: 189,
+                    perKm: 1.05,
+                    perKg: 0.06,
+                    perPallet: 14,
+                    maxWeight: 7000,
+                    maxPallets: 14,
+                    maxHeight: 250
+                },
+                '18t': { 
+                    name: '18-Tonner',
+                    basePrice: 249,
+                    perKm: 1.15,
+                    perKg: 0.05,
+                    perPallet: 12,
+                    maxWeight: 12000,
+                    maxPallets: 18,
+                    maxHeight: 270
+                },
+                'sattelzug': {
+                    name: 'Sattelzug',
+                    basePrice: 349,
+                    perKm: 1.25,
+                    perKg: 0.04,
+                    perPallet: 10,
+                    maxWeight: 24000,
+                    maxPallets: 33,
+                    maxHeight: 265
+                },
+                'mega': { 
+                    name: 'Sattelzug Megatrailer',
+                    basePrice: 449,
+                    perKm: 1.45,
+                    perKg: 0.035,
+                    perPallet: 8,
+                    maxWeight: 24000,
+                    maxPallets: 33,
+                    maxHeight: 300
+                }
+            };
+            
+            return vehicleData[vehicleType] || { name: 'Unbekannt' };
+        }
+
+        // =============================================
         // ENHANCED PRICE CALCULATION WITH STACKING
         // =============================================
-        const vehicleData = {
-            'bus': { 
-                name: '3,5-Tonner',
-                basePrice: 79,
-                perKm: 0.75,
-                perKg: 0.09,
-                perPallet: 20,
-                maxWeight: 1100,
-                maxPallets: 6,
-                maxHeight: 180
-            },
-            '7.5t': { 
-                name: '7,5-Tonner',
-                basePrice: 129,
-                perKm: 0.95,
-                perKg: 0.07,
-                perPallet: 16,
-                maxWeight: 2350,
-                maxPallets: 10,
-                maxHeight: 240
-            },
-            '12t': { 
-                name: '12-Tonner',
-                basePrice: 189,
-                perKm: 1.05,
-                perKg: 0.06,
-                perPallet: 14,
-                maxWeight: 7000,
-                maxPallets: 14,
-                maxHeight: 250
-            },
-            '18t': { 
-                name: '18-Tonner',
-                basePrice: 249,
-                perKm: 1.15,
-                perKg: 0.05,
-                perPallet: 12,
-                maxWeight: 12000,
-                maxPallets: 18,
-                maxHeight: 270
-            },
-            'sattelzug': {
-                name: 'Sattelzug',
-                basePrice: 349,
-                perKm: 1.25,
-                perKg: 0.04,
-                perPallet: 10,
-                maxWeight: 24000,
-                maxPallets: 33,
-                maxHeight: 265
-            },
-            'mega': { 
-                name: 'Sattelzug Megatrailer',
-                basePrice: 449,
-                perKm: 1.45,
-                perKg: 0.035,
-                perPallet: 8,
-                maxWeight: 24000,
-                maxPallets: 33,
-                maxHeight: 300
-            }
-        };
-
         function calculateEnhancedPrice(formData) {
             try {
                 let vehicleType = formData.get('vehicle-type');
@@ -2269,59 +2334,11 @@
                     throw new Error('Bitte geben Sie Abhol- und Lieferort an');
                 }
 
-                // Auto vehicle selection
-                if (vehicleType === 'auto') {
-                    const cargoType = document.querySelector('.cargo-type-btn.active').getAttribute('data-type');
-                    let stackingInfo, totalWeight, totalPallets, maxPalletHeight = 0;
-                    
-                    if (cargoType === 'individual') {
-                        stackingInfo = calculateStacking();
-                        totalWeight = stackingInfo.totalWeight;
-                        totalPallets = stackingInfo.effectivePallets;
-                        
-                        // Find maximum pallet height
-                        const palletItems = document.querySelectorAll('.pallet-item');
-                        palletItems.forEach(item => {
-                            const height = parseInt(item.querySelector('input[type="number"]:nth-child(3)').value) || 0;
-                            if (height > maxPalletHeight) maxPalletHeight = height;
-                        });
-                    } else {
-                        stackingInfo = calculateStandardStacking();
-                        totalWeight = stackingInfo.totalWeight;
-                        totalPallets = stackingInfo.effectivePallets;
-                        maxPalletHeight = 150; // Standard pallet height
-                    }
-                    
-                    vehicleType = autoSelectVehicle(totalWeight, totalPallets, maxPalletHeight);
-                    
-                    // Update vehicle selection display
-                    const vehicleSelect = document.getElementById('vehicle-type');
-                    vehicleSelect.value = vehicleType;
-                    
-                    // Show auto selection info
-                    const autoInfo = document.getElementById('autoSelectionInfo');
-                    if (vehicleType === 'consultation') {
-                        autoInfo.innerHTML = '<strong>Beratung erforderlich:</strong> Ihre Fracht übersteigt unsere Standardkapazitäten. Bitte kontaktieren Sie uns für ein individuelles Angebot.';
-                    } else {
-                        autoInfo.innerHTML = `<strong>Automatisch ausgewählt:</strong> ${vehicleData[vehicleType].name} - Passt optimal zu Ihrer Fracht (${totalWeight} kg, ${totalPallets} Paletten)`;
-                    }
-                    autoInfo.style.display = 'block';
-                }
-
-                if (vehicleType === 'consultation') {
-                    return {
-                        price: 0,
-                        weight: 0,
-                        needsConsultation: true,
-                        error: null
-                    };
-                }
-
-                if (!vehicleData[vehicleType]) {
+                const vehicle = getVehicleData(vehicleType);
+                if (!vehicle) {
                     throw new Error('Ungültiger Fahrzeugtyp ausgewählt');
                 }
 
-                const vehicle = vehicleData[vehicleType];
                 const distance = calculateDistance(fromLocation, toLocation);
                 
                 let price = vehicle.basePrice + (distance * vehicle.perKm);
@@ -2380,18 +2397,6 @@
                     needsConsultation: true,
                     error: error.message
                 };
-            }
-        }
-
-        // =============================================
-        // VEHICLE SELECTION UPDATER
-        // =============================================
-        function updateVehicleSelection() {
-            const vehicleType = document.getElementById('vehicle-type').value;
-            if (vehicleType === 'auto') {
-                // Trigger auto selection when inputs change
-                const formData = new FormData(document.getElementById('transportCalculator'));
-                calculateEnhancedPrice(formData);
             }
         }
 
@@ -2468,6 +2473,36 @@
         });
 
         // =============================================
+        // CARGO TYPE SELECTION
+        // =============================================
+        function initializeCargoTypeSelection() {
+            document.querySelectorAll('.cargo-type-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    // Remove active class from all buttons
+                    document.querySelectorAll('.cargo-type-btn').forEach(b => b.classList.remove('active'));
+                    // Add active class to clicked button
+                    this.classList.add('active');
+                    
+                    const type = this.getAttribute('data-type');
+                    
+                    // Hide all sections first
+                    document.getElementById('individual-pallets-section').classList.remove('visible');
+                    document.getElementById('standard-pallets-section').classList.remove('visible');
+                    
+                    // Show selected section
+                    if (type === 'individual') {
+                        document.getElementById('individual-pallets-section').classList.add('visible');
+                    } else {
+                        document.getElementById('standard-pallets-section').classList.add('visible');
+                    }
+                    
+                    // Update vehicle selection
+                    updateVehicleSelection();
+                });
+            });
+        }
+
+        // =============================================
         // PROGRESSIVE FORM DISPLAY
         // =============================================
         function showSection(sectionId) {
@@ -2502,19 +2537,12 @@
                 }
             });
             
+            // Initialize cargo type selection
+            initializeCargoTypeSelection();
+            
+            // Show vehicle section when cargo type is selected
             document.querySelectorAll('.cargo-type-btn').forEach(btn => {
                 btn.addEventListener('click', function() {
-                    const type = this.getAttribute('data-type');
-                    
-                    document.getElementById('individual-pallets-section').classList.remove('visible');
-                    document.getElementById('standard-pallets-section').classList.remove('visible');
-                    
-                    if (type === 'individual') {
-                        showSection('individual-pallets-section');
-                    } else {
-                        showSection('standard-pallets-section');
-                    }
-                    
                     setTimeout(() => {
                         showSection('vehicle-section');
                     }, 300);
@@ -2645,6 +2673,30 @@
         }
 
         // =============================================
+        // VEHICLE SELECT BUTTONS
+        // =============================================
+        function initializeVehicleSelectButtons() {
+            document.querySelectorAll('.select-btn').forEach(button => {
+                button.addEventListener('click', function() {
+                    const vehicleType = this.getAttribute('data-vehicle');
+                    const vehicleSelect = document.getElementById('vehicle-type');
+                    vehicleSelect.value = vehicleType;
+                    
+                    // Update auto selection info
+                    const autoInfo = document.getElementById('autoSelectionInfo');
+                    const vehicleData = getVehicleData(vehicleType);
+                    autoInfo.innerHTML = `<strong>Manuell ausgewählt:</strong> ${vehicleData.name}`;
+                    autoInfo.style.display = 'block';
+                    
+                    // Ensure vehicle section is visible
+                    showSection('vehicle-section');
+                    
+                    showNotification(`Fahrzeug ${vehicleData.name} wurde ausgewählt!`, 'success');
+                });
+            });
+        }
+
+        // =============================================
         // LANGUAGE SWITCHER
         // =============================================
         document.querySelectorAll('.lang-btn').forEach(btn => {
@@ -2668,6 +2720,7 @@
         // =============================================
         document.addEventListener('DOMContentLoaded', function() {
             initializeProgressiveForm();
+            initializeVehicleSelectButtons();
             addIndividualPallet();
             setupDateValidation();
             
@@ -2697,10 +2750,10 @@
                 updateVehicleSelection();
             });
             
-            // Add event listeners for other forms
+            // Add event listeners for other forms with confirmation
             document.getElementById('customRequestForm').addEventListener('submit', function(e) {
                 e.preventDefault();
-                showNotification('Individuelle Anfrage wurde erfolgreich gesendet! Wir melden uns innerhalb von 30 Minuten bei Ihnen.', 'success');
+                showNotification('Ihre individuelle Anfrage wurde erfolgreich gesendet! Wir melden uns innerhalb von 30 Minuten bei Ihnen.', 'success');
             });
             
             document.getElementById('modalForm').addEventListener('submit', function(e) {
@@ -2711,22 +2764,6 @@
                 setTimeout(() => {
                     document.getElementById('successMessage').style.display = 'none';
                 }, 5000);
-            });
-            
-            // Add select button functionality
-            document.querySelectorAll('.select-btn').forEach(button => {
-                button.addEventListener('click', function() {
-                    const vehicleType = this.getAttribute('data-vehicle');
-                    const vehicleSelect = document.getElementById('vehicle-type');
-                    vehicleSelect.value = vehicleType;
-                    
-                    // Update auto selection info
-                    const autoInfo = document.getElementById('autoSelectionInfo');
-                    autoInfo.innerHTML = `<strong>Manuell ausgewählt:</strong> ${vehicleData[vehicleType].name}`;
-                    autoInfo.style.display = 'block';
-                    
-                    showNotification(`Fahrzeug ${vehicleData[vehicleType].name} wurde ausgewählt!`, 'success');
-                });
             });
             
             showNotification('Transportrechner bereit! Füllen Sie die Felder Schritt für Schritt aus.', 'info');
