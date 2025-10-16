@@ -139,7 +139,7 @@
             color: var(--white);
         }
 
-        /* Mini Login Section */
+        /* Mini Login Section - Position lowered */
         .login-section {
             padding: 0.3rem 2rem;
             background: var(--light);
@@ -147,7 +147,7 @@
             display: flex;
             justify-content: flex-end;
             align-items: center;
-            margin-top: 70px;
+            margin-top: 85px; /* Increased from 70px to 85px */
             min-height: 40px;
         }
 
@@ -221,14 +221,14 @@
             transform: translateY(-1px);
         }
 
-        /* Hero Section */
+        /* Hero Section - Adjusted for lower login */
         .hero {
             background: linear-gradient(rgba(255,255,255,0.9), rgba(255,255,255,0.95)), 
                         url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" fill="none" stroke="%23000" stroke-width="0.5" opacity="0.1"/></svg>');
             background-size: cover, 20px 20px;
             color: var(--primary);
             text-align: center;
-            padding: 6rem 2rem 4rem;
+            padding: 5rem 2rem 4rem; /* Reduced from 6rem to 5rem */
             border-bottom: 1px solid var(--border);
         }
 
@@ -665,17 +665,6 @@
             margin-bottom: 1rem;
         }
 
-        .auto-selection-info {
-            background: #f0f0f0;
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            padding: 0.8rem;
-            margin-top: 0.5rem;
-            font-size: 0.8rem;
-            display: none;
-            color: var(--secondary);
-        }
-
         /* Beautiful Submit Button */
         .submit-btn {
             background: var(--primary);
@@ -762,7 +751,6 @@
             border-radius: 8px;
             padding: 1rem;
             margin: 1rem 0;
-            display: none;
         }
 
         .stacking-info.visible {
@@ -1328,7 +1316,7 @@
         </div>
     </header>
 
-    <!-- Mini Login Section -->
+    <!-- Mini Login Section - Now positioned lower -->
     <section class="login-section" id="loginSection">
         <div class="login-container">
             <form class="login-form" id="loginForm">
@@ -1555,12 +1543,12 @@
                     </div>
                 </div>
 
+                <!-- Vehicle Selector - Auto option removed -->
                 <div class="hidden-section" id="vehicle-section">
                     <div class="form-group">
                         <label for="vehicle-type" class="lang-de">Fahrzeugtyp</label>
                         <label for="vehicle-type" class="lang-en">Vehicle Type</label>
-                        <select id="vehicle-type" name="vehicle-type">
-                            <option value="auto">🔄 Auto-Auswahl</option>
+                        <select id="vehicle-type" name="vehicle-type" required>
                             <option value="bus">3,5-Tonner (bis 1.100 kg)</option>
                             <option value="7.5t">7,5-Tonner (bis 2.350 kg)</option>
                             <option value="12t">12-Tonner (bis 7.000 kg)</option>
@@ -1569,7 +1557,6 @@
                             <option value="mega">Sattelzug Megatrailer (bis 24.000 kg)</option>
                             <option value="consultation">Beratung erforderlich</option>
                         </select>
-                        <div class="auto-selection-info" id="autoSelectionInfo"></div>
                     </div>
                     
                     <div class="form-group">
@@ -1908,7 +1895,7 @@
                     </div>
                     <div class="vehicle-content">
                         <h3>Sattelzug</h3>
-                        <p class="vehicle-description lang-de">Maximale Kapazität für große Transportvolumen und schwere Güter.</p>
+                        <p class="vehicle-description lang-de">Maximale Kapazität für große Transportvolumen und schwere Güтер.</p>
                         <p class="vehicle-description lang-en">Maximum capacity for large transport volumes and heavy goods.</p>
                         <div class="vehicle-specs">
                             <div class="spec-item">
@@ -2041,7 +2028,7 @@
 
     <script>
         // =============================================
-        // ENHANCED LOGIN SYSTEM
+        // ENHANCED LOGIN SYSTEM WITH DASHBOARD REDIRECT
         // =============================================
         const users = {
             'Michael': { password: '123', name: 'Michael', role: 'admin' },
@@ -2071,7 +2058,7 @@
                 
                 // Redirect to Dashboard for admin
                 if (username === 'Michael') {
-                    window.location.href = 'https://github.com/your-username/your-repo/blob/main/Dashboard.html';
+                    window.location.href = 'https://raw.githubusercontent.com/your-username/your-repo/main/Dashboard.html';
                 }
                 
                 showNotification('Erfolgreich angemeldet als ' + users[username].name, 'success');
@@ -2093,14 +2080,81 @@
         }
 
         // =============================================
-        // ENHANCED STACKING CALCULATION
+        // ENHANCED STACKING CALCULATION WITH VEHICLE CONSTRAINTS
         // =============================================
-        let palletCounter = 0;
+        const vehicleData = {
+            'bus': { 
+                name: '3,5-Tonner',
+                basePrice: 79,
+                perKm: 0.75,
+                perKg: 0.09,
+                perPallet: 20,
+                maxWeight: 1100,
+                maxPallets: 6,
+                maxHeight: 180,
+                stackingMultiplier: 2
+            },
+            '7.5t': { 
+                name: '7,5-Tonner',
+                basePrice: 129,
+                perKm: 0.95,
+                perKg: 0.07,
+                perPallet: 16,
+                maxWeight: 2350,
+                maxPallets: 10,
+                maxHeight: 240,
+                stackingMultiplier: 2
+            },
+            '12t': { 
+                name: '12-Tonner',
+                basePrice: 189,
+                perKm: 1.05,
+                perKg: 0.06,
+                perPallet: 14,
+                maxWeight: 7000,
+                maxPallets: 14,
+                maxHeight: 250,
+                stackingMultiplier: 2
+            },
+            '18t': { 
+                name: '18-Tonner',
+                basePrice: 249,
+                perKm: 1.15,
+                perKg: 0.05,
+                perPallet: 12,
+                maxWeight: 12000,
+                maxPallets: 18,
+                maxHeight: 270,
+                stackingMultiplier: 3
+            },
+            'sattelzug': {
+                name: 'Sattelzug',
+                basePrice: 349,
+                perKm: 1.25,
+                perKg: 0.04,
+                perPallet: 10,
+                maxWeight: 24000,
+                maxPallets: 33,
+                maxHeight: 265,
+                stackingMultiplier: 3
+            },
+            'mega': { 
+                name: 'Sattelzug Megatrailer',
+                basePrice: 449,
+                perKm: 1.45,
+                perKg: 0.035,
+                perPallet: 8,
+                maxWeight: 24000,
+                maxPallets: 33,
+                maxHeight: 300,
+                stackingMultiplier: 3
+            }
+        };
 
-        function calculateStacking() {
+        function calculateStackingWithVehicleConstraints() {
+            const selectedVehicle = document.getElementById('vehicle-type').value;
+            const vehicle = vehicleData[selectedVehicle];
             const isStapelbar = document.getElementById('individual-stapelbar').checked;
-            const maxStackHeight = parseInt(document.getElementById('max-stack-height').value) || 250;
-            const maxLevels = parseInt(document.getElementById('max-levels').value) || 3;
             
             const palletItems = document.querySelectorAll('.pallet-item');
             let totalWeight = 0;
@@ -2117,25 +2171,100 @@
                 if (height > maxPalletHeight) maxPalletHeight = height;
             });
             
-            if (isStapelbar && maxPalletHeight > 0) {
-                // Calculate stacking
-                const levelsPerStack = Math.min(maxLevels, Math.floor(maxStackHeight / maxPalletHeight));
-                const effectivePallets = totalBasePallets * levelsPerStack;
+            if (isStapelbar && maxPalletHeight > 0 && vehicle) {
+                // Calculate stacking considering vehicle constraints
+                const maxLevelsByHeight = Math.floor(vehicle.maxHeight / maxPalletHeight);
+                const maxLevelsByVehicle = vehicle.stackingMultiplier;
+                const actualMaxLevels = Math.min(maxLevelsByHeight, maxLevelsByVehicle);
+                
+                const effectivePallets = totalBasePallets * actualMaxLevels;
+                const totalStackedWeight = totalWeight * actualMaxLevels;
+                
+                // Check if stacking exceeds vehicle capacity
+                const exceedsWeight = totalStackedWeight > vehicle.maxWeight;
+                const exceedsPallets = effectivePallets > vehicle.maxPallets;
+                
                 const spaceSaving = Math.round((1 - (totalBasePallets / effectivePallets)) * 100);
                 
                 // Update stacking info display
                 document.getElementById('effective-pallets').textContent = effectivePallets;
-                document.getElementById('stack-levels').textContent = levelsPerStack;
-                document.getElementById('stack-weight').textContent = (totalWeight * levelsPerStack) + ' kg';
+                document.getElementById('stack-levels').textContent = actualMaxLevels;
+                document.getElementById('stack-weight').textContent = totalStackedWeight + ' kg';
                 document.getElementById('space-saving').textContent = spaceSaving + '%';
+                
+                // Show warnings if limits exceeded
+                let warningText = '';
+                if (exceedsWeight) {
+                    warningText += '⚠️ Gewicht überschreitet Fahrzeugkapazität! ';
+                }
+                if (exceedsPallets) {
+                    warningText += '⚠️ Zu viele Paletten für Fahrzeug!';
+                }
+                
+                if (warningText) {
+                    document.getElementById('individual-stacking-info').innerHTML = 
+                        `<strong class="lang-de">📦 Stapelungsinformation</strong>
+                         <strong class="lang-en">📦 Stacking Information</strong>
+                         <div style="color: var(--error); margin: 0.5rem 0;">${warningText}</div>
+                         <div class="stacking-details">
+                             <div class="stacking-item">
+                                 <div class="lang-de">Effektive Paletten</div>
+                                 <div class="lang-en">Effective Pallets</div>
+                                 <div class="stacking-value">${effectivePallets}</div>
+                             </div>
+                             <div class="stacking-item">
+                                 <div class="lang-de">Ebenen</div>
+                                 <div class="lang-en">Levels</div>
+                                 <div class="stacking-value">${actualMaxLevels}</div>
+                             </div>
+                             <div class="stacking-item">
+                                 <div class="lang-de">Gesamtgewicht</div>
+                                 <div class="lang-en">Total Weight</div>
+                                 <div class="stacking-value">${totalStackedWeight} kg</div>
+                             </div>
+                             <div class="stacking-item">
+                                 <div class="lang-de">Platzersparnis</div>
+                                 <div class="lang-en">Space Saving</div>
+                                 <div class="stacking-value">${spaceSaving}%</div>
+                             </div>
+                         </div>`;
+                } else {
+                    document.getElementById('individual-stacking-info').innerHTML = 
+                        `<strong class="lang-de">📦 Stapelungsinformation</strong>
+                         <strong class="lang-en">📦 Stacking Information</strong>
+                         <div class="stacking-details">
+                             <div class="stacking-item">
+                                 <div class="lang-de">Effektive Paletten</div>
+                                 <div class="lang-en">Effective Pallets</div>
+                                 <div class="stacking-value">${effectivePallets}</div>
+                             </div>
+                             <div class="stacking-item">
+                                 <div class="lang-de">Ebenen</div>
+                                 <div class="lang-en">Levels</div>
+                                 <div class="stacking-value">${actualMaxLevels}</div>
+                             </div>
+                             <div class="stacking-item">
+                                 <div class="lang-de">Gesamtgewicht</div>
+                                 <div class="lang-en">Total Weight</div>
+                                 <div class="stacking-value">${totalStackedWeight} kg</div>
+                             </div>
+                             <div class="stacking-item">
+                                 <div class="lang-de">Platzersparnis</div>
+                                 <div class="lang-en">Space Saving</div>
+                                 <div class="stacking-value">${spaceSaving}%</div>
+                             </div>
+                         </div>`;
+                }
+                
                 document.getElementById('individual-stacking-info').classList.add('visible');
                 
                 return {
                     effectivePallets: effectivePallets,
-                    levels: levelsPerStack,
-                    totalWeight: totalWeight * levelsPerStack,
+                    levels: actualMaxLevels,
+                    totalWeight: totalStackedWeight,
                     spaceSaving: spaceSaving,
-                    isStacked: true
+                    isStacked: true,
+                    exceedsLimits: exceedsWeight || exceedsPallets
                 };
             } else {
                 document.getElementById('individual-stacking-info').classList.remove('visible');
@@ -2144,39 +2273,110 @@
                     levels: 1,
                     totalWeight: totalWeight,
                     spaceSaving: 0,
-                    isStacked: false
+                    isStacked: false,
+                    exceedsLimits: false
                 };
             }
         }
 
-        function calculateStandardStacking() {
+        function calculateStandardStackingWithVehicleConstraints() {
+            const selectedVehicle = document.getElementById('vehicle-type').value;
+            const vehicle = vehicleData[selectedVehicle];
             const isStapelbar = document.getElementById('standard-stapelbar').checked;
-            const maxStackHeight = parseInt(document.getElementById('standard-max-height').value) || 250;
-            const maxLevels = parseInt(document.getElementById('standard-max-levels').value) || 3;
             const palletCount = parseInt(document.getElementById('pallet-count').value) || 1;
             const palletWeight = parseInt(document.getElementById('pallet-weight').value) || 500;
             
             // Standard pallet height (average)
             const standardPalletHeight = 150; // cm
             
-            if (isStapelbar) {
-                const levelsPerStack = Math.min(maxLevels, Math.floor(maxStackHeight / standardPalletHeight));
-                const effectivePallets = palletCount * levelsPerStack;
+            if (isStapelbar && vehicle) {
+                // Calculate stacking considering vehicle constraints
+                const maxLevelsByHeight = Math.floor(vehicle.maxHeight / standardPalletHeight);
+                const maxLevelsByVehicle = vehicle.stackingMultiplier;
+                const actualMaxLevels = Math.min(maxLevelsByHeight, maxLevelsByVehicle);
+                
+                const effectivePallets = palletCount * actualMaxLevels;
+                const totalStackedWeight = palletWeight * effectivePallets;
+                
+                // Check if stacking exceeds vehicle capacity
+                const exceedsWeight = totalStackedWeight > vehicle.maxWeight;
+                const exceedsPallets = effectivePallets > vehicle.maxPallets;
+                
                 const spaceSaving = Math.round((1 - (palletCount / effectivePallets)) * 100);
                 
                 // Update stacking info display
-                document.getElementById('standard-effective-pallets').textContent = effectivePallets;
-                document.getElementById('standard-stack-levels').textContent = levelsPerStack;
-                document.getElementById('standard-stack-weight').textContent = (palletWeight * effectivePallets) + ' kg';
-                document.getElementById('standard-space-saving').textContent = spaceSaving + '%';
+                let warningText = '';
+                if (exceedsWeight) {
+                    warningText += '⚠️ Gewicht überschreitet Fahrzeugkapazität! ';
+                }
+                if (exceedsPallets) {
+                    warningText += '⚠️ Zu viele Paletten für Fahrzeug!';
+                }
+                
+                if (warningText) {
+                    document.getElementById('standard-stacking-info').innerHTML = 
+                        `<strong class="lang-de">📦 Stapelungsinformation</strong>
+                         <strong class="lang-en">📦 Stacking Information</strong>
+                         <div style="color: var(--error); margin: 0.5rem 0;">${warningText}</div>
+                         <div class="stacking-details">
+                             <div class="stacking-item">
+                                 <div class="lang-de">Effektive Paletten</div>
+                                 <div class="lang-en">Effective Pallets</div>
+                                 <div class="stacking-value">${effectivePallets}</div>
+                             </div>
+                             <div class="stacking-item">
+                                 <div class="lang-de">Ebenen</div>
+                                 <div class="lang-en">Levels</div>
+                                 <div class="stacking-value">${actualMaxLevels}</div>
+                             </div>
+                             <div class="stacking-item">
+                                 <div class="lang-de">Gesamtgewicht</div>
+                                 <div class="lang-en">Total Weight</div>
+                                 <div class="stacking-value">${totalStackedWeight} kg</div>
+                             </div>
+                             <div class="stacking-item">
+                                 <div class="lang-de">Platzersparnis</div>
+                                 <div class="lang-en">Space Saving</div>
+                                 <div class="stacking-value">${spaceSaving}%</div>
+                             </div>
+                         </div>`;
+                } else {
+                    document.getElementById('standard-stacking-info').innerHTML = 
+                        `<strong class="lang-de">📦 Stapelungsinformation</strong>
+                         <strong class="lang-en">📦 Stacking Information</strong>
+                         <div class="stacking-details">
+                             <div class="stacking-item">
+                                 <div class="lang-de">Effektive Paletten</div>
+                                 <div class="lang-en">Effective Pallets</div>
+                                 <div class="stacking-value">${effectivePallets}</div>
+                             </div>
+                             <div class="stacking-item">
+                                 <div class="lang-de">Ebenen</div>
+                                 <div class="lang-en">Levels</div>
+                                 <div class="stacking-value">${actualMaxLevels}</div>
+                             </div>
+                             <div class="stacking-item">
+                                 <div class="lang-de">Gesamtgewicht</div>
+                                 <div class="lang-en">Total Weight</div>
+                                 <div class="stacking-value">${totalStackedWeight} kg</div>
+                             </div>
+                             <div class="stacking-item">
+                                 <div class="lang-de">Platzersparnis</div>
+                                 <div class="lang-en">Space Saving</div>
+                                 <div class="stacking-value">${spaceSaving}%</div>
+                             </div>
+                         </div>`;
+                }
+                
                 document.getElementById('standard-stacking-info').classList.add('visible');
                 
                 return {
                     effectivePallets: effectivePallets,
-                    levels: levelsPerStack,
-                    totalWeight: palletWeight * effectivePallets,
+                    levels: actualMaxLevels,
+                    totalWeight: totalStackedWeight,
                     spaceSaving: spaceSaving,
-                    isStacked: true
+                    isStacked: true,
+                    exceedsLimits: exceedsWeight || exceedsPallets
                 };
             } else {
                 document.getElementById('standard-stacking-info').classList.remove('visible');
@@ -2185,7 +2385,124 @@
                     levels: 1,
                     totalWeight: palletWeight * palletCount,
                     spaceSaving: 0,
-                    isStacked: false
+                    isStacked: false,
+                    exceedsLimits: false
+                };
+            }
+        }
+
+        // =============================================
+        // VEHICLE SELECTION FROM CARDS - REPLACES CALCULATOR
+        // =============================================
+        function selectVehicleFromCard(vehicleType) {
+            // Set the vehicle type in the calculator
+            document.getElementById('vehicle-type').value = vehicleType;
+            
+            // Show notification
+            showNotification(`Fahrzeug ${vehicleData[vehicleType].name} ausgewählt!`, 'success');
+            
+            // Scroll to calculator
+            document.getElementById('calculator').scrollIntoView({ 
+                behavior: 'smooth',
+                block: 'start'
+            });
+            
+            // Show vehicle section if hidden
+            document.getElementById('vehicle-section').classList.add('visible');
+        }
+
+        // =============================================
+        // ENHANCED PRICE CALCULATION
+        // =============================================
+        function calculateEnhancedPrice(formData) {
+            try {
+                const vehicleType = formData.get('vehicle-type');
+                if (vehicleType === 'consultation') {
+                    return {
+                        price: 0,
+                        weight: 0,
+                        needsConsultation: true,
+                        error: null
+                    };
+                }
+
+                if (!vehicleData[vehicleType]) {
+                    throw new Error('Ungültiger Fahrzeugtyp ausgewählt');
+                }
+
+                const fromLocation = document.getElementById('from-location').value;
+                const toLocation = document.getElementById('to-location').value;
+                
+                if (!fromLocation || !toLocation) {
+                    throw new Error('Bitte geben Sie Abhol- und Lieferort an');
+                }
+
+                const vehicle = vehicleData[vehicleType];
+                const distance = calculateDistance(fromLocation, toLocation);
+                
+                let price = vehicle.basePrice + (distance * vehicle.perKm);
+                let totalWeight = 0;
+                let totalPallets = 0;
+                let stackingInfo = {};
+
+                const cargoType = document.querySelector('.cargo-type-btn.active').getAttribute('data-type');
+                
+                if (cargoType === 'individual') {
+                    stackingInfo = calculateStackingWithVehicleConstraints();
+                    totalPallets = stackingInfo.effectivePallets;
+                    totalWeight = stackingInfo.totalWeight;
+                    
+                    // Base price calculation
+                    price += totalWeight * vehicle.perKg;
+                    price += totalPallets * vehicle.perPallet;
+                    
+                    // Stacking surcharge
+                    if (stackingInfo.isStacked && !stackingInfo.exceedsLimits) {
+                        price *= 1.1; // 10% extra for stacking
+                    }
+                } else {
+                    stackingInfo = calculateStandardStackingWithVehicleConstraints();
+                    totalPallets = stackingInfo.effectivePallets;
+                    totalWeight = stackingInfo.totalWeight;
+                    
+                    price += totalPallets * vehicle.perPallet;
+                    price += totalWeight * vehicle.perKg;
+                    
+                    // Stacking surcharge
+                    if (stackingInfo.isStacked && !stackingInfo.exceedsLimits) {
+                        price *= 1.1; // 10% extra for stacking
+                    }
+                }
+                
+                // Update result display with stacking info
+                document.getElementById('result-effective-pallets').textContent = totalPallets;
+                document.getElementById('result-stacking').textContent = stackingInfo.isStacked ? 
+                    (stackingInfo.levels + ' Ebenen') : 'Nein';
+                document.getElementById('result-stacking-info').style.display = 'block';
+                
+                // Show warning if limits exceeded
+                if (stackingInfo.exceedsLimits) {
+                    document.getElementById('totalWeight').innerHTML = 
+                        `Gesamtgewicht: ${totalWeight} kg <span style="color: var(--error);">⚠️ Überlastung!</span>`;
+                } else {
+                    document.getElementById('totalWeight').textContent = `Gesamtgewicht: ${totalWeight} kg`;
+                }
+                
+                return {
+                    price: Math.round(price),
+                    weight: totalWeight,
+                    needsConsultation: false,
+                    error: null,
+                    stacking: stackingInfo
+                };
+                
+            } catch (error) {
+                console.error('Fehler bei Preisberechnung:', error);
+                return {
+                    price: 0,
+                    weight: 0,
+                    needsConsultation: true,
+                    error: error.message
                 };
             }
         }
@@ -2193,6 +2510,8 @@
         // =============================================
         // PALETTE MANAGEMENT
         // =============================================
+        let palletCounter = 0;
+
         function addIndividualPallet() {
             palletCounter++;
             const container = document.getElementById('individual-pallets-container');
@@ -2227,10 +2546,10 @@
             // Add event listeners for real-time calculation
             const inputs = palletItem.querySelectorAll('input');
             inputs.forEach(input => {
-                input.addEventListener('input', calculateStacking);
+                input.addEventListener('input', calculateStackingWithVehicleConstraints);
             });
             
-            calculateStacking();
+            calculateStackingWithVehicleConstraints();
         }
 
         function duplicatePallet(button) {
@@ -2257,166 +2576,15 @@
             // Add event listeners
             const inputs = newPalletItem.querySelectorAll('input');
             inputs.forEach(input => {
-                input.addEventListener('input', calculateStacking);
+                input.addEventListener('input', calculateStackingWithVehicleConstraints);
             });
             
-            calculateStacking();
+            calculateStackingWithVehicleConstraints();
         }
 
         function removePallet(button) {
             button.parentElement.remove();
-            calculateStacking();
-        }
-
-        // =============================================
-        // ENHANCED PRICE CALCULATION WITH STACKING
-        // =============================================
-        const vehicleData = {
-            'bus': { 
-                name: '3,5-Tonner',
-                basePrice: 79,
-                perKm: 0.75,
-                perKg: 0.09,
-                perPallet: 20,
-                maxWeight: 1100,
-                maxPallets: 6,
-                maxHeight: 180
-            },
-            '7.5t': { 
-                name: '7,5-Tonner',
-                basePrice: 129,
-                perKm: 0.95,
-                perKg: 0.07,
-                perPallet: 16,
-                maxWeight: 2350,
-                maxPallets: 10,
-                maxHeight: 240
-            },
-            '12t': { 
-                name: '12-Tonner',
-                basePrice: 189,
-                perKm: 1.05,
-                perKg: 0.06,
-                perPallet: 14,
-                maxWeight: 7000,
-                maxPallets: 14,
-                maxHeight: 250
-            },
-            '18t': { 
-                name: '18-Tonner',
-                basePrice: 249,
-                perKm: 1.15,
-                perKg: 0.05,
-                perPallet: 12,
-                maxWeight: 12000,
-                maxPallets: 18,
-                maxHeight: 270
-            },
-            'sattelzug': {
-                name: 'Sattelzug',
-                basePrice: 349,
-                perKm: 1.25,
-                perKg: 0.04,
-                perPallet: 10,
-                maxWeight: 24000,
-                maxPallets: 33,
-                maxHeight: 265
-            },
-            'mega': { 
-                name: 'Sattelzug Megatrailer',
-                basePrice: 449,
-                perKm: 1.45,
-                perKg: 0.035,
-                perPallet: 8,
-                maxWeight: 24000,
-                maxPallets: 33,
-                maxHeight: 300
-            }
-        };
-
-        function calculateEnhancedPrice(formData) {
-            try {
-                const vehicleType = formData.get('vehicle-type');
-                if (vehicleType === 'auto' || vehicleType === 'consultation') {
-                    return {
-                        price: 0,
-                        weight: 0,
-                        needsConsultation: true,
-                        error: null
-                    };
-                }
-
-                if (!vehicleData[vehicleType]) {
-                    throw new Error('Ungültiger Fahrzeugtyp ausgewählt');
-                }
-
-                const fromLocation = document.getElementById('from-location').value;
-                const toLocation = document.getElementById('to-location').value;
-                
-                if (!fromLocation || !toLocation) {
-                    throw new Error('Bitte geben Sie Abhol- und Lieferort an');
-                }
-
-                const vehicle = vehicleData[vehicleType];
-                const distance = calculateDistance(fromLocation, toLocation);
-                
-                let price = vehicle.basePrice + (distance * vehicle.perKm);
-                let totalWeight = 0;
-                let totalPallets = 0;
-                let stackingInfo = {};
-
-                const cargoType = document.querySelector('.cargo-type-btn.active').getAttribute('data-type');
-                
-                if (cargoType === 'individual') {
-                    stackingInfo = calculateStacking();
-                    totalPallets = stackingInfo.effectivePallets;
-                    totalWeight = stackingInfo.totalWeight;
-                    
-                    // Base price calculation
-                    price += totalWeight * vehicle.perKg;
-                    price += totalPallets * vehicle.perPallet;
-                    
-                    // Stacking surcharge
-                    if (stackingInfo.isStacked) {
-                        price *= 1.1; // 10% extra for stacking
-                    }
-                } else {
-                    stackingInfo = calculateStandardStacking();
-                    totalPallets = stackingInfo.effectivePallets;
-                    totalWeight = stackingInfo.totalWeight;
-                    
-                    price += totalPallets * vehicle.perPallet;
-                    price += totalWeight * vehicle.perKg;
-                    
-                    // Stacking surcharge
-                    if (stackingInfo.isStacked) {
-                        price *= 1.1; // 10% extra for stacking
-                    }
-                }
-                
-                // Update result display with stacking info
-                document.getElementById('result-effective-pallets').textContent = totalPallets;
-                document.getElementById('result-stacking').textContent = stackingInfo.isStacked ? 
-                    (stackingInfo.levels + ' Ebenen') : 'Nein';
-                document.getElementById('result-stacking-info').style.display = 'block';
-                
-                return {
-                    price: Math.round(price),
-                    weight: totalWeight,
-                    needsConsultation: false,
-                    error: null,
-                    stacking: stackingInfo
-                };
-                
-            } catch (error) {
-                console.error('Fehler bei Preisberechnung:', error);
-                return {
-                    price: 0,
-                    weight: 0,
-                    needsConsultation: true,
-                    error: error.message
-                };
-            }
+            calculateStackingWithVehicleConstraints();
         }
 
         // =============================================
@@ -2447,7 +2615,6 @@
                         '<em>Bitte kontaktieren Sie uns für ein individuelles Angebot</em>';
                 } else {
                     document.getElementById('priceEstimate').textContent = `${result.price} €`;
-                    document.getElementById('totalWeight').textContent = `Gesamtgewicht: ${result.weight} kg`;
                 }
                 
                 document.getElementById('calculatorResult').style.display = 'block';
@@ -2469,10 +2636,10 @@
             const levelsInput = document.getElementById('individual-levels-input');
             if (this.checked) {
                 levelsInput.classList.add('visible');
-                calculateStacking();
+                calculateStackingWithVehicleConstraints();
             } else {
                 levelsInput.classList.remove('visible');
-                calculateStacking();
+                calculateStackingWithVehicleConstraints();
             }
         });
 
@@ -2480,10 +2647,10 @@
             const levelsInput = document.getElementById('standard-levels-input');
             if (this.checked) {
                 levelsInput.classList.add('visible');
-                calculateStandardStacking();
+                calculateStandardStackingWithVehicleConstraints();
             } else {
                 levelsInput.classList.remove('visible');
-                calculateStandardStacking();
+                calculateStandardStackingWithVehicleConstraints();
             }
         });
 
@@ -2604,23 +2771,6 @@
         }
 
         // =============================================
-        // VEHICLE CARDS 3D EFFECT
-        // =============================================
-        function initializeVehicleCards() {
-            const vehicleCards = document.querySelectorAll('.vehicle-card');
-            
-            vehicleCards.forEach(card => {
-                card.addEventListener('mouseenter', function() {
-                    this.style.transform = 'translateY(-8px) rotateY(15deg)';
-                });
-                
-                card.addEventListener('mouseleave', function() {
-                    this.style.transform = 'translateY(0) rotateY(0)';
-                });
-            });
-        }
-
-        // =============================================
         // UTILITY FUNCTIONS
         // =============================================
         function calculateDistance(from, to) {
@@ -2702,18 +2852,44 @@
         // INITIALIZATION
         // =============================================
         document.addEventListener('DOMContentLoaded', function() {
+            // Remove auto-selection option
+            const vehicleSelect = document.getElementById('vehicle-type');
+            const autoOption = vehicleSelect.querySelector('option[value="auto"]');
+            if (autoOption) {
+                autoOption.remove();
+            }
+
+            // Add event listeners to vehicle cards
+            document.querySelectorAll('.select-btn').forEach(button => {
+                button.addEventListener('click', function() {
+                    const vehicleName = this.getAttribute('data-vehicle');
+                    // Map display names to internal vehicle types
+                    const vehicleMap = {
+                        '3,5-Tonner Transporter': 'bus',
+                        '7,5-Tonner LKW': '7.5t',
+                        '12-Tonner LKW': '12t',
+                        '18-Tonner LKW': '18t',
+                        'Sattelzug': 'sattelzug',
+                        'Sattelzug Megatrailer': 'mega'
+                    };
+                    
+                    if (vehicleMap[vehicleName]) {
+                        selectVehicleFromCard(vehicleMap[vehicleName]);
+                    }
+                });
+            });
+
             initializeProgressiveForm();
-            initializeVehicleCards();
             addIndividualPallet();
             setupDateValidation();
             
             // Add event listeners for stacking inputs
-            document.getElementById('max-stack-height').addEventListener('input', calculateStacking);
-            document.getElementById('max-levels').addEventListener('input', calculateStacking);
-            document.getElementById('standard-max-height').addEventListener('input', calculateStandardStacking);
-            document.getElementById('standard-max-levels').addEventListener('input', calculateStandardStacking);
-            document.getElementById('pallet-count').addEventListener('input', calculateStandardStacking);
-            document.getElementById('pallet-weight').addEventListener('input', calculateStandardStacking);
+            document.getElementById('max-stack-height').addEventListener('input', calculateStackingWithVehicleConstraints);
+            document.getElementById('max-levels').addEventListener('input', calculateStackingWithVehicleConstraints);
+            document.getElementById('standard-max-height').addEventListener('input', calculateStandardStackingWithVehicleConstraints);
+            document.getElementById('standard-max-levels').addEventListener('input', calculateStandardStackingWithVehicleConstraints);
+            document.getElementById('pallet-count').addEventListener('input', calculateStandardStackingWithVehicleConstraints);
+            document.getElementById('pallet-weight').addEventListener('input', calculateStandardStackingWithVehicleConstraints);
             
             // Add event listeners for other forms
             document.getElementById('customRequestForm').addEventListener('submit', function(e) {
@@ -2728,14 +2904,6 @@
                 setTimeout(() => {
                     document.getElementById('successMessage').style.display = 'none';
                 }, 5000);
-            });
-            
-            // Add select button functionality
-            document.querySelectorAll('.select-btn').forEach(button => {
-                button.addEventListener('click', function() {
-                    const vehicleName = this.getAttribute('data-vehicle');
-                    showNotification(`Fahrzeug ${vehicleName} wurde ausgewählt!`, 'success');
-                });
             });
             
             showNotification('Transportrechner bereit! Füllen Sie die Felder Schritt für Schritt aus.', 'info');
