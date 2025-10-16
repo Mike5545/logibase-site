@@ -139,18 +139,19 @@
             color: var(--white);
         }
 
-        /* Login Section */
+        /* Login Section - Smaller and 3cm lower */
         .login-section {
-            padding: 1rem 2rem;
+            padding: 0.5rem 2rem;
             background: var(--light);
             border-bottom: 1px solid var(--border);
             display: flex;
             justify-content: center;
             align-items: center;
+            margin-top: 70px; /* 3cm lower from header */
         }
 
         .login-container {
-            max-width: 400px;
+            max-width: 300px;
             width: 100%;
             text-align: center;
         }
@@ -158,28 +159,29 @@
         .login-form {
             display: flex;
             flex-direction: column;
-            gap: 1rem;
-            margin-bottom: 1rem;
+            gap: 0.5rem;
+            margin-bottom: 0.5rem;
         }
 
         .login-input {
-            padding: 0.8rem;
+            padding: 0.5rem;
             border: 1px solid var(--border);
             border-radius: 6px;
-            font-size: 0.9rem;
+            font-size: 0.8rem;
             width: 100%;
         }
 
         .login-btn {
             background: var(--primary);
             color: var(--white);
-            padding: 0.8rem;
+            padding: 0.5rem;
             border: none;
             border-radius: 6px;
             cursor: pointer;
             font-weight: 600;
             transition: var(--transition);
             width: 100%;
+            font-size: 0.8rem;
         }
 
         .login-btn:hover {
@@ -190,16 +192,17 @@
             display: none;
             align-items: center;
             gap: 1rem;
+            font-size: 0.8rem;
         }
 
         .logout-btn {
             background: var(--error);
             color: var(--white);
             border: none;
-            padding: 0.4rem 0.8rem;
+            padding: 0.3rem 0.6rem;
             border-radius: 4px;
             cursor: pointer;
-            font-size: 0.8rem;
+            font-size: 0.7rem;
         }
 
         /* Hero Section */
@@ -209,8 +212,7 @@
             background-size: cover, 20px 20px;
             color: var(--primary);
             text-align: center;
-            padding: 10rem 2rem 6rem;
-            margin-top: 70px;
+            padding: 8rem 2rem 4rem;
             border-bottom: 1px solid var(--border);
         }
 
@@ -1388,10 +1390,10 @@
         </div>
     </header>
 
-    <!-- Login Section -->
+    <!-- Login Section - Smaller and 3cm lower -->
     <section class="login-section" id="loginSection">
         <div class="login-container">
-            <h3>Anmeldung</h3>
+            <h3 style="font-size: 1rem; margin-bottom: 0.5rem;">Anmeldung</h3>
             <form class="login-form" id="loginForm">
                 <input type="text" class="login-input" id="username" placeholder="Benutzername" required>
                 <input type="password" class="login-input" id="password" placeholder="Passwort" required>
@@ -2164,7 +2166,7 @@
         // LOGIN SYSTEM
         // =============================================
         const users = {
-            'admin': { password: 'admin123', name: 'Administrator', role: 'admin' },
+            'Michael': { password: '123', name: 'Michael', role: 'admin' },
             'kunde': { password: 'kunde123', name: 'Max Mustermann', role: 'customer' }
         };
 
@@ -2198,7 +2200,7 @@
                 localStorage.setItem('loggedInUser', username);
                 
                 // Redirect to Dashboard for admin
-                if (username === 'admin') {
+                if (username === 'Michael') {
                     window.location.href = 'https://github.com/your-username/your-repo/blob/main/Dashboard.html';
                 }
                 
@@ -2418,7 +2420,7 @@
         };
 
         // =============================================
-        // IMPROVED PRICE CALCULATION
+        // IMPROVED PRICE CALCULATION WITH STACKING
         // =============================================
         function calculatePrice(formData) {
             try {
@@ -2452,9 +2454,32 @@
 
                 const cargoType = document.querySelector('.cargo-type-btn.active').getAttribute('data-type');
                 
+                // Check if stacking is enabled
+                const isStapelbar = cargoType === 'individual' ? 
+                    document.getElementById('individual-stapelbar').checked :
+                    document.getElementById('standard-stapelbar').checked;
+                
                 if (cargoType === 'individual') {
                     const palletItems = document.querySelectorAll('.pallet-item');
-                    totalPallets = palletItems.length;
+                    
+                    // Calculate effective pallet count based on stacking
+                    if (isStapelbar) {
+                        // For stacking, we need to check if pallets can be stacked based on vehicle height
+                        let totalHeight = 0;
+                        let maxPalletHeight = 0;
+                        
+                        palletItems.forEach(item => {
+                            const height = parseInt(item.querySelector('input[type="number"]:nth-child(3)').value) || 0;
+                            totalHeight += height;
+                            if (height > maxPalletHeight) maxPalletHeight = height;
+                        });
+                        
+                        // Calculate how many levels we can stack
+                        const maxLevels = Math.floor(vehicle.internalHeight / maxPalletHeight);
+                        totalPallets = Math.min(palletItems.length * maxLevels, vehicle.maxPallets);
+                    } else {
+                        totalPallets = palletItems.length;
+                    }
                     
                     palletItems.forEach(item => {
                         const weightInput = item.querySelector('input[type="number"]:nth-child(4)');
@@ -2463,18 +2488,29 @@
                         price += weight * vehicle.perKg;
                     });
                     
+                    // Adjust weight for stacking
+                    if (isStapelbar) {
+                        totalWeight = totalWeight * (totalPallets / palletItems.length);
+                    }
+                    
                     price += totalPallets * vehicle.perPallet;
                 } else {
                     totalPallets = parseInt(formData.get('pallet-count')) || 0;
                     const palletWeight = parseInt(formData.get('pallet-weight')) || 0;
+                    
+                    // Adjust for stacking
+                    if (isStapelbar) {
+                        const maxLevels = vehicle.maxLevels;
+                        totalPallets = Math.min(totalPallets * maxLevels, vehicle.maxPallets);
+                    }
+                    
                     totalWeight = totalPallets * palletWeight;
                     price += totalPallets * vehicle.perPallet;
                     price += totalWeight * vehicle.perKg;
                 }
                 
                 // Additional factors
-                const standardStapelbar = document.getElementById('standard-stapelbar');
-                if (standardStapelbar && standardStapelbar.checked) {
+                if (isStapelbar) {
                     price *= 1.1; // 10% extra for stacking
                 }
                 
