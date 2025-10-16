@@ -144,12 +144,14 @@
             padding: 1rem 2rem;
             background: var(--light);
             border-bottom: 1px solid var(--border);
-            display: none;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
         .login-container {
             max-width: 400px;
-            margin: 0 auto;
+            width: 100%;
             text-align: center;
         }
 
@@ -165,6 +167,7 @@
             border: 1px solid var(--border);
             border-radius: 6px;
             font-size: 0.9rem;
+            width: 100%;
         }
 
         .login-btn {
@@ -176,6 +179,7 @@
             cursor: pointer;
             font-weight: 600;
             transition: var(--transition);
+            width: 100%;
         }
 
         .login-btn:hover {
@@ -411,11 +415,11 @@
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 0.3rem;
-            margin-bottom: 1rem;
+            margin-bottom: 0.5rem;
         }
 
         .pallet-type-btn {
-            padding: 0.4rem 0.6rem;
+            padding: 0.3rem 0.5rem;
             border: 1px solid var(--border);
             background: var(--white);
             cursor: pointer;
@@ -437,12 +441,13 @@
         .stapelbar-container {
             display: flex;
             align-items: center;
-            gap: 0.8rem;
+            gap: 0.5rem;
             margin-bottom: 1rem;
             padding: 0.5rem;
             background: #f0f0f0;
             border-radius: 6px;
             border: 1px solid var(--border);
+            width: fit-content;
         }
 
         .stapelbar-checkbox {
@@ -493,7 +498,7 @@
 
         .pallet-item {
             display: grid;
-            grid-template-columns: 1fr 1fr 1fr 1fr auto auto;
+            grid-template-columns: 1fr 1fr 1fr 1fr auto auto auto;
             gap: 0.6rem;
             margin-bottom: 1rem;
             padding: 1rem;
@@ -1052,7 +1057,7 @@
             padding: 2rem;
             border-radius: 12px;
             width: 90%;
-            max-width: 500px; /* Wider modal */
+            max-width: 600px; /* Wider modal */
             box-shadow: 0 20px 40px rgba(0,0,0,0.3);
             border: 2px solid var(--primary);
             position: relative;
@@ -1472,6 +1477,11 @@
 
                 <!-- Individual Pallets -->
                 <div class="form-group" id="individual-pallets-group">
+                    <div class="stapelbar-container">
+                        <input type="checkbox" id="individual-stapelbar" class="stapelbar-checkbox">
+                        <label for="individual-stapelbar" class="stapelbar-label lang-de">Stapelbar</label>
+                        <label for="individual-stapelbar" class="stapelbar-label lang-en">Stackable</label>
+                    </div>
                     <div class="individual-pallets" id="individual-pallets-container">
                         <!-- Individual pallets will be added here dynamically -->
                     </div>
@@ -1618,7 +1628,7 @@
 
     <!-- Vehicle Selection Modal -->
     <div class="modal-overlay" id="vehicleModalOverlay">
-        <div class="modal" style="max-width: 500px;">
+        <div class="modal" style="max-width: 600px;">
             <button class="modal-close-btn" onclick="closeVehicleModal()">×</button>
             
             <h3 class="lang-de">Transportanfrage für <span id="selectedVehicleName"></span></h3>
@@ -1693,6 +1703,11 @@
 
                 <!-- Individual Pallets -->
                 <div class="form-group" id="vehicle-individual-pallets">
+                    <div class="stapelbar-container">
+                        <input type="checkbox" id="vehicle-individual-stapelbar" class="stapelbar-checkbox">
+                        <label for="vehicle-individual-stapelbar" class="stapelbar-label lang-de">Stapelbar</label>
+                        <label for="vehicle-individual-stapelbar" class="stapelbar-label lang-en">Stackable</label>
+                    </div>
                     <div class="individual-pallets" id="vehicle-individual-pallets-container">
                         <!-- Individual pallets will be added here -->
                     </div>
@@ -2154,7 +2169,7 @@
         };
 
         function showLoginSection() {
-            document.getElementById('loginSection').style.display = 'block';
+            document.getElementById('loginSection').style.display = 'flex';
         }
 
         function hideLoginSection() {
@@ -2305,7 +2320,7 @@
                 perKg: 0.09,
                 perPallet: 20,
                 maxWeight: 1100,
-                maxPallets: 6, // Updated to 6
+                maxPallets: 6,
                 internalLength: 320,
                 internalWidth: 125,
                 internalHeight: 160,
@@ -2322,7 +2337,7 @@
                 perKg: 0.07,
                 perPallet: 16,
                 maxWeight: 2350,
-                maxPallets: 10, // Updated to 10
+                maxPallets: 10,
                 internalLength: 600,
                 internalWidth: 240,
                 internalHeight: 240,
@@ -2339,7 +2354,7 @@
                 perKg: 0.06,
                 perPallet: 14,
                 maxWeight: 7000,
-                maxPallets: 14, // Updated to 14
+                maxPallets: 14,
                 internalLength: 680,
                 internalWidth: 230,
                 internalHeight: 250,
@@ -2356,7 +2371,7 @@
                 perKg: 0.05,
                 perPallet: 12,
                 maxWeight: 12000,
-                maxPallets: 18, // Updated to 18
+                maxPallets: 18,
                 internalLength: 780,
                 internalWidth: 245,
                 internalHeight: 270,
@@ -2373,7 +2388,7 @@
                 perKg: 0.04,
                 perPallet: 10,
                 maxWeight: 24000,
-                maxPallets: 33, // Updated to 33
+                maxPallets: 33,
                 internalLength: 1360,
                 internalWidth: 240,
                 internalHeight: 265,
@@ -2390,7 +2405,7 @@
                 perKg: 0.035,
                 perPallet: 8,
                 maxWeight: 24000,
-                maxPallets: 33, // Updated to 33
+                maxPallets: 33,
                 internalLength: 1360,
                 internalWidth: 240,
                 internalHeight: 300,
