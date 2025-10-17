@@ -1844,9 +1844,9 @@
         // IMPROVED AUTO VEHICLE SELECTION LOGIC
         // =============================================
         function autoSelectVehicle(cargoData) {
-            const { totalWeight, totalPallets, palletType, requiredLademeter, maxPalletHeight, isStackable } = cargoData;
+            console.log('=== autoSelectVehicle called with:', cargoData);
             
-            console.log('Auto selecting vehicle for:', cargoData);
+            const { totalWeight, totalPallets, palletType, requiredLademeter, maxPalletHeight, isStackable } = cargoData;
             
             // Filter vehicles that can handle the weight
             let suitableVehicles = vehicleCapacities.filter(vehicle => 
@@ -1854,7 +1854,7 @@
             );
             
             if (suitableVehicles.length === 0) {
-                console.log('No vehicles suitable for weight:', totalWeight);
+                console.log('❌ No vehicles suitable for weight:', totalWeight);
                 return 'consultation';
             }
             
@@ -1865,7 +1865,7 @@
             );
             
             if (suitableVehicles.length === 0) {
-                console.log('No vehicles suitable for height:', effectiveHeight);
+                console.log('❌ No vehicles suitable for height:', effectiveHeight);
                 return 'consultation';
             }
             
@@ -1875,7 +1875,7 @@
             );
             
             if (suitableVehicles.length === 0) {
-                console.log('No vehicles suitable for Lademeter:', requiredLademeter);
+                console.log('❌ No vehicles suitable for Lademeter:', requiredLademeter);
                 return 'consultation';
             }
             
@@ -1883,7 +1883,7 @@
             suitableVehicles.sort((a, b) => a.maxWeight - b.maxWeight);
             const selectedVehicle = suitableVehicles[0];
             
-            console.log('Selected vehicle:', selectedVehicle.type);
+            console.log('✅ Selected vehicle:', selectedVehicle.type);
             return selectedVehicle.type;
         }
 
@@ -1891,8 +1891,12 @@
         // CARGO DATA CALCULATION
         // =============================================
         function calculateCargoData() {
+            console.log('=== calculateCargoData called ===');
+            
             const cargoType = document.querySelector('.cargo-type-btn.active').getAttribute('data-type');
             const isStackable = document.getElementById('stackable').checked;
+            
+            console.log('Cargo type:', cargoType, 'Stackable:', isStackable);
             
             let totalWeight = 0;
             let totalPallets = 0;
@@ -1903,6 +1907,7 @@
             if (cargoType === 'individual') {
                 // Calculate for individual pallets
                 const palletGroups = document.querySelectorAll('.pallet-group');
+                console.log('Individual pallet groups found:', palletGroups.length);
                 
                 palletGroups.forEach(group => {
                     const count = parseInt(group.querySelector('.pallet-count').textContent.match(/\d+/)[0]) || 1;
@@ -1939,6 +1944,8 @@
                 const palletCount = parseInt(document.getElementById('pallet-count').value) || 1;
                 const palletWeight = parseInt(document.getElementById('pallet-weight').value) || 500;
                 
+                console.log('Standard pallets - Type:', palletType, 'Count:', palletCount, 'Weight:', palletWeight);
+                
                 totalPallets = palletCount;
                 totalWeight = palletCount * palletWeight;
                 maxPalletHeight = palletDimensions[palletType].height;
@@ -1948,7 +1955,7 @@
                 requiredLademeter = effectivePallets * palletDimensions[palletType].lademeter;
             }
             
-            return {
+            const result = {
                 totalWeight,
                 totalPallets,
                 palletType,
@@ -1956,26 +1963,48 @@
                 maxPalletHeight,
                 isStackable
             };
+            
+            console.log('📦 Calculated cargo data:', result);
+            return result;
         }
 
         // =============================================
         // REAL-TIME VEHICLE SELECTION
         // =============================================
         function updateVehicleSelection() {
+            console.log('=== updateVehicleSelection ВЫЗВАН ===');
+            
+            // Проверка, виден ли раздел с машинами
+            const vehicleSection = document.getElementById('vehicle-section');
+            if (!vehicleSection || !vehicleSection.classList.contains('visible')) {
+                console.log('Раздел машин не виден - пропускаем обновление');
+                return;
+            }
+            
             const vehicleTypeSelect = document.getElementById('vehicle-type');
+            if (!vehicleTypeSelect) {
+                console.log('Элемент выбора машины не найден');
+                return;
+            }
+            
             const currentSelection = vehicleTypeSelect.value;
+            console.log('Текущий выбор машины:', currentSelection);
             
             // Only auto-select if "Auto-Auswahl" is selected
             if (currentSelection === 'auto') {
                 try {
+                    console.log('🔄 Начинаем автоматический подбор...');
+                    
                     const cargoData = calculateCargoData();
                     
                     // Don't auto-select if no cargo data
                     if (cargoData.totalPallets === 0 || cargoData.totalWeight === 0) {
+                        console.log('❌ Нет данных о грузе для подбора');
                         return;
                     }
                     
                     const selectedVehicle = autoSelectVehicle(cargoData);
+                    console.log('🚚 Выбранная машина:', selectedVehicle);
                     
                     vehicleTypeSelect.value = selectedVehicle;
                     
@@ -1990,8 +2019,10 @@
                         autoInfo.innerHTML = `<strong>✅ Automatisch ausgewählt:</strong> ${vehicleData.name}${stackableText} - Passt optimal zu Ihrer Fracht (${cargoData.totalWeight} kg, ${cargoData.totalPallets} Paletten, ${cargoData.requiredLademeter.toFixed(1)} Lademeter)`;
                         autoInfo.style.display = 'block';
                     }
+                    
+                    console.log('✅ Автоподбор завершен успешно');
                 } catch (error) {
-                    console.error('Error in vehicle selection:', error);
+                    console.error('❌ Ошибка в подборе машины:', error);
                 }
             }
         }
@@ -2155,33 +2186,55 @@
         }
 
         // =============================================
-        // ENHANCED EVENT LISTENERS
+        // ИСПРАВЛЕННАЯ ИНИЦИАЛИЗАЦИЯ СОБЫТИЙ
         // =============================================
         function initializeEnhancedEventListeners() {
-            // Standard pallet inputs
-            document.getElementById('pallet-count').addEventListener('input', function() {
-                debouncedUpdateVehicleSelection();
-            });
-            document.getElementById('pallet-weight').addEventListener('input', function() {
-                debouncedUpdateVehicleSelection();
-            });
+            console.log('🔧 Инициализация обработчиков событий...');
             
-            // Pallet type selection
+            // Стандартные паллеты - количество
+            const palletCountInput = document.getElementById('pallet-count');
+            if (palletCountInput) {
+                palletCountInput.addEventListener('input', function() {
+                    console.log('📦 Количество паллет изменено:', this.value);
+                    debouncedUpdateVehicleSelection();
+                });
+                palletCountInput.addEventListener('change', function() {
+                    console.log('📦 Количество паллет изменено (change):', this.value);
+                    debouncedUpdateVehicleSelection();
+                });
+            }
+            
+            // Стандартные паллеты - вес
+            const palletWeightInput = document.getElementById('pallet-weight');
+            if (palletWeightInput) {
+                palletWeightInput.addEventListener('input', function() {
+                    console.log('⚖️ Вес паллет изменен:', this.value);
+                    debouncedUpdateVehicleSelection();
+                });
+            }
+            
+            // Выбор типа паллет
             document.querySelectorAll('.pallet-type-btn').forEach(btn => {
                 btn.addEventListener('click', function() {
+                    console.log('🔄 Тип паллет изменен:', this.getAttribute('data-type'));
                     document.querySelectorAll('.pallet-type-btn').forEach(b => b.classList.remove('active'));
                     this.classList.add('active');
                     debouncedUpdateVehicleSelection();
                 });
             });
 
-            // Stackable checkbox
-            document.getElementById('stackable').addEventListener('change', function() {
-                debouncedUpdateVehicleSelection();
-            });
+            // Штабелирование
+            const stackableCheckbox = document.getElementById('stackable');
+            if (stackableCheckbox) {
+                stackableCheckbox.addEventListener('change', function() {
+                    console.log('📐 Штабелирование изменено:', this.checked);
+                    debouncedUpdateVehicleSelection();
+                });
+            }
 
-            // Vehicle type change
+            // Выбор машины вручную
             document.getElementById('vehicle-type').addEventListener('change', function() {
+                console.log('🚛 Тип машины изменен вручную:', this.value);
                 const autoInfo = document.getElementById('autoSelectionInfo');
                 if (this.value !== 'auto') {
                     autoInfo.style.display = 'none';
@@ -2189,6 +2242,8 @@
                     debouncedUpdateVehicleSelection();
                 }
             });
+            
+            console.log('✅ Обработчики событий установлены');
         }
 
         // =============================================
@@ -2300,9 +2355,12 @@
                     
                     setTimeout(() => {
                         showSection('vehicle-section');
+                        // ВАЖНО: Принудительно обновить подбор машины при смене типа груза
+                        setTimeout(() => {
+                            console.log('🔄 Принудительное обновление подбора машины после смены типа груза');
+                            debouncedUpdateVehicleSelection();
+                        }, 100);
                     }, 300);
-                    
-                    debouncedUpdateVehicleSelection();
                 });
             });
         }
@@ -2514,6 +2572,8 @@
         // INITIALIZATION
         // =============================================
         document.addEventListener('DOMContentLoaded', function() {
+            console.log('🚀 Initializing application...');
+            
             initializeProgressiveForm();
             initializeVehicleSelectButtons();
             initializeEnhancedEventListeners();
@@ -2536,6 +2596,7 @@
                 }, 5000);
             });
             
+            console.log('✅ Application initialized successfully');
             showNotification('Transportrechner bereit! Das System wählt automatisch das passende Fahrzeug basierend auf Ihren Frachtdaten aus.', 'info');
         });
     </script>
