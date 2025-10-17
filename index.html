@@ -305,378 +305,60 @@
             font-weight: 300;
         }
 
-        .calculator-form {
-            display: flex;
-            flex-direction: column;
-            gap: 1.5rem;
-            margin-bottom: 2rem;
-        }
-
-        .form-group {
-            display: flex;
-            flex-direction: column;
-            text-align: left;
-        }
-
-        .form-group label {
-            margin-bottom: 0.5rem;
-            font-weight: 600;
-            font-size: 0.9rem;
-            color: var(--secondary);
-            letter-spacing: 0.3px;
-        }
-
-        .form-group input,
-        .form-group select {
-            padding: 0.8rem;
-            border: 1px solid var(--border);
+        /* NEW CALCULATOR PLACEHOLDER */
+        .new-calculator-placeholder {
             background: var(--white);
-            font-size: 0.9rem;
-            border-radius: 8px;
-            transition: var(--transition);
-            color: var(--secondary);
-        }
-
-        .form-group input:focus,
-        .form-group select:focus {
-            outline: none;
-            border-color: var(--primary);
-            box-shadow: 0 0 0 3px rgba(0,0,0,0.1);
-        }
-
-        /* Initially Hidden Sections */
-        .hidden-section {
-            display: none;
-            opacity: 0;
-            transform: translateY(10px);
-            transition: all 0.5s ease;
-        }
-
-        .hidden-section.visible {
-            display: block;
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* SMALLER Pallet Type Selector */
-        .pallet-type-selector {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 0.5rem;
-            margin-bottom: 1rem;
-        }
-
-        .pallet-type-btn {
-            padding: 0.4rem 0.2rem;
-            border: 1px solid var(--border);
-            background: var(--white);
-            cursor: pointer;
-            transition: var(--transition);
-            text-align: center;
-            font-weight: 500;
-            border-radius: 6px;
-            font-size: 0.7rem;
-            color: var(--secondary);
-            height: auto;
-            min-height: 40px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .pallet-type-btn.active {
-            background: var(--primary);
-            color: var(--white);
-            border-color: var(--primary);
-        }
-
-        .pallet-type-btn:hover {
-            border-color: var(--primary);
-        }
-
-        .pallet-type-btn small {
-            font-size: 0.6rem;
-            margin-top: 2px;
-            opacity: 0.8;
-        }
-
-        /* Stackable Option */
-        .stackable-option {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            margin-bottom: 1rem;
-            padding: 0.8rem;
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            background: var(--white);
-        }
-
-        .stackable-option input {
-            margin: 0;
-        }
-
-        .stackable-option label {
-            margin: 0;
-            font-weight: 500;
-            font-size: 0.9rem;
-        }
-
-        /* Individual Pallets */
-        .individual-pallets {
-            margin-bottom: 1rem;
-        }
-
-        .pallet-group {
-            margin-bottom: 1rem;
-            padding: 1rem;
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            background: var(--white);
-        }
-
-        .pallet-group-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 0.8rem;
-            padding-bottom: 0.5rem;
-            border-bottom: 1px solid var(--border);
-        }
-
-        .pallet-count {
-            font-weight: 600;
-            color: var(--primary);
-            font-size: 0.9rem;
-        }
-
-        .pallet-item {
-            display: grid;
-            grid-template-columns: 1fr 1fr 1fr 1fr auto auto;
-            gap: 0.8rem;
-            margin-bottom: 0.8rem;
-            padding: 0.8rem;
-            border: 1px solid var(--border);
-            border-radius: 6px;
-            background: var(--light);
-            align-items: end;
-        }
-
-        .dimension-item {
-            display: flex;
-            flex-direction: column;
-            position: relative;
-        }
-
-        .dimension-item label {
-            margin-bottom: 0.4rem;
-            font-weight: 600;
-            font-size: 0.75rem;
-            color: var(--secondary);
-        }
-
-        .dimension-item input {
-            padding: 0.6rem;
-            border: 1px solid var(--border);
-            background: var(--white);
-            font-size: 0.8rem;
-            border-radius: 6px;
-            width: 100%;
-        }
-
-        .add-pallet-btn {
-            background: var(--primary);
-            color: var(--white);
-            border: 2px solid var(--primary);
-            padding: 0.8rem;
-            border-radius: 8px;
-            cursor: pointer;
-            font-size: 1.2rem;
-            width: 44px;
-            height: 44px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 1rem;
-            transition: var(--transition);
-        }
-
-        .add-pallet-btn:hover {
-            background: var(--white);
-            color: var(--primary);
-            transform: translateY(-2px);
-        }
-
-        .duplicate-pallet-btn {
-            background: var(--info);
-            color: var(--white);
-            border: none;
-            padding: 0.5rem;
-            border-radius: 6px;
-            cursor: pointer;
-            font-size: 0.8rem;
-            width: 32px;
-            height: 32px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: var(--transition);
-        }
-
-        .duplicate-pallet-btn:hover {
-            background: #1976D2;
-            transform: translateY(-1px);
-        }
-
-        .remove-pallet-btn {
-            background: var(--error);
-            color: var(--white);
-            border: none;
-            padding: 0.5rem;
-            border-radius: 6px;
-            cursor: pointer;
-            font-size: 0.8rem;
-            width: 32px;
-            height: 32px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: var(--transition);
-        }
-
-        .remove-pallet-btn:hover {
-            background: #b71c1c;
-            transform: translateY(-1px);
-        }
-
-        /* Standard Pallets Compact */
-        .standard-pallets-compact {
-            display: grid;
-            grid-template-columns: 1fr auto;
-            gap: 1rem;
-            align-items: end;
-        }
-
-        .standard-pallet-fields {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1rem;
-        }
-
-        .compact-field {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .compact-field label {
-            margin-bottom: 0.4rem;
-            font-weight: 600;
-            font-size: 0.75rem;
-            color: var(--secondary);
-        }
-
-        .compact-field input {
-            padding: 0.6rem;
-            border: 1px solid var(--border);
-            background: var(--white);
-            font-size: 0.8rem;
-            border-radius: 6px;
-        }
-
-        /* Vehicle Selector */
-        .vehicle-selector {
-            margin-bottom: 1rem;
-        }
-
-        .auto-selection-info {
-            background: #f0f0f0;
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            padding: 0.8rem;
-            margin-top: 0.5rem;
-            font-size: 0.8rem;
-            display: none;
-            color: var(--secondary);
-        }
-
-        /* Beautiful Submit Button */
-        .submit-btn {
-            background: var(--primary);
-            color: var(--white);
-            padding: 1rem 2rem;
-            border: 2px solid var(--primary);
-            font-size: 1rem;
-            cursor: pointer;
-            transition: var(--transition);
-            margin-top: 1rem;
-            width: auto;
-            border-radius: 8px;
-            font-weight: 600;
-            letter-spacing: 0.5px;
-            display: inline-block;
-        }
-
-        .submit-btn:hover:not(:disabled) {
-            background: var(--white);
-            color: var(--primary);
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-        }
-
-        .submit-btn:disabled {
-            background: var(--accent);
-            border-color: var(--accent);
-            cursor: not-allowed;
-            transform: none;
-        }
-
-        /* Calculator Result */
-        .calculator-result {
-            background: var(--white);
-            padding: 2rem;
-            border: 2px solid var(--primary);
-            margin-top: 2rem;
-            display: none;
+            padding: 3rem;
+            border: 2px dashed var(--border);
             border-radius: 12px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            margin: 2rem 0;
+            text-align: center;
         }
 
-        .price-estimate {
-            font-size: 2.5rem;
-            font-weight: bold;
+        .new-calculator-placeholder h3 {
             color: var(--primary);
-            margin: 1rem 0;
-            letter-spacing: -1px;
-        }
-
-        .price-note {
-            font-size: 0.85rem;
-            color: var(--accent);
             margin-bottom: 1rem;
+            font-size: 1.5rem;
             font-weight: 300;
         }
 
-        .request-btn {
-            background: var(--primary);
-            color: var(--white);
-            padding: 1rem 2rem;
-            border: 2px solid var(--primary);
-            font-size: 1rem;
-            cursor: pointer;
-            transition: var(--transition);
-            margin-top: 1rem;
-            width: 100%;
-            border-radius: 8px;
-            font-weight: 600;
-            letter-spacing: 0.5px;
+        .new-calculator-placeholder p {
+            color: var(--accent);
+            margin-bottom: 2rem;
         }
 
-        .request-btn:hover {
+        .coming-soon {
+            font-size: 3rem;
+            color: var(--border);
+            margin: 2rem 0;
+        }
+
+        /* Cargo Type Section */
+        .cargo-type-section {
+            padding: 3rem 2rem;
             background: var(--white);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .cargo-type-container {
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .cargo-type-section h2 {
+            font-size: 2rem;
             color: var(--primary);
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            margin-bottom: 1rem;
+            font-weight: 300;
+            letter-spacing: -0.5px;
+        }
+
+        .cargo-type-section > .cargo-type-container > p {
+            margin-bottom: 2rem;
+            color: var(--accent);
+            font-size: 1rem;
+            font-weight: 300;
         }
 
         /* Beautiful Button Styles */
@@ -711,55 +393,219 @@
             transform: translateY(-2px);
         }
 
-        /* Loading Spinner */
-        .loading-spinner {
-            display: inline-block;
-            width: 20px;
-            height: 20px;
-            border: 3px solid rgba(255,255,255,0.3);
-            border-radius: 50%;
-            border-top-color: var(--white);
-            animation: spin 1s ease-in-out infinite;
-            margin-right: 10px;
+        /* Custom Request Section */
+        .custom-request {
+            padding: 4rem 2rem;
+            background: var(--light);
+            border-bottom: 1px solid var(--border);
         }
 
-        @keyframes spin {
-            to { transform: rotate(360deg); }
+        .custom-request-container {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
         }
 
-        /* Notification System */
-        .notification {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            padding: 1rem 1.5rem;
-            border-radius: 8px;
-            color: white;
-            z-index: 10000;
+        .custom-request h2 {
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+            font-weight: 300;
+            letter-spacing: -0.5px;
+        }
+
+        .custom-request > .custom-request-container > p {
+            margin-bottom: 2rem;
+            color: var(--accent);
+            font-size: 1rem;
+            font-weight: 300;
+        }
+
+        .custom-request-form {
             display: flex;
-            align-items: center;
-            gap: 1rem;
-            max-width: 400px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-            animation: slideIn 0.3s ease;
+            flex-direction: column;
+            gap: 1.2rem;
+            margin-bottom: 2rem;
         }
-        .notification-success { background: var(--success); }
-        .notification-error { background: var(--error); }
-        .notification-warning { background: var(--warning); }
-        .notification-info { background: var(--info); }
-        .notification button {
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            text-align: left;
+        }
+
+        .form-group label {
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: var(--secondary);
+            letter-spacing: 0.3px;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            padding: 0.8rem;
+            border: 1px solid var(--border);
+            background: var(--white);
+            font-size: 0.9rem;
+            border-radius: 8px;
+            transition: var(--transition);
+            color: var(--secondary);
+        }
+
+        .form-group textarea {
+            min-height: 140px;
+            resize: vertical;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(0,0,0,0.1);
+        }
+
+        /* Submit Button */
+        .submit-btn {
+            background: var(--primary);
+            color: var(--white);
+            padding: 1rem 2rem;
+            border: 2px solid var(--primary);
+            font-size: 1rem;
+            cursor: pointer;
+            transition: var(--transition);
+            margin-top: 1rem;
+            width: auto;
+            border-radius: 8px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            display: inline-block;
+        }
+
+        .submit-btn:hover:not(:disabled) {
+            background: var(--white);
+            color: var(--primary);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        /* Contact Modal */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.7);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+        }
+
+        .modal {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 12px;
+            width: 90%;
+            max-width: 600px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+            border: 2px solid var(--primary);
+            position: relative;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        .modal-close-btn {
+            position: absolute;
+            top: 15px;
+            right: 15px;
             background: none;
             border: none;
-            color: white;
-            font-size: 1.2rem;
+            font-size: 1.5rem;
             cursor: pointer;
-            padding: 0;
-            width: 20px;
-            height: 20px;
+            color: var(--secondary);
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: var(--transition);
         }
-        @keyframes slideIn {
-            from { transform: translateX(100%); opacity: 0; }
-            to { transform: translateX(0); opacity: 1; }
+
+        .modal-close-btn:hover {
+            background: var(--light);
+            color: var(--primary);
+        }
+
+        .modal h3 {
+            margin-bottom: 1.2rem;
+            text-align: center;
+            font-size: 1.4rem;
+            font-weight: 300;
+            color: var(--primary);
+            letter-spacing: -0.5px;
+        }
+
+        .modal-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .modal-form input, .modal-form textarea {
+            padding: 0.8rem;
+            border: 1px solid var(--border);
+            font-size: 0.9rem;
+            border-radius: 6px;
+            transition: var(--transition);
+            background: var(--white);
+            color: var(--secondary);
+        }
+
+        .modal-form textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+
+        .modal-form input:focus, .modal-form textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(0,0,0,0.1);
+        }
+
+        .modal-submit-btn {
+            background: var(--primary);
+            color: var(--white);
+            padding: 0.8rem;
+            border: 2px solid var(--primary);
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: var(--transition);
+            border-radius: 6px;
+            font-weight: 600;
+            margin-top: 0.8rem;
+            letter-spacing: 0.5px;
+        }
+
+        .modal-submit-btn:hover {
+            background: var(--white);
+            color: var(--primary);
+        }
+
+        /* Success Message */
+        .success-message {
+            background: #f0f8f0;
+            border: 1px solid #4CAF50;
+            color: #2E7D32;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+            text-align: center;
+            display: none;
+            font-weight: 500;
+            font-size: 1rem;
         }
 
         /* Vehicles Section */
@@ -916,125 +762,6 @@
             color: var(--primary);
         }
 
-        /* Contact Modal */
-        .modal-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.7);
-            display: none;
-            justify-content: center;
-            align-items: center;
-            z-index: 2000;
-        }
-
-        .modal {
-            background: var(--white);
-            padding: 2rem;
-            border-radius: 12px;
-            width: 90%;
-            max-width: 600px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
-            border: 2px solid var(--primary);
-            position: relative;
-            max-height: 90vh;
-            overflow-y: auto;
-        }
-
-        .modal-close-btn {
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            background: none;
-            border: none;
-            font-size: 1.5rem;
-            cursor: pointer;
-            color: var(--secondary);
-            width: 30px;
-            height: 30px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 50%;
-            transition: var(--transition);
-        }
-
-        .modal-close-btn:hover {
-            background: var(--light);
-            color: var(--primary);
-        }
-
-        .modal h3 {
-            margin-bottom: 1.2rem;
-            text-align: center;
-            font-size: 1.4rem;
-            font-weight: 300;
-            color: var(--primary);
-            letter-spacing: -0.5px;
-        }
-
-        .modal-form {
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-        }
-
-        .modal-form input, .modal-form textarea {
-            padding: 0.8rem;
-            border: 1px solid var(--border);
-            font-size: 0.9rem;
-            border-radius: 6px;
-            transition: var(--transition);
-            background: var(--white);
-            color: var(--secondary);
-        }
-
-        .modal-form textarea {
-            min-height: 100px;
-            resize: vertical;
-        }
-
-        .modal-form input:focus, .modal-form textarea:focus {
-            outline: none;
-            border-color: var(--primary);
-            box-shadow: 0 0 0 3px rgba(0,0,0,0.1);
-        }
-
-        .modal-submit-btn {
-            background: var(--primary);
-            color: var(--white);
-            padding: 0.8rem;
-            border: 2px solid var(--primary);
-            font-size: 0.9rem;
-            cursor: pointer;
-            transition: var(--transition);
-            border-radius: 6px;
-            font-weight: 600;
-            margin-top: 0.8rem;
-            letter-spacing: 0.5px;
-        }
-
-        .modal-submit-btn:hover {
-            background: var(--white);
-            color: var(--primary);
-        }
-
-        /* Success Message */
-        .success-message {
-            background: #f0f8f0;
-            border: 1px solid #4CAF50;
-            color: #2E7D32;
-            padding: 1.5rem;
-            border-radius: 8px;
-            margin: 1.5rem 0;
-            text-align: center;
-            display: none;
-            font-weight: 500;
-            font-size: 1rem;
-        }
-
         /* Footer */
         footer {
             background: var(--primary);
@@ -1084,57 +811,39 @@
         .lang-de { display: block; }
         .lang-en { display: none; }
 
-        /* Custom Request Section */
-        .custom-request {
-            padding: 4rem 2rem;
-            background: var(--light);
-            border-bottom: 1px solid var(--border);
-        }
-
-        .custom-request-container {
-            max-width: 800px;
-            margin: 0 auto;
-            text-align: center;
-        }
-
-        .custom-request h2 {
-            font-size: 2rem;
-            color: var(--primary);
-            margin-bottom: 1rem;
-            font-weight: 300;
-            letter-spacing: -0.5px;
-        }
-
-        .custom-request > .custom-request-container > p {
-            margin-bottom: 2rem;
-            color: var(--accent);
-            font-size: 1rem;
-            font-weight: 300;
-        }
-
-        .custom-request-form {
+        /* Notification System */
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 1rem 1.5rem;
+            border-radius: 8px;
+            color: white;
+            z-index: 10000;
             display: flex;
-            flex-direction: column;
-            gap: 1.2rem;
-            margin-bottom: 2rem;
+            align-items: center;
+            gap: 1rem;
+            max-width: 400px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            animation: slideIn 0.3s ease;
         }
-
-        .custom-request-form textarea {
-            padding: 1rem;
-            border: 1px solid var(--border);
-            font-size: 0.95rem;
-            border-radius: 6px;
-            transition: var(--transition);
-            background: var(--white);
-            color: var(--secondary);
-            min-height: 140px;
-            resize: vertical;
+        .notification-success { background: var(--success); }
+        .notification-error { background: var(--error); }
+        .notification-warning { background: var(--warning); }
+        .notification-info { background: var(--info); }
+        .notification button {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.2rem;
+            cursor: pointer;
+            padding: 0;
+            width: 20px;
+            height: 20px;
         }
-
-        .custom-request-form textarea:focus {
-            outline: none;
-            border-color: var(--primary);
-            box-shadow: 0 0 0 3px rgba(0,0,0,0.1);
+        @keyframes slideIn {
+            from { transform: translateX(100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
         }
 
         /* Responsive */
@@ -1157,25 +866,8 @@
                 font-size: 2.2rem;
             }
 
-            .calculator-form {
-                grid-template-columns: 1fr;
-            }
-
-            .date-time-input {
-                grid-template-columns: 1fr;
-            }
-
             .cargo-type-selector {
                 grid-template-columns: 1fr;
-            }
-
-            .pallet-type-selector {
-                grid-template-columns: 1fr;
-            }
-
-            .pallet-item {
-                grid-template-columns: 1fr;
-                gap: 0.8rem;
             }
 
             .vehicle-grid {
@@ -1247,151 +939,48 @@
             <p class="lang-de">Geben Sie Ihre Transportdaten ein und erhalten Sie eine sofortige Preisübersicht</p>
             <p class="lang-en">Enter your transport data and get an instant price overview</p>
             
-            <form class="calculator-form" id="transportCalculator">
-                <div class="form-group">
-                    <label for="from-location" class="lang-de">Von (PLZ/Ort)</label>
-                    <label for="from-location" class="lang-en">From (ZIP/City)</label>
-                    <input type="text" id="from-location" name="from-location" placeholder="z.B. 10115 Berlin" required>
-                </div>
-
-                <div class="form-group">
-                    <label for="to-location" class="lang-de">Nach (PLZ/Ort)</label>
-                    <label for="to-location" class="lang-en">To (ZIP/City)</label>
-                    <input type="text" id="to-location" name="to-location" placeholder="z.B. 80331 München" required>
-                </div>
-
-                <!-- Initially Hidden Sections -->
-                <div class="hidden-section" id="date-time-section">
-                    <div class="form-group">
-                        <label class="lang-de">Terminplanung</label>
-                        <label class="lang-en">Scheduling</label>
-                        <div class="date-time-input">
-                            <div class="date-time-group">
-                                <label for="loading-date" class="lang-de">Beladung am</label>
-                                <label for="loading-date" class="lang-en">Loading on</label>
-                                <input type="datetime-local" id="loading-date" name="loading-date" min="">
-                            </div>
-                            <div class="date-time-group">
-                                <label for="unloading-date" class="lang-de">Entladung am</label>
-                                <label for="unloading-date" class="lang-en">Unloading on</label>
-                                <input type="datetime-local" id="unloading-date" name="unloading-date" min="">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="hidden-section" id="cargo-type-section">
-                    <div class="form-group">
-                        <label class="lang-de">Was möchten Sie transportieren?</label>
-                        <label class="lang-en">What would you like to transport?</label>
-                        <div class="cargo-type-selector">
-                            <div class="cargo-type-btn active" data-type="individual">
-                                <span class="lang-de">Individuelle Paletten</span>
-                                <span class="lang-en">Individual Pallets</span>
-                            </div>
-                            <div class="cargo-type-btn" data-type="standard">
-                                <span class="lang-de">Standard Paletten</span>
-                                <span class="lang-en">Standard Pallets</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Stackable Option -->
-                <div class="hidden-section" id="stackable-section">
-                    <div class="stackable-option">
-                        <input type="checkbox" id="stackable" name="stackable">
-                        <label for="stackable" class="lang-de">Paletten sind stapelbar (max. 2 hoch)</label>
-                        <label for="stackable" class="lang-en">Pallets are stackable (max. 2 high)</label>
-                    </div>
-                </div>
-
-                <!-- Individual Pallets -->
-                <div class="hidden-section" id="individual-pallets-section">
-                    <div class="form-group">
-                        <div class="individual-pallets" id="individual-pallets-container">
-                            <!-- Individual pallets will be added here dynamically -->
-                        </div>
-                        <button type="button" class="add-pallet-btn" id="add-pallet-btn">+</button>
-                    </div>
-                </div>
-
-                <!-- Standard Pallets -->
-                <div class="hidden-section" id="standard-pallets-section">
-                    <div class="form-group">
-                        <div class="pallet-type-selector">
-                            <div class="pallet-type-btn active" data-type="euro">
-                                <span>Euro</span>
-                                <br><small>80×120 cm • 0,4 Lademeter</small>
-                            </div>
-                            <div class="pallet-type-btn" data-type="dusseldorf">
-                                <span>Düsseldorfer</span>
-                                <br><small>100×120 cm • 0,5 Lademeter</small>
-                            </div>
-                        </div>
-                        
-                        <div class="standard-pallets-compact">
-                            <div class="standard-pallet-fields">
-                                <div class="compact-field">
-                                    <label for="pallet-count" class="lang-de">Anzahl Paletten</label>
-                                    <label for="pallet-count" class="lang-en">Number of Pallets</label>
-                                    <input type="number" id="pallet-count" name="pallet-count" min="1" value="1">
-                                </div>
-                                <div class="compact-field">
-                                    <label for="pallet-weight" class="lang-de">Gewicht pro Palette (kg)</label>
-                                    <label for="pallet-weight" class="lang-en">Weight per Pallet (kg)</label>
-                                    <input type="number" id="pallet-weight" name="pallet-weight" min="1" value="500">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="hidden-section" id="vehicle-section">
-                    <div class="form-group">
-                        <label for="vehicle-type" class="lang-de">Fahrzeugtyp</label>
-                        <label for="vehicle-type" class="lang-en">Vehicle Type</label>
-                        <select id="vehicle-type" name="vehicle-type">
-                            <option value="auto">🔄 Auto-Auswahl</option>
-                            <option value="bus">3,5-Tonner (bis 1.100 kg, 6 Euro)</option>
-                            <option value="7.5t">7,5-Tonner (bis 2.350 kg, 10 Euro)</option>
-                            <option value="12t">12-Tonner (bis 7.000 kg, 14 Euro)</option>
-                            <option value="18t">18-Tonner (bis 12.000 kg, 18 Euro)</option>
-                            <option value="sattelzug">Sattelzug (bis 24.000 kg, 33 Euro)</option>
-                            <option value="mega">Sattelzug Megatrailer (bis 24.000 kg, 33 Euro)</option>
-                            <option value="consultation">Beratung erforderlich</option>
-                        </select>
-                        <div class="auto-selection-info" id="autoSelectionInfo"></div>
-                    </div>
-                    
-                    <div class="form-group">
-                        <button type="submit" class="submit-btn lang-de">
-                            <span class="submit-text">Preis berechnen</span>
-                        </button>
-                        <button type="submit" class="submit-btn lang-en">
-                            <span class="submit-text">Calculate Price</span>
-                        </button>
-                    </div>
-                </div>
-            </form>
-
-            <!-- Price Result -->
-            <div class="calculator-result" id="calculatorResult">
-                <h3 class="lang-de">Geschätzter Transportpreis</h3>
-                <h3 class="lang-en">Estimated Transport Price</h3>
-                <div class="price-estimate" id="priceEstimate">-</div>
-                <div class="total-weight" id="totalWeight"></div>
-                <div class="price-note lang-de">
-                    * Dies ist eine grobe Preisschätzung. Der endgültige Preis kann je nach genauer Strecke und Fracht variieren.
-                </div>
-                <div class="price-note lang-en">
-                    * This is a rough price estimate. The final price may vary depending on the exact route and cargo.
-                </div>
-                <button class="request-btn" onclick="openModal('calculator')">
-                    <span class="lang-de">Genauestes Angebot erhalten und Auftrag bestätigen</span>
-                    <span class="lang-en">Get the most accurate offer and confirm order</span>
-                </button>
+            <!-- NEW CALCULATOR PLACEHOLDER -->
+            <div class="new-calculator-placeholder">
+                <h3 class="lang-de">Neuer Kalkulator in Entwicklung</h3>
+                <h3 class="lang-en">New Calculator in Development</h3>
+                
+                <p class="lang-de">Wir arbeiten an einem verbesserten Kalkulator für noch genauere Preisberechnungen.</p>
+                <p class="lang-en">We are working on an improved calculator for even more accurate price calculations.</p>
+                
+                <div class="coming-soon">🔧</div>
+                
+                <p class="lang-de">Bis dahin können Sie uns gerne direkt kontaktieren oder eine individuelle Anfrage stellen.</p>
+                <p class="lang-en">Until then, feel free to contact us directly or submit a custom request.</p>
             </div>
+        </div>
+    </section>
+
+    <!-- Cargo Type Section -->
+    <section class="cargo-type-section" id="cargo-type">
+        <div class="cargo-type-container">
+            <h2 class="lang-de">Was möchten Sie transportieren?</h2>
+            <h2 class="lang-en">What would you like to transport?</h2>
+            
+            <p class="lang-de">Wählen Sie die Art Ihrer Fracht aus</p>
+            <p class="lang-en">Select the type of your cargo</p>
+            
+            <div class="cargo-type-selector">
+                <div class="cargo-type-btn active" data-type="individual">
+                    <span class="lang-de">Individuelle Paletten</span>
+                    <span class="lang-en">Individual Pallets</span>
+                </div>
+                <div class="cargo-type-btn" data-type="standard">
+                    <span class="lang-de">Standard Paletten</span>
+                    <span class="lang-en">Standard Pallets</span>
+                </div>
+            </div>
+            
+            <p class="lang-de" style="margin-top: 2rem; font-size: 0.9rem; color: var(--accent);">
+                Der neue Kalkulator wird hier erscheinen und Ihnen helfen, den optimalen Transport zu finden.
+            </p>
+            <p class="lang-en" style="margin-top: 2rem; font-size: 0.9rem; color: var(--accent);">
+                The new calculator will appear here and help you find the optimal transport.
+            </p>
         </div>
     </section>
 
@@ -1461,6 +1050,7 @@
             </div>
             
             <div class="vehicle-grid">
+                <!-- Vehicle cards remain the same as before -->
                 <!-- 3,5-Tonner -->
                 <div class="vehicle-card">
                     <div class="vehicle-image">
@@ -1740,515 +1330,7 @@
     </footer>
 
     <script>
-        // =============================================
-        // CORRECT VEHICLE DATA WITH 0,4 LADEMETER PER EURO PALLET
-        // =============================================
-        const vehicleCapacities = [
-            {
-                type: 'bus',
-                name: '3,5-Tonner Transporter',
-                maxWeight: 1100,
-                maxLademeter: 4.5,
-                maxEuroPallets: 6,
-                maxDusseldorfPallets: 5,
-                maxHeight: 180,
-                basePrice: 79,
-                perKm: 0.75,
-                perKg: 0.09,
-                perPallet: 20
-            },
-            {
-                type: '7.5t',
-                name: '7,5-Tonner LKW',
-                maxWeight: 2350,
-                maxLademeter: 6.0,
-                maxEuroPallets: 10,
-                maxDusseldorfPallets: 8,
-                maxHeight: 240,
-                basePrice: 129,
-                perKm: 0.95,
-                perKg: 0.07,
-                perPallet: 16
-            },
-            {
-                type: '12t',
-                name: '12-Tonner LKW',
-                maxWeight: 7000,
-                maxLademeter: 7.4,
-                maxEuroPallets: 14,
-                maxDusseldorfPallets: 11,
-                maxHeight: 250,
-                basePrice: 189,
-                perKm: 1.05,
-                perKg: 0.06,
-                perPallet: 14
-            },
-            {
-                type: '18t',
-                name: '18-Tonner LKW',
-                maxWeight: 12000,
-                maxLademeter: 9.6,
-                maxEuroPallets: 18,
-                maxDusseldorfPallets: 14,
-                maxHeight: 270,
-                basePrice: 249,
-                perKm: 1.15,
-                perKg: 0.05,
-                perPallet: 12
-            },
-            {
-                type: 'sattelzug',
-                name: 'Sattelzug',
-                maxWeight: 24000,
-                maxLademeter: 13.6,
-                maxEuroPallets: 33,
-                maxDusseldorfPallets: 26,
-                maxHeight: 265,
-                basePrice: 349,
-                perKm: 1.25,
-                perKg: 0.04,
-                perPallet: 10
-            },
-            {
-                type: 'mega',
-                name: 'Sattelzug Megatrailer',
-                maxWeight: 24000,
-                maxLademeter: 13.6,
-                maxEuroPallets: 33,
-                maxDusseldorfPallets: 26,
-                maxHeight: 300,
-                basePrice: 449,
-                perKm: 1.45,
-                perKg: 0.035,
-                perPallet: 8
-            }
-        ];
-
-        // Pallet dimensions and Lademeter values
-        const palletDimensions = {
-            'euro': { 
-                width: 80, 
-                length: 120, 
-                height: 150,
-                lademeter: 0.4
-            },
-            'dusseldorf': { 
-                width: 100, 
-                length: 120, 
-                height: 150,
-                lademeter: 0.5
-            }
-        };
-
-        // =============================================
-        // IMPROVED AUTO VEHICLE SELECTION LOGIC
-        // =============================================
-        function autoSelectVehicle(cargoData) {
-            console.log('=== autoSelectVehicle called with:', cargoData);
-            
-            const { totalWeight, totalPallets, palletType, requiredLademeter, maxPalletHeight, isStackable } = cargoData;
-            
-            // Filter vehicles that can handle the weight
-            let suitableVehicles = vehicleCapacities.filter(vehicle => 
-                vehicle.maxWeight >= totalWeight
-            );
-            
-            if (suitableVehicles.length === 0) {
-                console.log('❌ No vehicles suitable for weight:', totalWeight);
-                return 'consultation';
-            }
-            
-            // Filter vehicles that can handle the height (considering stacking)
-            const effectiveHeight = isStackable ? maxPalletHeight * 2 : maxPalletHeight;
-            suitableVehicles = suitableVehicles.filter(vehicle => 
-                vehicle.maxHeight >= effectiveHeight
-            );
-            
-            if (suitableVehicles.length === 0) {
-                console.log('❌ No vehicles suitable for height:', effectiveHeight);
-                return 'consultation';
-            }
-            
-            // Filter vehicles that can handle the Lademeter
-            suitableVehicles = suitableVehicles.filter(vehicle => 
-                vehicle.maxLademeter >= requiredLademeter
-            );
-            
-            if (suitableVehicles.length === 0) {
-                console.log('❌ No vehicles suitable for Lademeter:', requiredLademeter);
-                return 'consultation';
-            }
-            
-            // Return the smallest suitable vehicle
-            suitableVehicles.sort((a, b) => a.maxWeight - b.maxWeight);
-            const selectedVehicle = suitableVehicles[0];
-            
-            console.log('✅ Selected vehicle:', selectedVehicle.type);
-            return selectedVehicle.type;
-        }
-
-        // =============================================
-        // CARGO DATA CALCULATION
-        // =============================================
-        function calculateCargoData() {
-            console.log('=== calculateCargoData called ===');
-            
-            const cargoType = document.querySelector('.cargo-type-btn.active').getAttribute('data-type');
-            const isStackable = document.getElementById('stackable').checked;
-            
-            console.log('Cargo type:', cargoType, 'Stackable:', isStackable);
-            
-            let totalWeight = 0;
-            let totalPallets = 0;
-            let maxPalletHeight = 0;
-            let requiredLademeter = 0;
-            let palletType = 'euro';
-            
-            if (cargoType === 'individual') {
-                // Calculate for individual pallets
-                const palletGroups = document.querySelectorAll('.pallet-group');
-                console.log('Individual pallet groups found:', palletGroups.length);
-                
-                palletGroups.forEach(group => {
-                    const count = parseInt(group.querySelector('.pallet-count').textContent.match(/\d+/)[0]) || 1;
-                    const firstItem = group.querySelector('.pallet-item');
-                    
-                    if (firstItem) {
-                        const lengthInput = firstItem.querySelector('input[type="number"]:nth-child(1)');
-                        const widthInput = firstItem.querySelector('input[type="number"]:nth-child(2)');
-                        const heightInput = firstItem.querySelector('input[type="number"]:nth-child(3)');
-                        const weightInput = firstItem.querySelector('input[type="number"]:nth-child(4)');
-                        
-                        if (heightInput) {
-                            const height = parseInt(heightInput.value) || 0;
-                            if (height > maxPalletHeight) maxPalletHeight = height;
-                        }
-                        if (weightInput) {
-                            const weight = parseInt(weightInput.value) || 0;
-                            totalWeight += weight * count;
-                        }
-                        if (lengthInput && widthInput) {
-                            const length = parseInt(lengthInput.value) || 0;
-                            const width = parseInt(widthInput.value) || 0;
-                            const palletLademeter = (width * length) / (100 * 100) * 0.4;
-                            requiredLademeter += palletLademeter * (isStackable ? Math.ceil(count / 2) : count);
-                        }
-                    }
-                    
-                    totalPallets += count;
-                });
-                
-            } else {
-                // Calculate for standard pallets
-                palletType = document.querySelector('.pallet-type-btn.active').getAttribute('data-type');
-                const palletCount = parseInt(document.getElementById('pallet-count').value) || 1;
-                const palletWeight = parseInt(document.getElementById('pallet-weight').value) || 500;
-                
-                console.log('Standard pallets - Type:', palletType, 'Count:', palletCount, 'Weight:', palletWeight);
-                
-                totalPallets = palletCount;
-                totalWeight = palletCount * palletWeight;
-                maxPalletHeight = palletDimensions[palletType].height;
-                
-                // Calculate required Lademeter considering stacking
-                const effectivePallets = isStackable ? Math.ceil(palletCount / 2) : palletCount;
-                requiredLademeter = effectivePallets * palletDimensions[palletType].lademeter;
-            }
-            
-            const result = {
-                totalWeight,
-                totalPallets,
-                palletType,
-                requiredLademeter,
-                maxPalletHeight,
-                isStackable
-            };
-            
-            console.log('📦 Calculated cargo data:', result);
-            return result;
-        }
-
-        // =============================================
-        // REAL-TIME VEHICLE SELECTION
-        // =============================================
-        function updateVehicleSelection() {
-            console.log('=== updateVehicleSelection ВЫЗВАН ===');
-            
-            // Проверка, виден ли раздел с машинами
-            const vehicleSection = document.getElementById('vehicle-section');
-            if (!vehicleSection || !vehicleSection.classList.contains('visible')) {
-                console.log('Раздел машин не виден - пропускаем обновление');
-                return;
-            }
-            
-            const vehicleTypeSelect = document.getElementById('vehicle-type');
-            if (!vehicleTypeSelect) {
-                console.log('Элемент выбора машины не найден');
-                return;
-            }
-            
-            const currentSelection = vehicleTypeSelect.value;
-            console.log('Текущий выбор машины:', currentSelection);
-            
-            // Only auto-select if "Auto-Auswahl" is selected
-            if (currentSelection === 'auto') {
-                try {
-                    console.log('🔄 Начинаем автоматический подбор...');
-                    
-                    const cargoData = calculateCargoData();
-                    
-                    // Don't auto-select if no cargo data
-                    if (cargoData.totalPallets === 0 || cargoData.totalWeight === 0) {
-                        console.log('❌ Нет данных о грузе для подбора');
-                        return;
-                    }
-                    
-                    const selectedVehicle = autoSelectVehicle(cargoData);
-                    console.log('🚚 Выбранная машина:', selectedVehicle);
-                    
-                    vehicleTypeSelect.value = selectedVehicle;
-                    
-                    // Update auto selection info
-                    const autoInfo = document.getElementById('autoSelectionInfo');
-                    if (selectedVehicle === 'consultation') {
-                        autoInfo.innerHTML = '<strong>🔍 Beratung erforderlich:</strong> Ihre Fracht übersteigt unsere Standardkapazitäten. Bitte kontaktieren Sie uns für ein individuelles Angebot.';
-                        autoInfo.style.display = 'block';
-                    } else {
-                        const vehicleData = getVehicleData(selectedVehicle);
-                        const stackableText = cargoData.isStackable ? ' (mit Stapelung)' : '';
-                        autoInfo.innerHTML = `<strong>✅ Automatisch ausgewählt:</strong> ${vehicleData.name}${stackableText} - Passt optimal zu Ihrer Fracht (${cargoData.totalWeight} kg, ${cargoData.totalPallets} Paletten, ${cargoData.requiredLademeter.toFixed(1)} Lademeter)`;
-                        autoInfo.style.display = 'block';
-                    }
-                    
-                    console.log('✅ Автоподбор завершен успешно');
-                } catch (error) {
-                    console.error('❌ Ошибка в подборе машины:', error);
-                }
-            }
-        }
-
-        // =============================================
-        // GET VEHICLE DATA
-        // =============================================
-        function getVehicleData(vehicleType) {
-            return vehicleCapacities.find(vehicle => vehicle.type === vehicleType) || { name: 'Unbekannt' };
-        }
-
-        // =============================================
-        // INDIVIDUAL PALLET MANAGEMENT
-        // =============================================
-        let palletGroupCounter = 0;
-
-        function addIndividualPallet() {
-            palletGroupCounter++;
-            const container = document.getElementById('individual-pallets-container');
-            
-            const palletGroup = document.createElement('div');
-            palletGroup.className = 'pallet-group';
-            palletGroup.dataset.groupId = palletGroupCounter;
-            
-            palletGroup.innerHTML = `
-                <div class="pallet-group-header">
-                    <span class="pallet-count">1× Palette</span>
-                    <div>
-                        <button type="button" class="duplicate-pallet-btn" onclick="duplicatePalletInGroup(${palletGroupCounter})">+</button>
-                        ${palletGroupCounter > 1 ? '<button type="button" class="remove-pallet-btn" onclick="removePalletGroup(' + palletGroupCounter + ')">×</button>' : ''}
-                    </div>
-                </div>
-                <div class="pallet-item" data-group="${palletGroupCounter}">
-                    <div class="dimension-item">
-                        <label class="lang-de">Länge (cm)</label>
-                        <label class="lang-en">Length (cm)</label>
-                        <input type="number" name="pallet-length-${palletGroupCounter}" min="1" placeholder="120" value="120">
-                    </div>
-                    <div class="dimension-item">
-                        <label class="lang-de">Breite (cm)</label>
-                        <label class="lang-en">Width (cm)</label>
-                        <input type="number" name="pallet-width-${palletGroupCounter}" min="1" placeholder="80" value="80">
-                    </div>
-                    <div class="dimension-item">
-                        <label class="lang-de">Höhe (cm)</label>
-                        <label class="lang-en">Height (cm)</label>
-                        <input type="number" name="pallet-height-${palletGroupCounter}" min="1" placeholder="150" value="150">
-                    </div>
-                    <div class="dimension-item">
-                        <label class="lang-de">Gewicht (kg)</label>
-                        <label class="lang-en">Weight (kg)</label>
-                        <input type="number" name="pallet-weight-${palletGroupCounter}" min="1" placeholder="500" value="500">
-                    </div>
-                </div>
-            `;
-            
-            container.appendChild(palletGroup);
-            
-            // Add event listeners for real-time calculation
-            const inputs = palletGroup.querySelectorAll('input');
-            inputs.forEach(input => {
-                input.addEventListener('input', function() {
-                    updatePalletGroupCount(palletGroupCounter);
-                    debouncedUpdateVehicleSelection();
-                });
-            });
-            
-            debouncedUpdateVehicleSelection();
-        }
-
-        function duplicatePalletInGroup(groupId) {
-            const palletGroup = document.querySelector(`.pallet-group[data-group-id="${groupId}"]`);
-            const countElement = palletGroup.querySelector('.pallet-count');
-            const currentCount = parseInt(countElement.textContent.match(/\d+/)[0]) || 1;
-            const newCount = currentCount + 1;
-            
-            countElement.textContent = `${newCount}× Palette`;
-            debouncedUpdateVehicleSelection();
-        }
-
-        function removePalletGroup(groupId) {
-            const palletGroup = document.querySelector(`.pallet-group[data-group-id="${groupId}"]`);
-            if (palletGroup) {
-                palletGroup.remove();
-                debouncedUpdateVehicleSelection();
-            }
-        }
-
-        function updatePalletGroupCount(groupId) {
-            const palletGroup = document.querySelector(`.pallet-group[data-group-id="${groupId}"]`);
-            if (palletGroup) {
-                const countElement = palletGroup.querySelector('.pallet-count');
-                const currentCount = parseInt(countElement.textContent.match(/\d+/)[0]) || 1;
-                countElement.textContent = `${currentCount}× Palette`;
-            }
-        }
-
-        // =============================================
-        // PERFORMANCE OPTIMIZATION - DEBOUNCE
-        // =============================================
-        function debounce(func, wait) {
-            let timeout;
-            return function executedFunction(...args) {
-                const later = () => {
-                    clearTimeout(timeout);
-                    func(...args);
-                };
-                clearTimeout(timeout);
-                timeout = setTimeout(later, wait);
-            };
-        }
-
-        const debouncedUpdateVehicleSelection = debounce(updateVehicleSelection, 300);
-
-        // =============================================
-        // ENHANCED PRICE CALCULATION
-        // =============================================
-        function calculateEnhancedPrice(formData) {
-            try {
-                let vehicleType = formData.get('vehicle-type');
-                const fromLocation = document.getElementById('from-location').value;
-                const toLocation = document.getElementById('to-location').value;
-                
-                if (!fromLocation || !toLocation) {
-                    throw new Error('Bitte geben Sie Abhol- und Lieferort an');
-                }
-
-                const vehicle = getVehicleData(vehicleType);
-                if (!vehicle || vehicleType === 'consultation') {
-                    return {
-                        price: 0,
-                        weight: 0,
-                        needsConsultation: true,
-                        error: null
-                    };
-                }
-
-                const distance = calculateDistance(fromLocation, toLocation);
-                const cargoData = calculateCargoData();
-                
-                let price = vehicle.basePrice + (distance * vehicle.perKm);
-                price += cargoData.totalWeight * vehicle.perKg;
-                price += cargoData.totalPallets * vehicle.perPallet;
-                
-                return {
-                    price: Math.round(price),
-                    weight: cargoData.totalWeight,
-                    needsConsultation: false,
-                    error: null
-                };
-                
-            } catch (error) {
-                console.error('Fehler bei Preisberechnung:', error);
-                return {
-                    price: 0,
-                    weight: 0,
-                    needsConsultation: true,
-                    error: error.message
-                };
-            }
-        }
-
-        // =============================================
-        // ИСПРАВЛЕННАЯ ИНИЦИАЛИЗАЦИЯ СОБЫТИЙ
-        // =============================================
-        function initializeEnhancedEventListeners() {
-            console.log('🔧 Инициализация обработчиков событий...');
-            
-            // Стандартные паллеты - количество
-            const palletCountInput = document.getElementById('pallet-count');
-            if (palletCountInput) {
-                palletCountInput.addEventListener('input', function() {
-                    console.log('📦 Количество паллет изменено:', this.value);
-                    debouncedUpdateVehicleSelection();
-                });
-                palletCountInput.addEventListener('change', function() {
-                    console.log('📦 Количество паллет изменено (change):', this.value);
-                    debouncedUpdateVehicleSelection();
-                });
-            }
-            
-            // Стандартные паллеты - вес
-            const palletWeightInput = document.getElementById('pallet-weight');
-            if (palletWeightInput) {
-                palletWeightInput.addEventListener('input', function() {
-                    console.log('⚖️ Вес паллет изменен:', this.value);
-                    debouncedUpdateVehicleSelection();
-                });
-            }
-            
-            // Выбор типа паллет
-            document.querySelectorAll('.pallet-type-btn').forEach(btn => {
-                btn.addEventListener('click', function() {
-                    console.log('🔄 Тип паллет изменен:', this.getAttribute('data-type'));
-                    document.querySelectorAll('.pallet-type-btn').forEach(b => b.classList.remove('active'));
-                    this.classList.add('active');
-                    debouncedUpdateVehicleSelection();
-                });
-            });
-
-            // Штабелирование
-            const stackableCheckbox = document.getElementById('stackable');
-            if (stackableCheckbox) {
-                stackableCheckbox.addEventListener('change', function() {
-                    console.log('📐 Штабелирование изменено:', this.checked);
-                    debouncedUpdateVehicleSelection();
-                });
-            }
-
-            // Выбор машины вручную
-            document.getElementById('vehicle-type').addEventListener('change', function() {
-                console.log('🚛 Тип машины изменен вручную:', this.value);
-                const autoInfo = document.getElementById('autoSelectionInfo');
-                if (this.value !== 'auto') {
-                    autoInfo.style.display = 'none';
-                } else {
-                    debouncedUpdateVehicleSelection();
-                }
-            });
-            
-            console.log('✅ Обработчики событий установлены');
-        }
-
-        // =============================================
-        // EXISTING FUNCTIONALITY
-        // =============================================
+        // Basic functionality remains for login, language switching, etc.
         const users = {
             'Michael': { password: '123', name: 'Michael', role: 'admin' },
             'kunde': { password: 'kunde123', name: 'Max Mustermann', role: 'customer' }
@@ -2298,152 +1380,35 @@
             showUserInfo(loggedInUser);
         }
 
-        // =============================================
-        // PROGRESSIVE FORM DISPLAY
-        // =============================================
-        function showSection(sectionId) {
-            const section = document.getElementById(sectionId);
-            if (section) {
-                section.classList.add('visible');
+        // Language switcher
+        document.querySelectorAll('.lang-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const lang = this.getAttribute('data-lang');
                 
-                setTimeout(() => {
-                    section.scrollIntoView({ 
-                        behavior: 'smooth', 
-                        block: 'center'
-                    });
-                }, 300);
-            }
-        }
-
-        function initializeProgressiveForm() {
-            const fromLocation = document.getElementById('from-location');
-            const toLocation = document.getElementById('to-location');
-            
-            [fromLocation, toLocation].forEach(input => {
-                input.addEventListener('input', function() {
-                    if (fromLocation.value.trim() && toLocation.value.trim()) {
-                        showSection('date-time-section');
-                    }
+                document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                
+                document.querySelectorAll('.lang-de').forEach(el => {
+                    el.style.display = lang === 'de' ? 'block' : 'none';
+                });
+                document.querySelectorAll('.lang-en').forEach(el => {
+                    el.style.display = lang === 'en' ? 'block' : 'none';
                 });
             });
-            
-            document.getElementById('loading-date').addEventListener('change', function() {
-                if (this.value) {
-                    showSection('cargo-type-section');
-                }
-            });
-            
-            // Initialize cargo type selection
-            document.querySelectorAll('.cargo-type-btn').forEach(btn => {
-                btn.addEventListener('click', function() {
-                    document.querySelectorAll('.cargo-type-btn').forEach(b => b.classList.remove('active'));
-                    this.classList.add('active');
-                    
-                    const type = this.getAttribute('data-type');
-                    
-                    document.getElementById('individual-pallets-section').classList.remove('visible');
-                    document.getElementById('standard-pallets-section').classList.remove('visible');
-                    
-                    if (type === 'individual') {
-                        showSection('individual-pallets-section');
-                    } else {
-                        showSection('standard-pallets-section');
-                    }
-                    
-                    // Show stackable option for both types
-                    showSection('stackable-section');
-                    
-                    setTimeout(() => {
-                        showSection('vehicle-section');
-                        // ВАЖНО: Принудительно обновить подбор машины при смене типа груза
-                        setTimeout(() => {
-                            console.log('🔄 Принудительное обновление подбора машины после смены типа груза');
-                            debouncedUpdateVehicleSelection();
-                        }, 100);
-                    }, 300);
-                });
-            });
-        }
+        });
 
-        // =============================================
-        // VEHICLE SELECT BUTTONS
-        // =============================================
-        function initializeVehicleSelectButtons() {
-            document.querySelectorAll('.select-btn').forEach(button => {
-                button.addEventListener('click', function() {
-                    const vehicleType = this.getAttribute('data-vehicle');
-                    const vehicleSelect = document.getElementById('vehicle-type');
-                    vehicleSelect.value = vehicleType;
-                    
-                    // Update auto selection info
-                    const autoInfo = document.getElementById('autoSelectionInfo');
-                    const vehicleData = getVehicleData(vehicleType);
-                    autoInfo.innerHTML = `<strong>Manuell ausgewählt:</strong> ${vehicleData.name}`;
-                    autoInfo.style.display = 'block';
-                    
-                    // Ensure vehicle section is visible
-                    showSection('vehicle-section');
-                    
-                    showNotification(`Fahrzeug ${vehicleData.name} wurde ausgewählt!`, 'success');
-                });
+        // Cargo type selection
+        document.querySelectorAll('.cargo-type-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.cargo-type-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                
+                showNotification('Auswahl gespeichert für neuen Kalkulator', 'info');
             });
-        }
+        });
 
-        // =============================================
-        // DATE VALIDATION
-        // =============================================
-        function setupDateValidation() {
-            const now = new Date();
-            const nowString = now.toISOString().slice(0, 16);
-            
-            // Set minimum dates to current datetime
-            document.getElementById('loading-date').min = nowString;
-            document.getElementById('unloading-date').min = nowString;
-            
-            // Set default values (tomorrow for loading, +2 hours for unloading)
-            const loadingDate = new Date(now.getTime() + 24 * 60 * 60 * 1000);
-            const loadingDateString = loadingDate.toISOString().slice(0, 16);
-            
-            const unloadingDate = new Date(loadingDate.getTime() + 2 * 60 * 60 * 1000);
-            const unloadingDateString = unloadingDate.toISOString().slice(0, 16);
-            
-            document.getElementById('loading-date').value = loadingDateString;
-            document.getElementById('unloading-date').value = unloadingDateString;
-            
-            // Add validation for unloading date
-            document.getElementById('loading-date').addEventListener('change', function() {
-                const loadingDate = new Date(this.value);
-                const unloadingInput = document.getElementById('unloading-date');
-                
-                // Set minimum unloading date to loading date
-                unloadingInput.min = this.value;
-                
-                // If unloading date is before loading date, update it
-                const unloadingDate = new Date(unloadingInput.value);
-                if (unloadingDate < loadingDate) {
-                    const newUnloadingDate = new Date(loadingDate.getTime() + 2 * 60 * 60 * 1000);
-                    unloadingInput.value = newUnloadingDate.toISOString().slice(0, 16);
-                }
-            });
-            
-            document.getElementById('unloading-date').addEventListener('change', function() {
-                const loadingDate = new Date(document.getElementById('loading-date').value);
-                const unloadingDate = new Date(this.value);
-                
-                if (unloadingDate < loadingDate) {
-                    showNotification('Entladedatum kann nicht vor dem Beladedatum liegen', 'error');
-                    // Reset to minimum allowed value
-                    const newUnloadingDate = new Date(loadingDate.getTime() + 2 * 60 * 60 * 1000);
-                    this.value = newUnloadingDate.toISOString().slice(0, 16);
-                }
-            });
-        }
-
-        // =============================================
-        // NOTIFICATION SYSTEM
-        // =============================================
+        // Notification system
         function showNotification(message, type = 'info') {
-            // Remove existing notifications
             document.querySelectorAll('.notification').forEach(notification => {
                 notification.remove();
             });
@@ -2464,9 +1429,7 @@
             }, 5000);
         }
 
-        // =============================================
-        // MODAL FUNCTIONS
-        // =============================================
+        // Modal functions
         function openModal(type) {
             document.getElementById('modalOverlay').style.display = 'flex';
         }
@@ -2475,129 +1438,33 @@
             document.getElementById('modalOverlay').style.display = 'none';
         }
 
-        // =============================================
-        // LANGUAGE SWITCHER
-        // =============================================
-        document.querySelectorAll('.lang-btn').forEach(btn => {
-            btn.addEventListener('click', function() {
-                const lang = this.getAttribute('data-lang');
-                
-                document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
-                this.classList.add('active');
-                
-                document.querySelectorAll('.lang-de').forEach(el => {
-                    el.style.display = lang === 'de' ? 'block' : 'none';
-                });
-                document.querySelectorAll('.lang-en').forEach(el => {
-                    el.style.display = lang === 'en' ? 'block' : 'none';
-                });
-            });
-        });
-
-        // =============================================
-        // FORM SUBMISSION
-        // =============================================
-        document.getElementById('transportCalculator').addEventListener('submit', function(e) {
+        // Form submissions
+        document.getElementById('customRequestForm').addEventListener('submit', function(e) {
             e.preventDefault();
-            
-            const submitBtn = this.querySelector('.submit-btn');
-            const submitText = submitBtn.querySelector('.submit-text');
-            const originalText = submitText.textContent;
-            
-            // Show loading state
-            submitText.innerHTML = '<span class="loading-spinner"></span> Berechne...';
-            submitBtn.disabled = true;
-            
-            setTimeout(() => {
-                const formData = new FormData(this);
-                const result = calculateEnhancedPrice(formData);
-                
-                if (result.error) {
-                    document.getElementById('priceEstimate').textContent = 'Fehler';
-                    document.getElementById('totalWeight').innerHTML = 
-                        `<em style="color: #d32f2f;">${result.error}</em>`;
-                } else if (result.needsConsultation) {
-                    document.getElementById('priceEstimate').textContent = 'Beratung erforderlich';
-                    document.getElementById('totalWeight').innerHTML = 
-                        '<em>Bitte kontaktieren Sie uns für ein individuelles Angebot</em>';
-                } else {
-                    document.getElementById('priceEstimate').textContent = `${result.price} €`;
-                    document.getElementById('totalWeight').textContent = `Gesamtgewicht: ${result.weight} kg`;
-                }
-                
-                document.getElementById('calculatorResult').style.display = 'block';
-                document.getElementById('calculatorResult').scrollIntoView({ 
-                    behavior: 'smooth',
-                    block: 'center'
-                });
-                
-                // Reset button state
-                submitText.textContent = originalText;
-                submitBtn.disabled = false;
-            }, 1000);
+            showNotification('Ihre individuelle Anfrage wurde erfolgreich gesendet! Wir melden uns innerhalb von 30 Minuten bei Ihnen.', 'success');
         });
 
-        // =============================================
-        // UTILITY FUNCTIONS
-        // =============================================
-        function calculateDistance(from, to) {
-            // Enhanced distance matrix for realistic calculations
-            const distanceMatrix = {
-                'berlin': {
-                    'münchen': 585, 'hamburg': 289, 'köln': 577, 'frankfurt': 545,
-                    'stuttgart': 632, 'düsseldorf': 562, 'leipzig': 190, 'dresden': 193
-                },
-                'münchen': {
-                    'berlin': 585, 'hamburg': 775, 'köln': 572, 'frankfurt': 392,
-                    'stuttgart': 231, 'düsseldorf': 612, 'leipzig': 460, 'dresden': 461
-                }
-            };
-            
-            const extractCityName = (input) => {
-                return input.replace(/\d/g, '').trim().toLowerCase();
-            };
-            
-            const fromCity = extractCityName(from);
-            const toCity = extractCityName(to);
-            
-            if (distanceMatrix[fromCity] && distanceMatrix[fromCity][toCity]) {
-                return distanceMatrix[fromCity][toCity];
-            }
-            
-            // Fallback calculation
-            return Math.abs(from.length - to.length) * 10 + 150;
-        }
+        document.getElementById('modalForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            closeModal();
+            document.getElementById('successMessage').style.display = 'block';
+            showNotification('Ihre Anfrage wurde erfolgreich übermittelt! Wir senden Ihnen innerhalb von 30 Minuten ein persönliches Angebot.', 'success');
+            setTimeout(() => {
+                document.getElementById('successMessage').style.display = 'none';
+            }, 5000);
+        });
 
-        // =============================================
-        // INITIALIZATION
-        // =============================================
+        // Vehicle select buttons
+        document.querySelectorAll('.select-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                const vehicleType = this.getAttribute('data-vehicle');
+                showNotification(`Fahrzeug ausgewählt! Diese Funktion wird im neuen Kalkulator verfügbar sein.`, 'success');
+            });
+        });
+
+        // Initialize
         document.addEventListener('DOMContentLoaded', function() {
-            console.log('🚀 Initializing application...');
-            
-            initializeProgressiveForm();
-            initializeVehicleSelectButtons();
-            initializeEnhancedEventListeners();
-            addIndividualPallet();
-            setupDateValidation();
-            
-            // Add event listeners for other forms
-            document.getElementById('customRequestForm').addEventListener('submit', function(e) {
-                e.preventDefault();
-                showNotification('Ihre individuelle Anfrage wurde erfolgreich gesendet! Wir melden uns innerhalb von 30 Minuten bei Ihnen.', 'success');
-            });
-            
-            document.getElementById('modalForm').addEventListener('submit', function(e) {
-                e.preventDefault();
-                closeModal();
-                document.getElementById('successMessage').style.display = 'block';
-                showNotification('Ihre Anfrage wurde erfolgreich übermittelt! Wir senden Ihnen innerhalb von 30 Minuten ein persönliches Angebot.', 'success');
-                setTimeout(() => {
-                    document.getElementById('successMessage').style.display = 'none';
-                }, 5000);
-            });
-            
-            console.log('✅ Application initialized successfully');
-            showNotification('Transportrechner bereit! Das System wählt automatisch das passende Fahrzeug basierend auf Ihren Frachtdaten aus.', 'info');
+            showNotification('Neuer Kalkulator in Entwicklung - Platzhalter aktiviert', 'info');
         });
     </script>
 </body>
