@@ -32,7 +32,7 @@
             line-height: 1.6;
         }
 
-        /* Header */
+        /* Header Styles */
         header {
             background: var(--white);
             box-shadow: var(--shadow);
@@ -139,7 +139,7 @@
             color: var(--white);
         }
 
-        /* Mini Login Section */
+        /* Login Section Styles */
         .login-section {
             padding: 0.3rem 2rem;
             background: var(--light);
@@ -221,7 +221,7 @@
             transform: translateY(-1px);
         }
 
-        /* Hero Section */
+        /* Hero Section Styles */
         .hero {
             background: linear-gradient(rgba(255,255,255,0.9), rgba(255,255,255,0.95)), 
                         url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" fill="none" stroke="%23000" stroke-width="0.5" opacity="0.1"/></svg>');
@@ -276,7 +276,7 @@
             box-shadow: 0 5px 15px rgba(0,0,0,0.1);
         }
 
-        /* Calculator Section */
+        /* Calculator Section Styles */
         .calculator {
             padding: 4rem 2rem;
             background: var(--light);
@@ -343,6 +343,18 @@
             box-shadow: 0 0 0 3px rgba(0,0,0,0.1);
         }
 
+        /* Date Time Input Styles */
+        .date-time-input {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .date-time-group {
+            display: flex;
+            flex-direction: column;
+        }
+
         /* Initially Hidden Sections */
         .hidden-section {
             display: none;
@@ -357,7 +369,7 @@
             transform: translateY(0);
         }
 
-        /* Beautiful Toggle Switch */
+        /* Toggle Switch Styles */
         .toggle-switch {
             position: relative;
             display: inline-block;
@@ -404,7 +416,7 @@
             transform: translateX(26px);
         }
 
-        /* Stapelbar Container */
+        /* Stapelbar Container Styles */
         .stapelbar-container {
             display: flex;
             align-items: center;
@@ -459,7 +471,7 @@
             border-radius: 6px;
         }
 
-        /* Beautiful Button Styles */
+        /* Button Styles */
         .cargo-type-selector {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -534,7 +546,7 @@
             opacity: 0.8;
         }
 
-        /* Individual Pallets */
+        /* Individual Pallets Styles */
         .individual-pallets {
             margin-bottom: 1rem;
         }
@@ -673,7 +685,7 @@
             border-radius: 6px;
         }
 
-        /* Vehicle Selector */
+        /* Vehicle Selector Styles */
         .vehicle-selector {
             margin-bottom: 1rem;
         }
@@ -689,7 +701,7 @@
             color: var(--secondary);
         }
 
-        /* Beautiful Submit Button */
+        /* Submit Button Styles */
         .submit-btn {
             background: var(--primary);
             color: var(--white);
@@ -720,7 +732,7 @@
             transform: none;
         }
 
-        /* Calculator Result */
+        /* Calculator Result Styles */
         .calculator-result {
             background: var(--white);
             padding: 2rem;
@@ -918,6 +930,21 @@
             display: flex;
             align-items: center;
             justify-content: center;
+        }
+
+        .vehicle-image .pallet-visualization {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .vehicle-image .pallet-visualization::before {
+            content: "🚛";
+            font-size: 4rem;
+            opacity: 0.7;
         }
 
         .vehicle-badge {
@@ -1173,6 +1200,10 @@
             font-weight: 300;
         }
 
+        /* Language Specific */
+        .lang-de { display: block; }
+        .lang-en { display: none; }
+
         /* Notification System */
         .notification {
             position: fixed;
@@ -1225,6 +1256,16 @@
 
         @keyframes spin {
             to { transform: rotate(360deg); }
+        }
+
+        /* Highlight Animation */
+        @keyframes highlight {
+            0% { background-color: #e8f5e8; }
+            100% { background-color: var(--white); }
+        }
+
+        .pallet-item.highlight {
+            animation: highlight 0.5s ease;
         }
 
         /* Responsive */
@@ -1629,6 +1670,7 @@
                 <!-- 3,5-Tonner -->
                 <div class="vehicle-card">
                     <div class="vehicle-image">
+                        <div class="pallet-visualization" id="visualization-bus"></div>
                         <div class="vehicle-badge">Kleintransport</div>
                     </div>
                     <div class="vehicle-content">
@@ -1667,6 +1709,7 @@
                 <!-- 7,5-Tonner -->
                 <div class="vehicle-card">
                     <div class="vehicle-image">
+                        <div class="pallet-visualization" id="visualization-7.5t"></div>
                         <div class="vehicle-badge">Mitteltransport</div>
                     </div>
                     <div class="vehicle-content">
@@ -1705,6 +1748,7 @@
                 <!-- 12-Tonner -->
                 <div class="vehicle-card">
                     <div class="vehicle-image">
+                        <div class="pallet-visualization" id="visualization-12t"></div>
                         <div class="vehicle-badge">Großtransport</div>
                     </div>
                     <div class="vehicle-content">
@@ -1743,6 +1787,7 @@
                 <!-- 18-Tonner -->
                 <div class="vehicle-card">
                     <div class="vehicle-image">
+                        <div class="pallet-visualization" id="visualization-18t"></div>
                         <div class="vehicle-badge">Schwerlast</div>
                     </div>
                     <div class="vehicle-content">
@@ -1781,6 +1826,7 @@
                 <!-- Sattelzug -->
                 <div class="vehicle-card">
                     <div class="vehicle-image">
+                        <div class="pallet-visualization" id="visualization-sattelzug"></div>
                         <div class="vehicle-badge">Schwertransport</div>
                     </div>
                     <div class="vehicle-content">
@@ -1819,6 +1865,7 @@
                 <!-- Sattelzug Megatrailer -->
                 <div class="vehicle-card">
                     <div class="vehicle-image">
+                        <div class="pallet-visualization" id="visualization-mega"></div>
                         <div class="vehicle-badge">Maximaltransport</div>
                     </div>
                     <div class="vehicle-content">
@@ -2084,7 +2131,7 @@
                 return totalPallets * 0.5;
             } else {
                 // Individual pallets - estimate based on max length
-                return totalPallets * (maxPalletLength / 100) * 0.8; // Factor for arrangement
+                return totalPallets * (maxPalletLength / 100) * 0.8;
             }
         }
 
@@ -2486,6 +2533,12 @@
             container.appendChild(newPalletItem);
             palletCounter++;
             
+            // Add highlight animation
+            newPalletItem.classList.add('highlight');
+            setTimeout(() => {
+                newPalletItem.classList.remove('highlight');
+            }, 500);
+            
             // Add event listeners
             const newInputs = newPalletItem.querySelectorAll('input');
             newInputs.forEach(input => {
@@ -2798,6 +2851,19 @@
             
             document.getElementById('loading-date').value = loadingDateString;
             document.getElementById('unloading-date').value = unloadingDateString;
+            
+            // Add validation for unloading date
+            document.getElementById('loading-date').addEventListener('change', function() {
+                const unloadingInput = document.getElementById('unloading-date');
+                unloadingInput.min = this.value;
+                
+                const unloadingDate = new Date(unloadingInput.value);
+                const loadingDate = new Date(this.value);
+                if (unloadingDate < loadingDate) {
+                    const newUnloadingDate = new Date(loadingDate.getTime() + 2 * 60 * 60 * 1000);
+                    unloadingInput.value = newUnloadingDate.toISOString().slice(0, 16);
+                }
+            });
         }
 
         // =============================================
@@ -2884,7 +2950,7 @@
             
             // Add event listener for add pallet button
             document.getElementById('add-pallet-btn').addEventListener('click', function() {
-                addIndividualPallet(true); // true = empty fields
+                addIndividualPallet(true);
             });
             
             showNotification('Transportrechner bereit! Das System wählt automatisch das passende Fahrzeug basierend auf Ihren Frachtdaten aus.', 'info');
