@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LogiBase - Professionelle Logistiklösungen</title>
+    <meta name="description" content="LogiBase - Professionelle Logistiklösungen. Berechnen Sie Transportpreise online.">
+    <meta name="keywords" content="Logistik, Transport, Spedition, LKW, Paletten">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🚛</text></svg>">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="header-content">
+            <div style="display: flex; align-items: center; gap: 2rem;">
+                <a href="#" class="logo">
+                    <div class="logo-icon">LB</div>
+                    <div class="logo-text">LOGIBASE</div>
+                </a>
+                <div class="nav-links">
+                    <a href="#calculator" class="nav-link">Preis berechnen</a>
+                    <a href="#vehicles-gallery" class="nav-link">Fahrzeuge</a>
+                    <a href="#contact" class="nav-link">Kontakt</a>
+                </div>
+            </div>
+            <div class="language-switcher">
+                <button class="lang-btn active" data-lang="de">DE</button>
+                <button class="lang-btn" data-lang="en">EN</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Mini Login Section -->
+    <section class="login-section">
+        <div class="login-container">
+            <form class="login-form" id="loginForm">
+                <input type="text" class="login-input" id="username" placeholder="Benutzername" required>
+                <input type="password" class="login-input" id="password" placeholder="Passwort" required>
+                <button type="submit" class="login-btn">Anmelden</button>
+            </form>
+            <div class="user-info" id="userInfo">
+                <span>Eingeloggt als: <strong id="userName"></strong></span>
+                <button class="logout-btn" id="logoutBtn">Abmelden</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1 class="lang-de">Schnelle und zuverlässige Logistiklösungen</h1>
+        <h1 class="lang-en">Fast and Reliable Logistics Solutions</h1>
+        
+        <p class="lang-de">Berechnen Sie sofort den Preis für Ihren Transport und erhalten Sie innerhalb von 30 Minuten ein persönliches Angebot.</p>
+        <p class="lang-en">Calculate the price for your transport instantly and receive a personal offer within 30 minutes.</p>
+        
+        <div class="hero-buttons">
+            <a href="#calculator" class="cta-button lang-de">Preis berechnen</a>
+            <a href="#calculator" class="cta-button lang-en">Calculate Price</a>
+        </div>
+    </section>
+
+    <!-- Calculator Section -->
+    <section class="calculator" id="calculator">
+        <div class="calculator-container">
+            <h2 class="lang-de">Transportpreis berechnen</h2>
+            <h2 class="lang-en">Calculate Transport Price</h2>
+            
+            <p class="lang-de">Geben Sie Ihre Transportdaten ein und erhalten Sie eine sofortige Preisübersicht</p>
+            <p class="lang-en">Enter your transport data and get an instant price overview</p>
+            
+            <form class="calculator-form" id="transportCalculator">
+                <!-- Location Inputs -->
+                <div class="form-group">
+                    <label for="from-location" class="lang-de">Von (PLZ/Ort)</label>
+                    <label for="from-location" class="lang-en">From (ZIP/City)</label>
+                    <input type="text" id="from-location" placeholder="z.B. 10115 Berlin" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="to-location" class="lang-de">Nach (PLZ/Ort)</label>
+                    <label for="to-location" class="lang-en">To (ZIP/City)</label>
+                    <input type="text" id="to-location" placeholder="z.B. 80331 München" required>
+                </div>
+
+                <!-- Date Time Section -->
+                <div class="hidden-section" id="date-time-section">
+                    <div class="form-group">
+                        <label class="lang-de">Terminplanung</label>
+                        <label class="lang-en">Scheduling</label>
+                        <div class="date-time-input">
+                            <div class="date-time-group">
+                                <label for="loading-date" class="lang-de">Beladung am</label>
+                                <label for="loading-date" class="lang-en">Loading on</label>
+                                <input type="datetime-local" id="loading-date">
+                            </div>
+                            <div class="date-time-group">
+                                <label for="unloading-date" class="lang-de">Entladung am</label>
+                                <label for="unloading-date" class="lang-en">Unloading on</label>
+                                <input type="datetime-local" id="unloading-date">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Cargo Type Selection -->
+                <div class="hidden-section" id="cargo-type-section">
+                    <div class="form-group">
+                        <label class="lang-de">Was möchten Sie transportieren?</label>
+                        <label class="lang-en">What would you like to transport?</label>
+                        <div class="cargo-type-selector">
+                            <div class="cargo-type-btn active" data-type="individual">
+                                <span class="lang-de">Individuelle Paletten</span>
+                                <span class="lang-en">Individual Pallets</span>
+                                <small class="lang-de">Maßgeschneiderte Größen</small>
+                                <small class="lang-en">Custom sizes</small>
+                            </div>
+                            <div class="cargo-type-btn" data-type="standard">
+                                <span class="lang-de">Standard Paletten</span>
+                                <span class="lang-en">Standard Pallets</span>
+                                <small class="lang-de">Euro & Düsseldorfer</small>
+                                <small class="lang-en">Euro & Dusseldorf</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Individual Pallets Section -->
+                <div class="hidden-section" id="individual-pallets-section">
+                    <div class="form-group">
+                        <!-- Stacking Toggle -->
+                        <div class="stapelbar-container">
+                            <label class="stapelbar-label lang-de">Stapelbar:</label>
+                            <label class="toggle-switch">
+                                <input type="checkbox" id="individual-stapelbar">
+                                <span class="toggle-slider"></span>
+                            </label>
+                            <label class="stapelbar-label lang-en">Stackable:</label>
+                        </div>
+                        
+                        <!-- Stacking Configuration -->
+                        <div class="levels-input" id="individual-levels-input">
+                            <div class="level-item">
+                                <label class="lang-de">Maximale Stapelhöhe (cm)</label>
+                                <label class="lang-en">Maximum Stack Height (cm)</label>
+                                <input type="number" id="max-stack-height" min="0" max="400" placeholder="250">
+                            </div>
+                            <div class="level-item">
+                                <label class="lang-de">Maximale Ebenen: <strong>2</strong></label>
+                                <label class="lang-en">Maximum Levels: <strong>2</strong></label>
+                            </div>
+                        </div>
+                        
+                        <!-- Stacking Information Display -->
+                        <div class="stacking-info" id="individual-stacking-info">
+                            <strong class="lang-de">📦 Stapelungsinformation</strong>
+                            <strong class="lang-en">📦 Stacking Information</strong>
+                            <div class="stacking-details">
+                                <div class="stacking-item">
+                                    <div class="lang-de">Effektive Paletten</div>
+                                    <div class="lang-en">Effective Pallets</div>
+                                    <div class="stacking-value" id="effective-pallets">0</div>
+                                </div>
+                                <div class="stacking-item">
+                                    <div class="lang-de">Ebenen</div>
+                                    <div class="lang-en">Levels</div>
+                                    <div class="stacking-value" id="stack-levels">0</div>
+                                </div>
+                                <div class="stacking-item">
+                                    <div class="lang-de">Gesamtgewicht</div>
+                                    <div class="lang-en">Total Weight</div>
+                                    <div class="stacking-value" id="stack-weight">0 kg</div>
+                                </div>
+                                <div class="stacking-item">
+                                    <div class="lang-de">Platzersparnis</div>
+                                    <div class="lang-en">Space Saving</div>
+                                    <div class="stacking-value" id="space-saving">0%</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Individual Pallets Container -->
+                        <div class="individual-pallets" id="individual-pallets-container">
+                            <!-- Individual pallets will be added here dynamically -->
+                        </div>
+                        
+                        <!-- Add Pallet Button -->
+                        <button type="button" class="add-pallet-btn" id="add-pallet-btn">
+                            <span>+</span>
+                            <span class="lang-de">Palette hinzufügen</span>
+                            <span class="lang-en">Add Pallet</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Standard Pallets Section -->
+                <div class="hidden-section" id="standard-pallets-section">
+                    <div class="form-group">
+                        <!-- Pallet Type Selection -->
+                        <div class="pallet-type-selector">
+                            <div class="pallet-type-btn active" data-type="euro">
+                                <span>Euro Palette</span>
+                                <small>80×120 cm</small>
+                                <small class="lang-de">Standard</small>
+                                <small class="lang-en">Standard</small>
+                            </div>
+                            <div class="pallet-type-btn" data-type="dusseldorf">
+                                <span>Düsseldorfer Palette</span>
+                                <small>100×120 cm</small>
+                                <small class="lang-de">Industrie</small>
+                                <small class="lang-en">Industrial</small>
+                            </div>
+                        </div>
+                        
+                        <!-- Stacking Toggle -->
+                        <div class="stapelbar-container">
+                            <label class="stapelbar-label lang-de">Stapelbar:</label>
+                            <label class="toggle-switch">
+                                <input type="checkbox" id="standard-stapelbar">
+                                <span class="toggle-slider"></span>
+                            </label>
+                            <label class="stapelbar-label lang-en">Stackable:</label>
+                        </div>
+                        
+                        <!-- Stacking Configuration -->
+                        <div class="levels-input" id="standard-levels-input">
+                            <div class="level-item">
+                                <label class="lang-de">Maximale Stapelhöhe (cm)</label>
+                                <label class="lang-en">Maximum Stack Height (cm)</label>
+                                <input type="number" id="standard-max-height" min="0" max="400" placeholder="250">
+                            </div>
+                            <div class="level-item">
+                                <label class="lang-de">Maximale Ebenen: <strong>2</strong></label>
+                                <label class="lang-en">Maximum Levels: <strong>2</strong></label>
+                            </div>
+                        </div>
+                        
+                        <!-- Stacking Information Display -->
+                        <div class="stacking-info" id="standard-stacking-info">
+                            <strong class="lang-de">📦 Stapelungsinformation</strong>
+                            <strong class="lang-en">📦 Stacking Information</strong>
+                            <div class="stacking-details">
+                                <div class="stacking-item">
+                                    <div class="lang-de">Effektive Paletten</div>
+                                    <div class="lang-en">Effective Pallets</div>
+                                    <div class="stacking-value" id="standard-effective-pallets">0</div>
+                                </div>
+                                <div class="stacking-item">
+                                    <div class="lang-de">Ebenen</div>
+                                    <div class="lang-en">Levels</div>
+                                    <div class="stacking-value" id="standard-stack-levels">0</div>
+                                </div>
+                                <div class="stacking-item">
+                                    <div class="lang-de">Gesamtgewicht</div>
+                                    <div class="lang-en">Total Weight</div>
+                                    <div class="stacking-value" id="standard-stack-weight">0 kg</div>
+                                </div>
+                                <div class="stacking-item">
+                                    <div class="lang-de">Platzersparnis</div>
+                                    <div class="lang-en">Space Saving</div>
+                                    <div class="stacking-value" id="standard-space-saving">0%</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Standard Pallet Inputs -->
+                        <div class="standard-pallets-compact">
+                            <div class="compact-field">
+                                <label for="pallet-count" class="lang-de">Anzahl Paletten</label>
+                                <label for="pallet-count" class="lang-en">Number of Pallets</label>
+                                <input type="number" id="pallet-count" min="1" max="100" placeholder="1">
+                            </div>
+                            <div class="compact-field">
+                                <label for="pallet-weight" class="lang-de">Gewicht pro Palette (kg)</label>
+                                <label for="pallet-weight" class="lang-en">Weight per Pallet (kg)</label>
+                                <input type="number" id="pallet-weight" min="1" max="5000" placeholder="500">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Vehicle Selection Section -->
+                <div class="hidden-section" id="vehicle-section">
+                    <div class="form-group">
+                        <label for="vehicle-type" class="lang-de">Fahrzeugtyp</label>
+                        <label for="vehicle-type" class="lang-en">Vehicle Type</label>
+                        <select id="vehicle-type">
+                            <option value="auto">🔄 Auto-Auswahl</option>
+                            <option value="bus">🚐 3,5-Tonner (bis 1.100 kg)</option>
+                            <option value="7.5t">🚚 7,5-Tonner (bis 2.350 kg)</option>
+                            <option value="12t">🚛 12-Tonner (bis 7.000 kg)</option>
+                            <option value="18t">🚛 18-Tonner (bis 12.000 kg)</option>
+                            <option value="sattelzug">🚛 Sattelzug (bis 24.000 kg)</option>
+                            <option value="mega">🚛 Sattelzug Megatrailer (bis 24.000 kg)</option>
+                            <option value="consultation">📞 Beratung erforderlich</option>
+                        </select>
+                    </div>
+                    
+                    <!-- Submit Button -->
+                    <div class="form-group">
+                        <button type="submit" class="submit-btn">
+                            <span class="submit-text lang-de">Preis berechnen</span>
+                            <span class="submit-text lang-en">Calculate Price</span>
+                        </button>
+                    </div>
+                </div>
+            </form>
+
+            <!-- Vehicle Selection Widget -->
+            <div class="hidden-section" id="auto-vehicle-widget">
+                <div class="form-group">
+                    <label class="lang-de">Empfohlenes Fahrzeug</label>
+                    <label class="lang-en">Recommended Vehicle</label>
+                    
+                    <div class="vehicle-widget" id="vehicleWidget">
+                        <!-- Vehicle will be inserted here by JavaScript -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Price Result Display -->
+            <div class="calculator-result" id="calculatorResult">
+                <h3 class="lang-de">Geschätzter Transportpreis</h3>
+                <h3 class="lang-en">Estimated Transport Price</h3>
+                <div class="price-estimate" id="priceEstimate">-</div>
+                <div class="total-weight" id="totalWeight"></div>
+                
+                <div class="price-note lang-de">
+                    * Dies ist eine grobe Preisschätzung. Der endgültige Preis kann je nach genauer Strecke und Fracht variieren.
+                </div>
+                <div class="price-note lang-en">
+                    * This is a rough price estimate. The final price may vary depending on the exact route and cargo.
+                </div>
+                
+                <!-- Request Quote Button -->
+                <button class="request-btn" onclick="openModal()">
+                    <span class="lang-de">📩 Genauestes Angebot erhalten</span>
+                    <span class="lang-en">📩 Get the most accurate offer</span>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Vehicles Gallery Section -->
+    <section class="vehicles-gallery" id="vehicles-gallery">
+        <div class="vehicles-container">
+            <div class="section-title">
+                <h2 class="lang-de">Unsere Fahrzeugflotte</h2>
+                <h2 class="lang-en">Our Vehicle Fleet</h2>
+                
+                <p class="lang-de">Moderne und zuverlässige LKW für jede Transportanforderung</p>
+                <p class="lang-en">Modern and reliable trucks for every transport requirement</p>
+            </div>
+            
+            <div class="vehicle-grid" id="vehicleGrid">
+                <!-- Vehicles will be loaded dynamically by JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Custom Request Section -->
+    <section class="custom-request" id="custom-request">
+        <div class="custom-request-container">
+            <h2 class="lang-de">Individuelle Transportanfrage</h2>
+            <h2 class="lang-en">Custom Transport Request</h2>
+            
+            <p class="lang-de">Beschreiben Sie Ihren Transportbedarf und wir erstellen Ihnen ein maßgeschneidertes Angebot</p>
+            <p class="lang-en">Describe your transport needs and we'll create a customized offer for you</p>
+            
+            <form class="custom-request-form" id="customRequestForm">
+                <div class="form-group">
+                    <label for="request-details" class="lang-de">Transportdetails</label>
+                    <label for="request-details" class="lang-en">Transport Details</label>
+                    <textarea id="request-details" placeholder="Beschreiben Sie Ihre Fracht, Abhol- und Lieferorte, besondere Anforderungen..." required></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label for="request-email" class="lang-de">Ihre E-Mail</label>
+                    <label for="request-email" class="lang-en">Your Email</label>
+                    <input type="email" id="request-email" placeholder="email@beispiel.de" required>
+                </div>
+                
+                <div class="form-group">
+                    <button type="submit" class="submit-btn">
+                        <span class="lang-de">Anfrage senden</span>
+                        <span class="lang-en">Send Request</span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="footer-content">
+            <div class="footer-column">
+                <h3>LogiBase</h3>
+                <p class="lang-de">Ihr zuverlässiger Partner für Transport und Logistik. Wir liefern Lösungen für jede Transportanforderung.</p>
+                <p class="lang-en">Your reliable partner for transport and logistics. We deliver solutions for every transport requirement.</p>
+            </div>
+            <div class="footer-column">
+                <h3 class="lang-de">Kontakt</h3>
+                <h3 class="lang-en">Contact</h3>
+                <p>Musterstraße 123</p>
+                <p>12345 Musterstadt</p>
+                <p>+49 123 456 789</p>
+                <a href="mailto:info@logibase.de">info@logibase.de</a>
+            </div>
+            <div class="footer-column">
+                <h3 class="lang-de">Leistungen</h3>
+                <h3 class="lang-en">Services</h3>
+                <a href="#calculator" class="lang-de">Nationale Transporte</a>
+                <a href="#calculator" class="lang-en">National transports</a>
+                <a href="#calculator" class="lang-de">Europatransporte</a>
+                <a href="#calculator" class="lang-en">European transports</a>
+                <a href="#calculator" class="lang-de">Express-Lieferungen</a>
+                <a href="#calculator" class="lang-en">Express deliveries</a>
+            </div>
+            <div class="footer-column">
+                <h3 class="lang-de">Informationen</h3>
+                <h3 class="lang-en">Information</h3>
+                <a href="#" class="lang-de">Über uns</a>
+                <a href="#" class="lang-en">About us</a>
+                <a href="#" class="lang-de">Impressum</a>
+                <a href="#" class="lang-en">Legal notice</a>
+                <a href="#" class="lang-de">Datenschutz</a>
+                <a href="#" class="lang-en">Privacy policy</a>
+            </div>
+        </div>
+        <div class="copyright">
+            <span class="lang-de">© 2024 LogiBase GmbH. Alle Rechte vorbehalten.</span>
+            <span class="lang-en">© 2024 LogiBase GmbH. All rights reserved.</span>
+        </div>
+    </footer>
+
+    <!-- Modal -->
+    <div class="modal-overlay" id="modalOverlay">
+        <div class="modal">
+            <button class="modal-close-btn" onclick="closeModal()">×</button>
+            <h3 class="lang-de">Angebot anfordern</h3>
+            <h3 class="lang-en">Request Quote</h3>
+            <p class="lang-de">Geben Sie Ihre Daten ein und wir senden Ihnen innerhalb von 30 Minuten ein persönliches Angebot zu.</p>
+            <p class="lang-en">Enter your details and we will send you a personal offer within 30 minutes.</p>
+            
+            <form class="modal-form" id="modalForm">
+                <input type="email" placeholder="Ihre E-Mail-Adresse" required>
+                <input type="text" placeholder="Ihr Name">
+                <input type="tel" placeholder="Telefon (optional)">
+                <textarea placeholder="Zusätzliche Informationen zu Ihrer Anfrage"></textarea>
+                
+                <button type="submit" class="modal-submit-btn">
+                    <span class="lang-de">Angebot anfordern</span>
+                    <span class="lang-en">Request Quote</span>
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Success Message -->
+    <div class="success-message" id="successMessage">
+        <strong class="lang-de">Vielen Dank für Ihre Anfrage!</strong>
+        <strong class="lang-en">Thank you for your request!</strong>
+        <br>
+        <span class="lang-de">Wir senden Ihnen innerhalb von 30 Minuten ein persönliches Angebot an Ihre E-Mail-Adresse.</span>
+        <span class="lang-en">We will send you a personal offer to your email address within 30 minutes.</span>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="js/main.js"></script>
+</body>
+</html>
