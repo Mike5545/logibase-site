@@ -32,7 +32,7 @@
             line-height: 1.6;
         }
 
-        /* Header Styles */
+        /* Header */
         header {
             background: var(--white);
             box-shadow: var(--shadow);
@@ -139,7 +139,7 @@
             color: var(--white);
         }
 
-        /* Login Section Styles */
+        /* Mini Login Section */
         .login-section {
             padding: 0.3rem 2rem;
             background: var(--light);
@@ -221,7 +221,7 @@
             transform: translateY(-1px);
         }
 
-        /* Hero Section Styles */
+        /* Hero Section */
         .hero {
             background: linear-gradient(rgba(255,255,255,0.9), rgba(255,255,255,0.95)), 
                         url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" fill="none" stroke="%23000" stroke-width="0.5" opacity="0.1"/></svg>');
@@ -276,7 +276,7 @@
             box-shadow: 0 5px 15px rgba(0,0,0,0.1);
         }
 
-        /* Calculator Section Styles */
+        /* Calculator Section */
         .calculator {
             padding: 4rem 2rem;
             background: var(--light);
@@ -343,18 +343,6 @@
             box-shadow: 0 0 0 3px rgba(0,0,0,0.1);
         }
 
-        /* Date Time Input Styles */
-        .date-time-input {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1rem;
-        }
-
-        .date-time-group {
-            display: flex;
-            flex-direction: column;
-        }
-
         /* Initially Hidden Sections */
         .hidden-section {
             display: none;
@@ -369,7 +357,7 @@
             transform: translateY(0);
         }
 
-        /* Toggle Switch Styles */
+        /* Beautiful Toggle Switch */
         .toggle-switch {
             position: relative;
             display: inline-block;
@@ -416,7 +404,7 @@
             transform: translateX(26px);
         }
 
-        /* Stapelbar Container Styles */
+        /* Stapelbar Container */
         .stapelbar-container {
             display: flex;
             align-items: center;
@@ -471,7 +459,7 @@
             border-radius: 6px;
         }
 
-        /* Button Styles */
+        /* Beautiful Button Styles */
         .cargo-type-selector {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -503,7 +491,7 @@
             transform: translateY(-2px);
         }
 
-        /* ОЧЕНЬ МАЛЕНЬКИЕ КНОПКИ Pallet Type Selector */
+        /* SMALLER Pallet Type Selector */
         .pallet-type-selector {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -546,7 +534,7 @@
             opacity: 0.8;
         }
 
-        /* Individual Pallets Styles */
+        /* Individual Pallets */
         .individual-pallets {
             margin-bottom: 1rem;
         }
@@ -654,15 +642,9 @@
         /* Standard Pallets Compact */
         .standard-pallets-compact {
             display: grid;
-            grid-template-columns: 1fr auto;
-            gap: 1rem;
-            align-items: end;
-        }
-
-        .standard-pallet-fields {
-            display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 1rem;
+            align-items: end;
         }
 
         .compact-field {
@@ -685,7 +667,7 @@
             border-radius: 6px;
         }
 
-        /* Vehicle Selector Styles */
+        /* Vehicle Selector */
         .vehicle-selector {
             margin-bottom: 1rem;
         }
@@ -701,7 +683,7 @@
             color: var(--secondary);
         }
 
-        /* Submit Button Styles */
+        /* Beautiful Submit Button */
         .submit-btn {
             background: var(--primary);
             color: var(--white);
@@ -732,7 +714,7 @@
             transform: none;
         }
 
-        /* Calculator Result Styles */
+        /* Calculator Result */
         .calculator-result {
             background: var(--white);
             padding: 2rem;
@@ -814,63 +796,10 @@
             font-size: 1.1rem;
         }
 
-        /* Custom Request Section */
-        .custom-request {
-            padding: 4rem 2rem;
-            background: var(--white);
-            border-bottom: 1px solid var(--border);
-        }
-
-        .custom-request-container {
-            max-width: 800px;
-            margin: 0 auto;
-            text-align: center;
-        }
-
-        .custom-request h2 {
-            font-size: 2rem;
-            color: var(--primary);
-            margin-bottom: 1rem;
-            font-weight: 300;
-            letter-spacing: -0.5px;
-        }
-
-        .custom-request > .custom-request-container > p {
-            margin-bottom: 2rem;
-            color: var(--accent);
-            font-size: 1rem;
-            font-weight: 300;
-        }
-
-        .custom-request-form {
-            display: flex;
-            flex-direction: column;
-            gap: 1.2rem;
-            margin-bottom: 2rem;
-        }
-
-        .custom-request-form textarea {
-            padding: 1rem;
-            border: 1px solid var(--border);
-            font-size: 0.95rem;
-            border-radius: 6px;
-            transition: var(--transition);
-            background: var(--white);
-            color: var(--secondary);
-            min-height: 140px;
-            resize: vertical;
-        }
-
-        .custom-request-form textarea:focus {
-            outline: none;
-            border-color: var(--primary);
-            box-shadow: 0 0 0 3px rgba(0,0,0,0.1);
-        }
-
         /* Vehicles Section */
         .vehicles {
             padding: 5rem 2rem;
-            background: var(--light);
+            background: var(--white);
             border-bottom: 1px solid var(--border);
         }
 
@@ -941,10 +870,14 @@
             position: relative;
         }
 
-        .vehicle-image .pallet-visualization::before {
-            content: "🚛";
-            font-size: 4rem;
-            opacity: 0.7;
+        .pallet-visualization svg {
+            width: 85%;
+            height: 85%;
+            transition: var(--transition);
+        }
+
+        .vehicle-card:hover .pallet-visualization svg {
+            transform: scale(1.08);
         }
 
         .vehicle-badge {
@@ -1204,7 +1137,76 @@
         .lang-de { display: block; }
         .lang-en { display: none; }
 
-        /* Notification System */
+        /* Custom Request Section */
+        .custom-request {
+            padding: 4rem 2rem;
+            background: var(--light);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .custom-request-container {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .custom-request h2 {
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+            font-weight: 300;
+            letter-spacing: -0.5px;
+        }
+
+        .custom-request > .custom-request-container > p {
+            margin-bottom: 2rem;
+            color: var(--accent);
+            font-size: 1rem;
+            font-weight: 300;
+        }
+
+        .custom-request-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+            margin-bottom: 2rem;
+        }
+
+        .custom-request-form textarea {
+            padding: 1rem;
+            border: 1px solid var(--border);
+            font-size: 0.95rem;
+            border-radius: 6px;
+            transition: var(--transition);
+            background: var(--white);
+            color: var(--secondary);
+            min-height: 140px;
+            resize: vertical;
+        }
+
+        .custom-request-form textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(0,0,0,0.1);
+        }
+
+        /* Loading Spinner */
+        .loading-spinner {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255,255,255,0.3);
+            border-radius: 50%;
+            border-top-color: var(--white);
+            animation: spin 1s ease-in-out infinite;
+            margin-right: 10px;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Notification Styles */
         .notification {
             position: fixed;
             top: 20px;
@@ -1240,32 +1242,6 @@
         @keyframes slideIn {
             from { transform: translateX(100%); opacity: 0; }
             to { transform: translateX(0); opacity: 1; }
-        }
-
-        /* Loading Spinner */
-        .loading-spinner {
-            display: inline-block;
-            width: 20px;
-            height: 20px;
-            border: 3px solid rgba(255,255,255,0.3);
-            border-radius: 50%;
-            border-top-color: var(--white);
-            animation: spin 1s ease-in-out infinite;
-            margin-right: 10px;
-        }
-
-        @keyframes spin {
-            to { transform: rotate(360deg); }
-        }
-
-        /* Highlight Animation */
-        @keyframes highlight {
-            0% { background-color: #e8f5e8; }
-            100% { background-color: var(--white); }
-        }
-
-        .pallet-item.highlight {
-            animation: highlight 0.5s ease;
         }
 
         /* Responsive */
@@ -1655,6 +1631,36 @@
         </div>
     </section>
 
+    <!-- Contact Modal -->
+    <div class="modal-overlay" id="modalOverlay">
+        <div class="modal">
+            <button class="modal-close-btn" onclick="closeModal()">×</button>
+            <h3 class="lang-de">Angebot anfordern</h3>
+            <h3 class="lang-en">Request Quote</h3>
+            <p class="lang-de">Geben Sie Ihre Daten ein und wir senden Ihnen innerhalb von 30 Minuten ein persönliches Angebot zu.</p>
+            <p class="lang-en">Enter your details and we will send you a personal offer within 30 minutes.</p>
+            
+            <form class="modal-form" id="modalForm">
+                <input type="email" id="client-email" name="email" placeholder="Ihre E-Mail-Adresse" required>
+                <input type="text" id="client-name" name="name" placeholder="Ihr Name">
+                <input type="tel" id="client-phone" name="phone" placeholder="Telefon (optional)">
+                <textarea id="request-info" name="request-info" placeholder="Zusätzliche Informationen zu Ihrer Anfrage"></textarea>
+                
+                <button type="submit" class="modal-submit-btn lang-de">Angebot anfordern</button>
+                <button type="submit" class="modal-submit-btn lang-en">Request Quote</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Success Message -->
+    <div class="success-message" id="successMessage">
+        <strong class="lang-de">Vielen Dank für Ihre Anfrage!</strong>
+        <strong class="lang-en">Thank you for your request!</strong>
+        <br>
+        <span class="lang-de">Wir senden Ihnen innerhalb von 30 Minuten ein persönliches Angebot an Ihre E-Mail-Adresse.</span>
+        <span class="lang-en">We will send you a personal offer to your email address within 30 minutes.</span>
+    </div>
+
     <!-- Vehicles Section -->
     <section class="vehicles" id="vehicles">
         <div class="vehicles-container">
@@ -1904,36 +1910,6 @@
         </div>
     </section>
 
-    <!-- Contact Modal -->
-    <div class="modal-overlay" id="modalOverlay">
-        <div class="modal">
-            <button class="modal-close-btn" onclick="closeModal()">×</button>
-            <h3 class="lang-de">Angebot anfordern</h3>
-            <h3 class="lang-en">Request Quote</h3>
-            <p class="lang-de">Geben Sie Ihre Daten ein und wir senden Ihnen innerhalb von 30 Minuten ein persönliches Angebot zu.</p>
-            <p class="lang-en">Enter your details and we will send you a personal offer within 30 minutes.</p>
-            
-            <form class="modal-form" id="modalForm">
-                <input type="email" id="client-email" name="email" placeholder="Ihre E-Mail-Adresse" required>
-                <input type="text" id="client-name" name="name" placeholder="Ihr Name">
-                <input type="tel" id="client-phone" name="phone" placeholder="Telefon (optional)">
-                <textarea id="request-info" name="request-info" placeholder="Zusätzliche Informationen zu Ihrer Anfrage"></textarea>
-                
-                <button type="submit" class="modal-submit-btn lang-de">Angebot anfordern</button>
-                <button type="submit" class="modal-submit-btn lang-en">Request Quote</button>
-            </form>
-        </div>
-    </div>
-
-    <!-- Success Message -->
-    <div class="success-message" id="successMessage">
-        <strong class="lang-de">Vielen Dank für Ihre Anfrage!</strong>
-        <strong class="lang-en">Thank you for your request!</strong>
-        <br>
-        <span class="lang-de">Wir senden Ihnen innerhalb von 30 Minuten ein persönliches Angebot an Ihre E-Mail-Adresse.</span>
-        <span class="lang-en">We will send you a personal offer to your email address within 30 minutes.</span>
-    </div>
-
     <!-- Footer -->
     <footer id="contact">
         <div class="footer-content">
@@ -2069,6 +2045,7 @@
         // Fixed stacking parameters
         const MAX_STACK_LEVELS = 2;
         const MAX_STACK_HEIGHT = 250;
+        const STANDARD_PALLET_HEIGHT = 150;
 
         let palletCounter = 0;
 
@@ -2076,7 +2053,7 @@
         // ENHANCED VEHICLE SELECTION LOGIC
         // =============================================
         function autoSelectVehicle(cargoData) {
-            const { totalWeight, totalPallets, maxPalletHeight, maxPalletLength, palletType } = cargoData;
+            const { totalWeight, totalPallets, maxPalletHeight, palletType } = cargoData;
             
             console.log('Auto selecting vehicle for:', cargoData);
             
@@ -2086,6 +2063,7 @@
             );
             
             if (suitableVehicles.length === 0) {
+                console.log('No vehicles suitable for height:', maxPalletHeight);
                 return 'consultation';
             }
             
@@ -2095,6 +2073,7 @@
             );
             
             if (suitableVehicles.length === 0) {
+                console.log('No vehicles suitable for weight:', totalWeight);
                 return 'consultation';
             }
             
@@ -2104,35 +2083,38 @@
             );
             
             if (suitableVehicles.length === 0) {
+                console.log('No vehicles suitable for pallets:', totalPallets);
                 return 'consultation';
             }
             
-            // Check Lademeter
-            const neededLademeter = calculateNeededLademeter(totalPallets, palletType, maxPalletLength);
-            suitableVehicles = suitableVehicles.filter(vehicle => 
-                vehicle.loadingMeter.max >= neededLademeter
-            );
-            
-            if (suitableVehicles.length === 0) {
-                return 'consultation';
+            // Check Lademeter for standard pallets
+            if (palletType) {
+                const neededLademeter = calculateNeededLademeter(totalPallets, palletType);
+                suitableVehicles = suitableVehicles.filter(vehicle => {
+                    return vehicle.loadingMeter.max >= neededLademeter;
+                });
+                
+                if (suitableVehicles.length === 0) {
+                    console.log('No vehicles suitable for Lademeter:', neededLademeter);
+                    return 'consultation';
+                }
             }
             
             // Return the smallest suitable vehicle (by weight capacity)
             suitableVehicles.sort((a, b) => a.maxWeight - b.maxWeight);
             const selectedVehicle = suitableVehicles[0];
             
+            console.log('Selected vehicle:', selectedVehicle.type);
             return selectedVehicle.type;
         }
 
-        function calculateNeededLademeter(totalPallets, palletType, maxPalletLength) {
+        function calculateNeededLademeter(totalPallets, palletType) {
             if (palletType === 'euro') {
                 return totalPallets * 0.4;
             } else if (palletType === 'dusseldorf') {
                 return totalPallets * 0.5;
-            } else {
-                // Individual pallets - estimate based on max length
-                return totalPallets * (maxPalletLength / 100) * 0.8;
             }
+            return 0;
         }
 
         // =============================================
@@ -2143,8 +2125,7 @@
             let totalWeight = 0;
             let totalPallets = 0;
             let maxPalletHeight = 0;
-            let maxPalletLength = 0;
-            let palletType = 'individual';
+            let palletType = null;
             
             if (cargoType === 'individual') {
                 const stackingInfo = calculateStacking();
@@ -2154,13 +2135,8 @@
                 // Find maximum dimensions
                 const palletItems = document.querySelectorAll('.pallet-item');
                 palletItems.forEach(item => {
-                    const lengthInput = item.querySelector('input[type="number"]:nth-child(1)');
                     const heightInput = item.querySelector('input[type="number"]:nth-child(3)');
                     
-                    if (lengthInput && lengthInput.value) {
-                        const length = parseInt(lengthInput.value) || 0;
-                        if (length > maxPalletLength) maxPalletLength = length;
-                    }
                     if (heightInput && heightInput.value) {
                         const height = parseInt(heightInput.value) || 0;
                         if (height > maxPalletHeight) maxPalletHeight = height;
@@ -2170,23 +2146,14 @@
                 const stackingInfo = calculateStandardStacking();
                 totalWeight = stackingInfo.totalWeight;
                 totalPallets = stackingInfo.effectivePallets;
+                maxPalletHeight = stackingInfo.maxPalletHeight;
                 palletType = document.querySelector('.pallet-type-btn.active').getAttribute('data-type');
-                
-                // For standard pallets, use standard dimensions
-                if (palletType === 'euro') {
-                    maxPalletLength = 120;
-                    maxPalletHeight = stackingInfo.maxPalletHeight || 150;
-                } else {
-                    maxPalletLength = 120;
-                    maxPalletHeight = stackingInfo.maxPalletHeight || 150;
-                }
             }
             
             return {
                 totalWeight,
                 totalPallets,
                 maxPalletHeight,
-                maxPalletLength,
                 palletType
             };
         }
@@ -2198,30 +2165,30 @@
             const vehicleTypeSelect = document.getElementById('vehicle-type');
             const currentSelection = vehicleTypeSelect.value;
             
-            try {
-                const cargoData = calculateCargoData();
-                const selectedVehicle = autoSelectVehicle(cargoData);
-                
-                // Always update the selection
-                vehicleTypeSelect.value = selectedVehicle;
-                
-                // Update auto selection info
-                const autoInfo = document.getElementById('autoSelectionInfo');
-                if (selectedVehicle === 'consultation') {
-                    autoInfo.innerHTML = '<strong>🔍 Beratung erforderlich:</strong> Ihre Fracht übersteigt unsere Standardkapazitäten. Bitte kontaktieren Sie uns für ein individuelles Angebot.';
-                    autoInfo.style.display = 'block';
-                } else {
-                    const vehicleData = getVehicleData(selectedVehicle);
-                    autoInfo.innerHTML = `<strong>✅ Automatisch ausgewählt:</strong> ${vehicleData.name} - Passt optimal zu Ihrer Fracht`;
-                    autoInfo.style.display = 'block';
+            // Only auto-select if "Auto-Auswahl" is selected
+            if (currentSelection === 'auto') {
+                try {
+                    const cargoData = calculateCargoData();
+                    const selectedVehicle = autoSelectVehicle(cargoData);
                     
-                    // Show recommendation notification
-                    if (currentSelection !== 'auto' && currentSelection !== selectedVehicle) {
-                        showVehicleRecommendation();
+                    vehicleTypeSelect.value = selectedVehicle;
+                    
+                    // Update auto selection info
+                    const autoInfo = document.getElementById('autoSelectionInfo');
+                    if (selectedVehicle === 'consultation') {
+                        autoInfo.innerHTML = '<strong>🔍 Beratung erforderlich:</strong> Ihre Fracht übersteigt unsere Standardkapazitäten. Bitte kontaktieren Sie uns für ein individuelles Angebot.';
+                        autoInfo.style.display = 'block';
+                    } else {
+                        const vehicleData = getVehicleData(selectedVehicle);
+                        autoInfo.innerHTML = `<strong>✅ Automatisch ausgewählt:</strong> ${vehicleData.name} - Passt optimal zu Ihrer Fracht`;
+                        autoInfo.style.display = 'block';
                     }
+                } catch (error) {
+                    console.error('Error in vehicle selection:', error);
                 }
-            } catch (error) {
-                console.error('Error in vehicle selection:', error);
+            } else {
+                // Show recommendation for manual selection
+                showVehicleRecommendation();
             }
         }
 
@@ -2233,6 +2200,7 @@
                 if (recommendedVehicle !== 'consultation') {
                     const vehicleData = getVehicleData(recommendedVehicle);
                     const currentVehicle = document.getElementById('vehicle-type').value;
+                    const currentVehicleData = getVehicleData(currentVehicle);
                     
                     // Show recommendation only if current selection is not optimal
                     if (currentVehicle !== recommendedVehicle && currentVehicle !== 'auto') {
@@ -2322,13 +2290,10 @@
             const palletCount = parseInt(document.getElementById('pallet-count').value) || 0;
             const palletWeight = parseInt(document.getElementById('pallet-weight').value) || 0;
             
-            // Standard pallet height
-            const standardPalletHeight = 150;
-            
-            if (isStapelbar && palletCount > 0) {
+            if (isStapelbar) {
                 const levelsPerStack = Math.min(
                     MAX_STACK_LEVELS, 
-                    Math.floor(maxStackHeight / standardPalletHeight)
+                    Math.floor(maxStackHeight / STANDARD_PALLET_HEIGHT)
                 );
                 const effectivePallets = palletCount * levelsPerStack;
                 const spaceSaving = Math.round((1 - (palletCount / effectivePallets)) * 100);
@@ -2346,18 +2311,17 @@
                     totalWeight: palletWeight * effectivePallets,
                     spaceSaving: spaceSaving,
                     isStacked: true,
-                    maxPalletHeight: standardPalletHeight
+                    maxPalletHeight: STANDARD_PALLET_HEIGHT
                 };
             } else {
                 document.getElementById('standard-stacking-info').classList.remove('visible');
-                const totalWeight = palletCount * palletWeight;
                 return {
                     effectivePallets: palletCount,
                     levels: 1,
-                    totalWeight: totalWeight,
+                    totalWeight: palletWeight * palletCount,
                     spaceSaving: 0,
                     isStacked: false,
-                    maxPalletHeight: standardPalletHeight
+                    maxPalletHeight: STANDARD_PALLET_HEIGHT
                 };
             }
         }
@@ -2404,7 +2368,6 @@
                     price += totalPallets * vehicle.perPallet;
                     
                     // Stacking is FREE - no surcharge
-                    
                 } else {
                     stackingInfo = calculateStandardStacking();
                     totalPallets = stackingInfo.effectivePallets;
@@ -2420,7 +2383,7 @@
                 document.getElementById('result-effective-pallets').textContent = totalPallets;
                 document.getElementById('result-stacking').textContent = stackingInfo.isStacked ? 
                     (stackingInfo.levels + ' Ebenen') : 'Nein';
-                document.getElementById('result-stacking-info').style.display = stackingInfo.isStacked ? 'block' : 'none';
+                document.getElementById('result-stacking-info').style.display = 'block';
                 
                 return {
                     price: Math.round(price),
@@ -2450,35 +2413,29 @@
             const palletItem = document.createElement('div');
             palletItem.className = 'pallet-item';
             
-            // All fields empty by default
-            const lengthValue = empty ? '' : '';
-            const widthValue = empty ? '' : '';
-            const heightValue = empty ? '' : '';
-            const weightValue = empty ? '' : '';
-            
             palletItem.innerHTML = `
                 <div class="dimension-item">
                     <label class="lang-de">Länge (cm)</label>
                     <label class="lang-en">Length (cm)</label>
-                    <input type="number" name="pallet-length-${palletCounter}" min="1" placeholder="120" value="${lengthValue}">
+                    <input type="number" name="pallet-length-${palletCounter}" min="1" placeholder="120" value="${empty ? '' : ''}">
                 </div>
                 <div class="dimension-item">
                     <label class="lang-de">Breite (cm)</label>
                     <label class="lang-en">Width (cm)</label>
-                    <input type="number" name="pallet-width-${palletCounter}" min="1" placeholder="80" value="${widthValue}">
+                    <input type="number" name="pallet-width-${palletCounter}" min="1" placeholder="80" value="${empty ? '' : ''}">
                 </div>
                 <div class="dimension-item">
                     <label class="lang-de">Höhe (cm)</label>
                     <label class="lang-en">Height (cm)</label>
-                    <input type="number" name="pallet-height-${palletCounter}" min="1" placeholder="100" value="${heightValue}">
+                    <input type="number" name="pallet-height-${palletCounter}" min="1" placeholder="100" value="${empty ? '' : ''}">
                 </div>
                 <div class="dimension-item">
                     <label class="lang-de">Gewicht (kg)</label>
                     <label class="lang-en">Weight (kg)</label>
-                    <input type="number" name="pallet-weight-${palletCounter}" min="1" placeholder="500" value="${weightValue}">
+                    <input type="number" name="pallet-weight-${palletCounter}" min="1" placeholder="500" value="${empty ? '' : ''}">
                 </div>
-                <button type="button" class="duplicate-pallet-btn" onclick="duplicatePallet(this)" title="Palette duplizieren">+</button>
-                ${palletCounter > 1 ? '<button type="button" class="remove-pallet-btn" onclick="removePallet(this)" title="Palette entfernen">×</button>' : ''}
+                <button type="button" class="duplicate-pallet-btn" onclick="duplicatePallet(this)">+</button>
+                ${palletCounter > 1 ? '<button type="button" class="remove-pallet-btn" onclick="removePallet(this)">×</button>' : ''}
             `;
             container.appendChild(palletItem);
             
@@ -2503,7 +2460,7 @@
             const inputs = palletItem.querySelectorAll('input[type="number"]');
             const currentValues = Array.from(inputs).map(input => input.value);
             
-            // Create new pallet with the SAME values
+            // Create new pallet with SAME values
             const newPalletItem = document.createElement('div');
             newPalletItem.className = 'pallet-item';
             newPalletItem.innerHTML = `
@@ -2527,17 +2484,11 @@
                     <label class="lang-en">Weight (kg)</label>
                     <input type="number" name="pallet-weight-${palletCounter+1}" min="1" placeholder="500" value="${currentValues[3] || ''}">
                 </div>
-                <button type="button" class="duplicate-pallet-btn" onclick="duplicatePallet(this)" title="Palette duplizieren">+</button>
-                <button type="button" class="remove-pallet-btn" onclick="removePallet(this)" title="Palette entfernen">×</button>
+                <button type="button" class="duplicate-pallet-btn" onclick="duplicatePallet(this)">+</button>
+                <button type="button" class="remove-pallet-btn" onclick="removePallet(this)">×</button>
             `;
             container.appendChild(newPalletItem);
             palletCounter++;
-            
-            // Add highlight animation
-            newPalletItem.classList.add('highlight');
-            setTimeout(() => {
-                newPalletItem.classList.remove('highlight');
-            }, 500);
             
             // Add event listeners
             const newInputs = newPalletItem.querySelectorAll('input');
@@ -2551,13 +2502,37 @@
             calculateStacking();
             updateVehicleSelection();
             
-            showNotification('✅ Palette wurde dupliziert!', 'success');
+            showNotification('✅ Pallette wurde dupliziert!', 'success');
         }
 
         function removePallet(button) {
             button.parentElement.remove();
             calculateStacking();
             updateVehicleSelection();
+        }
+
+        // =============================================
+        // VEHICLE SELECT BUTTONS
+        // =============================================
+        function initializeVehicleSelectButtons() {
+            document.querySelectorAll('.select-btn').forEach(button => {
+                button.addEventListener('click', function() {
+                    const vehicleType = this.getAttribute('data-vehicle');
+                    const vehicleSelect = document.getElementById('vehicle-type');
+                    vehicleSelect.value = vehicleType;
+                    
+                    // Update auto selection info
+                    const autoInfo = document.getElementById('autoSelectionInfo');
+                    const vehicleData = getVehicleData(vehicleType);
+                    autoInfo.innerHTML = `<strong>Manuell ausgewählt:</strong> ${vehicleData.name}`;
+                    autoInfo.style.display = 'block';
+                    
+                    // Ensure vehicle section is visible
+                    showSection('vehicle-section');
+                    
+                    showNotification(`Fahrzeug ${vehicleData.name} wurde ausgewählt!`, 'success');
+                });
+            });
         }
 
         // =============================================
@@ -2622,28 +2597,16 @@
                 const autoInfo = document.getElementById('autoSelectionInfo');
                 if (this.value !== 'auto') {
                     autoInfo.style.display = 'none';
-                    // Show recommendation after a delay
+                    // Show recommendation after a short delay
                     setTimeout(showVehicleRecommendation, 500);
                 } else {
                     updateVehicleSelection();
                 }
             });
 
-            // Vehicle select buttons
-            document.querySelectorAll('.select-btn').forEach(button => {
-                button.addEventListener('click', function() {
-                    const vehicleType = this.getAttribute('data-vehicle');
-                    const vehicleSelect = document.getElementById('vehicle-type');
-                    vehicleSelect.value = vehicleType;
-                    
-                    // Update auto selection info
-                    const autoInfo = document.getElementById('autoSelectionInfo');
-                    const vehicleData = getVehicleData(vehicleType);
-                    autoInfo.innerHTML = `<strong>Manuell ausgewählt:</strong> ${vehicleData.name}`;
-                    autoInfo.style.display = 'block';
-                    
-                    showNotification(`Fahrzeug ${vehicleData.name} wurde ausgewählt!`, 'success');
-                });
+            // Add pallet button
+            document.getElementById('add-pallet-btn').addEventListener('click', function() {
+                addIndividualPallet(true); // true = empty fields
             });
         }
 
@@ -2709,6 +2672,44 @@
         }
 
         // =============================================
+        // DATE VALIDATION
+        // =============================================
+        function setupDateValidation() {
+            const now = new Date();
+            const nowString = now.toISOString().slice(0, 16);
+            
+            // Set minimum dates to current datetime
+            document.getElementById('loading-date').min = nowString;
+            document.getElementById('unloading-date').min = nowString;
+            
+            // Set default values (tomorrow for loading, +2 hours for unloading)
+            const loadingDate = new Date(now.getTime() + 24 * 60 * 60 * 1000);
+            const loadingDateString = loadingDate.toISOString().slice(0, 16);
+            
+            const unloadingDate = new Date(loadingDate.getTime() + 2 * 60 * 60 * 1000);
+            const unloadingDateString = unloadingDate.toISOString().slice(0, 16);
+            
+            document.getElementById('loading-date').value = loadingDateString;
+            document.getElementById('unloading-date').value = unloadingDateString;
+            
+            // Add validation for unloading date
+            document.getElementById('loading-date').addEventListener('change', function() {
+                const loadingDate = new Date(this.value);
+                const unloadingInput = document.getElementById('unloading-date');
+                
+                // Set minimum unloading date to loading date
+                unloadingInput.min = this.value;
+                
+                // If unloading date is before loading date, update it
+                const unloadingDate = new Date(unloadingInput.value);
+                if (unloadingDate < loadingDate) {
+                    const newUnloadingDate = new Date(loadingDate.getTime() + 2 * 60 * 60 * 1000);
+                    unloadingInput.value = newUnloadingDate.toISOString().slice(0, 16);
+                }
+            });
+        }
+
+        // =============================================
         // NOTIFICATION SYSTEM
         // =============================================
         function showNotification(message, type = 'info') {
@@ -2759,51 +2760,6 @@
         });
 
         // =============================================
-        // LOGIN SYSTEM
-        // =============================================
-        const users = {
-            'Michael': { password: '123', name: 'Michael', role: 'admin' },
-            'kunde': { password: 'kunde123', name: 'Max Mustermann', role: 'customer' }
-        };
-
-        function showUserInfo(username) {
-            document.getElementById('userName').textContent = users[username].name;
-            document.getElementById('userInfo').style.display = 'flex';
-            document.getElementById('loginForm').style.display = 'none';
-        }
-
-        function hideUserInfo() {
-            document.getElementById('userInfo').style.display = 'none';
-            document.getElementById('loginForm').style.display = 'flex';
-        }
-
-        document.getElementById('loginForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            const username = document.getElementById('username').value;
-            const password = document.getElementById('password').value;
-            
-            if (users[username] && users[username].password === password) {
-                showUserInfo(username);
-                localStorage.setItem('loggedInUser', username);
-                
-                if (username === 'Michael') {
-                    window.location.href = 'https://github.com/your-username/your-repo/blob/main/Dashboard.html';
-                }
-                
-                showNotification('Erfolgreich angemeldet als ' + users[username].name, 'success');
-            } else {
-                showNotification('Ungültiger Benutzername oder Passwort', 'error');
-            }
-        });
-
-        document.getElementById('logoutBtn').addEventListener('click', function() {
-            hideUserInfo();
-            localStorage.removeItem('loggedInUser');
-            showNotification('Erfolgreich abgemeldet', 'success');
-        });
-
-        // =============================================
         // UTILITY FUNCTIONS
         // =============================================
         function calculateDistance(from, to) {
@@ -2834,125 +2790,125 @@
             return Math.abs(from.length - to.length) * 10 + 150;
         }
 
-        function setupDateValidation() {
-            const now = new Date();
-            const nowString = now.toISOString().slice(0, 16);
-            
-            // Set minimum dates to current datetime
-            document.getElementById('loading-date').min = nowString;
-            document.getElementById('unloading-date').min = nowString;
-            
-            // Set default values (tomorrow for loading, +2 hours for unloading)
-            const loadingDate = new Date(now.getTime() + 24 * 60 * 60 * 1000);
-            const loadingDateString = loadingDate.toISOString().slice(0, 16);
-            
-            const unloadingDate = new Date(loadingDate.getTime() + 2 * 60 * 60 * 1000);
-            const unloadingDateString = unloadingDate.toISOString().slice(0, 16);
-            
-            document.getElementById('loading-date').value = loadingDateString;
-            document.getElementById('unloading-date').value = unloadingDateString;
-            
-            // Add validation for unloading date
-            document.getElementById('loading-date').addEventListener('change', function() {
-                const unloadingInput = document.getElementById('unloading-date');
-                unloadingInput.min = this.value;
-                
-                const unloadingDate = new Date(unloadingInput.value);
-                const loadingDate = new Date(this.value);
-                if (unloadingDate < loadingDate) {
-                    const newUnloadingDate = new Date(loadingDate.getTime() + 2 * 60 * 60 * 1000);
-                    unloadingInput.value = newUnloadingDate.toISOString().slice(0, 16);
-                }
-            });
-        }
-
-        // =============================================
-        // FORM SUBMISSION
-        // =============================================
-        document.getElementById('transportCalculator').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            const submitBtn = this.querySelector('.submit-btn');
-            const submitText = submitBtn.querySelector('.submit-text');
-            const originalText = submitText.textContent;
-            
-            // Show loading state
-            submitText.innerHTML = '<span class="loading-spinner"></span> Berechne...';
-            submitBtn.disabled = true;
-            
-            setTimeout(() => {
-                const formData = new FormData(this);
-                const result = calculateEnhancedPrice(formData);
-                
-                if (result.error) {
-                    document.getElementById('priceEstimate').textContent = 'Fehler';
-                    document.getElementById('totalWeight').innerHTML = 
-                        `<em style="color: #d32f2f;">${result.error}</em>`;
-                } else if (result.needsConsultation) {
-                    document.getElementById('priceEstimate').textContent = 'Beratung erforderlich';
-                    document.getElementById('totalWeight').innerHTML = 
-                        '<em>Bitte kontaktieren Sie uns für ein individuelles Angebot</em>';
-                } else {
-                    document.getElementById('priceEstimate').textContent = `${result.price} €`;
-                    document.getElementById('totalWeight').textContent = `Gesamtgewicht: ${result.weight} kg`;
-                }
-                
-                document.getElementById('calculatorResult').style.display = 'block';
-                document.getElementById('calculatorResult').scrollIntoView({ 
-                    behavior: 'smooth',
-                    block: 'center'
-                });
-                
-                // Reset button state
-                submitText.textContent = originalText;
-                submitBtn.disabled = false;
-            }, 1000);
-        });
-
-        document.getElementById('customRequestForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            showNotification('Ihre individuelle Anfrage wurde erfolgreich gesendet! Wir melden uns innerhalb von 30 Minuten bei Ihnen.', 'success');
-        });
-
-        document.getElementById('modalForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            closeModal();
-            document.getElementById('successMessage').style.display = 'block';
-            showNotification('Ihre Anfrage wurde erfolgreich übermittelt! Wir senden Ihnen innerhalb von 30 Minuten ein persönliches Angebot.', 'success');
-            setTimeout(() => {
-                document.getElementById('successMessage').style.display = 'none';
-            }, 5000);
-        });
-
         // =============================================
         // INITIALIZATION
         // =============================================
         document.addEventListener('DOMContentLoaded', function() {
+            // Clear all fields
+            document.getElementById('pallet-count').value = '';
+            document.getElementById('pallet-weight').value = '';
+            document.getElementById('max-stack-height').value = '';
+            document.getElementById('standard-max-height').value = '';
+            
+            initializeProgressiveForm();
+            initializeEnhancedEventListeners();
+            initializeVehicleSelectButtons();
+            
+            // Add first pallet with empty fields
+            addIndividualPallet(true);
+            
+            setupDateValidation();
+            
+            // Form submissions
+            document.getElementById('transportCalculator').addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const submitBtn = this.querySelector('.submit-btn');
+                const submitText = submitBtn.querySelector('.submit-text');
+                const originalText = submitText.textContent;
+                
+                // Show loading state
+                submitText.innerHTML = '<span class="loading-spinner"></span> Berechne...';
+                submitBtn.disabled = true;
+                
+                setTimeout(() => {
+                    const formData = new FormData(this);
+                    const result = calculateEnhancedPrice(formData);
+                    
+                    if (result.error) {
+                        document.getElementById('priceEstimate').textContent = 'Fehler';
+                        document.getElementById('totalWeight').innerHTML = 
+                            `<em style="color: #d32f2f;">${result.error}</em>`;
+                    } else if (result.needsConsultation) {
+                        document.getElementById('priceEstimate').textContent = 'Beratung erforderlich';
+                        document.getElementById('totalWeight').innerHTML = 
+                            '<em>Bitte kontaktieren Sie uns für ein individuelles Angebot</em>';
+                    } else {
+                        document.getElementById('priceEstimate').textContent = `${result.price} €`;
+                        document.getElementById('totalWeight').textContent = `Gesamtgewicht: ${result.weight} kg`;
+                    }
+                    
+                    document.getElementById('calculatorResult').style.display = 'block';
+                    document.getElementById('calculatorResult').scrollIntoView({ 
+                        behavior: 'smooth',
+                        block: 'center'
+                    });
+                    
+                    // Reset button state
+                    submitText.textContent = originalText;
+                    submitBtn.disabled = false;
+                }, 1000);
+            });
+            
+            document.getElementById('customRequestForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                showNotification('Ihre individuelle Anfrage wurde erfolgreich gesendet! Wir melden uns innerhalb von 30 Minuten bei Ihnen.', 'success');
+            });
+            
+            document.getElementById('modalForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                closeModal();
+                document.getElementById('successMessage').style.display = 'block';
+                showNotification('Ihre Anfrage wurde erfolgreich übermittelt! Wir senden Ihnen innerhalb von 30 Minuten ein persönliches Angebot.', 'success');
+                setTimeout(() => {
+                    document.getElementById('successMessage').style.display = 'none';
+                }, 5000);
+            });
+
+            // Login system
+            const users = {
+                'Michael': { password: '123', name: 'Michael', role: 'admin' },
+                'kunde': { password: 'kunde123', name: 'Max Mustermann', role: 'customer' }
+            };
+
+            function showUserInfo(username) {
+                document.getElementById('userName').textContent = users[username].name;
+                document.getElementById('userInfo').style.display = 'flex';
+                document.getElementById('loginForm').style.display = 'none';
+            }
+
+            function hideUserInfo() {
+                document.getElementById('userInfo').style.display = 'none';
+                document.getElementById('loginForm').style.display = 'flex';
+            }
+
+            document.getElementById('loginForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const username = document.getElementById('username').value;
+                const password = document.getElementById('password').value;
+                
+                if (users[username] && users[username].password === password) {
+                    showUserInfo(username);
+                    localStorage.setItem('loggedInUser', username);
+                    showNotification('Erfolgreich angemeldet als ' + users[username].name, 'success');
+                } else {
+                    showNotification('Ungültiger Benutzername oder Passwort', 'error');
+                }
+            });
+
+            document.getElementById('logoutBtn').addEventListener('click', function() {
+                hideUserInfo();
+                localStorage.removeItem('loggedInUser');
+                showNotification('Erfolgreich abgemeldet', 'success');
+            });
+
             // Check if user is already logged in
             const loggedInUser = localStorage.getItem('loggedInUser');
             if (loggedInUser) {
                 showUserInfo(loggedInUser);
             }
 
-            initializeProgressiveForm();
-            initializeEnhancedEventListeners();
-            
-            // Add first pallet with EMPTY fields
-            addIndividualPallet(true);
-            
-            // Clear all standard pallet fields
-            document.getElementById('pallet-count').value = '';
-            document.getElementById('pallet-weight').value = '';
-            document.getElementById('max-stack-height').value = '';
-            document.getElementById('standard-max-height').value = '';
-            
-            setupDateValidation();
-            
-            // Add event listener for add pallet button
-            document.getElementById('add-pallet-btn').addEventListener('click', function() {
-                addIndividualPallet(true);
-            });
-            
             showNotification('Transportrechner bereit! Das System wählt automatisch das passende Fahrzeug basierend auf Ihren Frachtdaten aus.', 'info');
         });
     </script>
